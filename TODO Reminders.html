@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reminders Style To-Do App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #181a1b;
+            margin: 0;
+            padding: 0;
+        }
+        .app-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #232526;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            padding: 32px 24px;
+        }
+        h1 {
+            text-align: center;
+            color: #4a90e2;
+            margin-bottom: 32px;
+            font-size: 2.2em;
+            letter-spacing: 1px;
+        }
+        .lists-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+        .list {
+            background: #26282b;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            padding: 20px 16px 16px 16px;
+            min-width: 350px;
+            flex: 1 1 240px;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        .list-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .list-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #e3eafc;
+            background: transparent;
+            border: none;
+            outline: none;
+            flex: 1;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .delete-list-btn {
+            background: #ff6b6b;
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 8px;
+            transition: background 0.2s;
+        }
+        .delete-list-btn:hover {
+            background: #6b1f1f;
+        }
+        .add-entry-group {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .add-entry-input {
+            flex: 1;
+            padding: 7px;
+            border: 1px solid #4a90e2;
+            border-radius: 6px 0 0 6px;
+            outline: none;
+            background: #232526;
+            color: #e3eafc;
+        }
+        .add-entry-btn {
+            padding: 7px 16px;
+            background: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .add-entry-btn:hover {
+            background: #357abd;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background: #232526;
+            margin-bottom: 8px;
+            padding: 7px 10px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #2c2f32;
+        }
+        .entry-input {
+            background: transparent;
+            border: none;
+            color: #e3eafc;
+            font-size: 1em;
+            flex: 1;
+            outline: none;
+            padding: 2px 4px;
+        }
+        .delete-entry-btn {
+            background: #ff6b6b;
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 8px;
+            transition: background 0.2s;
+        }
+        .delete-entry-btn:hover {
+            background: #6b1f1f;
+        }
+        .add-list-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+            gap: 8px;
+        }
+        .add-list-input {
+            padding: 8px;
+            border: 1px solid #4a90e2;
+            border-radius: 6px;
+            outline: none;
+            background: #232526;
+            color: #e3eafc;
+            font-size: 1em;
+        }
+        .add-list-btn {
+            padding: 8px 18px;
+            background: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.2s;
+        }
+        .add-list-btn:hover {
+            background: #357abd;
+        }
+        @media (max-width: 700px) {
+            .lists-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .list {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <h1>Reminders</h1>
+        <div class="add-list-group">
+            <input type="text" id="add-list-input" class="add-list-input" placeholder="New list name...">
+            <button id="add-list-btn" class="add-list-btn">Add List</button>
+        </div>
+        <div id="lists-container" class="lists-container"></div>
+    </div>
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAR0oMQuLIUdiqN_taJg-KYwpAuYsU4DvI",
+            authDomain: "todo-reminders-app.firebaseapp.com",
+            databaseURL: "https://todo-reminders-app-default-rtdb.firebaseio.com",
+            projectId: "todo-reminders-app",
+            storageBucket: "todo-reminders-app.firebasestorage.app",
+            messagingSenderId: "110077557215",
+            appId: "1:110077557215:web:f52f7ef94f68745c23ec6a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        function showError(msg) {
+            let errDiv = document.getElementById('error-msg');
+            if (!errDiv) {
+                errDiv = document.createElement('div');
+                errDiv.id = 'error-msg';
+                errDiv.style.color = '#ff6b6b';
+                errDiv.style.textAlign = 'center';
+                errDiv.style.marginBottom = '16px';
+                document.querySelector('.app-container').insertBefore(errDiv, document.querySelector('.add-list-group'));
+            }
+            errDiv.textContent = msg;
+        }
+
+        async function getLists() {
+            try {
+                const dbRef = ref(database);
+                const snapshot = await get(child(dbRef, 'todoLists'));
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    console.log('Firebase data loaded:', data);
+                    if (Array.isArray(data)) {
+                        return data;
+                    } else if (typeof data === 'object' && data !== null) {
+                        // Convert object with numeric keys to array
+                        return Object.values(data);
+                    } else {
+                        return [];
+                    }
+                } else {
+                    console.log('No data in Firebase, returning empty array');
+                    return [];
+                }
+            } catch (err) {
+                console.error('Error loading lists:', err);
+                showError('Error loading lists: ' + err.message);
+                return [];
+            }
+        }
+
+        async function saveLists(lists) {
+            try {
+                console.log('Saving lists to Firebase:', lists);
+                await set(ref(database, 'todoLists'), lists);
+                console.log('Lists saved successfully');
+                return true;
+            } catch (err) {
+                console.error('Error saving lists:', err);
+                showError('Error saving lists: ' + err.message);
+                return false;
+            }
+        }
+
+        async function renderLists() {
+            console.log('renderLists called');
+            const listsContainer = document.getElementById('lists-container');
+            listsContainer.innerHTML = '';
+            const lists = await getLists();
+            // DEBUG: Output lists to UI
+            let debugDiv = document.getElementById('debug-output');
+            if (!debugDiv) {
+                debugDiv = document.createElement('div');
+                debugDiv.id = 'debug-output';
+                debugDiv.style.color = '#ffeb3b';
+                debugDiv.style.background = '#222';
+                debugDiv.style.fontSize = '0.9em';
+                debugDiv.style.padding = '6px 10px';
+                debugDiv.style.margin = '10px 0';
+                debugDiv.style.borderRadius = '8px';
+                document.querySelector('.app-container').insertBefore(debugDiv, listsContainer);
+            }
+            // debugDiv.textContent = 'Lists to render: ' + JSON.stringify(lists) + ' (length: ' + lists.length + ')';
+            console.log('Lists to render:', lists, 'Length:', lists.length);
+
+            lists.forEach((list, listIdx) => {
+    // Ensure entries exists and is an array
+    if (!Array.isArray(list.entries)) list.entries = [];
+
+                const listDiv = document.createElement('div');
+                listDiv.className = 'list';
+
+                // List header with editable title and delete button
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'list-header';
+
+                const titleInput = document.createElement('input');
+                titleInput.type = 'text';
+                titleInput.value = list.title;
+                titleInput.className = 'list-title';
+                titleInput.oninput = async () => {
+                    lists[listIdx].title = titleInput.value;
+                    await saveLists(lists);
+                };
+
+                const deleteListBtn = document.createElement('button');
+                deleteListBtn.className = 'delete-list-btn';
+                deleteListBtn.textContent = 'Delete';
+                deleteListBtn.onclick = async () => {
+                    lists.splice(listIdx, 1);
+                    await saveLists(lists);
+                    renderLists();
+                };
+
+                headerDiv.appendChild(titleInput);
+                headerDiv.appendChild(deleteListBtn);
+
+                // Add entry group
+                const addEntryGroup = document.createElement('div');
+                addEntryGroup.className = 'add-entry-group';
+
+                const addEntryInput = document.createElement('input');
+                addEntryInput.type = 'text';
+                addEntryInput.className = 'add-entry-input';
+                addEntryInput.placeholder = 'Add a new reminder...';
+
+                const addEntryBtn = document.createElement('button');
+                addEntryBtn.className = 'add-entry-btn';
+                addEntryBtn.textContent = 'Add';
+
+                addEntryBtn.onclick = async () => {
+                    const text = addEntryInput.value.trim();
+                    if (text === '') return;
+                    lists[listIdx].entries.push(text);
+                    await saveLists(lists);
+                    renderLists();
+                };
+                addEntryInput.addEventListener('keydown', e => {
+                    if (e.key === 'Enter') addEntryBtn.click();
+                });
+
+                addEntryGroup.appendChild(addEntryInput);
+                addEntryGroup.appendChild(addEntryBtn);
+
+                // Entries list
+                const ul = document.createElement('ul');
+                list.entries.forEach((entry, entryIdx) => {
+                    const li = document.createElement('li');
+                    const entryInput = document.createElement('input');
+                    entryInput.type = 'text';
+                    entryInput.value = entry;
+                    entryInput.className = 'entry-input';
+                    entryInput.oninput = () => {
+                        lists[listIdx].entries[entryIdx] = entryInput.value;
+                        saveLists(lists);
+                    };
+
+                    const deleteEntryBtn = document.createElement('button');
+                    deleteEntryBtn.className = 'delete-entry-btn';
+                    deleteEntryBtn.textContent = 'Done';
+                    deleteEntryBtn.onclick = () => {
+                        lists[listIdx].entries.splice(entryIdx, 1);
+                        saveLists(lists);
+                        renderLists();
+                    };
+
+                    li.appendChild(entryInput);
+                    li.appendChild(deleteEntryBtn);
+                    ul.appendChild(li);
+                });
+
+                listDiv.appendChild(headerDiv);
+                listDiv.appendChild(addEntryGroup);
+                listDiv.appendChild(ul);
+                listsContainer.appendChild(listDiv);
+            });
+        }
+
+        // Make functions globally available immediately
+        window.getLists = getLists;
+        window.saveLists = saveLists;
+        window.renderLists = renderLists;
+        window.showError = showError;
+
+        // Set up event handlers after functions are available
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add new list
+            document.getElementById('add-list-btn').onclick = async () => {
+                const input = document.getElementById('add-list-input');
+                const name = input.value.trim() || 'New List';
+                const lists = await getLists();
+                lists.push({ title: name, entries: [] });
+                const success = await saveLists(lists);
+                if (success) {
+                    input.value = '';
+                    await renderLists();
+                }
+            };
+
+            document.getElementById('add-list-input').addEventListener('keydown', async e => {
+                if (e.key === 'Enter') document.getElementById('add-list-btn').click();
+            });
+
+            // Initial render
+            renderLists();
+        });
+    </script>
+</body>
+</html>
