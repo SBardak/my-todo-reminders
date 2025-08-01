@@ -183,26 +183,17 @@
         </div>
         <div id="lists-container" class="lists-container"></div>
     </div>
-    <!-- Firebase SDK -->
+    <!-- Supabase SDK -->
     <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+        // Import Supabase client
+        import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2';
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAR0oMQuLIUdiqN_taJg-KYwpAuYsU4DvI",
-            authDomain: "todo-reminders-app.firebaseapp.com",
-            databaseURL: "https://todo-reminders-app-default-rtdb.firebaseio.com",
-            projectId: "todo-reminders-app",
-            storageBucket: "todo-reminders-app.firebasestorage.app",
-            messagingSenderId: "110077557215",
-            appId: "1:110077557215:web:f52f7ef94f68745c23ec6a"
-        };
+        // Your Supabase configuration
+        const supabaseUrl = 'https://tdskwpcssbovburunekn.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkc2t3cGNzc2JvdmJ1cnVuZWtuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMDI1MTUsImV4cCI6MjA2OTU3ODUxNX0.cFVJvrU2TorJMbfy8VpBG2T_pkSAMEoHgBqx-euig6M';
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+        // Initialize Supabase client
+        const supabase = createClient(supabaseUrl, supabaseKey);
 
         function showError(msg) {
             let errDiv = document.getElementById('error-msg');
@@ -217,25 +208,171 @@
             errDiv.textContent = msg;
         }
 
+        // Generate unique ID for new lists
+        function generateListId() {
+            return 'list_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        // Debounce utility to avoid too frequent saves
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Create a single entry element (for optimistic UI updates)
+        function createEntryElement(list, entry, entryIdx) {
+            const li = document.createElement('li');
+            const entryInput = document.createElement('input');
+            entryInput.type = 'text';
+            entryInput.value = entry;
+            entryInput.className = 'entry-input';
+            
+            // Debounced save for entry text changes
+            const debouncedSaveEntry = debounce(async (newText) => {
+                list.entries[entryIdx] = newText;
+                await saveList(list);
+            }, 500);
+            
+            entryInput.oninput = () => {
+                debouncedSaveEntry(entryInput.value);
+            };
+
+            const deleteEntryBtn = document.createElement('button');
+            deleteEntryBtn.className = 'delete-entry-btn';
+            deleteEntryBtn.textContent = 'Done';
+            deleteEntryBtn.onclick = async () => {
+                // Optimistic UI update - remove from UI immediately
+                li.remove();
+                
+                // Update data and save in background
+                list.entries.splice(entryIdx, 1);
+                await saveList(list);
+            };
+
+            li.appendChild(entryInput);
+            li.appendChild(deleteEntryBtn);
+            return li;
+        }
+
+        // Create a complete list element (for optimistic UI updates)
+        function createListElement(list) {
+            // Ensure entries exists and is an array, and list has an ID
+            if (!Array.isArray(list.entries)) list.entries = [];
+            if (!list.id) list.id = generateListId();
+
+            const listDiv = document.createElement('div');
+            listDiv.className = 'list';
+
+            // List header with editable title and delete button
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'list-header';
+
+            const titleInput = document.createElement('input');
+            titleInput.type = 'text';
+            titleInput.value = list.title;
+            titleInput.className = 'list-title';
+            
+            // Debounced save for title changes
+            const debouncedSaveTitle = debounce(async (newTitle) => {
+                list.title = newTitle;
+                await saveList(list);
+            }, 500);
+            
+            titleInput.oninput = () => {
+                debouncedSaveTitle(titleInput.value);
+            };
+
+            const deleteListBtn = document.createElement('button');
+            deleteListBtn.className = 'delete-list-btn';
+            deleteListBtn.textContent = 'Delete';
+            deleteListBtn.onclick = async () => {
+                // Optimistic UI update - remove from UI immediately
+                listDiv.remove();
+                
+                // Delete from database in background
+                await deleteList(list.id);
+            };
+
+            headerDiv.appendChild(titleInput);
+            headerDiv.appendChild(deleteListBtn);
+
+            // Add entry group
+            const addEntryGroup = document.createElement('div');
+            addEntryGroup.className = 'add-entry-group';
+
+            const addEntryInput = document.createElement('input');
+            addEntryInput.type = 'text';
+            addEntryInput.className = 'add-entry-input';
+            addEntryInput.placeholder = 'Add a new reminder...';
+
+            const addEntryBtn = document.createElement('button');
+            addEntryBtn.className = 'add-entry-btn';
+            addEntryBtn.textContent = 'Add';
+
+            // Entries list
+            const ul = document.createElement('ul');
+            list.entries.forEach((entry, entryIdx) => {
+                const li = createEntryElement(list, entry, entryIdx);
+                ul.appendChild(li);
+            });
+
+            addEntryBtn.onclick = async () => {
+                const text = addEntryInput.value.trim();
+                if (text === '') return;
+                
+                // Optimistic UI update - add entry immediately
+                list.entries.push(text);
+                addEntryInput.value = ''; // Clear input immediately
+                
+                // Add new entry to UI immediately
+                const newLi = createEntryElement(list, text, list.entries.length - 1);
+                ul.appendChild(newLi);
+                
+                // Save in background
+                await saveList(list);
+            };
+            addEntryInput.addEventListener('keydown', e => {
+                if (e.key === 'Enter') addEntryBtn.click();
+            });
+
+            addEntryGroup.appendChild(addEntryInput);
+            addEntryGroup.appendChild(addEntryBtn);
+
+            listDiv.appendChild(headerDiv);
+            listDiv.appendChild(addEntryGroup);
+            listDiv.appendChild(ul);
+            
+            return listDiv;
+        }
+
         async function getLists() {
             try {
-                const dbRef = ref(database);
-                const snapshot = await get(child(dbRef, 'todoLists'));
-                if (snapshot.exists()) {
-                    const data = snapshot.val();
-                    console.log('Firebase data loaded:', data);
-                    if (Array.isArray(data)) {
-                        return data;
-                    } else if (typeof data === 'object' && data !== null) {
-                        // Convert object with numeric keys to array
-                        return Object.values(data);
-                    } else {
-                        return [];
-                    }
-                } else {
-                    console.log('No data in Firebase, returning empty array');
-                    return [];
+                const { data, error } = await supabase
+                    .from('todo_lists')
+                    .select('*')
+                    .order('created_at', { ascending: true });
+                
+                if (error) {
+                    throw error;
                 }
+                
+                console.log('Supabase data loaded:', data);
+                
+                // Convert Supabase data to expected format
+                const listsArray = (data || []).map(list => ({
+                    id: list.id,
+                    title: list.title || 'Untitled List',
+                    entries: Array.isArray(list.entries) ? list.entries : []
+                }));
+                
+                return listsArray;
             } catch (err) {
                 console.error('Error loading lists:', err);
                 showError('Error loading lists: ' + err.message);
@@ -243,12 +380,91 @@
             }
         }
 
+        // Save a single list by ID - safer than overwriting everything
+        async function saveList(list) {
+            try {
+                if (!list.id) {
+                    list.id = generateListId();
+                }
+                console.log('Saving individual list:', list.id, list);
+                
+                // Check if list exists (update) or is new (insert)
+                const { data: existingList } = await supabase
+                    .from('todo_lists')
+                    .select('id')
+                    .eq('id', list.id)
+                    .single();
+                
+                let result;
+                if (existingList) {
+                    // Update existing list
+                    result = await supabase
+                        .from('todo_lists')
+                        .update({
+                            title: list.title,
+                            entries: list.entries,
+                            updated_at: new Date().toISOString()
+                        })
+                        .eq('id', list.id);
+                } else {
+                    // Insert new list
+                    result = await supabase
+                        .from('todo_lists')
+                        .insert({
+                            id: list.id,
+                            title: list.title,
+                            entries: list.entries
+                        });
+                }
+                
+                if (result.error) {
+                    throw result.error;
+                }
+                
+                console.log('List saved successfully:', list.id);
+                return true;
+            } catch (err) {
+                console.error('Error saving list:', err);
+                showError('Error saving list: ' + err.message);
+                return false;
+            }
+        }
+
+        // Delete a single list by ID
+        async function deleteList(listId) {
+            try {
+                console.log('Deleting list:', listId);
+                const { error } = await supabase
+                    .from('todo_lists')
+                    .delete()
+                    .eq('id', listId);
+                
+                if (error) {
+                    throw error;
+                }
+                
+                console.log('List deleted successfully:', listId);
+                return true;
+            } catch (err) {
+                console.error('Error deleting list:', err);
+                showError('Error deleting list: ' + err.message);
+                return false;
+            }
+        }
+
+        // Legacy function for compatibility - now saves each list individually
         async function saveLists(lists) {
             try {
-                console.log('Saving lists to Firebase:', lists);
-                await set(ref(database, 'todoLists'), lists);
-                console.log('Lists saved successfully');
-                return true;
+                console.log('Saving all lists individually:', lists);
+                const savePromises = lists.map(list => saveList(list));
+                const results = await Promise.all(savePromises);
+                const allSuccessful = results.every(result => result === true);
+                if (allSuccessful) {
+                    console.log('All lists saved successfully');
+                } else {
+                    console.warn('Some lists failed to save');
+                }
+                return allSuccessful;
             } catch (err) {
                 console.error('Error saving lists:', err);
                 showError('Error saving lists: ' + err.message);
@@ -277,95 +493,8 @@
             // debugDiv.textContent = 'Lists to render: ' + JSON.stringify(lists) + ' (length: ' + lists.length + ')';
             console.log('Lists to render:', lists, 'Length:', lists.length);
 
-            lists.forEach((list, listIdx) => {
-    // Ensure entries exists and is an array
-    if (!Array.isArray(list.entries)) list.entries = [];
-
-                const listDiv = document.createElement('div');
-                listDiv.className = 'list';
-
-                // List header with editable title and delete button
-                const headerDiv = document.createElement('div');
-                headerDiv.className = 'list-header';
-
-                const titleInput = document.createElement('input');
-                titleInput.type = 'text';
-                titleInput.value = list.title;
-                titleInput.className = 'list-title';
-                titleInput.oninput = async () => {
-                    lists[listIdx].title = titleInput.value;
-                    await saveLists(lists);
-                };
-
-                const deleteListBtn = document.createElement('button');
-                deleteListBtn.className = 'delete-list-btn';
-                deleteListBtn.textContent = 'Delete';
-                deleteListBtn.onclick = async () => {
-                    lists.splice(listIdx, 1);
-                    await saveLists(lists);
-                    renderLists();
-                };
-
-                headerDiv.appendChild(titleInput);
-                headerDiv.appendChild(deleteListBtn);
-
-                // Add entry group
-                const addEntryGroup = document.createElement('div');
-                addEntryGroup.className = 'add-entry-group';
-
-                const addEntryInput = document.createElement('input');
-                addEntryInput.type = 'text';
-                addEntryInput.className = 'add-entry-input';
-                addEntryInput.placeholder = 'Add a new reminder...';
-
-                const addEntryBtn = document.createElement('button');
-                addEntryBtn.className = 'add-entry-btn';
-                addEntryBtn.textContent = 'Add';
-
-                addEntryBtn.onclick = async () => {
-                    const text = addEntryInput.value.trim();
-                    if (text === '') return;
-                    lists[listIdx].entries.push(text);
-                    await saveLists(lists);
-                    renderLists();
-                };
-                addEntryInput.addEventListener('keydown', e => {
-                    if (e.key === 'Enter') addEntryBtn.click();
-                });
-
-                addEntryGroup.appendChild(addEntryInput);
-                addEntryGroup.appendChild(addEntryBtn);
-
-                // Entries list
-                const ul = document.createElement('ul');
-                list.entries.forEach((entry, entryIdx) => {
-                    const li = document.createElement('li');
-                    const entryInput = document.createElement('input');
-                    entryInput.type = 'text';
-                    entryInput.value = entry;
-                    entryInput.className = 'entry-input';
-                    entryInput.oninput = () => {
-                        lists[listIdx].entries[entryIdx] = entryInput.value;
-                        saveLists(lists);
-                    };
-
-                    const deleteEntryBtn = document.createElement('button');
-                    deleteEntryBtn.className = 'delete-entry-btn';
-                    deleteEntryBtn.textContent = 'Done';
-                    deleteEntryBtn.onclick = () => {
-                        lists[listIdx].entries.splice(entryIdx, 1);
-                        saveLists(lists);
-                        renderLists();
-                    };
-
-                    li.appendChild(entryInput);
-                    li.appendChild(deleteEntryBtn);
-                    ul.appendChild(li);
-                });
-
-                listDiv.appendChild(headerDiv);
-                listDiv.appendChild(addEntryGroup);
-                listDiv.appendChild(ul);
+            lists.forEach((list) => {
+                const listDiv = createListElement(list);
                 listsContainer.appendChild(listDiv);
             });
         }
@@ -373,8 +502,11 @@
         // Make functions globally available immediately
         window.getLists = getLists;
         window.saveLists = saveLists;
+        window.saveList = saveList;
+        window.deleteList = deleteList;
         window.renderLists = renderLists;
         window.showError = showError;
+        window.generateListId = generateListId;
 
         // Set up event handlers after functions are available
         document.addEventListener('DOMContentLoaded', () => {
@@ -382,13 +514,22 @@
             document.getElementById('add-list-btn').onclick = async () => {
                 const input = document.getElementById('add-list-input');
                 const name = input.value.trim() || 'New List';
-                const lists = await getLists();
-                lists.push({ title: name, entries: [] });
-                const success = await saveLists(lists);
-                if (success) {
-                    input.value = '';
-                    await renderLists();
-                }
+                const newList = {
+                    id: generateListId(),
+                    title: name,
+                    entries: []
+                };
+                
+                // Clear input immediately
+                input.value = '';
+                
+                // Add to UI immediately (optimistic update)
+                const listsContainer = document.getElementById('lists-container');
+                const newListDiv = createListElement(newList);
+                listsContainer.appendChild(newListDiv);
+                
+                // Save in background
+                await saveList(newList);
             };
 
             document.getElementById('add-list-input').addEventListener('keydown', async e => {

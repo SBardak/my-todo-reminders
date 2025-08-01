@@ -1,0 +1,12 @@
+{
+  "name": "my-todo-reminders-db-backup",
+  "version": "1.0.0",
+  "description": "Automated backup for todo reminders app",
+  "type": "module",
+  "scripts": {
+    "backup": "node backup-script.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}
