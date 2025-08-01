@@ -47,6 +47,31 @@
             align-items: center;
             margin-bottom: 12px;
         }
+        .drag-handle {
+            cursor: grab;
+            color: #666;
+            font-size: 16px;
+            padding: 4px 8px;
+            margin-right: 8px;
+            user-select: none;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .drag-handle:hover {
+            background: #333;
+            color: #aaa;
+        }
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+        .dragging {
+            opacity: 0.5;
+            transform: rotate(2deg);
+        }
+        .drag-over {
+            border: 2px dashed #4a90e2;
+            background: rgba(74, 144, 226, 0.1);
+        }
         .list-title {
             font-size: 1.2em;
             font-weight: 600;
@@ -99,8 +124,15 @@
         }
         ul {
             list-style: none;
-            padding: 0;
+            padding: 8px;
             margin: 0;
+            min-height: 40px;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+        ul.drag-over {
+            background-color: rgba(74, 144, 226, 0.1);
+            border: 2px dashed #4a90e2;
         }
         li {
             background: #232526;
@@ -228,9 +260,136 @@
             };
         }
 
+        // Reorder lists function
+        async function reorderLists(draggedListId, targetListId) {
+            try {
+                const lists = await getLists();
+                const draggedIndex = lists.findIndex(list => list.id === draggedListId);
+                const targetIndex = lists.findIndex(list => list.id === targetListId);
+                
+                if (draggedIndex !== -1 && targetIndex !== -1 && draggedIndex !== targetIndex) {
+                    console.log(`Reordering: moving list from index ${draggedIndex} to ${targetIndex}`);
+                    
+                    // Remove dragged item and insert at target position
+                    const [draggedList] = lists.splice(draggedIndex, 1);
+                    lists.splice(targetIndex, 0, draggedList);
+                    
+                    // Update list_order to maintain stable ordering
+                    const updatePromises = lists.map(async (list, index) => {
+                        const { error } = await supabase
+                            .from('todo_lists')
+                            .update({ 
+                                list_order: index,
+                                updated_at: new Date().toISOString()
+                            })
+                            .eq('id', list.id);
+                        
+                        if (error) {
+                            console.error(`Error updating timestamp for list ${list.id}:`, error);
+                            return false;
+                        }
+                        return true;
+                    });
+                    
+                    const results = await Promise.all(updatePromises);
+                    const allSuccessful = results.every(result => result === true);
+                    
+                    if (allSuccessful) {
+                        console.log('Lists reordered and saved successfully');
+                        // Re-render with new order after a short delay to ensure timestamps are updated
+                        setTimeout(() => renderLists(), 500);
+                    } else {
+                        console.error('Some lists failed to update order');
+                        showError('Failed to save new list order');
+                    }
+                }
+            } catch (err) {
+                console.error('Error reordering lists:', err);
+                showError('Error reordering lists: ' + err.message);
+            }
+        }
+
+        // Reorder entries within a list
+        async function reorderEntries(list, draggedEntryIdx, targetEntryIdx) {
+            console.log('reorderEntries called. List:', list.id, 'Source Idx:', draggedEntryIdx, 'Target Idx:', targetEntryIdx);
+            console.log('Original entries:', JSON.stringify(list.entries));
+            try {
+                if (draggedEntryIdx !== targetEntryIdx) {
+                    // Remove dragged entry and insert at target position
+                    const [draggedEntry] = list.entries.splice(draggedEntryIdx, 1);
+                    list.entries.splice(targetEntryIdx, 0, draggedEntry);
+                    console.log('Modified entries:', JSON.stringify(list.entries));
+                    
+                    // Save the updated list
+                    await saveList(list);
+                    
+                    // Re-render to reflect new order
+                    await getLists();
+                    renderLists();
+                    
+                    console.log('Entries reordered successfully');
+                }
+            } catch (err) {
+                console.error('Error reordering entries:', err);
+                showError('Error reordering entries: ' + err.message);
+            }
+        }
+
+        // Move entry between different lists
+        async function moveEntryBetweenLists(sourceListId, sourceEntryIdx, targetListId, targetEntryIdx) {
+            console.log(`moveEntryBetweenLists called. From list ${sourceListId} (idx ${sourceEntryIdx}) to list ${targetListId} (idx ${targetEntryIdx})`);
+            try {
+                const lists = await getLists();
+                const sourceList = lists.find(list => list.id === sourceListId);
+                const targetList = lists.find(list => list.id === targetListId);
+                
+                console.log('Source list original entries:', JSON.stringify(sourceList?.entries));
+                console.log('Target list original entries:', JSON.stringify(targetList?.entries));
+
+                if (!sourceList || !targetList) {
+                    console.error('Source or target list not found');
+                    return;
+                }
+                
+                // Remove entry from source list
+                const [movedEntry] = sourceList.entries.splice(sourceEntryIdx, 1);
+                
+                // Add entry to target list at specified position
+                targetList.entries.splice(targetEntryIdx, 0, movedEntry);
+
+                console.log('Source list modified entries:', JSON.stringify(sourceList.entries));
+                console.log('Target list modified entries:', JSON.stringify(targetList.entries));
+                
+                // Save both lists
+                const savePromises = [saveList(sourceList), saveList(targetList)];
+                const results = await Promise.all(savePromises);
+                
+                if (results.every(result => result === true)) {
+                    console.log(`Entry moved from list ${sourceListId} to ${targetListId}`);
+                    // Re-render to reflect changes
+                    await getLists();
+                    renderLists();
+                } else {
+                    console.error('Failed to save one or both lists after moving entry');
+                    showError('Failed to move entry between lists');
+                }
+            } catch (err) {
+                console.error('Error moving entry between lists:', err);
+                showError('Error moving entry between lists: ' + err.message);
+            }
+        }
+
         // Create a single entry element (for optimistic UI updates)
         function createEntryElement(list, entry, entryIdx) {
             const li = document.createElement('li');
+            
+            // Add drag handle for entries
+            const entryDragHandle = document.createElement('span');
+            entryDragHandle.className = 'drag-handle';
+            entryDragHandle.innerHTML = '⋮⋮';
+            entryDragHandle.title = 'Drag to reorder entries';
+            entryDragHandle.style.fontSize = '12px';
+            
             const entryInput = document.createElement('input');
             entryInput.type = 'text';
             entryInput.value = entry;
@@ -258,6 +417,77 @@
                 await saveList(list);
             };
 
+            // Make entry draggable
+            li.draggable = true;
+            li.dataset.entryIndex = entryIdx;
+            
+            // Entry drag event listeners
+            li.addEventListener('dragstart', (e) => {
+                e.stopPropagation(); // VERY IMPORTANT: Prevent list drag handlers from firing
+                console.log('Entry dragstart - clearing all data and setting entry data');
+                // Clear any existing data first
+                e.dataTransfer.clearData();
+                // Store both entry data and source list info
+                const dragData = {
+                    entryText: entry,
+                    entryIndex: entryIdx,
+                    sourceListId: list.id
+                };
+                e.dataTransfer.setData('application/json', JSON.stringify(dragData));
+                e.dataTransfer.setData('text/plain', 'entry'); // Identify as entry drag
+                console.log('Entry drag data set. Types should be:', ['application/json', 'text/plain']);
+                e.dataTransfer.effectAllowed = 'move';
+                li.classList.add('dragging');
+            });
+            
+            li.addEventListener('dragend', () => {
+                li.classList.remove('dragging');
+            });
+            
+            li.addEventListener('dragover', (e) => {
+                // Check if we have JSON data (indicates entry drag)
+                const types = Array.from(e.dataTransfer.types);
+                if (types.includes('application/json')) {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'move';
+                    li.classList.add('drag-over');
+                }
+            });
+            
+            li.addEventListener('dragleave', () => {
+                li.classList.remove('drag-over');
+            });
+            
+            li.addEventListener('drop', async (e) => {
+                const types = Array.from(e.dataTransfer.types);
+                if (types.includes('application/json')) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Prevent list drag events
+                    li.classList.remove('drag-over');
+                    
+                    try {
+                        const dragData = JSON.parse(e.dataTransfer.getData('application/json'));
+                        const sourceListId = dragData.sourceListId;
+                        const sourceEntryIdx = dragData.entryIndex;
+                        const targetListId = list.id;
+                        const targetEntryIdx = entryIdx;
+                        
+                        if (sourceListId === targetListId) {
+                            // Same list - reorder within list
+                            if (sourceEntryIdx !== targetEntryIdx) {
+                                await reorderEntries(list, sourceEntryIdx, targetEntryIdx);
+                            }
+                        } else {
+                            // Different lists - move entry between lists
+                            await moveEntryBetweenLists(sourceListId, sourceEntryIdx, targetListId, targetEntryIdx);
+                        }
+                    } catch (err) {
+                        console.error('Error parsing drag data:', err);
+                    }
+                }
+            });
+
+            li.appendChild(entryDragHandle);
             li.appendChild(entryInput);
             li.appendChild(deleteEntryBtn);
             return li;
@@ -272,10 +502,17 @@
             const listDiv = document.createElement('div');
             listDiv.className = 'list';
 
-            // List header with editable title and delete button
+            // List header with drag handle, editable title and delete button
             const headerDiv = document.createElement('div');
             headerDiv.className = 'list-header';
 
+            // Add drag handle for lists
+            const listDragHandle = document.createElement('span');
+            listDragHandle.className = 'drag-handle';
+            listDragHandle.innerHTML = '⋮⋮';
+            listDragHandle.title = 'Drag to reorder lists';
+            listDragHandle.draggable = true; // Make the handle itself draggable
+            
             const titleInput = document.createElement('input');
             titleInput.type = 'text';
             titleInput.value = list.title;
@@ -302,8 +539,65 @@
                 await deleteList(list.id);
             };
 
+            headerDiv.appendChild(listDragHandle);
             headerDiv.appendChild(titleInput);
             headerDiv.appendChild(deleteListBtn);
+            
+            // Store list ID for reference
+            listDiv.dataset.listId = list.id;
+            
+            // Drag event listeners for the drag handle
+            listDragHandle.addEventListener('dragstart', (e) => {
+                console.log('List dragstart - clearing all data and setting list data');
+                // Clear any existing data first
+                e.dataTransfer.clearData();
+                e.dataTransfer.setData('text/plain', list.id);
+                e.dataTransfer.setData('application/x-list', list.id); // Use unique type for lists
+                console.log('List drag data set. Types should be:', ['text/plain', 'application/x-list']);
+                e.dataTransfer.effectAllowed = 'move';
+                listDiv.classList.add('dragging');
+            });
+            
+            listDragHandle.addEventListener('dragend', () => {
+                listDiv.classList.remove('dragging');
+            });
+            
+
+            
+            listDiv.addEventListener('dragover', (e) => {
+                // Only allow list drops on lists, entry drops should go to entries or ul
+                const types = Array.from(e.dataTransfer.types);
+                if (types.includes('application/x-list')) {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'move';
+                    listDiv.classList.add('drag-over');
+                }
+            });
+            
+            listDiv.addEventListener('dragleave', () => {
+                listDiv.classList.remove('drag-over');
+            });
+            
+            listDiv.addEventListener('drop', async (e) => {
+                const types = Array.from(e.dataTransfer.types);
+                console.log('List drop handler triggered. Types:', types, 'Target list:', list.id);
+                // ONLY process list drops, never entry drops
+                if (types.includes('application/x-list') && !types.includes('application/json')) {
+                    console.log('Processing as list drop');
+                    e.preventDefault();
+                    listDiv.classList.remove('drag-over');
+                    
+                    const draggedListId = e.dataTransfer.getData('text/plain');
+                    const targetListId = list.id;
+                    
+                    if (draggedListId !== targetListId) {
+                        await reorderLists(draggedListId, targetListId);
+                    }
+                } else {
+                    console.log('Ignoring drop - not a valid list drop (has JSON:', types.includes('application/json'), ')');
+                }
+                // If it's an entry drop, do nothing - let the ul or li handle it
+            });
 
             // Add entry group
             const addEntryGroup = document.createElement('div');
@@ -323,6 +617,51 @@
             list.entries.forEach((entry, entryIdx) => {
                 const li = createEntryElement(list, entry, entryIdx);
                 ul.appendChild(li);
+            });
+            
+            // Make the entire list container a drop zone for entries
+            ul.addEventListener('dragover', (e) => {
+                const types = Array.from(e.dataTransfer.types);
+                if (types.includes('application/json')) {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'move';
+                    ul.classList.add('drag-over');
+                }
+            });
+            
+            ul.addEventListener('dragleave', (e) => {
+                // Only remove drag-over if we're actually leaving the ul element
+                if (!ul.contains(e.relatedTarget)) {
+                    ul.classList.remove('drag-over');
+                }
+            });
+            
+            ul.addEventListener('drop', async (e) => {
+                const types = Array.from(e.dataTransfer.types);
+                console.log('UL drop handler triggered. Types:', types, 'Target list:', list.id);
+                if (types.includes('application/json')) {
+                    console.log('Processing as entry drop in UL');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    ul.classList.remove('drag-over');
+                    
+                    try {
+                        const dragData = JSON.parse(e.dataTransfer.getData('application/json'));
+                        const sourceListId = dragData.sourceListId;
+                        const sourceEntryIdx = dragData.entryIndex;
+                        const targetListId = list.id;
+                        
+                        if (sourceListId !== targetListId) {
+                            // Different lists - add to end of target list
+                            await moveEntryBetweenLists(sourceListId, sourceEntryIdx, targetListId, list.entries.length);
+                        } else {
+                            // Same list - move to end of list
+                            await reorderEntries(list, sourceEntryIdx, list.entries.length - 1);
+                        }
+                    } catch (err) {
+                        console.error('Error parsing drag data in list drop:', err);
+                    }
+                }
             });
 
             addEntryBtn.onclick = async () => {
@@ -359,7 +698,8 @@
                 const { data, error } = await supabase
                     .from('todo_lists')
                     .select('*')
-                    .order('created_at', { ascending: true });
+                    .order('list_order', { ascending: true, nullsFirst: false })
+                    .order('updated_at', { ascending: true }); // Fallback for items without list_order
                 
                 if (error) {
                     throw error;
@@ -409,13 +749,24 @@
                         })
                         .eq('id', list.id);
                 } else {
-                    // Insert new list
+                    // Insert new list - get the next list_order value
+                    const { data: maxOrderData } = await supabase
+                        .from('todo_lists')
+                        .select('list_order')
+                        .order('list_order', { ascending: false })
+                        .limit(1);
+                    
+                    const nextOrder = (maxOrderData && maxOrderData[0] && maxOrderData[0].list_order !== null) 
+                        ? maxOrderData[0].list_order + 1 
+                        : 0;
+                    
                     result = await supabase
                         .from('todo_lists')
                         .insert({
                             id: list.id,
                             title: list.title,
-                            entries: list.entries
+                            entries: list.entries,
+                            list_order: nextOrder
                         });
                 }
                 
