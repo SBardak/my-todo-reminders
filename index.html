@@ -296,14 +296,21 @@
         function updateEntryDataIndexes(listElement, list) {
             const entryElements = listElement.querySelectorAll('li[data-entry-index]');
             const newOrderedEntries = [];
+            
+            // Build new entries array based on DOM order and actual input values
             entryElements.forEach((entryElement, newIndex) => {
-                const oldIndex = parseInt(entryElement.dataset.entryIndex);
-                if (list.entries[oldIndex] !== undefined) {
-                    newOrderedEntries.push(list.entries[oldIndex]);
+                const entryInput = entryElement.querySelector('.entry-input');
+                if (entryInput) {
+                    // Use the actual current text value from the input, not the old data
+                    newOrderedEntries.push(entryInput.value);
+                    // Update the element's index to match its new position
                     entryElement.dataset.entryIndex = newIndex;
                 }
             });
+            
+            // Replace the list's entries with the reordered data
             list.entries = newOrderedEntries;
+            console.log('Updated entry data for list', list.id, ':', newOrderedEntries);
         }
 
         // Reorder lists function - now with DOM manipulation only
@@ -434,15 +441,17 @@
                 const draggedLi = sourceUl.children[sourceEntryIdx];
                 if (!draggedLi) return;
 
-                // Remove entry from source data and DOM
-                const [movedEntry] = sourceList.entries.splice(sourceEntryIdx, 1);
+                // Get the actual text value from the dragged entry before removing it
+                const draggedEntryInput = draggedLi.querySelector('.entry-input');
+                const movedEntryText = draggedEntryInput ? draggedEntryInput.value : '';
+
+                console.log('Moving entry text:', movedEntryText);
+
+                // Remove from DOM first
                 draggedLi.remove();
 
-                // Add entry to target data
-                targetList.entries.splice(targetEntryIdx, 0, movedEntry);
-
-                // Create new DOM element for target list
-                const newLi = createEntryElement(targetList, movedEntry, targetEntryIdx);
+                // Create new DOM element for target list with the correct text
+                const newLi = createEntryElement(targetList, movedEntryText, targetEntryIdx);
                 
                 // Insert at correct position in target DOM
                 if (targetEntryIdx >= targetUl.children.length) {
@@ -451,7 +460,7 @@
                     targetUl.insertBefore(newLi, targetUl.children[targetEntryIdx]);
                 }
 
-                // Update entry indexes in both lists
+                // Update both lists' data based on current DOM state
                 updateEntryDataIndexes(sourceListElement, sourceList);
                 updateEntryDataIndexes(targetListElement, targetList);
 
@@ -460,7 +469,7 @@
                 const results = await Promise.all(savePromises);
                 
                 if (results.every(result => result === true)) {
-                    console.log(`Entry moved from list ${sourceListId} to ${targetListId}`);
+                    console.log(`Entry "${movedEntryText}" moved from list ${sourceListId} to ${targetListId}`);
                 } else {
                     console.error('Failed to save one or both lists after moving entry');
                     showError('Failed to move entry between lists');
@@ -526,14 +535,19 @@
                 e.stopPropagation();
                 console.log('Entry dragstart - clearing all data and setting entry data');
                 e.dataTransfer.clearData();
+                
+                // Get the current text value from the input, not from the data array
+                const entryInput = li.querySelector('.entry-input');
+                const currentText = entryInput ? entryInput.value : entry;
+                
                 const dragData = {
-                    entryText: entry,
+                    entryText: currentText,
                     entryIndex: parseInt(li.dataset.entryIndex),
                     sourceListId: list.id
                 };
                 e.dataTransfer.setData('application/json', JSON.stringify(dragData));
                 e.dataTransfer.setData('text/plain', 'entry');
-                console.log('Entry drag data set. Types should be:', ['application/json', 'text/plain']);
+                console.log('Entry drag data set with text:', currentText);
                 e.dataTransfer.effectAllowed = 'move';
                 li.classList.add('dragging');
             });
