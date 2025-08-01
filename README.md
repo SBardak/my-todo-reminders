@@ -21,8 +21,8 @@
 2. **Add Secrets to GitHub**
    - Go to your `my-todo-reminders` repo → Settings → Secrets and variables → Actions
    - Add these secrets:
-     - `SUPABASE_URL`: `https://tdskwpcssbovburunekn.supabase.co`
-     - `SUPABASE_ANON_KEY`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkc2t3cGNzc2JvdmJ1cnVuZWtuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMDI1MTUsImV4cCI6MjA2OTU3ODUxNX0.cFVJvrU2TorJMbfy8VpBG2T_pkSAMEoHgBqx-euig6M`
+     - `SUPABASE_URL`: Your Supabase project URL
+     - `SUPABASE_ANON_KEY`: Your Supabase anonymous/public API key
 
 3. **Test the Backup**
    - Go to Actions tab in your GitHub repo

@@ -189,6 +189,8 @@
         import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2';
 
         // Your Supabase configuration
+        // Note: For client-side apps, these credentials are typically public
+        // Security is handled by Supabase Row Level Security (RLS) policies
         const supabaseUrl = 'https://tdskwpcssbovburunekn.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkc2t3cGNzc2JvdmJ1cnVuZWtuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMDI1MTUsImV4cCI6MjA2OTU3ODUxNX0.cFVJvrU2TorJMbfy8VpBG2T_pkSAMEoHgBqx-euig6M';
 
@@ -477,7 +479,7 @@
             const listsContainer = document.getElementById('lists-container');
             listsContainer.innerHTML = '';
             const lists = await getLists();
-            // DEBUG: Output lists to UI
+            /* DEBUG: Output lists to UI
             let debugDiv = document.getElementById('debug-output');
             if (!debugDiv) {
                 debugDiv = document.createElement('div');
@@ -490,7 +492,9 @@
                 debugDiv.style.borderRadius = '8px';
                 document.querySelector('.app-container').insertBefore(debugDiv, listsContainer);
             }
-            // debugDiv.textContent = 'Lists to render: ' + JSON.stringify(lists) + ' (length: ' + lists.length + ')';
+            debugDiv.textContent = 'Lists to render: ' + JSON.stringify(lists) + ' (length: ' + lists.length + ')';
+            */
+           
             console.log('Lists to render:', lists, 'Length:', lists.length);
 
             lists.forEach((list) => {
