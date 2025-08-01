@@ -221,13 +221,14 @@
         import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2';
 
         // Your Supabase configuration
-        // Note: For client-side apps, these credentials are typically public
-        // Security is handled by Supabase Row Level Security (RLS) policies
         const supabaseUrl = 'https://tdskwpcssbovburunekn.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkc2t3cGNzc2JvdmJ1cnVuZWtuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMDI1MTUsImV4cCI6MjA2OTU3ODUxNX0.cFVJvrU2TorJMbfy8VpBG2T_pkSAMEoHgBqx-euig6M';
 
         // Initialize Supabase client
         const supabase = createClient(supabaseUrl, supabaseKey);
+
+        // In-memory list storage for immediate UI updates
+        let listsData = [];
 
         function showError(msg) {
             let errDiv = document.getElementById('error-msg');
@@ -260,48 +261,113 @@
             };
         }
 
-        // Reorder lists function
+        // Comprehensive cleanup function to remove all drag-over styling
+        function cleanupAllDragStyling() {
+            // Remove drag-over from all elements that might have it
+            const allDragOverElements = document.querySelectorAll('.drag-over');
+            allDragOverElements.forEach(element => {
+                element.classList.remove('drag-over');
+            });
+            
+            // Also remove dragging class from any elements that might still have it
+            const allDraggingElements = document.querySelectorAll('.dragging');
+            allDraggingElements.forEach(element => {
+                element.classList.remove('dragging');
+            });
+            
+            console.log('Cleaned up all drag styling');
+        }
+
+        // Helper function to update list data indexes after DOM reordering
+        function updateListDataIndexes() {
+            const listElements = document.querySelectorAll('.list');
+            const newOrderedLists = [];
+            listElements.forEach(listElement => {
+                const listId = listElement.dataset.listId;
+                const list = listsData.find(l => l.id === listId);
+                if (list) {
+                    newOrderedLists.push(list);
+                }
+            });
+            listsData = newOrderedLists;
+        }
+
+        // Helper function to update entry data indexes after DOM reordering
+        function updateEntryDataIndexes(listElement, list) {
+            const entryElements = listElement.querySelectorAll('li[data-entry-index]');
+            const newOrderedEntries = [];
+            entryElements.forEach((entryElement, newIndex) => {
+                const oldIndex = parseInt(entryElement.dataset.entryIndex);
+                if (list.entries[oldIndex] !== undefined) {
+                    newOrderedEntries.push(list.entries[oldIndex]);
+                    entryElement.dataset.entryIndex = newIndex;
+                }
+            });
+            list.entries = newOrderedEntries;
+        }
+
+        // Reorder lists function - now with DOM manipulation only
         async function reorderLists(draggedListId, targetListId) {
             try {
-                const lists = await getLists();
-                const draggedIndex = lists.findIndex(list => list.id === draggedListId);
-                const targetIndex = lists.findIndex(list => list.id === targetListId);
+                const listsContainer = document.getElementById('lists-container');
+                const draggedElement = document.querySelector(`[data-list-id="${draggedListId}"]`);
+                const targetElement = document.querySelector(`[data-list-id="${targetListId}"]`);
                 
-                if (draggedIndex !== -1 && targetIndex !== -1 && draggedIndex !== targetIndex) {
-                    console.log(`Reordering: moving list from index ${draggedIndex} to ${targetIndex}`);
-                    
-                    // Remove dragged item and insert at target position
-                    const [draggedList] = lists.splice(draggedIndex, 1);
-                    lists.splice(targetIndex, 0, draggedList);
-                    
-                    // Update list_order to maintain stable ordering
-                    const updatePromises = lists.map(async (list, index) => {
-                        const { error } = await supabase
-                            .from('todo_lists')
-                            .update({ 
-                                list_order: index,
-                                updated_at: new Date().toISOString()
-                            })
-                            .eq('id', list.id);
-                        
-                        if (error) {
-                            console.error(`Error updating timestamp for list ${list.id}:`, error);
-                            return false;
-                        }
-                        return true;
-                    });
-                    
-                    const results = await Promise.all(updatePromises);
-                    const allSuccessful = results.every(result => result === true);
-                    
-                    if (allSuccessful) {
-                        console.log('Lists reordered and saved successfully');
-                        // Re-render with new order after a short delay to ensure timestamps are updated
-                        setTimeout(() => renderLists(), 500);
+                if (!draggedElement || !targetElement || draggedListId === targetListId) return;
+
+                console.log(`Reordering lists: moving ${draggedListId} relative to ${targetListId}`);
+
+                // Get current positions to determine drag direction
+                const allListElements = Array.from(listsContainer.children);
+                const draggedIndex = allListElements.indexOf(draggedElement);
+                const targetIndex = allListElements.indexOf(targetElement);
+
+                console.log(`Current positions - dragged: ${draggedIndex}, target: ${targetIndex}`);
+
+                // Perform DOM reordering immediately based on drag direction
+                if (draggedIndex < targetIndex) {
+                    // Dragging down: insert after target
+                    const targetNext = targetElement.nextSibling;
+                    if (targetNext) {
+                        listsContainer.insertBefore(draggedElement, targetNext);
                     } else {
-                        console.error('Some lists failed to update order');
-                        showError('Failed to save new list order');
+                        listsContainer.appendChild(draggedElement);
                     }
+                } else {
+                    // Dragging up: insert before target
+                    listsContainer.insertBefore(draggedElement, targetElement);
+                }
+
+                // Update our in-memory data to match the new DOM order
+                updateListDataIndexes();
+
+                console.log('Lists reordered in DOM and data updated');
+
+                // Save to database in background (no UI updates)
+                const updatePromises = listsData.map(async (list, index) => {
+                    const { error } = await supabase
+                        .from('todo_lists')
+                        .update({ 
+                            list_order: index,
+                            updated_at: new Date().toISOString()
+                        })
+                        .eq('id', list.id);
+                    
+                    if (error) {
+                        console.error(`Error updating order for list ${list.id}:`, error);
+                        return false;
+                    }
+                    return true;
+                });
+                
+                const results = await Promise.all(updatePromises);
+                const allSuccessful = results.every(result => result === true);
+                
+                if (allSuccessful) {
+                    console.log('Lists reordered and saved successfully to database');
+                } else {
+                    console.error('Some lists failed to update order');
+                    showError('Failed to save new list order');
                 }
             } catch (err) {
                 console.error('Error reordering lists:', err);
@@ -309,23 +375,36 @@
             }
         }
 
-        // Reorder entries within a list
-        async function reorderEntries(list, draggedEntryIdx, targetEntryIdx) {
+        // Reorder entries within a list - now with DOM manipulation only
+        async function reorderEntries(listElement, list, draggedEntryIdx, targetEntryIdx) {
             console.log('reorderEntries called. List:', list.id, 'Source Idx:', draggedEntryIdx, 'Target Idx:', targetEntryIdx);
-            console.log('Original entries:', JSON.stringify(list.entries));
             try {
                 if (draggedEntryIdx !== targetEntryIdx) {
-                    // Remove dragged entry and insert at target position
-                    const [draggedEntry] = list.entries.splice(draggedEntryIdx, 1);
-                    list.entries.splice(targetEntryIdx, 0, draggedEntry);
-                    console.log('Modified entries:', JSON.stringify(list.entries));
+                    const ul = listElement.querySelector('ul');
+                    const draggedLi = ul.children[draggedEntryIdx];
+                    const targetLi = ul.children[targetEntryIdx];
                     
-                    // Save the updated list
+                    if (!draggedLi || !targetLi) return;
+
+                    // Perform DOM reordering immediately
+                    if (draggedEntryIdx < targetEntryIdx) {
+                        // Moving down: insert after target
+                        const targetNext = targetLi.nextSibling;
+                        if (targetNext) {
+                            ul.insertBefore(draggedLi, targetNext);
+                        } else {
+                            ul.appendChild(draggedLi);
+                        }
+                    } else {
+                        // Moving up: insert before target
+                        ul.insertBefore(draggedLi, targetLi);
+                    }
+
+                    // Update entry data indexes to match new DOM order
+                    updateEntryDataIndexes(listElement, list);
+
+                    // Save the updated list in background
                     await saveList(list);
-                    
-                    // Re-render to reflect new order
-                    await getLists();
-                    renderLists();
                     
                     console.log('Entries reordered successfully');
                 }
@@ -335,40 +414,53 @@
             }
         }
 
-        // Move entry between different lists
+        // Move entry between different lists - now with DOM manipulation only
         async function moveEntryBetweenLists(sourceListId, sourceEntryIdx, targetListId, targetEntryIdx) {
             console.log(`moveEntryBetweenLists called. From list ${sourceListId} (idx ${sourceEntryIdx}) to list ${targetListId} (idx ${targetEntryIdx})`);
             try {
-                const lists = await getLists();
-                const sourceList = lists.find(list => list.id === sourceListId);
-                const targetList = lists.find(list => list.id === targetListId);
+                const sourceList = listsData.find(list => list.id === sourceListId);
+                const targetList = listsData.find(list => list.id === targetListId);
                 
-                console.log('Source list original entries:', JSON.stringify(sourceList?.entries));
-                console.log('Target list original entries:', JSON.stringify(targetList?.entries));
-
                 if (!sourceList || !targetList) {
                     console.error('Source or target list not found');
                     return;
                 }
+
+                const sourceListElement = document.querySelector(`[data-list-id="${sourceListId}"]`);
+                const targetListElement = document.querySelector(`[data-list-id="${targetListId}"]`);
+                const sourceUl = sourceListElement.querySelector('ul');
+                const targetUl = targetListElement.querySelector('ul');
                 
-                // Remove entry from source list
+                const draggedLi = sourceUl.children[sourceEntryIdx];
+                if (!draggedLi) return;
+
+                // Remove entry from source data and DOM
                 const [movedEntry] = sourceList.entries.splice(sourceEntryIdx, 1);
-                
-                // Add entry to target list at specified position
+                draggedLi.remove();
+
+                // Add entry to target data
                 targetList.entries.splice(targetEntryIdx, 0, movedEntry);
 
-                console.log('Source list modified entries:', JSON.stringify(sourceList.entries));
-                console.log('Target list modified entries:', JSON.stringify(targetList.entries));
+                // Create new DOM element for target list
+                const newLi = createEntryElement(targetList, movedEntry, targetEntryIdx);
                 
-                // Save both lists
+                // Insert at correct position in target DOM
+                if (targetEntryIdx >= targetUl.children.length) {
+                    targetUl.appendChild(newLi);
+                } else {
+                    targetUl.insertBefore(newLi, targetUl.children[targetEntryIdx]);
+                }
+
+                // Update entry indexes in both lists
+                updateEntryDataIndexes(sourceListElement, sourceList);
+                updateEntryDataIndexes(targetListElement, targetList);
+
+                // Save both lists in background
                 const savePromises = [saveList(sourceList), saveList(targetList)];
                 const results = await Promise.all(savePromises);
                 
                 if (results.every(result => result === true)) {
                     console.log(`Entry moved from list ${sourceListId} to ${targetListId}`);
-                    // Re-render to reflect changes
-                    await getLists();
-                    renderLists();
                 } else {
                     console.error('Failed to save one or both lists after moving entry');
                     showError('Failed to move entry between lists');
@@ -397,7 +489,8 @@
             
             // Debounced save for entry text changes
             const debouncedSaveEntry = debounce(async (newText) => {
-                list.entries[entryIdx] = newText;
+                const currentIndex = parseInt(li.dataset.entryIndex);
+                list.entries[currentIndex] = newText;
                 await saveList(list);
             }, 500);
             
@@ -409,11 +502,18 @@
             deleteEntryBtn.className = 'delete-entry-btn';
             deleteEntryBtn.textContent = 'Done';
             deleteEntryBtn.onclick = async () => {
-                // Optimistic UI update - remove from UI immediately
+                const currentIndex = parseInt(li.dataset.entryIndex);
+                
+                // Remove from DOM immediately
                 li.remove();
                 
                 // Update data and save in background
-                list.entries.splice(entryIdx, 1);
+                list.entries.splice(currentIndex, 1);
+                
+                // Update remaining entry indexes
+                const listElement = document.querySelector(`[data-list-id="${list.id}"]`);
+                updateEntryDataIndexes(listElement, list);
+                
                 await saveList(list);
             };
 
@@ -423,18 +523,16 @@
             
             // Entry drag event listeners
             li.addEventListener('dragstart', (e) => {
-                e.stopPropagation(); // VERY IMPORTANT: Prevent list drag handlers from firing
+                e.stopPropagation();
                 console.log('Entry dragstart - clearing all data and setting entry data');
-                // Clear any existing data first
                 e.dataTransfer.clearData();
-                // Store both entry data and source list info
                 const dragData = {
                     entryText: entry,
-                    entryIndex: entryIdx,
+                    entryIndex: parseInt(li.dataset.entryIndex),
                     sourceListId: list.id
                 };
                 e.dataTransfer.setData('application/json', JSON.stringify(dragData));
-                e.dataTransfer.setData('text/plain', 'entry'); // Identify as entry drag
+                e.dataTransfer.setData('text/plain', 'entry');
                 console.log('Entry drag data set. Types should be:', ['application/json', 'text/plain']);
                 e.dataTransfer.effectAllowed = 'move';
                 li.classList.add('dragging');
@@ -442,10 +540,11 @@
             
             li.addEventListener('dragend', () => {
                 li.classList.remove('dragging');
+                // Clean up any lingering drag-over styling when drag ends
+                setTimeout(cleanupAllDragStyling, 10);
             });
             
             li.addEventListener('dragover', (e) => {
-                // Check if we have JSON data (indicates entry drag)
                 const types = Array.from(e.dataTransfer.types);
                 if (types.includes('application/json')) {
                     e.preventDefault();
@@ -462,7 +561,7 @@
                 const types = Array.from(e.dataTransfer.types);
                 if (types.includes('application/json')) {
                     e.preventDefault();
-                    e.stopPropagation(); // Prevent list drag events
+                    e.stopPropagation();
                     li.classList.remove('drag-over');
                     
                     try {
@@ -470,12 +569,13 @@
                         const sourceListId = dragData.sourceListId;
                         const sourceEntryIdx = dragData.entryIndex;
                         const targetListId = list.id;
-                        const targetEntryIdx = entryIdx;
+                        const targetEntryIdx = parseInt(li.dataset.entryIndex);
                         
                         if (sourceListId === targetListId) {
                             // Same list - reorder within list
                             if (sourceEntryIdx !== targetEntryIdx) {
-                                await reorderEntries(list, sourceEntryIdx, targetEntryIdx);
+                                const listElement = document.querySelector(`[data-list-id="${list.id}"]`);
+                                await reorderEntries(listElement, list, sourceEntryIdx, targetEntryIdx);
                             }
                         } else {
                             // Different lists - move entry between lists
@@ -511,7 +611,7 @@
             listDragHandle.className = 'drag-handle';
             listDragHandle.innerHTML = '⋮⋮';
             listDragHandle.title = 'Drag to reorder lists';
-            listDragHandle.draggable = true; // Make the handle itself draggable
+            listDragHandle.draggable = true;
             
             const titleInput = document.createElement('input');
             titleInput.type = 'text';
@@ -532,10 +632,14 @@
             deleteListBtn.className = 'delete-list-btn';
             deleteListBtn.textContent = 'Delete';
             deleteListBtn.onclick = async () => {
-                // Optimistic UI update - remove from UI immediately
+                // Remove from DOM immediately
                 listDiv.remove();
                 
-                // Delete from database in background
+                // Remove from data and delete from database in background
+                const listIndex = listsData.findIndex(l => l.id === list.id);
+                if (listIndex !== -1) {
+                    listsData.splice(listIndex, 1);
+                }
                 await deleteList(list.id);
             };
 
@@ -549,10 +653,9 @@
             // Drag event listeners for the drag handle
             listDragHandle.addEventListener('dragstart', (e) => {
                 console.log('List dragstart - clearing all data and setting list data');
-                // Clear any existing data first
                 e.dataTransfer.clearData();
                 e.dataTransfer.setData('text/plain', list.id);
-                e.dataTransfer.setData('application/x-list', list.id); // Use unique type for lists
+                e.dataTransfer.setData('application/x-list', list.id);
                 console.log('List drag data set. Types should be:', ['text/plain', 'application/x-list']);
                 e.dataTransfer.effectAllowed = 'move';
                 listDiv.classList.add('dragging');
@@ -562,10 +665,7 @@
                 listDiv.classList.remove('dragging');
             });
             
-
-            
             listDiv.addEventListener('dragover', (e) => {
-                // Only allow list drops on lists, entry drops should go to entries or ul
                 const types = Array.from(e.dataTransfer.types);
                 if (types.includes('application/x-list')) {
                     e.preventDefault();
@@ -574,29 +674,40 @@
                 }
             });
             
-            listDiv.addEventListener('dragleave', () => {
-                listDiv.classList.remove('drag-over');
+            listDiv.addEventListener('dragleave', (e) => {
+                // Only remove drag-over if we're actually leaving the list element
+                if (!listDiv.contains(e.relatedTarget)) {
+                    listDiv.classList.remove('drag-over');
+                }
             });
             
             listDiv.addEventListener('drop', async (e) => {
                 const types = Array.from(e.dataTransfer.types);
                 console.log('List drop handler triggered. Types:', types, 'Target list:', list.id);
+                
                 // ONLY process list drops, never entry drops
                 if (types.includes('application/x-list') && !types.includes('application/json')) {
                     console.log('Processing as list drop');
                     e.preventDefault();
+                    e.stopPropagation(); // Important: stop event from bubbling
                     listDiv.classList.remove('drag-over');
                     
                     const draggedListId = e.dataTransfer.getData('text/plain');
                     const targetListId = list.id;
                     
-                    if (draggedListId !== targetListId) {
+                    console.log(`Drop detected: dragged=${draggedListId}, target=${targetListId}`);
+                    
+                    if (draggedListId && draggedListId !== targetListId) {
+                        console.log('Calling reorderLists...');
                         await reorderLists(draggedListId, targetListId);
+                    } else if (draggedListId === targetListId) {
+                        console.log('Same list - no reorder needed');
+                    } else {
+                        console.log('Invalid draggedListId:', draggedListId);
                     }
                 } else {
-                    console.log('Ignoring drop - not a valid list drop (has JSON:', types.includes('application/json'), ')');
+                    console.log('Ignoring drop - not a valid list drop (has JSON:', types.includes('application/json'), ', has x-list:', types.includes('application/x-list'), ')');
                 }
-                // If it's an entry drop, do nothing - let the ul or li handle it
             });
 
             // Add entry group
@@ -630,7 +741,6 @@
             });
             
             ul.addEventListener('dragleave', (e) => {
-                // Only remove drag-over if we're actually leaving the ul element
                 if (!ul.contains(e.relatedTarget)) {
                     ul.classList.remove('drag-over');
                 }
@@ -643,7 +753,9 @@
                     console.log('Processing as entry drop in UL');
                     e.preventDefault();
                     e.stopPropagation();
-                    ul.classList.remove('drag-over');
+                    
+                    // Immediate cleanup
+                    cleanupAllDragStyling();
                     
                     try {
                         const dragData = JSON.parse(e.dataTransfer.getData('application/json'));
@@ -656,8 +768,13 @@
                             await moveEntryBetweenLists(sourceListId, sourceEntryIdx, targetListId, list.entries.length);
                         } else {
                             // Same list - move to end of list
-                            await reorderEntries(list, sourceEntryIdx, list.entries.length - 1);
+                            const listElement = document.querySelector(`[data-list-id="${list.id}"]`);
+                            await reorderEntries(listElement, list, sourceEntryIdx, list.entries.length - 1);
                         }
+                        
+                        // Additional cleanup after operations complete
+                        setTimeout(cleanupAllDragStyling, 50);
+                        
                     } catch (err) {
                         console.error('Error parsing drag data in list drop:', err);
                     }
@@ -668,11 +785,11 @@
                 const text = addEntryInput.value.trim();
                 if (text === '') return;
                 
-                // Optimistic UI update - add entry immediately
+                // Update data immediately
                 list.entries.push(text);
-                addEntryInput.value = ''; // Clear input immediately
+                addEntryInput.value = '';
                 
-                // Add new entry to UI immediately
+                // Add new entry to DOM immediately
                 const newLi = createEntryElement(list, text, list.entries.length - 1);
                 ul.appendChild(newLi);
                 
@@ -699,7 +816,7 @@
                     .from('todo_lists')
                     .select('*')
                     .order('list_order', { ascending: true, nullsFirst: false })
-                    .order('updated_at', { ascending: true }); // Fallback for items without list_order
+                    .order('updated_at', { ascending: true });
                 
                 if (error) {
                     throw error;
@@ -707,14 +824,14 @@
                 
                 console.log('Supabase data loaded:', data);
                 
-                // Convert Supabase data to expected format
-                const listsArray = (data || []).map(list => ({
+                // Convert Supabase data to expected format and store in memory
+                listsData = (data || []).map(list => ({
                     id: list.id,
                     title: list.title || 'Untitled List',
                     entries: Array.isArray(list.entries) ? list.entries : []
                 }));
                 
-                return listsArray;
+                return listsData;
             } catch (err) {
                 console.error('Error loading lists:', err);
                 showError('Error loading lists: ' + err.message);
@@ -830,21 +947,6 @@
             const listsContainer = document.getElementById('lists-container');
             listsContainer.innerHTML = '';
             const lists = await getLists();
-            /* DEBUG: Output lists to UI
-            let debugDiv = document.getElementById('debug-output');
-            if (!debugDiv) {
-                debugDiv = document.createElement('div');
-                debugDiv.id = 'debug-output';
-                debugDiv.style.color = '#ffeb3b';
-                debugDiv.style.background = '#222';
-                debugDiv.style.fontSize = '0.9em';
-                debugDiv.style.padding = '6px 10px';
-                debugDiv.style.margin = '10px 0';
-                debugDiv.style.borderRadius = '8px';
-                document.querySelector('.app-container').insertBefore(debugDiv, listsContainer);
-            }
-            debugDiv.textContent = 'Lists to render: ' + JSON.stringify(lists) + ' (length: ' + lists.length + ')';
-            */
            
             console.log('Lists to render:', lists, 'Length:', lists.length);
 
@@ -877,6 +979,9 @@
                 
                 // Clear input immediately
                 input.value = '';
+                
+                // Add to in-memory data
+                listsData.push(newList);
                 
                 // Add to UI immediately (optimistic update)
                 const listsContainer = document.getElementById('lists-container');
