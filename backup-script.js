@@ -36,8 +36,9 @@ async function backupData() {
         };
         
         // Create filename with date
-        const date = new Date().toISOString().split('T')[0];
-        const filename = `backup-${date}.json`;
+        const now = new Date();
+        const timestamp = now.toISOString().replace(/[:]/g, '-').split('.')[0]; // "2025-08-01T09-45-00"
+        const filename = `backup-${timestamp}.json`;
         const backupPath = path.join('backups', filename);
         
         // Ensure backups directory exists
