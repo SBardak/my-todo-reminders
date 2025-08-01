@@ -2,8 +2,8 @@ name: Daily Database Backup
 
 on:
   schedule:
-    # Run daily at 2 AM UTC (adjust timezone as needed)
-    - cron: '0 2 * * *'
+    # Run daily at 5 AM Eastern Time (9 AM UTC)
+    - cron: '0 9 * * *'
   workflow_dispatch: # Allow manual trigger
 
 # Give the workflow permission to write to the repository
