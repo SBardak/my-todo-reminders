@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shopping Lists</title>
+    <title>Travel Lists</title>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -265,15 +265,15 @@
 <body>
     <div class="app-container">
         <header class="app-header">
-            <h1>Shopping Lists</h1>
+            <h1>Travel Lists</h1>
             <nav class="nav-buttons">
                 <a href="index.html" class="nav-button">Reminders</a>
-                <a href="shopping.html" class="nav-button active">Shopping</a>
-                <a href="travel.html" class="nav-button">Travel</a>
+                <a href="shopping.html" class="nav-button">Shopping</a>
+                <a href="travel.html" class="nav-button active">Travel</a>
             </nav>
         </header>
         <div class="add-list-group">
-            <input type="text" id="add-list-input" class="add-list-input" placeholder="New shopping list name...">
+            <input type="text" id="add-list-input" class="add-list-input" placeholder="New travel list name...">
             <button id="add-list-btn" class="add-list-btn">Add List</button>
         </div>
         <div id="lists-container" class="lists-container"></div>
@@ -308,7 +308,7 @@
 
         // Generate unique ID for new lists
         function generateListId() {
-            return 'shopping_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            return 'travel_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         }
 
         // Debounce utility to avoid too frequent saves
@@ -420,7 +420,7 @@
                 // Save to database in background (no UI updates)
                 const updatePromises = listsData.map(async (list, index) => {
                     const { error } = await supabase
-                        .from('shopping_lists')
+                        .from('travel_lists')
                         .update({ 
                             list_order: index,
                             updated_at: new Date().toISOString()
@@ -934,7 +934,7 @@
         async function getLists() {
             try {
                 const { data, error } = await supabase
-                    .from('shopping_lists')
+                    .from('travel_lists')
                     .select('*')
                     .order('list_order', { ascending: true, nullsFirst: false })
                     .order('updated_at', { ascending: true });
@@ -970,7 +970,7 @@
                 
                 // Check if list exists (update) or is new (insert)
                 const { data: existingList } = await supabase
-                    .from('shopping_lists')
+                    .from('travel_lists')
                     .select('id')
                     .eq('id', list.id)
                     .single();
@@ -979,7 +979,7 @@
                 if (existingList) {
                     // Update existing list
                     result = await supabase
-                        .from('shopping_lists')
+                        .from('travel_lists')
                         .update({
                             title: list.title,
                             entries: list.entries,
@@ -989,7 +989,7 @@
                 } else {
                     // Insert new list - get the next list_order value
                     const { data: maxOrderData } = await supabase
-                        .from('shopping_lists')
+                        .from('travel_lists')
                         .select('list_order')
                         .order('list_order', { ascending: false })
                         .limit(1);
@@ -999,7 +999,7 @@
                         : 0;
                     
                     result = await supabase
-                        .from('shopping_lists')
+                        .from('travel_lists')
                         .insert({
                             id: list.id,
                             title: list.title,
@@ -1026,7 +1026,7 @@
             try {
                 console.log('Deleting list:', listId);
                 const { error } = await supabase
-                    .from('shopping_lists')
+                    .from('travel_lists')
                     .delete()
                     .eq('id', listId);
                 
@@ -1091,7 +1091,7 @@
             // Add new list
             document.getElementById('add-list-btn').onclick = async () => {
                 const input = document.getElementById('add-list-input');
-                const name = input.value.trim() || 'New Shopping List';
+                const name = input.value.trim() || 'New Travel List';
                 const newList = {
                     id: generateListId(),
                     title: name,
