@@ -11,29 +11,30 @@
       :root {
         --calendar-height: 600px; /* Default height for desktop */
       }
-      
+
       @media (max-width: 768px) {
         :root {
           --calendar-height: 80vh; /* Larger height for mobile */
         }
-        
+
         /* Make the calendar take more vertical space on mobile */
         #calendar {
           height: var(--calendar-height) !important;
           font-size: 1.1em; /* Slightly larger text on mobile */
         }
-        
+
         /* Adjust calendar header for better mobile display */
         .fc-header-toolbar {
           flex-direction: column;
           gap: 10px;
         }
-        
+
         .fc-toolbar-title {
           font-size: 1.5em !important;
+          margin-left: -30px !important; /* Move title slightly to the left */
         }
       }
-      
+
       body {
         font-family: "Segoe UI", Arial, sans-serif;
         background: #181a1b;
@@ -139,16 +140,70 @@
       .fc-event:hover {
         opacity: 0.9;
       }
-      .event-form {
+      .modal {
         display: none;
-        background: #2c2f31;
-        padding: 20px;
-        border-radius: 10px;
-        margin-top: 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
       }
-      .event-form h3 {
-        margin-top: 0;
-        color: #4a90e2;
+
+      .modal-content {
+        background: #2d2f31;
+        padding: 25px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+        position: relative;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #3e4245;
+      }
+
+      .modal-header h3 {
+        margin: 0;
+        color: #e0e0e0;
+      }
+
+      .close-modal {
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        padding: 0 10px;
+        line-height: 1;
+      }
+
+      .close-modal:hover,
+      .close-modal:focus {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .modal-body {
+        margin-bottom: 20px;
+      }
+
+      .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 15px;
+        border-top: 1px solid #3e4245;
       }
       .form-group {
         margin-bottom: 15px;
@@ -195,6 +250,81 @@
       .btn-danger:hover {
         background: #bb2d3b;
       }
+
+      /* Clear button styles */
+      .input-with-clear {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .clear-btn {
+        position: absolute;
+        right: 8px;
+        background: transparent;
+        border: none;
+        color: #999;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 0 5px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
+
+      .clear-btn:hover {
+        background: rgba(0, 0, 0, 0.1);
+        color: #666;
+      }
+
+      /* Custom calendar header styles */
+      .fc .fc-toolbar.fc-header-toolbar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+      }
+      
+      .fc-toolbar-chunk {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      
+      /* Style for navigation buttons */
+      .fc .fc-button {
+        padding: 10px 25px !important;
+        font-size: 1.1em !important;
+        font-weight: 500;
+        border-radius: 6px !important;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 80px;
+      }
+      
+      /* Style specifically for the today button */
+      .fc .fc-button-today {
+        margin: 0 25px !important;
+      }
+      .fc .fc-toolbar-title {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+      }
+
+      /* Adjust input and textarea to accommodate the clear button */
+      #eventTitle,
+      #eventDescription {
+        padding-right: 32px;
+        width: 100%;
+      }
     </style>
   </head>
   <body>
@@ -210,30 +340,64 @@
 
       <div id="calendar"></div>
 
-      <div id="eventForm" class="event-form">
-        <h3>Add New Event</h3>
-        <div class="form-group">
-          <label for="eventTitle">Event Title</label>
-          <input type="text" id="eventTitle" placeholder="Enter event title" />
-        </div>
-        <div class="form-group">
-          <label for="eventDate">Date</label>
-          <input type="date" id="eventDate" />
-        </div>
-        <div class="form-group">
-          <label for="eventDescription">Description (Optional)</label>
-          <textarea
-            id="eventDescription"
-            rows="3"
-            placeholder="Enter event description"
-          ></textarea>
-        </div>
-        <div class="form-actions">
-          <button id="deleteEvent" class="btn btn-danger" style="display: none">
-            Delete Event
-          </button>
-          <button id="cancelEvent" class="btn btn-secondary">Cancel</button>
-          <button id="saveEvent" class="btn btn-primary">Save Event</button>
+      <!-- Modal Overlay -->
+      <div id="eventModal" class="modal" style="display: none">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Add New Event</h3>
+            <span class="close-modal">&times;</span>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="eventTitle">Event Title</label>
+              <div class="input-with-clear">
+                <input
+                  type="text"
+                  id="eventTitle"
+                  placeholder="Enter event title"
+                />
+                <button
+                  type="button"
+                  class="clear-btn"
+                  data-target="eventTitle"
+                >
+                  &times;
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="eventDate">Date</label>
+              <input type="date" id="eventDate" />
+            </div>
+            <div class="form-group">
+              <label for="eventDescription">Description (Optional)</label>
+              <div class="input-with-clear">
+                <textarea
+                  id="eventDescription"
+                  rows="3"
+                  placeholder="Enter event description"
+                ></textarea>
+                <button
+                  type="button"
+                  class="clear-btn"
+                  data-target="eventDescription"
+                >
+                  &times;
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="deleteEvent"
+              class="btn btn-danger"
+              style="display: none"
+            >
+              Delete Event
+            </button>
+            <button id="cancelEvent" class="btn btn-secondary">Cancel</button>
+            <button id="saveEvent" class="btn btn-primary">Save Event</button>
+          </div>
         </div>
       </div>
     </div>
@@ -260,13 +424,14 @@
 
       // DOM Elements
       const calendarEl = document.getElementById("calendar");
-      const eventForm = document.getElementById("eventForm");
+      const eventModal = document.getElementById("eventModal");
       const eventTitle = document.getElementById("eventTitle");
       const eventDate = document.getElementById("eventDate");
       const eventDescription = document.getElementById("eventDescription");
       const saveEventBtn = document.getElementById("saveEvent");
       const cancelEventBtn = document.getElementById("cancelEvent");
       const deleteEventBtn = document.getElementById("deleteEvent");
+      const closeModalBtn = document.querySelector(".close-modal");
 
       let calendar;
       let currentEvent = null;
@@ -279,39 +444,68 @@
         calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: "dayGridMonth",
           headerToolbar: {
-            left: "prev,next today",
-            center: "title",
-            right: "",
+            left: 'prev today',
+            center: 'title',
+            right: 'next',
           },
+          customButtons: {
+            prev: {
+              text: '<',
+              click: function() {
+                calendar.prev();
+              }
+            },
+            next: {
+              text: '>',
+              click: function() {
+                calendar.next();
+              }
+            },
+            today: {
+              text: 'Today',
+              click: function() {
+                calendar.today();
+                calendar.changeView('dayGridMonth');
+              }
+            }
+          },
+          titleFormat: { year: 'numeric', month: 'long' },
+          buttonIcons: false,
           buttonText: {
-            today: 'Today'
+            today: 'Today',
+            prev: '<',
+            next: '>'
           },
+          // Custom CSS to center the title
+          viewClassNames: ['custom-calendar-header'],
           events: await fetchEvents(),
           dateClick: function (info) {
-            // When a date is clicked, open the event form for new event
+            // When a date is clicked, open the modal for new event
             currentEvent = null;
-            eventForm.style.display = "block";
             eventTitle.value = "";
             eventDate.value = info.dateStr;
             eventDescription.value = "";
             deleteEventBtn.style.display = "none"; // Hide delete button for new events
+            document.querySelector(".modal-header h3").textContent =
+              "Add New Event";
 
-            // Scroll to the form and focus the title field
-            eventForm.scrollIntoView({ behavior: "smooth" });
+            // Show the modal and focus the title field
+            eventModal.style.display = "flex";
             eventTitle.focus();
           },
           eventClick: function (info) {
-            // When an event is clicked, open it for editing
+            // When an event is clicked, open it for editing in the modal
             currentEvent = info.event;
-            eventForm.style.display = "block";
             eventTitle.value = currentEvent.title;
             eventDate.value = currentEvent.start.toISOString().split("T")[0];
             eventDescription.value =
               currentEvent.extendedProps.description || "";
             deleteEventBtn.style.display = "inline-block"; // Show delete button for existing events
+            document.querySelector(".modal-header h3").textContent =
+              "Edit Event";
 
-            // Scroll to the form
-            eventForm.scrollIntoView({ behavior: "smooth" });
+            // Show the modal
+            eventModal.style.display = "flex";
           },
         });
 
@@ -331,20 +525,35 @@
 
         try {
           if (currentEvent) {
-            // Update existing event with the date as-is, FullCalendar already handles timezones
+            // Get the current event's original date if date wasn't changed
+            const eventDateValue = date || currentEvent.start;
+
+            // Update the event in the database
             await updateEvent(currentEvent.id, {
               title,
-              start: date,
+              start: eventDateValue,
               description,
             });
 
-            // Update the event in the calendar with the local date
-            currentEvent.setProp("title", title);
-            currentEvent.setStart(date);
-            currentEvent.setExtendedProp("description", description);
+            // Remove the old event from the calendar
+            currentEvent.remove();
 
-            // Close the form and reset
-            eventForm.style.display = "none";
+            // Add the updated event
+            calendar.addEvent({
+              id: currentEvent.id,
+              title,
+              start: eventDateValue,
+              allDay: true,
+              description,
+              backgroundColor: "#4a90e2",
+              borderColor: "#4a90e2",
+            });
+
+            // Close the modal and reset
+            eventModal.style.display = "none";
+            eventTitle.value = "";
+            eventDate.value = "";
+            eventDescription.value = "";
             currentEvent = null;
           } else {
             // Create new event optimistically
@@ -385,8 +594,10 @@
             }
 
             // Reset form
-            eventForm.style.display = "none";
-            currentEvent = null;
+            eventModal.style.display = "none";
+            eventTitle.value = "";
+            eventDate.value = "";
+            eventDescription.value = "";
             currentEvent = null;
           }
 
@@ -401,7 +612,7 @@
       // Delete event handler
       deleteEventBtn.addEventListener("click", async function () {
         if (!currentEvent) return;
-        
+
         try {
           // Remove the event from the calendar immediately
           currentEvent.remove();
@@ -409,8 +620,11 @@
           // Then delete it from the database
           await deleteEvent(currentEvent.id);
 
-          // Close the form and reset
-          eventForm.style.display = "none";
+          // Close the modal and reset
+          eventModal.style.display = "none";
+          eventTitle.value = "";
+          eventDate.value = "";
+          eventDescription.value = "";
           currentEvent = null;
 
           // Force a full refresh of events
@@ -423,9 +637,36 @@
         }
       });
 
+      // Close modal when clicking the close button
+      function closeModal() {
+        eventModal.style.display = "none";
+        currentEvent = null;
+      }
+
+      closeModalBtn.addEventListener("click", closeModal);
+
+      // Close modal when clicking outside the modal content
+      window.addEventListener("click", function (event) {
+        if (event.target === eventModal) {
+          closeModal();
+        }
+      });
+
+      // Add click event listeners to all clear buttons
+      document.querySelectorAll(".clear-btn").forEach((button) => {
+        button.addEventListener("click", function () {
+          const targetId = this.getAttribute("data-target");
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.value = "";
+            targetElement.focus();
+          }
+        });
+      });
+
       // Cancel button handler
       cancelEventBtn.addEventListener("click", function () {
-        eventForm.style.display = "none";
+        eventModal.style.display = "none";
         currentEvent = null;
       });
 
