@@ -62,14 +62,27 @@ async function backupData() {
             throw shoppingError;
         }
         
+        // Fetch all travel lists
+        const { data: travelLists, error: travelError } = await supabase
+            .from('travel_lists')
+            .select('*')
+            .order('created_at', { ascending: true });
+            
+        // Only throw if travel_lists table exists but has an error
+        if (travelError && travelError.code !== 'PGRST116') {
+            throw travelError;
+        }
+        
         // Create backup object
         const backup = {
             timestamp: new Date().toISOString(),
-            version: "1.1", // Updated version to reflect new structure
+            version: "1.2", // Updated version to include travel lists
             totalLists: todoLists?.length || 0,
             totalShoppingLists: shoppingLists?.length || 0,
+            totalTravelLists: travelLists?.length || 0,
             data: todoLists || [],
-            shoppingData: shoppingLists || []
+            shoppingData: shoppingLists || [],
+            travelData: travelLists || []
         };
         
         // Create filename with date
@@ -87,7 +100,7 @@ async function backupData() {
         fs.writeFileSync(backupPath, JSON.stringify(backup, null, 2));
         
         console.log(`✅ Backup successful: ${filename}`);
-        console.log(`📊 Backed up ${backup.totalLists} todo lists and ${backup.totalShoppingLists} shopping lists`);
+        console.log(`📊 Backed up ${backup.totalLists} todo lists, ${backup.totalShoppingLists} shopping lists, and ${backup.totalTravelLists} travel lists`);
         
         // Keep only last 30 backups (cleanup old files)
         cleanupOldBackups();
