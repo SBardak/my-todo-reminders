@@ -1,3 +1,0 @@
-Preview HTML
-python -m http.server 8000
-Get-Process python | Where-Object { $_.CommandLine -like '*http.server*' } | Stop-Process -Force
