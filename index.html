@@ -269,15 +269,12 @@
     </div>
     <!-- Supabase SDK -->
     <script type="module">
-        // Import Supabase client
-        import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2';
-
-        // Your Supabase configuration
-        const supabaseUrl = 'https://tdskwpcssbovburunekn.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkc2t3cGNzc2JvdmJ1cnVuZWtuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMDI1MTUsImV4cCI6MjA2OTU3ODUxNX0.cFVJvrU2TorJMbfy8VpBG2T_pkSAMEoHgBqx-euig6M';
+        // Import Supabase client and configuration
+        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+        import { supabaseConfig } from './js/config.js';
 
         // Initialize Supabase client
-        const supabase = createClient(supabaseUrl, supabaseKey);
+        const supabase = createClient(supabaseConfig.url, supabaseConfig.key);
 
         // In-memory list storage for immediate UI updates
         let listsData = [];

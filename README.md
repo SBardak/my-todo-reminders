@@ -6,6 +6,7 @@
 - ✅ **Optimistic UI Updates** - Instant feedback, background saving
 - ✅ **Debounced Saves** - Efficient database operations
 - ✅ **Automated Daily Backups** - Free GitHub Actions backup
+- ✅ **Centralized Configuration** - Single source of truth for Supabase credentials
 
 ## Automated Daily Backup Setup (Free)
 
@@ -66,3 +67,22 @@ npm run backup
 ### Recovery:
 
 If you need to restore data, use the JSON files in the `backups/` folder. Each file contains all your lists and entries for that day.
+
+## Configuration
+
+The app uses a centralized configuration approach for Supabase credentials:
+
+- **Location**: `js/config.js`
+- **Format**:
+  ```javascript
+  export const supabaseConfig = {
+      url: 'your-supabase-url',
+      key: 'your-supabase-key'
+  };
+  ```
+- **Usage**: Import in your modules with `import { supabaseConfig } from './js/config.js';`
+
+This centralized approach follows best practices by:
+1. Maintaining a single source of truth
+2. Making credential updates easier and less error-prone
+3. Facilitating environment-specific configurations

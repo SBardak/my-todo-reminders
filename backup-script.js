@@ -2,16 +2,39 @@
 import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_ANON_KEY;
+// Determine if we're in a browser or Node.js environment
+let supabaseUrl, supabaseKey, supabase;
 
+// Try to load from environment variables (for CI/CD and server environments)
+if (process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY) {
+    supabaseUrl = process.env.SUPABASE_URL;
+    supabaseKey = process.env.SUPABASE_ANON_KEY;
+} else {
+    // Try to load from config file (for local development)
+    try {
+        const __dirname = path.dirname(fileURLToPath(import.meta.url));
+        const configPath = path.join(__dirname, 'js', 'config.js');
+        
+        if (fs.existsSync(configPath)) {
+            const { supabaseConfig } = await import('./js/config.js');
+            supabaseUrl = supabaseConfig.url;
+            supabaseKey = supabaseConfig.key;
+        }
+    } catch (error) {
+        console.warn('Could not load config file:', error.message);
+    }
+}
+
+// Validate configuration
 if (!supabaseUrl || !supabaseKey) {
-    console.error('Missing Supabase environment variables');
+    console.error('Missing Supabase configuration. Please set environment variables or ensure config.js exists.');
     process.exit(1);
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Initialize Supabase client
+supabase = createClient(supabaseUrl, supabaseKey);
 
 async function backupData() {
     try {
