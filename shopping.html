@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reminders Style To-Do App</title>
+    <title>Shopping Lists</title>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -144,6 +144,13 @@
             align-items: center;
             border: 1px solid #2c2f32;
         }
+        .entry-checkbox {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: #4a90e2;
+            cursor: pointer;
+        }
         .entry-input {
             background: transparent;
             border: none;
@@ -152,6 +159,10 @@
             flex: 1;
             outline: none;
             padding: 2px 4px;
+        }
+        .entry-input.checked {
+            text-decoration: line-through;
+            opacity: 0.7;
         }
         .delete-entry-btn {
             background: #ff6b6b;
@@ -254,14 +265,14 @@
 <body>
     <div class="app-container">
         <header class="app-header">
-            <h1>Reminders</h1>
+            <h1>Shopping Lists</h1>
             <nav class="nav-buttons">
-                <a href="index.html" class="nav-button active">Reminders</a>
-                <a href="shopping.html" class="nav-button">Shopping</a>
+                <a href="index.html" class="nav-button">Reminders</a>
+                <a href="shopping.html" class="nav-button active">Shopping</a>
             </nav>
         </header>
         <div class="add-list-group">
-            <input type="text" id="add-list-input" class="add-list-input" placeholder="New list name...">
+            <input type="text" id="add-list-input" class="add-list-input" placeholder="New shopping list name...">
             <button id="add-list-btn" class="add-list-btn">Add List</button>
         </div>
         <div id="lists-container" class="lists-container"></div>
@@ -296,7 +307,7 @@
 
         // Generate unique ID for new lists
         function generateListId() {
-            return 'list_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            return 'shopping_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         }
 
         // Debounce utility to avoid too frequent saves
@@ -351,9 +362,13 @@
             // Build new entries array based on DOM order and actual input values
             entryElements.forEach((entryElement, newIndex) => {
                 const entryInput = entryElement.querySelector('.entry-input');
+                const entryCheckbox = entryElement.querySelector('.entry-checkbox');
                 if (entryInput) {
-                    // Use the actual current text value from the input, not the old data
-                    newOrderedEntries.push(entryInput.value);
+                    // Use the actual current text value from the input and checkbox state
+                    newOrderedEntries.push({
+                        text: entryInput.value,
+                        checked: entryCheckbox ? entryCheckbox.checked : false
+                    });
                     // Update the element's index to match its new position
                     entryElement.dataset.entryIndex = newIndex;
                 }
@@ -404,7 +419,7 @@
                 // Save to database in background (no UI updates)
                 const updatePromises = listsData.map(async (list, index) => {
                     const { error } = await supabase
-                        .from('todo_lists')
+                        .from('shopping_lists')
                         .update({ 
                             list_order: index,
                             updated_at: new Date().toISOString()
@@ -492,17 +507,19 @@
                 const draggedLi = sourceUl.children[sourceEntryIdx];
                 if (!draggedLi) return;
 
-                // Get the actual text value from the dragged entry before removing it
+                // Get the actual text value and checked state from the dragged entry before removing it
                 const draggedEntryInput = draggedLi.querySelector('.entry-input');
+                const draggedEntryCheckbox = draggedLi.querySelector('.entry-checkbox');
                 const movedEntryText = draggedEntryInput ? draggedEntryInput.value : '';
+                const movedEntryChecked = draggedEntryCheckbox ? draggedEntryCheckbox.checked : false;
 
-                console.log('Moving entry text:', movedEntryText);
+                console.log('Moving entry text:', movedEntryText, 'Checked:', movedEntryChecked);
 
                 // Remove from DOM first
                 draggedLi.remove();
 
-                // Create new DOM element for target list with the correct text
-                const newLi = createEntryElement(targetList, movedEntryText, targetEntryIdx);
+                // Create new DOM element for target list with the correct text and checked state
+                const newLi = createEntryElement(targetList, { text: movedEntryText, checked: movedEntryChecked }, targetEntryIdx);
                 
                 // Insert at correct position in target DOM
                 if (targetEntryIdx >= targetUl.children.length) {
@@ -542,15 +559,38 @@
             entryDragHandle.title = 'Drag to reorder entries';
             entryDragHandle.style.fontSize = '12px';
             
+            // Add checkbox for shopping items
+            const entryCheckbox = document.createElement('input');
+            entryCheckbox.type = 'checkbox';
+            entryCheckbox.className = 'entry-checkbox';
+            entryCheckbox.checked = entry.checked || false;
+            
             const entryInput = document.createElement('input');
             entryInput.type = 'text';
-            entryInput.value = entry;
+            entryInput.value = entry.text || entry;
             entryInput.className = 'entry-input';
+            if (entry.checked) {
+                entryInput.classList.add('checked');
+            }
+            
+            // Update input styling when checkbox changes
+            entryCheckbox.onchange = () => {
+                if (entryCheckbox.checked) {
+                    entryInput.classList.add('checked');
+                } else {
+                    entryInput.classList.remove('checked');
+                }
+                
+                // Save the updated checked state
+                const currentIndex = parseInt(li.dataset.entryIndex);
+                list.entries[currentIndex].checked = entryCheckbox.checked;
+                saveList(list);
+            };
             
             // Debounced save for entry text changes
             const debouncedSaveEntry = debounce(async (newText) => {
                 const currentIndex = parseInt(li.dataset.entryIndex);
-                list.entries[currentIndex] = newText;
+                list.entries[currentIndex].text = newText;
                 await saveList(list);
             }, 500);
             
@@ -560,7 +600,7 @@
 
             const deleteEntryBtn = document.createElement('button');
             deleteEntryBtn.className = 'delete-entry-btn';
-            deleteEntryBtn.textContent = 'Done';
+            deleteEntryBtn.textContent = 'Delete';
             deleteEntryBtn.onclick = async () => {
                 const currentIndex = parseInt(li.dataset.entryIndex);
                 
@@ -589,16 +629,19 @@
                 
                 // Get the current text value from the input, not from the data array
                 const entryInput = li.querySelector('.entry-input');
-                const currentText = entryInput ? entryInput.value : entry;
+                const entryCheckbox = li.querySelector('.entry-checkbox');
+                const currentText = entryInput ? entryInput.value : (entry.text || entry);
+                const currentChecked = entryCheckbox ? entryCheckbox.checked : (entry.checked || false);
                 
                 const dragData = {
                     entryText: currentText,
+                    entryChecked: currentChecked,
                     entryIndex: parseInt(li.dataset.entryIndex),
                     sourceListId: list.id
                 };
                 e.dataTransfer.setData('application/json', JSON.stringify(dragData));
                 e.dataTransfer.setData('text/plain', 'entry');
-                console.log('Entry drag data set with text:', currentText);
+                console.log('Entry drag data set with text:', currentText, 'Checked:', currentChecked);
                 e.dataTransfer.effectAllowed = 'move';
                 li.classList.add('dragging');
             });
@@ -653,6 +696,7 @@
             });
 
             li.appendChild(entryDragHandle);
+            li.appendChild(entryCheckbox);
             li.appendChild(entryInput);
             li.appendChild(deleteEntryBtn);
             return li;
@@ -661,7 +705,17 @@
         // Create a complete list element (for optimistic UI updates)
         function createListElement(list) {
             // Ensure entries exists and is an array, and list has an ID
-            if (!Array.isArray(list.entries)) list.entries = [];
+            if (!Array.isArray(list.entries)) {
+                list.entries = [];
+            } else {
+                // Convert string entries to object format if needed
+                list.entries = list.entries.map(entry => {
+                    if (typeof entry === 'string') {
+                        return { text: entry, checked: false };
+                    }
+                    return entry;
+                });
+            }
             if (!list.id) list.id = generateListId();
 
             const listDiv = document.createElement('div');
@@ -782,7 +836,7 @@
             const addEntryInput = document.createElement('input');
             addEntryInput.type = 'text';
             addEntryInput.className = 'add-entry-input';
-            addEntryInput.placeholder = 'Add a new reminder...';
+            addEntryInput.placeholder = 'Add a new item...';
 
             const addEntryBtn = document.createElement('button');
             addEntryBtn.className = 'add-entry-btn';
@@ -851,11 +905,12 @@
                 if (text === '') return;
                 
                 // Update data immediately
-                list.entries.push(text);
+                const newEntry = { text: text, checked: false };
+                list.entries.push(newEntry);
                 addEntryInput.value = '';
                 
                 // Add new entry to DOM immediately
-                const newLi = createEntryElement(list, text, list.entries.length - 1);
+                const newLi = createEntryElement(list, newEntry, list.entries.length - 1);
                 ul.appendChild(newLi);
                 
                 // Save in background
@@ -878,7 +933,7 @@
         async function getLists() {
             try {
                 const { data, error } = await supabase
-                    .from('todo_lists')
+                    .from('shopping_lists')
                     .select('*')
                     .order('list_order', { ascending: true, nullsFirst: false })
                     .order('updated_at', { ascending: true });
@@ -914,7 +969,7 @@
                 
                 // Check if list exists (update) or is new (insert)
                 const { data: existingList } = await supabase
-                    .from('todo_lists')
+                    .from('shopping_lists')
                     .select('id')
                     .eq('id', list.id)
                     .single();
@@ -923,7 +978,7 @@
                 if (existingList) {
                     // Update existing list
                     result = await supabase
-                        .from('todo_lists')
+                        .from('shopping_lists')
                         .update({
                             title: list.title,
                             entries: list.entries,
@@ -933,7 +988,7 @@
                 } else {
                     // Insert new list - get the next list_order value
                     const { data: maxOrderData } = await supabase
-                        .from('todo_lists')
+                        .from('shopping_lists')
                         .select('list_order')
                         .order('list_order', { ascending: false })
                         .limit(1);
@@ -943,7 +998,7 @@
                         : 0;
                     
                     result = await supabase
-                        .from('todo_lists')
+                        .from('shopping_lists')
                         .insert({
                             id: list.id,
                             title: list.title,
@@ -970,7 +1025,7 @@
             try {
                 console.log('Deleting list:', listId);
                 const { error } = await supabase
-                    .from('todo_lists')
+                    .from('shopping_lists')
                     .delete()
                     .eq('id', listId);
                 
@@ -1035,7 +1090,7 @@
             // Add new list
             document.getElementById('add-list-btn').onclick = async () => {
                 const input = document.getElementById('add-list-input');
-                const name = input.value.trim() || 'New List';
+                const name = input.value.trim() || 'New Shopping List';
                 const newList = {
                     id: generateListId(),
                     title: name,

@@ -1,4 +1,4 @@
-// Daily backup script for Supabase todo lists
+// Daily backup script for Supabase todo lists and shopping lists
 import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
 import path from 'path';
@@ -18,21 +18,35 @@ async function backupData() {
         console.log('Starting backup...');
         
         // Fetch all todo lists
-        const { data, error } = await supabase
+        const { data: todoLists, error: todoError } = await supabase
             .from('todo_lists')
             .select('*')
             .order('created_at', { ascending: true });
         
-        if (error) {
-            throw error;
+        if (todoError) {
+            throw todoError;
+        }
+        
+        // Fetch all shopping lists
+        const { data: shoppingLists, error: shoppingError } = await supabase
+            .from('shopping_lists')
+            .select('*')
+            .order('created_at', { ascending: true });
+        
+        // Only throw if shopping_lists table exists but has an error
+        // If the table doesn't exist yet, we'll just log a warning
+        if (shoppingError && shoppingError.code !== 'PGRST116') {
+            throw shoppingError;
         }
         
         // Create backup object
         const backup = {
             timestamp: new Date().toISOString(),
-            version: "1.0",
-            totalLists: data?.length || 0,
-            data: data || []
+            version: "1.1", // Updated version to reflect new structure
+            totalLists: todoLists?.length || 0,
+            totalShoppingLists: shoppingLists?.length || 0,
+            data: todoLists || [],
+            shoppingData: shoppingLists || []
         };
         
         // Create filename with date
@@ -50,7 +64,7 @@ async function backupData() {
         fs.writeFileSync(backupPath, JSON.stringify(backup, null, 2));
         
         console.log(`✅ Backup successful: ${filename}`);
-        console.log(`📊 Backed up ${backup.totalLists} lists`);
+        console.log(`📊 Backed up ${backup.totalLists} todo lists and ${backup.totalShoppingLists} shopping lists`);
         
         // Keep only last 30 backups (cleanup old files)
         cleanupOldBackups();
