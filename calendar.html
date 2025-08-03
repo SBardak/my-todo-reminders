@@ -8,6 +8,32 @@
       rel="stylesheet"
     />
     <style>
+      :root {
+        --calendar-height: 600px; /* Default height for desktop */
+      }
+      
+      @media (max-width: 768px) {
+        :root {
+          --calendar-height: 80vh; /* Larger height for mobile */
+        }
+        
+        /* Make the calendar take more vertical space on mobile */
+        #calendar {
+          height: var(--calendar-height) !important;
+          font-size: 1.1em; /* Slightly larger text on mobile */
+        }
+        
+        /* Adjust calendar header for better mobile display */
+        .fc-header-toolbar {
+          flex-direction: column;
+          gap: 10px;
+        }
+        
+        .fc-toolbar-title {
+          font-size: 1.5em !important;
+        }
+      }
+      
       body {
         font-family: "Segoe UI", Arial, sans-serif;
         background: #181a1b;
