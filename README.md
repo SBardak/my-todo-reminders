@@ -90,7 +90,3 @@ This centralized approach follows best practices by:
 1. Maintaining a single source of truth
 2. Making credential updates easier and less error-prone
 3. Facilitating environment-specific configurations
-
-Preview HTML
-##  python -m http.server 8000
-##  Get-Process python | Where-Object { $_.CommandLine -like '*http.server*' } | Stop-Process -Force
