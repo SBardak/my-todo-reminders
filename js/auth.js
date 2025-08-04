@@ -1,20 +1,12 @@
-import { supabaseConfig } from "./config.js";
+// Use the globally initialized Supabase client
+const supabase = window.supabase;
 
-// Initialize Supabase client with proper configuration for GitHub Pages
-export const supabase = window.supabase.createClient(supabaseConfig.url, supabaseConfig.key, {
-  auth: {
-    autoRefreshToken: true,
-    persistSession: true,
-    detectSessionInUrl: true,
-    storage: window.localStorage,
-    storageKey: "sb-auth-token",
-    flowType: "pkce",
-    debug: true,
-  },
-});
+if (!supabase) {
+  console.error('Supabase client not initialized. Make sure supabase.js is loaded before auth.js');
+}
 
-// Export the Supabase client for use in other files
-window.supabase = supabase;
+// Export the Supabase client for use in other modules
+export { supabase };
 
 // Auth state change listener
 supabase.auth.onAuthStateChange((event, session) => {

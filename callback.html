@@ -8,6 +8,33 @@
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <!-- Use relative path for config -->
     <script src="js/config.js"></script>
+    <!-- Initialize Supabase client -->
+    <script>
+      // Initialize Supabase client after the library is loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        window.supabase = supabase.createClient(
+          window.supabaseConfig.url, 
+          window.supabaseConfig.key,
+          {
+            auth: {
+              autoRefreshToken: true,
+              persistSession: true,
+              detectSessionInUrl: true,
+              storage: window.localStorage,
+              storageKey: 'sb-auth-token',
+              flowType: 'pkce',
+              debug: true,
+            },
+          }
+        );
+        
+        // Now load auth.js
+        const script = document.createElement('script');
+        script.src = 'js/auth.js';
+        script.type = 'module';
+        document.body.appendChild(script);
+      });
+    </script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
