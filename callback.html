@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Email Verification</title>
-    <!-- Load Supabase from CDN with SRI for security -->
-    <script src="https://unpkg.com/@supabase/supabase-js@2" integrity="sha384-..." crossorigin="anonymous"></script>
+    <!-- Load Supabase from CDN -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <!-- Use relative path for config -->
     <script src="js/config.js"></script>
     <style>
@@ -90,33 +90,38 @@
   </head>
   <body>
     <div class="container" id="container">
-      <div class="spinner" id="spinner"></div>
-      <h2 id="title">Verify your email...</h2>
-      <p id="status">Please click the link in your email to continue.</p>
+        <div class="success-icon">✓</div>
+        <h2>Email Verified Successfully!</h2>
+        <p>Your email has been verified. You'll be redirected to your dashboard in <span class="countdown" id="countdown">3</span> seconds.</p>
     </div>
 
     <script>
-      // Initialize Supabase with error handling
-      if (!window.supabaseConfig) {
-        console.error('Configuration not loaded');
-        document.getElementById('status').textContent = 'Error: Configuration not loaded. Please try again later.';
-        return;
-      }
-      
-      const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
-        auth: {
-          autoRefreshToken: true,
-          persistSession: true,
-          detectSessionInUrl: true,
-          flowType: "pkce",
-          debug: true,
-          storage: window.localStorage,
-          storageKey: "sb-auth-token",
-        },
-      });
+      // Check if Supabase is loaded
+      if (!window.supabase) {
+        console.error("Supabase not initialized");
+        const statusEl = document.getElementById("status");
+        if (statusEl) {
+          statusEl.textContent = "Error: Failed to initialize. Please refresh the page.";
+        }
+      } else {
+        // Get the Supabase client from the global scope
+        const supabase = window.supabase;
+        
+        // Configure auth options
+        const authOptions = {
+          auth: {
+            autoRefreshToken: true,
+            persistSession: true,
+            detectSessionInUrl: true,
+            flowType: "pkce",
+            debug: true,
+            storage: window.localStorage,
+            storageKey: "sb-auth-token"
+          }
+        };
 
-      // Make supabase available globally for debugging
-      window.supabase = supabase;
+        // Make supabase available globally for debugging
+        window.supabase = supabase;
 
       // Handle the email verification
       async function handleEmailVerification() {
@@ -135,14 +140,16 @@
 
           // First, try to handle the OAuth callback with code parameter
           const urlParams = new URLSearchParams(window.location.search);
-          const code = urlParams.get('code');
-          
+          const code = urlParams.get("code");
+
           if (code) {
             console.log("Processing OAuth code:", code);
-            const { data, error } = await supabase.auth.exchangeCodeForSession(code);
-            
+            const { data, error } = await supabase.auth.exchangeCodeForSession(
+              code
+            );
+
             if (error) throw error;
-            
+
             // Show success message and redirect
             spinner.style.display = "none";
             container.innerHTML = `
@@ -163,7 +170,11 @@
               if (countdown <= 0) {
                 clearInterval(countdownInterval);
                 // Clear the URL parameters
-                window.history.replaceState({}, document.title, window.location.pathname);
+                window.history.replaceState(
+                  {},
+                  document.title,
+                  window.location.pathname
+                );
                 window.location.href = "reminders.html";
               }
             }, 1000);
@@ -313,6 +324,7 @@
 
       // Start the verification process when the page loads
       document.addEventListener("DOMContentLoaded", handleEmailVerification);
+      } // Close the else block
     </script>
   </body>
 </html>

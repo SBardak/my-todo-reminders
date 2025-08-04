@@ -8,4 +8,5 @@ CTRL + F5 for hard refresh
 -TODO
 Authentication
 Fix the not signed in bug on other pages
-Move sign out to Profile/Settings page
+Move sign out to Profile/Settings page/Dashboard
+Welcome page mobile design
