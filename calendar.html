@@ -430,6 +430,22 @@
         padding-right: 32px;
         width: 100%;
       }
+
+      /* Style for date fields container */
+      .date-fields-container {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .date-fields-container .form-group {
+        flex: 1;
+        margin-bottom: 0;
+      }
+
+      .date-fields-container input[type="date"] {
+        width: 100%;
+      }
     </style>
   </head>
   <body>
@@ -470,13 +486,15 @@
                 </button>
               </div>
             </div>
-            <div class="form-group">
-              <label for="eventDate">Start Date</label>
-              <input type="date" id="eventDate" />
-            </div>
-            <div class="form-group">
-              <label for="eventEndDate">End Date (Optional)</label>
-              <input type="date" id="eventEndDate" />
+            <div class="date-fields-container">
+              <div class="form-group">
+                <label for="eventDate">Start Date</label>
+                <input type="date" id="eventDate" />
+              </div>
+              <div class="form-group">
+                <label for="eventEndDate">End Date (Optional)</label>
+                <input type="date" id="eventEndDate" />
+              </div>
             </div>
             <div class="form-group">
               <label for="eventDescription">Description (Optional)</label>
