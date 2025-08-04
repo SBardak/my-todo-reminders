@@ -226,5 +226,14 @@ export async function isAuthenticated() {
   }
 }
 
-// Export supabase client
-export { supabase };
+// Export supabase client and functions
+export { 
+  supabase,
+  ensureSupabase,
+  getCurrentUser,
+  isAuthenticated,
+  signIn,
+  signUp,
+  signOut,
+  handleEmailConfirmation
+};
