@@ -14,9 +14,15 @@
                 persistSession: true,
                 detectSessionInUrl: true,
                 flowType: 'pkce',
-                debug: true
+                debug: true,
+                storage: window.localStorage,
+                storageKey: 'sb-auth-token',
+                redirectTo: window.location.origin + window.location.pathname
             }
         });
+        
+        // Set the base URL for redirects
+        const BASE_URL = 'https://sbardak.github.io/my-todo-reminders';
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
@@ -148,9 +154,22 @@
                 if (session) {
                     statusElement.textContent = 'Success! Redirecting...';
                     setTimeout(() => {
-                        const redirectTo = localStorage.getItem('returnTo') || 'reminders.html';
+                        const returnTo = localStorage.getItem('returnTo');
                         localStorage.removeItem('returnTo');
-                        window.location.href = redirectTo;
+                        
+                        // If we have a stored return URL, use it, otherwise go to the main app
+                        if (returnTo) {
+                            // If the return URL is a full URL, use it as is
+                            if (returnTo.startsWith('http')) {
+                                window.location.href = returnTo;
+                            } else {
+                                // Otherwise, construct the full URL
+                                window.location.href = `${BASE_URL}/${returnTo.replace(/^\//, '')}`;
+                            }
+                        } else {
+                            // Default redirect
+                            window.location.href = `${BASE_URL}/reminders.html`;
+                        }
                     }, 1000);
                     return;
                 }
