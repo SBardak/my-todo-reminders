@@ -433,9 +433,57 @@
 
       /* Style for date fields container */
       .date-fields-container {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 15px;
         margin-bottom: 15px;
+      }
+
+      .date-input {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #4a90e2;
+        border-radius: 4px;
+        background-color: #4a90e2;
+        color: white;
+        height: 38px;
+        box-sizing: border-box;
+        font-family: inherit;
+        text-align: center;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s, border-color 0.2s;
+      }
+
+      .date-input:hover {
+        background-color: #3a7bc8;
+        border-color: #3a7bc8;
+      }
+
+      /* Hide the default calendar icon in WebKit browsers */
+      .date-input::-webkit-calendar-picker-indicator {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      /* Style the date input in Firefox */
+      .date-input::-moz-calendar-picker-indicator {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        opacity: 0;
+        cursor: pointer;
       }
 
       .date-fields-container .form-group {
@@ -443,6 +491,15 @@
         margin-bottom: 0;
       }
 
+      /* Style for color picker */
+      .color-picker {
+        height: 38px;
+        width: 100%;
+        border: 1px solid #444;
+        border-radius: 4px;
+        background: #2d2d2d;
+        cursor: pointer;
+      }
       .date-fields-container input[type="date"],
       .date-fields-container input[type="color"] {
         width: 100%;
@@ -453,7 +510,7 @@
         background: #2d3035;
         cursor: pointer;
       }
-      
+
       .date-fields-container input[type="color"] {
         padding: 2px;
       }
@@ -498,17 +555,26 @@
               </div>
             </div>
             <div class="date-fields-container">
-              <div class="form-group">
+              <div class="form-group date-button-group">
                 <label for="eventDate">Start Date</label>
-                <input type="date" id="eventDate" />
+                <div style="position: relative">
+                  <input type="date" id="eventDate" class="date-input" />
+                </div>
               </div>
-              <div class="form-group">
+              <div class="form-group date-button-group">
                 <label for="eventEndDate">End Date (Optional)</label>
-                <input type="date" id="eventEndDate" />
+                <div style="position: relative">
+                  <input type="date" id="eventEndDate" class="date-input" />
+                </div>
               </div>
               <div class="form-group">
                 <label for="eventColor">Event Color</label>
-                <input type="color" id="eventColor" value="#4a90e2" class="color-picker" />
+                <input
+                  type="color"
+                  id="eventColor"
+                  value="#4a90e2"
+                  class="color-picker"
+                />
               </div>
             </div>
             <div class="form-group">
@@ -580,6 +646,48 @@
       let calendar;
       let currentEvent = null;
 
+      // Simple date formatter for the native date input
+      function formatDateForInput(date) {
+        if (!date) return "";
+        const d = new Date(date);
+        return d.toISOString().split("T")[0];
+      }
+
+      // Helper to initialize date inputs
+      function initializeDateInput(inputId, initialValue) {
+        const input = document.getElementById(inputId);
+        if (!input) return null;
+
+        // Get the display element
+        const displayId = inputId + "Display";
+        const displayElement = document.getElementById(displayId);
+
+        // Update display when date changes
+        function updateDisplay() {
+          if (input.value) {
+            const date = new Date(input.value);
+            displayElement.textContent = date.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            });
+          } else {
+            displayElement.textContent = "Select Date";
+          }
+        }
+
+        // Set initial value and display
+        if (initialValue) {
+          input.value = formatDateForInput(initialValue);
+          updateDisplay();
+        }
+
+        // Update display when date changes
+        input.addEventListener("change", updateDisplay);
+
+        return input;
+      }
+
       // Initialize the calendar when the DOM is fully loaded
       document.addEventListener("DOMContentLoaded", async function () {
         // Check authentication first
@@ -593,17 +701,17 @@
             right: "next",
           },
           editable: true, // Enable drag and drop
-          eventDrop: async function(info) {
+          eventDrop: async function (info) {
             try {
               const event = info.event;
-              const startDate = event.start.toISOString().split('T')[0];
-              
+              const startDate = event.start.toISOString().split("T")[0];
+
               // Calculate end date (FullCalendar uses exclusive end dates)
               let endDate = null;
               if (event.end) {
                 const adjustedEnd = new Date(event.end);
                 adjustedEnd.setDate(adjustedEnd.getDate() - 1); // Adjust for display
-                endDate = adjustedEnd.toISOString().split('T')[0];
+                endDate = adjustedEnd.toISOString().split("T")[0];
               }
 
               // Update the event in the database
@@ -611,27 +719,27 @@
                 title: event.title,
                 start: startDate,
                 end: endDate,
-                description: event.extendedProps.description || '',
-                color: event.backgroundColor || '#4a90e2'
+                description: event.extendedProps.description || "",
+                color: event.backgroundColor || "#4a90e2",
               });
             } catch (error) {
-              console.error('Error updating event:', error);
+              console.error("Error updating event:", error);
               // Revert the event's changes on error
               info.revert();
-              alert('Failed to update event. Please try again.');
+              alert("Failed to update event. Please try again.");
             }
           },
-          eventResize: async function(info) {
+          eventResize: async function (info) {
             try {
               const event = info.event;
-              const startDate = event.start.toISOString().split('T')[0];
-              
+              const startDate = event.start.toISOString().split("T")[0];
+
               // Calculate end date (FullCalendar uses exclusive end dates)
               let endDate = null;
               if (event.end) {
                 const adjustedEnd = new Date(event.end);
                 adjustedEnd.setDate(adjustedEnd.getDate() - 1); // Adjust for display
-                endDate = adjustedEnd.toISOString().split('T')[0];
+                endDate = adjustedEnd.toISOString().split("T")[0];
               }
 
               // Update the event in the database
@@ -639,14 +747,14 @@
                 title: event.title,
                 start: startDate,
                 end: endDate,
-                description: event.extendedProps.description || '',
-                color: event.backgroundColor || '#4a90e2'
+                description: event.extendedProps.description || "",
+                color: event.backgroundColor || "#4a90e2",
               });
             } catch (error) {
-              console.error('Error resizing event:', error);
+              console.error("Error resizing event:", error);
               // Revert the event's changes on error
               info.revert();
-              alert('Failed to resize event. Please try again.');
+              alert("Failed to resize event. Please try again.");
             }
           },
           customButtons: {
@@ -680,20 +788,27 @@
           // Custom CSS to center the title
           viewClassNames: ["custom-calendar-header"],
           events: await fetchEvents(),
-          eventDragStart: function(info) {
+          eventDragStart: function (info) {
             // Optional: Add visual feedback when dragging starts
-            document.body.style.cursor = 'grabbing';
+            document.body.style.cursor = "grabbing";
           },
-          eventDragStop: function() {
+          eventDragStop: function () {
             // Reset cursor after drag ends
-            document.body.style.cursor = '';
+            document.body.style.cursor = "";
           },
           dateClick: function (info) {
             // When a date is clicked, open the modal for new event
             currentEvent = null;
             eventTitle.value = "";
-            eventDate.value = info.dateStr;
-            eventEndDate.value = info.dateStr; // Default end date to same as start date
+
+            // Set the date input values
+            const dateInput = document.getElementById("eventDate");
+            const endDateInput = document.getElementById("eventEndDate");
+            if (dateInput && endDateInput) {
+              dateInput.value = info.dateStr;
+              endDateInput.value = info.dateStr; // Default end date to same as start date
+            }
+
             eventDescription.value = "";
             eventColor.value = "#4a90e2"; // Set default blue color
             deleteEventBtn.style.display = "none"; // Hide delete button for new events
@@ -708,18 +823,19 @@
             // When an event is clicked, open it for editing in the modal
             currentEvent = info.event;
             eventTitle.value = currentEvent.title;
-            eventDate.value = currentEvent.start.toISOString().split("T")[0];
+
+            // Set the date input values
+            const startDate = currentEvent.start.toISOString().split("T")[0];
+            document.getElementById("eventDate").value = startDate;
 
             // Handle end date - if it exists, subtract one day for display since FullCalendar uses exclusive end dates
+            let endDate = startDate;
             if (currentEvent.end) {
-              const endDate = new Date(currentEvent.end);
-              endDate.setDate(endDate.getDate() - 1);
-              eventEndDate.value = endDate.toISOString().split("T")[0];
-            } else {
-              eventEndDate.value = currentEvent.start
-                .toISOString()
-                .split("T")[0];
+              const endDateObj = new Date(currentEvent.end);
+              endDateObj.setDate(endDateObj.getDate() - 1);
+              endDate = endDateObj.toISOString().split("T")[0];
             }
+            document.getElementById("eventEndDate").value = endDate;
 
             eventDescription.value =
               currentEvent.extendedProps.description || "";
@@ -734,6 +850,10 @@
         });
 
         calendar.render();
+
+        // Initialize date inputs
+        const startDateInput = initializeDateInput("eventDate", info?.dateStr);
+        const endDateInput = initializeDateInput("eventEndDate", info?.dateStr);
       });
 
       // Save event
@@ -771,17 +891,17 @@
               start: startDate,
               end: endDate,
               description,
-              color: color
+              color: color,
             });
 
             // Update the event in the calendar
-            currentEvent.setProp('title', title);
+            currentEvent.setProp("title", title);
             currentEvent.setStart(startDate);
             currentEvent.setEnd(displayEndDate);
-            currentEvent.setProp('backgroundColor', color);
-            currentEvent.setProp('borderColor', color);
-            currentEvent.setProp('textColor', getContrastColor(color));
-            currentEvent.setExtendedProp('description', description);
+            currentEvent.setProp("backgroundColor", color);
+            currentEvent.setProp("borderColor", color);
+            currentEvent.setProp("textColor", getContrastColor(color));
+            currentEvent.setExtendedProp("description", description);
 
             // Close the modal and reset
             eventModal.style.display = "none";
@@ -938,18 +1058,18 @@
 
       // Helper function to get contrasting text color based on background color
       function getContrastColor(hexColor) {
-        if (!hexColor) return '#ffffff'; // Default to white if no color provided
-        
+        if (!hexColor) return "#ffffff"; // Default to white if no color provided
+
         // Convert hex to RGB
         const r = parseInt(hexColor.substr(1, 2), 16);
         const g = parseInt(hexColor.substr(3, 2), 16);
         const b = parseInt(hexColor.substr(5, 2), 16);
-        
+
         // Calculate relative luminance (perceived brightness)
         const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-        
+
         // Return black for light colors, white for dark colors
-        return luminance > 0.5 ? '#000000' : '#ffffff';
+        return luminance > 0.5 ? "#000000" : "#ffffff";
       }
 
       // Fetch events from Supabase
@@ -966,14 +1086,14 @@
             // Parse color from description (format: "[#color]description")
             let eventColor = "#4a90e2"; // Default color
             let description = event.description || "";
-            
+
             // Check if description starts with a color code in square brackets
             const colorMatch = description.match(/^\[([^\]]+)\](.*)/);
             if (colorMatch) {
               eventColor = colorMatch[1];
               description = colorMatch[2];
             }
-            
+
             // For all-day events, we just need the date part (YYYY-MM-DD)
             const startDate = event.start_date.split("T")[0];
 
@@ -1011,11 +1131,11 @@
             eventData.start || new Date().toISOString().split("T")[0];
           const endDate = eventData.end || null;
           const eventColor = eventData.color || "#4a90e2";
-          
+
           // Store color and description in a special format
           const description = eventData.description || "";
           const descriptionWithColor = `[${eventColor}]${description}`;
-          
+
           const { data, error } = await supabase
             .from("events")
             .insert([
@@ -1043,7 +1163,7 @@
           const startDate = eventData.start;
           const endDate = eventData.end || null;
           const eventColor = eventData.color || "#4a90e2";
-          
+
           // Store color and description in a special format
           const description = eventData.description || "";
           const descriptionWithColor = `[${eventColor}]${description}`;
