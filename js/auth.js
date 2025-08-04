@@ -98,6 +98,32 @@ export async function signIn(email, password) {
   }
 }
 
+// Handle email confirmation
+export async function handleEmailConfirmation() {
+  try {
+    const { data, error } = await supabase.auth.getSession();
+    
+    if (error) throw error;
+    
+    // Check if we have a valid session
+    if (data?.session?.user) {
+      // Check if email is confirmed
+      const { data: userData } = await supabase.auth.getUser();
+      if (userData?.user?.email_confirmed_at) {
+        // Email is confirmed
+        return { confirmed: true, user: userData.user };
+      }
+      // Email not confirmed yet
+      return { confirmed: false, user: userData.user };
+    }
+    
+    return { confirmed: false, user: null };
+  } catch (error) {
+    console.error("Error checking email confirmation:", error);
+    return { confirmed: false, error, user: null };
+  }
+}
+
 // Sign out
 export async function signOut() {
   try {
