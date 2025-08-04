@@ -7,6 +7,12 @@
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="./js/config.js"></script>
     <script>
+        // Determine the base URL based on the current environment
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const BASE_URL = isLocalhost 
+            ? window.location.origin 
+            : 'https://sbardak.github.io';
+        
         // Initialize Supabase with proper OAuth settings
         const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
             auth: {
@@ -17,12 +23,11 @@
                 debug: true,
                 storage: window.localStorage,
                 storageKey: 'sb-auth-token',
-                redirectTo: window.location.origin + window.location.pathname
+                redirectTo: isLocalhost 
+                    ? window.location.origin + '/callback.html' 
+                    : 'https://sbardak.github.io/callback.html'
             }
         });
-        
-        // Set the base URL for redirects
-        const BASE_URL = 'https://sbardak.github.io/my-todo-reminders';
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
@@ -158,17 +163,23 @@
                         localStorage.removeItem('returnTo');
                         
                         // If we have a stored return URL, use it, otherwise go to the main app
-                        if (returnTo) {
+                        if (returnTo && returnTo !== 'undefined') {
                             // If the return URL is a full URL, use it as is
                             if (returnTo.startsWith('http')) {
                                 window.location.href = returnTo;
                             } else {
                                 // Otherwise, construct the full URL
-                                window.location.href = `${BASE_URL}/${returnTo.replace(/^\//, '')}`;
+                                const cleanPath = returnTo.replace(/^\//, '');
+                                // For GitHub Pages, we need to ensure we don't duplicate the base path
+                                if (cleanPath.startsWith('my-todo-reminders/')) {
+                                    window.location.href = `${BASE_URL}/${cleanPath.replace('my-todo-reminders/', '')}`;
+                                } else {
+                                    window.location.href = `${BASE_URL}/${cleanPath}`;
+                                }
                             }
                         } else {
-                            // Default redirect
-                            window.location.href = `${BASE_URL}/reminders.html`;
+                            // Default redirect to the root of the site
+                            window.location.href = `${BASE_URL}/index.html`;
                         }
                     }, 1000);
                     return;

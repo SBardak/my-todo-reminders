@@ -50,11 +50,16 @@ export async function signUp(email, password) {
     const returnTo = window.location.pathname + window.location.search;
     localStorage.setItem('returnTo', returnTo);
     
+    // For GitHub Pages, we need to handle both repository root and custom domain cases
+    const baseUrl = window.location.hostname === 'localhost' 
+      ? window.location.origin 
+      : 'https://sbardak.github.io';
+      
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: 'https://sbardak.github.io/callback.html'
+        emailRedirectTo: `${baseUrl}/callback.html`
       }
     });
     
