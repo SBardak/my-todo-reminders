@@ -622,21 +622,17 @@
 
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <script type="module">
-      // Import Supabase client and configuration
-      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-      import { supabaseConfig } from "./js/config.js";
+      // Import auth functions
+      import { getCurrentUser, isAuthenticated, supabase } from './js/auth.js';
 
-      // Initialize Supabase client with public anon key
-      const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false,
-          detectSessionInUrl: false,
-        },
-      });
-
-      // Simple auth check that always returns true since we're using anon key
+      // Check if user is authenticated
       async function checkAuth() {
+        const isAuth = await isAuthenticated();
+        if (!isAuth) {
+          // Redirect to login page if not authenticated
+          window.location.href = 'index.html';
+          return false;
+        }
         return true;
       }
 
@@ -868,6 +864,12 @@
 
       // Save event
       saveEventBtn.addEventListener("click", async function () {
+        const user = await getCurrentUser();
+        if (!user) {
+          window.location.href = 'index.html';
+          return;
+        }
+        
         const title = eventTitle.value.trim();
         const startDate = eventDate.value;
         const endDate = eventEndDate.value;
@@ -990,7 +992,11 @@
 
       // Delete event handler
       deleteEventBtn.addEventListener("click", async function () {
-        if (!currentEvent) return;
+        const user = await getCurrentUser();
+        if (!user || !currentEvent) {
+          if (!user) window.location.href = 'index.html';
+          return;
+        }
 
         try {
           // Remove the event from the calendar immediately
@@ -1085,9 +1091,13 @@
       // Fetch events from Supabase
       async function fetchEvents() {
         try {
+          const user = await getCurrentUser();
+          if (!user) return [];
+          
           const { data, error } = await supabase
             .from("events")
             .select("*")
+            .eq('user_id', user.id)
             .order("start_date", { ascending: true });
 
           if (error) throw error;

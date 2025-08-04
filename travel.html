@@ -283,17 +283,14 @@
       </div>
       <div id="lists-container" class="lists-container"></div>
     </div>
-    <!-- Supabase SDK -->
+    <!-- Import auth.js which includes the Supabase client and auth functions -->
     <script type="module">
-      // Import Supabase client and configuration
-      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-      import { supabaseConfig } from "./js/config.js";
-
-      // Initialize Supabase client
-      const supabase = createClient(supabaseConfig.url, supabaseConfig.key);
+      // Import Supabase client and auth functions from auth.js
+      import { supabase, getCurrentUser, isAuthenticated } from "./js/auth.js";
 
       // In-memory list storage for immediate UI updates
       let listsData = [];
+      let currentUser = null;
 
       function showError(msg) {
         let errDiv = document.getElementById("error-msg");
@@ -1070,9 +1067,18 @@
 
       async function getLists() {
         try {
+          // Ensure user is authenticated
+          currentUser = await getCurrentUser();
+          if (!currentUser) {
+            console.log("User not authenticated, redirecting to login");
+            window.location.href = "index.html";
+            return [];
+          }
+
           const { data, error } = await supabase
             .from("travel_lists")
             .select("*")
+            .eq("user_id", currentUser.id)
             .order("list_order", { ascending: true, nullsFirst: false })
             .order("updated_at", { ascending: true });
 
@@ -1100,6 +1106,17 @@
       // Save a single list by ID - safer than overwriting everything
       async function saveList(list) {
         try {
+          // Ensure user is authenticated
+          if (!currentUser) {
+            currentUser = await getCurrentUser();
+            if (!currentUser) {
+              console.error("Cannot save list: User not authenticated");
+              showError("You must be logged in to save lists");
+              window.location.href = "index.html";
+              return false;
+            }
+          }
+
           if (!list.id) {
             list.id = generateListId();
           }
@@ -1108,21 +1125,29 @@
           // Check if list exists (update) or is new (insert)
           const { data: existingList } = await supabase
             .from("travel_lists")
-            .select("id")
+            .select("id, user_id")
             .eq("id", list.id)
             .single();
 
           let result;
           if (existingList) {
+            // Verify the list belongs to the current user before updating
+            if (existingList.user_id !== currentUser.id) {
+              console.error("Unauthorized: List does not belong to current user");
+              showError("You don't have permission to update this list");
+              return false;
+            }
+
             // Update existing list
             result = await supabase
               .from("travel_lists")
               .update({
                 title: list.title,
                 entries: list.entries,
-                updated_at: new Date().toISOString(),
+                updated_at: new Date().toISOString()
               })
-              .eq("id", list.id);
+              .eq("id", list.id)
+              .eq("user_id", currentUser.id);
           } else {
             // Insert new list - get the next list_order value
             const { data: maxOrderData } = await supabase
@@ -1138,11 +1163,15 @@
                 ? maxOrderData[0].list_order + 1
                 : 0;
 
+            // Insert new list with user_id
             result = await supabase.from("travel_lists").insert({
               id: list.id,
               title: list.title,
               entries: list.entries,
               list_order: nextOrder,
+              user_id: currentUser.id,
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
             });
           }
 
@@ -1162,11 +1191,24 @@
       // Delete a single list by ID
       async function deleteList(listId) {
         try {
+          // Ensure user is authenticated
+          if (!currentUser) {
+            currentUser = await getCurrentUser();
+            if (!currentUser) {
+              console.error("Cannot delete list: User not authenticated");
+              showError("You must be logged in to delete lists");
+              window.location.href = "index.html";
+              return false;
+            }
+          }
+
           console.log("Deleting list:", listId);
+          // Only delete if the list belongs to the current user
           const { error } = await supabase
             .from("travel_lists")
             .delete()
-            .eq("id", listId);
+            .eq("id", listId)
+            .eq("user_id", currentUser.id);
 
           if (error) {
             throw error;
@@ -1225,7 +1267,22 @@
       window.generateListId = generateListId;
 
       // Set up event handlers after functions are available
-      document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener("DOMContentLoaded", async () => {
+        // Check authentication status
+        const authenticated = await isAuthenticated();
+        if (!authenticated) {
+          console.log("User not authenticated, redirecting to login");
+          window.location.href = "index.html";
+          return;
+        }
+
+        // Get current user
+        currentUser = await getCurrentUser();
+        if (!currentUser) {
+          console.error("Failed to get current user");
+          window.location.href = "index.html";
+          return;
+        }
         // Add new list
         document.getElementById("add-list-btn").onclick = async () => {
           const input = document.getElementById("add-list-input");

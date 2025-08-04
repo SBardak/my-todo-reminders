@@ -280,12 +280,36 @@
     </div>
     <!-- Supabase SDK -->
     <script type="module">
-        // Import Supabase client and configuration
-        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-        import { supabaseConfig } from './js/config.js';
-
-        // Initialize Supabase client
-        const supabase = createClient(supabaseConfig.url, supabaseConfig.key);
+        // Import auth functions
+        import { getCurrentUser, isAuthenticated, supabase } from './js/auth.js';
+        
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            const authenticated = await checkAuth();
+            if (!authenticated) return;
+            
+            // Initialize the app after authentication check
+            initializeApp();
+        });
+        
+        // Check if user is authenticated
+        async function checkAuth() {
+            const isAuth = await isAuthenticated();
+            if (!isAuth) {
+                window.location.href = 'index.html';
+                return false;
+            }
+            return true;
+        }
+        
+        // Main app initialization
+        async function initializeApp() {
+            // Load and display shopping lists
+            await loadAndDisplayLists();
+            
+            // Set up event listeners
+            setupEventListeners();
+        }
 
         // In-memory list storage for immediate UI updates
         let listsData = [];
@@ -930,9 +954,16 @@
 
         async function getLists() {
             try {
+                const user = await getCurrentUser();
+                if (!user) {
+                    window.location.href = 'index.html';
+                    return [];
+                }
+                
                 const { data, error } = await supabase
                     .from('shopping_lists')
                     .select('*')
+                    .eq('user_id', user.id)
                     .order('list_order', { ascending: true, nullsFirst: false })
                     .order('updated_at', { ascending: true });
                 
@@ -984,10 +1015,18 @@
                         })
                         .eq('id', list.id);
                 } else {
-                    // Insert new list - get the next list_order value
+                    // Get the current user
+                    const user = await getCurrentUser();
+                    if (!user) {
+                        window.location.href = 'index.html';
+                        return null;
+                    }
+                    
+                    // Get the next list_order value for this user
                     const { data: maxOrderData } = await supabase
                         .from('shopping_lists')
                         .select('list_order')
+                        .eq('user_id', user.id)
                         .order('list_order', { ascending: false })
                         .limit(1);
                     
@@ -998,6 +1037,7 @@
                     result = await supabase
                         .from('shopping_lists')
                         .insert({
+                            user_id: user.id,
                             id: list.id,
                             title: list.title,
                             entries: list.entries,
