@@ -1,21 +1,46 @@
 // Import Supabase client
 import { supabase } from './supabase.js';
 
+// Function to ensure Supabase client is initialized
+async function ensureSupabase() {
+  if (!supabase) {
+    console.error('Supabase client not properly initialized');
+    return false;
+  }
+  
+  // Wait for auth to be available
+  let attempts = 0;
+  while (attempts < 10) {
+    if (supabase?.auth) return true;
+    await new Promise(resolve => setTimeout(resolve, 100));
+    attempts++;
+  }
+  
+  console.error('Supabase auth not available after multiple attempts');
+  return false;
+}
+
 // Initialize auth state listener after DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   try {
-    if (!supabase) {
-      console.error('Supabase client not properly initialized');
+    const isReady = await ensureSupabase();
+    if (!isReady) {
+      console.error('Supabase initialization failed');
       return;
     }
     
-    // Auth state change listener
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    // Set up auth state change listener
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       console.log("Auth state changed:", event);
+      
+      // Ensure supabase is still available
+      const ready = await ensureSupabase();
+      if (!ready) return;
+      
       if (event === "SIGNED_IN") {
         // User signed in
         document.dispatchEvent(
-          new CustomEvent("user-authenticated", { detail: session.user })
+          new CustomEvent("user-authenticated", { detail: { user: session.user } })
         );
         updateAuthUI(true);
       } else if (event === "SIGNED_OUT") {
@@ -27,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Return cleanup function
     return () => {
-      if (subscription) {
+      if (subscription?.unsubscribe) {
         subscription.unsubscribe();
       }
     };
@@ -140,20 +165,60 @@ export async function signOut() {
 // Get current user
 export async function getCurrentUser() {
   try {
-    const {
-      data: { user },
-      error,
-    } = await supabase.auth.getUser();
-    if (error) throw error;
-    return user || null;
+    const isReady = await ensureSupabase();
+    if (!isReady) {
+      console.error('Cannot get current user: Supabase not ready');
+      return null;
+    }
+    
+    const { data: { user }, error } = await supabase.auth.getUser();
+    if (error) {
+      console.error('Error getting user:', error);
+      return null;
+    }
+    
+    if (!user) {
+      console.log('No authenticated user found');
+      return null;
+    }
+    
+    return user;
   } catch (error) {
-    console.error("Error getting current user:", error);
+    console.error("Error in getCurrentUser:", error);
     return null;
   }
 }
 
 // Check if user is authenticated
 export async function isAuthenticated() {
-  const user = await getCurrentUser();
-  return !!user;
+  try {
+    const isReady = await ensureSupabase();
+    if (!isReady) {
+      console.error('Cannot check authentication: Supabase not ready');
+      return false;
+    }
+    
+    // First try to get the session
+    const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+    if (sessionError) {
+      console.error('Error getting session:', sessionError);
+      return false;
+    }
+    
+    // If we have a valid session with a user, return true
+    if (sessionData?.session?.user) {
+      return true;
+    }
+    
+    // If no session, try to get the user directly
+    const user = await getCurrentUser();
+    return !!user;
+    
+  } catch (error) {
+    console.error("Error in isAuthenticated:", error);
+    return false;
+  }
 }
+
+// Export supabase client
+export { supabase };
