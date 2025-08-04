@@ -471,8 +471,12 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="eventDate">Date</label>
+              <label for="eventDate">Start Date</label>
               <input type="date" id="eventDate" />
+            </div>
+            <div class="form-group">
+              <label for="eventEndDate">End Date (Optional)</label>
+              <input type="date" id="eventEndDate" />
             </div>
             <div class="form-group">
               <label for="eventDescription">Description (Optional)</label>
@@ -532,6 +536,7 @@
       const eventModal = document.getElementById("eventModal");
       const eventTitle = document.getElementById("eventTitle");
       const eventDate = document.getElementById("eventDate");
+      const eventEndDate = document.getElementById("eventEndDate");
       const eventDescription = document.getElementById("eventDescription");
       const saveEventBtn = document.getElementById("saveEvent");
       const cancelEventBtn = document.getElementById("cancelEvent");
@@ -589,6 +594,7 @@
             currentEvent = null;
             eventTitle.value = "";
             eventDate.value = info.dateStr;
+            eventEndDate.value = info.dateStr; // Default end date to same as start date
             eventDescription.value = "";
             deleteEventBtn.style.display = "none"; // Hide delete button for new events
             document.querySelector(".modal-header h3").textContent =
@@ -603,6 +609,18 @@
             currentEvent = info.event;
             eventTitle.value = currentEvent.title;
             eventDate.value = currentEvent.start.toISOString().split("T")[0];
+
+            // Handle end date - if it exists, subtract one day for display since FullCalendar uses exclusive end dates
+            if (currentEvent.end) {
+              const endDate = new Date(currentEvent.end);
+              endDate.setDate(endDate.getDate() - 1);
+              eventEndDate.value = endDate.toISOString().split("T")[0];
+            } else {
+              eventEndDate.value = currentEvent.start
+                .toISOString()
+                .split("T")[0];
+            }
+
             eventDescription.value =
               currentEvent.extendedProps.description || "";
             deleteEventBtn.style.display = "inline-block"; // Show delete button for existing events
@@ -620,34 +638,48 @@
       // Save event
       saveEventBtn.addEventListener("click", async function () {
         const title = eventTitle.value.trim();
-        const date = eventDate.value;
+        const startDate = eventDate.value;
+        const endDate = eventEndDate.value;
         const description = eventDescription.value.trim();
 
-        if (!title || !date) {
-          alert("Please fill in all required fields");
+        if (!title || !startDate) {
+          alert("Please fill in title and start date");
+          return;
+        }
+
+        // Validate that end date is not before start date
+        if (endDate && endDate < startDate) {
+          alert("End date cannot be before start date");
           return;
         }
 
         try {
           if (currentEvent) {
-            // Get the current event's original date if date wasn't changed
-            const eventDateValue = date || currentEvent.start;
-
             // Update the event in the database
             await updateEvent(currentEvent.id, {
               title,
-              start: eventDateValue,
+              start: startDate,
+              end: endDate,
               description,
             });
 
             // Remove the old event from the calendar
             currentEvent.remove();
 
+            // Calculate the display end date (add one day for FullCalendar's exclusive end date)
+            let displayEndDate = null;
+            if (endDate) {
+              const displayEnd = new Date(endDate);
+              displayEnd.setDate(displayEnd.getDate() + 1);
+              displayEndDate = displayEnd.toISOString().split("T")[0];
+            }
+
             // Add the updated event
             calendar.addEvent({
               id: currentEvent.id,
               title,
-              start: eventDateValue,
+              start: startDate,
+              end: displayEndDate,
               allDay: true,
               description,
               backgroundColor: "#4a90e2",
@@ -658,19 +690,30 @@
             eventModal.style.display = "none";
             eventTitle.value = "";
             eventDate.value = "";
+            eventEndDate.value = "";
             eventDescription.value = "";
             currentEvent = null;
           } else {
+            // Calculate the display end date (add one day for FullCalendar's exclusive end date)
+            let displayEndDate = null;
+            if (endDate) {
+              const displayEnd = new Date(endDate);
+              displayEnd.setDate(displayEnd.getDate() + 1);
+              displayEndDate = displayEnd.toISOString().split("T")[0];
+            }
+
             // Create new event optimistically
             const newEvent = {
               title,
-              start: date,
+              start: startDate,
+              end: displayEndDate,
               description,
               // Add a temporary ID that will be replaced by the database
               id: "temp-" + Date.now(),
               // Add default background color for the event
               backgroundColor: "#4a90e2",
               borderColor: "#4a90e2",
+              allDay: true,
             };
 
             // Add the event to the calendar immediately
@@ -680,7 +723,8 @@
               // Then save to database
               const savedEvent = await createEvent({
                 title,
-                start: date,
+                start: startDate,
+                end: endDate,
                 description,
               });
 
@@ -702,6 +746,7 @@
             eventModal.style.display = "none";
             eventTitle.value = "";
             eventDate.value = "";
+            eventEndDate.value = "";
             eventDescription.value = "";
             currentEvent = null;
           }
@@ -729,6 +774,7 @@
           eventModal.style.display = "none";
           eventTitle.value = "";
           eventDate.value = "";
+          eventEndDate.value = "";
           eventDescription.value = "";
           currentEvent = null;
 
@@ -745,6 +791,10 @@
       // Close modal when clicking the close button
       function closeModal() {
         eventModal.style.display = "none";
+        eventTitle.value = "";
+        eventDate.value = "";
+        eventEndDate.value = "";
+        eventDescription.value = "";
         currentEvent = null;
       }
 
@@ -754,6 +804,14 @@
       window.addEventListener("click", function (event) {
         if (event.target === eventModal) {
           closeModal();
+        }
+      });
+
+      // Add event listener to automatically set end date when start date changes
+      eventDate.addEventListener("change", function () {
+        // If end date is empty or before the new start date, set it to the start date
+        if (!eventEndDate.value || eventEndDate.value < eventDate.value) {
+          eventEndDate.value = eventDate.value;
         }
       });
 
@@ -772,6 +830,10 @@
       // Cancel button handler
       cancelEventBtn.addEventListener("click", function () {
         eventModal.style.display = "none";
+        eventTitle.value = "";
+        eventDate.value = "";
+        eventEndDate.value = "";
+        eventDescription.value = "";
         currentEvent = null;
       });
 
@@ -788,19 +850,24 @@
           return data.map((event) => {
             // For all-day events, we just need the date part (YYYY-MM-DD)
             const startDate = event.start_date.split("T")[0];
-            const endDate = event.end_date
-              ? event.end_date.split("T")[0]
-              : null;
+
+            // Handle end date - if it exists, add one day for FullCalendar's exclusive end date behavior
+            let endDate = null;
+            if (event.end_date) {
+              const originalEndDate = new Date(event.end_date.split("T")[0]);
+              originalEndDate.setDate(originalEndDate.getDate() + 1);
+              endDate = originalEndDate.toISOString().split("T")[0];
+            }
 
             return {
               id: event.id,
               title: event.title,
-              start: startDate, // Use the date part only
-              end: endDate, // Use the date part only
+              start: startDate,
+              end: endDate,
               description: event.description,
               backgroundColor: "#4a90e2",
               borderColor: "#4a90e2",
-              allDay: true, // Ensure events are treated as all-day events
+              allDay: true,
             };
           });
         } catch (error) {
@@ -841,14 +908,15 @@
       // Update an existing event in Supabase
       async function updateEvent(eventId, eventData) {
         try {
-          // For all-day events, just use the date part directly
           const startDate = eventData.start;
+          const endDate = eventData.end || null;
 
           const { data, error } = await supabase
             .from("events")
             .update({
               title: eventData.title,
               start_date: startDate,
+              end_date: endDate,
               description: eventData.description || "",
               updated_at: new Date().toISOString(),
             })
