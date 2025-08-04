@@ -84,7 +84,7 @@
     </div>
 
     <script>
-        // Handle the OAuth redirect
+        // Handle the OAuth redirect and email confirmation
         async function handleAuth() {
             const statusElement = document.getElementById('status');
             const container = document.querySelector('.container');
@@ -120,12 +120,12 @@
                     return;
                 }
                 
-                // Handle regular OAuth/sign-in flow
-                const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+                // Handle OAuth callback
+                const { data: { session }, error } = await supabase.auth.getSession();
                 
-                if (sessionError) throw sessionError;
+                if (error) throw error;
                 
-                if (sessionData.session) {
+                if (session) {
                     // Successfully authenticated
                     statusElement.textContent = 'Success! Redirecting...';
                     setTimeout(() => {
@@ -134,7 +134,17 @@
                     return;
                 }
                 
-                throw new Error('No active session found');
+                // If we get here, it's likely an OAuth callback without a session
+                // Let Supabase handle the OAuth flow
+                const { data: authData, error: authError } = await supabase.auth.getSession();
+                
+                if (authError) throw authError;
+                
+                if (authData.session) {
+                    window.location.href = 'reminders.html';
+                } else {
+                    throw new Error('Authentication failed. Please try again.');
+                }
                 
             } catch (error) {
                 console.error('Authentication error:', error);
@@ -142,7 +152,7 @@
                 container.innerHTML = `
                     <div class="error-icon">!</div>
                     <h2>Verification Error</h2>
-                    <p>${error.message || 'There was an issue verifying your email. The link may have expired or been used already.'}</p>
+                    <p>${error.message || 'There was an issue with the authentication. Please try again.'}</p>
                     <p>You'll be redirected to the login page shortly.</p>
                 `;
                 
