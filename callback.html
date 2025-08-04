@@ -7,12 +7,20 @@
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="./js/config.js"></script>
     <script>
-        // Determine the base URL based on the current environment
-        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const BASE_URL = isLocalhost 
-            ? window.location.origin 
-            : 'https://sbardak.github.io';
-        
+        // Simple redirect to handle GitHub Pages 404 issue
+        (function() {
+            // If we have a hash in the URL, we need to process it
+            if (window.location.hash) {
+                // Store the hash in session storage
+                sessionStorage.setItem('supabase.auth.token', window.location.hash.substring(1));
+                // Clear the hash from the URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+                // Redirect to the main app
+                window.location.href = 'https://sbardak.github.io/index.html';
+                return;
+            }
+        })();
+
         // Initialize Supabase with proper OAuth settings
         const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
             auth: {
@@ -23,11 +31,12 @@
                 debug: true,
                 storage: window.localStorage,
                 storageKey: 'sb-auth-token',
-                redirectTo: isLocalhost 
-                    ? window.location.origin + '/callback.html' 
-                    : 'https://sbardak.github.io/callback.html'
+                redirectTo: 'https://sbardak.github.io/callback.html'
             }
         });
+        
+        // Make supabase available globally for debugging
+        window.supabase = supabase;
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');

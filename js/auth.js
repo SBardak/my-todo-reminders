@@ -1,14 +1,21 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@next';
 import { supabaseConfig } from './config.js';
 
-// Initialize Supabase client
+// Initialize Supabase client with proper configuration for GitHub Pages
 export const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: true,
+    storage: window.localStorage,
+    storageKey: 'sb-auth-token',
+    flowType: 'pkce',
+    debug: true
   },
 });
+
+// Export the Supabase client for use in other files
+window.supabase = supabase;
 
 // Auth state change listener
 supabase.auth.onAuthStateChange((event, session) => {

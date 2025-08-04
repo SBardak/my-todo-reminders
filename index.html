@@ -359,25 +359,63 @@
     </div>
 
     <script type="module">
-        import { signIn, signUp, isAuthenticated } from './js/auth.js';
+        import { signIn, signUp, isAuthenticated, supabase } from './js/auth.js';
 
         // Check for email verification success
         const urlParams = new URLSearchParams(window.location.search);
         const emailVerified = urlParams.get('email_verified') === 'true';
+        
+        // Handle authentication token from session storage (GitHub Pages workaround)
+        async function handleAuthToken() {
+            const token = sessionStorage.getItem('supabase.auth.token');
+            if (token) {
+                try {
+                    // Parse the token from the URL hash
+                    const hashParams = new URLSearchParams(token);
+                    const accessToken = hashParams.get('access_token');
+                    const refreshToken = hashParams.get('refresh_token');
+                    
+                    if (accessToken && refreshToken) {
+                        // Set the session
+                        const { data, error } = await supabase.auth.setSession({
+                            access_token: accessToken,
+                            refresh_token: refreshToken
+                        });
+                        
+                        if (error) throw error;
+                        
+                        // Clear the token from session storage
+                        sessionStorage.removeItem('supabase.auth.token');
+                        
+                        // Refresh the page to update the UI
+                        window.location.href = '/';
+                        return true;
+                    }
+                } catch (error) {
+                    console.error('Error handling auth token:', error);
+                    sessionStorage.removeItem('supabase.auth.token');
+                }
+            }
+            return false;
+        }
 
         // Wait for the DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', async () => {
+            // Handle authentication token if present (GitHub Pages workaround)
+            const handledAuth = await handleAuthToken();
+            if (handledAuth) {
+                return; // The page will refresh after handling the token
+            }
+
             // Show success message if email was just verified
             if (emailVerified) {
                 const successMsg = document.getElementById('success-message');
                 successMsg.style.display = 'block';
-                
-                // Redirect after 3 seconds
                 setTimeout(() => {
-                    window.location.href = 'reminders.html';
-                }, 3000);
-                return; // Prevent further execution of auth check
+                    successMsg.style.display = 'none';
+                }, 5000);
             }
+
             // Redirect if already authenticated
             const authenticated = await isAuthenticated();
             if (authenticated) {
