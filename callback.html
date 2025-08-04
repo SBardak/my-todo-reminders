@@ -6,6 +6,18 @@
     <title>Authenticating...</title>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="./js/config.js"></script>
+    <script>
+        // Initialize Supabase with proper OAuth settings
+        const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
+            auth: {
+                autoRefreshToken: true,
+                persistSession: true,
+                detectSessionInUrl: true,
+                flowType: 'pkce',
+                debug: true
+            }
+        });
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
         
@@ -91,11 +103,21 @@
             const spinner = document.querySelector('.spinner');
             
             try {
+                // First, try to get the session from the URL hash
+                const { data: { session }, error } = await supabase.auth.getSession();
+                
+                // Check if there's an error in the URL (like OAuth error)
+                const urlParams = new URLSearchParams(window.location.search);
+                const errorDescription = urlParams.get('error_description');
+                if (errorDescription) {
+                    throw new Error(decodeURIComponent(errorDescription));
+                }
+
                 // Check if this is an email confirmation flow
                 const hash = window.location.hash;
-                const urlParams = new URLSearchParams(hash.substring(1));
-                const type = urlParams.get('type');
-                const tokenHash = urlParams.get('token_hash');
+                const hashParams = new URLSearchParams(hash.substring(1));
+                const type = hashParams.get('type');
+                const tokenHash = hashParams.get('token_hash');
                 
                 // Handle email confirmation flow
                 if ((type === 'signup' || type === 'email_change') && tokenHash) {
@@ -122,35 +144,28 @@
                     return;
                 }
                 
-                // Handle OAuth callback
-                const { data: { session }, error } = await supabase.auth.getSession();
-                
-                if (error) throw error;
-                
+                // If we have a session, redirect to the app
                 if (session) {
-                    // Successfully authenticated
                     statusElement.textContent = 'Success! Redirecting...';
                     setTimeout(() => {
-                        // Redirect to the original URL or default to reminders.html
                         const redirectTo = localStorage.getItem('returnTo') || 'reminders.html';
-                        localStorage.removeItem('returnTo'); // Clean up
+                        localStorage.removeItem('returnTo');
                         window.location.href = redirectTo;
-                    }, 1500);
+                    }, 1000);
                     return;
                 }
                 
-                // If we get here, try to handle the OAuth flow
-                const { data: authData, error: authError } = await supabase.auth.getSession();
-                
-                if (authError) throw authError;
-                
-                if (authData.session) {
-                    const redirectTo = localStorage.getItem('returnTo') || 'reminders.html';
-                    localStorage.removeItem('returnTo'); // Clean up
-                    window.location.href = redirectTo;
-                } else {
-                    throw new Error('Authentication failed. Please try again.');
-                }
+                // If we get here, try to sign in with OAuth
+                await supabase.auth.signInWithOAuth({
+                    provider: 'google', // or whichever provider you're using
+                    options: {
+                        redirectTo: window.location.origin + '/callback.html',
+                        queryParams: {
+                            access_type: 'offline',
+                            prompt: 'consent',
+                        },
+                    },
+                });
                 
             } catch (error) {
                 console.error('Authentication error:', error);
