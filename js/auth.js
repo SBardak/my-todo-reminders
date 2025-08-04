@@ -87,7 +87,7 @@ async function updateAuthUI(isAuthenticated) {
 }
 
 // Sign up with email and password
-export async function signUp(email, password) {
+async function signUp(email, password) {
   try {
     // Store the current URL to redirect back after email confirmation
     const returnTo = window.location.pathname + window.location.search;
@@ -111,7 +111,7 @@ export async function signUp(email, password) {
 }
 
 // Sign in with email and password
-export async function signIn(email, password) {
+async function signIn(email, password) {
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -153,7 +153,7 @@ async function handleEmailConfirmation() {
 }
 
 // Sign out
-export async function signOut() {
+async function signOut() {
   try {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
@@ -163,7 +163,7 @@ export async function signOut() {
 }
 
 // Get current user
-export async function getCurrentUser() {
+async function getCurrentUser() {
   try {
     const isReady = await ensureSupabase();
     if (!isReady) {
@@ -196,7 +196,7 @@ export async function getCurrentUser() {
 }
 
 // Check if user is authenticated
-export async function isAuthenticated() {
+async function isAuthenticated() {
   try {
     const isReady = await ensureSupabase();
     if (!isReady) {
@@ -226,14 +226,22 @@ export async function isAuthenticated() {
   }
 }
 
-// Export supabase client and functions
-export { 
+// Export all functions and the supabase client in a single, organized export statement
+export {
+  // Supabase client
   supabase,
+  
+  // Auth state functions
   ensureSupabase,
-  getCurrentUser,
   isAuthenticated,
+  getCurrentUser,
+  
+  // Auth operations
   signIn,
   signUp,
   signOut,
-  handleEmailConfirmation
+  handleEmailConfirmation,
+  
+  // UI function
+  updateAuthUI
 };
