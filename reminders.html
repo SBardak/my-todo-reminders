@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shopping Lists</title>
+    <title>Reminders Style To-Do App</title>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -144,13 +144,6 @@
             align-items: center;
             border: 1px solid #2c2f32;
         }
-        .entry-checkbox {
-            margin-right: 10px;
-            width: 18px;
-            height: 18px;
-            accent-color: #4a90e2;
-            cursor: pointer;
-        }
         .entry-input {
             background: transparent;
             border: none;
@@ -159,10 +152,6 @@
             flex: 1;
             outline: none;
             padding: 2px 4px;
-        }
-        .entry-input.checked {
-            text-decoration: line-through;
-            opacity: 0.7;
         }
         .delete-entry-btn {
             background: #ff6b6b;
@@ -193,6 +182,134 @@
             color: #e3eafc;
             font-size: 1em;
         }
+        /* Auth Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #2a2d31;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 90%;
+            color: #e0e0e0;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #a0a0a0;
+            font-size: 0.9em;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #3a3d41;
+            border-radius: 6px;
+            background-color: #1e2023;
+            color: #e0e0e0;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #4a90e2;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+        }
+
+        .auth-btn {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .auth-btn:hover {
+            background: #3a7bc8;
+        }
+
+        #register-form button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        #login-form button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        #auth-forms p {
+            text-align: center;
+            margin-top: 15px;
+            color: #a0a0a0;
+        }
+
+        #auth-forms a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        #auth-forms a:hover {
+            text-decoration: underline;
+        }
+
+        /* User Controls */
+        .user-controls {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #user-email {
+            color: #a0a0a0;
+            font-size: 0.9em;
+        }
+
         .add-list-btn {
             padding: 8px 18px;
             background: #4a90e2;
@@ -263,29 +380,86 @@
     </style>
 </head>
 <body>
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="auth-forms">
+                <!-- Login Form -->
+                <div id="login-form">
+                    <h2>Sign In</h2>
+                    <form id="login" onsubmit="return false;">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit">Sign In</button>
+                        <p>Don't have an account? <a href="#" id="show-register">Sign up</a></p>
+                    </form>
+                </div>
+                
+                <!-- Register Form -->
+                <div id="register-form" style="display: none;">
+                    <h2>Create Account</h2>
+                    <form id="register" onsubmit="return false;">
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" minlength="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input type="password" id="confirm-password" minlength="6" required>
+                        </div>
+                        <button type="submit">Sign Up</button>
+                        <p>Already have an account? <a href="#" id="show-login">Sign in</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="app-container">
         <header class="app-header">
+            <div class="user-controls">
+                <div class="unauth-only" style="display: none;">
+                    <button id="login-btn" class="auth-btn">Sign In</button>
+                    <button id="register-btn" class="auth-btn">Sign Up</button>
+                </div>
+                <div class="auth-required" style="display: none;">
+                    <div class="user-menu">
+                        <span id="user-email"></span>
+                        <button id="logout-btn" class="auth-btn">Sign Out</button>
+                    </div>
+                </div>
+            </div>
             <nav class="nav-buttons">
-                <a href="reminders.html" class="nav-button">Reminders</a>
-                <a href="shopping.html" class="nav-button active">Shopping</a>
+                <a href="reminders.html" class="nav-button active">Reminders</a>
+                <a href="shopping.html" class="nav-button">Shopping</a>
                 <a href="travel.html" class="nav-button">Travel</a>
-                 <a href="calendar.html" class="nav-button">Calendar</a>
+                <a href="calendar.html" class="nav-button">Calendar</a>
             </nav>
         </header>
         <div class="add-list-group">
-            <input type="text" id="add-list-input" class="add-list-input" placeholder="New shopping list name...">
+            <input type="text" id="add-list-input" class="add-list-input" placeholder="New list name...">
             <button id="add-list-btn" class="add-list-btn">Add List</button>
         </div>
         <div id="lists-container" class="lists-container"></div>
     </div>
     <!-- Supabase SDK -->
+    <!-- Import Auth UI -->
+    <script type="module" src="./js/auth-ui.js"></script>
+    
     <script type="module">
-        // Import Supabase client and configuration
-        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-        import { supabaseConfig } from './js/config.js';
-
-        // Initialize Supabase client
-        const supabase = createClient(supabaseConfig.url, supabaseConfig.key);
+        // Import from auth.js which contains the Supabase client
+        import { supabase, getCurrentUser } from './js/auth.js';
 
         // In-memory list storage for immediate UI updates
         let listsData = [];
@@ -305,7 +479,7 @@
 
         // Generate unique ID for new lists
         function generateListId() {
-            return 'shopping_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            return 'list_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         }
 
         // Debounce utility to avoid too frequent saves
@@ -360,13 +534,9 @@
             // Build new entries array based on DOM order and actual input values
             entryElements.forEach((entryElement, newIndex) => {
                 const entryInput = entryElement.querySelector('.entry-input');
-                const entryCheckbox = entryElement.querySelector('.entry-checkbox');
                 if (entryInput) {
-                    // Use the actual current text value from the input and checkbox state
-                    newOrderedEntries.push({
-                        text: entryInput.value,
-                        checked: entryCheckbox ? entryCheckbox.checked : false
-                    });
+                    // Use the actual current text value from the input, not the old data
+                    newOrderedEntries.push(entryInput.value);
                     // Update the element's index to match its new position
                     entryElement.dataset.entryIndex = newIndex;
                 }
@@ -417,7 +587,7 @@
                 // Save to database in background (no UI updates)
                 const updatePromises = listsData.map(async (list, index) => {
                     const { error } = await supabase
-                        .from('shopping_lists')
+                        .from('todo_lists')
                         .update({ 
                             list_order: index,
                             updated_at: new Date().toISOString()
@@ -505,19 +675,17 @@
                 const draggedLi = sourceUl.children[sourceEntryIdx];
                 if (!draggedLi) return;
 
-                // Get the actual text value and checked state from the dragged entry before removing it
+                // Get the actual text value from the dragged entry before removing it
                 const draggedEntryInput = draggedLi.querySelector('.entry-input');
-                const draggedEntryCheckbox = draggedLi.querySelector('.entry-checkbox');
                 const movedEntryText = draggedEntryInput ? draggedEntryInput.value : '';
-                const movedEntryChecked = draggedEntryCheckbox ? draggedEntryCheckbox.checked : false;
 
-                console.log('Moving entry text:', movedEntryText, 'Checked:', movedEntryChecked);
+                console.log('Moving entry text:', movedEntryText);
 
                 // Remove from DOM first
                 draggedLi.remove();
 
-                // Create new DOM element for target list with the correct text and checked state
-                const newLi = createEntryElement(targetList, { text: movedEntryText, checked: movedEntryChecked }, targetEntryIdx);
+                // Create new DOM element for target list with the correct text
+                const newLi = createEntryElement(targetList, movedEntryText, targetEntryIdx);
                 
                 // Insert at correct position in target DOM
                 if (targetEntryIdx >= targetUl.children.length) {
@@ -557,38 +725,15 @@
             entryDragHandle.title = 'Drag to reorder entries';
             entryDragHandle.style.fontSize = '12px';
             
-            // Add checkbox for shopping items
-            const entryCheckbox = document.createElement('input');
-            entryCheckbox.type = 'checkbox';
-            entryCheckbox.className = 'entry-checkbox';
-            entryCheckbox.checked = entry.checked || false;
-            
             const entryInput = document.createElement('input');
             entryInput.type = 'text';
-            entryInput.value = entry.text || entry;
+            entryInput.value = entry;
             entryInput.className = 'entry-input';
-            if (entry.checked) {
-                entryInput.classList.add('checked');
-            }
-            
-            // Update input styling when checkbox changes
-            entryCheckbox.onchange = () => {
-                if (entryCheckbox.checked) {
-                    entryInput.classList.add('checked');
-                } else {
-                    entryInput.classList.remove('checked');
-                }
-                
-                // Save the updated checked state
-                const currentIndex = parseInt(li.dataset.entryIndex);
-                list.entries[currentIndex].checked = entryCheckbox.checked;
-                saveList(list);
-            };
             
             // Debounced save for entry text changes
             const debouncedSaveEntry = debounce(async (newText) => {
                 const currentIndex = parseInt(li.dataset.entryIndex);
-                list.entries[currentIndex].text = newText;
+                list.entries[currentIndex] = newText;
                 await saveList(list);
             }, 500);
             
@@ -598,7 +743,7 @@
 
             const deleteEntryBtn = document.createElement('button');
             deleteEntryBtn.className = 'delete-entry-btn';
-            deleteEntryBtn.textContent = 'Delete';
+            deleteEntryBtn.textContent = 'Done';
             deleteEntryBtn.onclick = async () => {
                 const currentIndex = parseInt(li.dataset.entryIndex);
                 
@@ -627,19 +772,16 @@
                 
                 // Get the current text value from the input, not from the data array
                 const entryInput = li.querySelector('.entry-input');
-                const entryCheckbox = li.querySelector('.entry-checkbox');
-                const currentText = entryInput ? entryInput.value : (entry.text || entry);
-                const currentChecked = entryCheckbox ? entryCheckbox.checked : (entry.checked || false);
+                const currentText = entryInput ? entryInput.value : entry;
                 
                 const dragData = {
                     entryText: currentText,
-                    entryChecked: currentChecked,
                     entryIndex: parseInt(li.dataset.entryIndex),
                     sourceListId: list.id
                 };
                 e.dataTransfer.setData('application/json', JSON.stringify(dragData));
                 e.dataTransfer.setData('text/plain', 'entry');
-                console.log('Entry drag data set with text:', currentText, 'Checked:', currentChecked);
+                console.log('Entry drag data set with text:', currentText);
                 e.dataTransfer.effectAllowed = 'move';
                 li.classList.add('dragging');
             });
@@ -694,7 +836,6 @@
             });
 
             li.appendChild(entryDragHandle);
-            li.appendChild(entryCheckbox);
             li.appendChild(entryInput);
             li.appendChild(deleteEntryBtn);
             return li;
@@ -703,17 +844,7 @@
         // Create a complete list element (for optimistic UI updates)
         function createListElement(list) {
             // Ensure entries exists and is an array, and list has an ID
-            if (!Array.isArray(list.entries)) {
-                list.entries = [];
-            } else {
-                // Convert string entries to object format if needed
-                list.entries = list.entries.map(entry => {
-                    if (typeof entry === 'string') {
-                        return { text: entry, checked: false };
-                    }
-                    return entry;
-                });
-            }
+            if (!Array.isArray(list.entries)) list.entries = [];
             if (!list.id) list.id = generateListId();
 
             const listDiv = document.createElement('div');
@@ -834,7 +965,7 @@
             const addEntryInput = document.createElement('input');
             addEntryInput.type = 'text';
             addEntryInput.className = 'add-entry-input';
-            addEntryInput.placeholder = 'Add a new item...';
+            addEntryInput.placeholder = 'Add a new reminder...';
 
             const addEntryBtn = document.createElement('button');
             addEntryBtn.className = 'add-entry-btn';
@@ -903,12 +1034,11 @@
                 if (text === '') return;
                 
                 // Update data immediately
-                const newEntry = { text: text, checked: false };
-                list.entries.push(newEntry);
+                list.entries.push(text);
                 addEntryInput.value = '';
                 
                 // Add new entry to DOM immediately
-                const newLi = createEntryElement(list, newEntry, list.entries.length - 1);
+                const newLi = createEntryElement(list, text, list.entries.length - 1);
                 ul.appendChild(newLi);
                 
                 // Save in background
@@ -929,10 +1059,17 @@
         }
 
         async function getLists() {
+            const user = await getCurrentUser();
+            if (!user || !user.id) {
+                console.log('No user logged in or invalid user, cannot load lists');
+                return [];
+            }
+
             try {
                 const { data, error } = await supabase
-                    .from('shopping_lists')
+                    .from('todo_lists')
                     .select('*')
+                    .eq('user_id', user.id)
                     .order('list_order', { ascending: true, nullsFirst: false })
                     .order('updated_at', { ascending: true });
                 
@@ -940,13 +1077,17 @@
                     throw error;
                 }
                 
-                console.log('Supabase data loaded:', data);
+                console.log('Supabase data loaded for user:', user.id, data);
                 
                 // Convert Supabase data to expected format and store in memory
                 listsData = (data || []).map(list => ({
                     id: list.id,
+                    user_id: list.user_id,
                     title: list.title || 'Untitled List',
-                    entries: Array.isArray(list.entries) ? list.entries : []
+                    entries: Array.isArray(list.entries) ? list.entries : [],
+                    list_order: list.list_order,
+                    created_at: list.created_at,
+                    updated_at: list.updated_at
                 }));
                 
                 return listsData;
@@ -960,14 +1101,19 @@
         // Save a single list by ID - safer than overwriting everything
         async function saveList(list) {
             try {
-                if (!list.id) {
-                    list.id = generateListId();
+                const user = getCurrentUser();
+                if (!user) {
+                    console.log('No user logged in, cannot save list');
+                    return false;
                 }
-                console.log('Saving individual list:', list.id, list);
+
+                // Add user_id to the list data
+                list.user_id = user.id;
+                list.updated_at = new Date().toISOString();
                 
                 // Check if list exists (update) or is new (insert)
                 const { data: existingList } = await supabase
-                    .from('shopping_lists')
+                    .from('todo_lists')
                     .select('id')
                     .eq('id', list.id)
                     .single();
@@ -976,18 +1122,20 @@
                 if (existingList) {
                     // Update existing list
                     result = await supabase
-                        .from('shopping_lists')
+                        .from('todo_lists')
                         .update({
                             title: list.title,
                             entries: list.entries,
-                            updated_at: new Date().toISOString()
+                            updated_at: list.updated_at
                         })
-                        .eq('id', list.id);
+                        .eq('id', list.id)
+                        .eq('user_id', user.id);
                 } else {
                     // Insert new list - get the next list_order value
                     const { data: maxOrderData } = await supabase
-                        .from('shopping_lists')
+                        .from('todo_lists')
                         .select('list_order')
+                        .eq('user_id', user.id)
                         .order('list_order', { ascending: false })
                         .limit(1);
                     
@@ -995,14 +1143,11 @@
                         ? maxOrderData[0].list_order + 1 
                         : 0;
                     
+                    list.list_order = nextOrder;
+                    
                     result = await supabase
-                        .from('shopping_lists')
-                        .insert({
-                            id: list.id,
-                            title: list.title,
-                            entries: list.entries,
-                            list_order: nextOrder
-                        });
+                        .from('todo_lists')
+                        .insert([list]);
                 }
                 
                 if (result.error) {
@@ -1020,12 +1165,19 @@
 
         // Delete a single list by ID
         async function deleteList(listId) {
+            const user = getCurrentUser();
+            if (!user) {
+                console.log('No user logged in, cannot delete list');
+                return false;
+            }
+
             try {
-                console.log('Deleting list:', listId);
+                console.log('Deleting list:', listId, 'for user:', user.id);
                 const { error } = await supabase
-                    .from('shopping_lists')
+                    .from('todo_lists')
                     .delete()
-                    .eq('id', listId);
+                    .eq('id', listId)
+                    .eq('user_id', user.id);
                 
                 if (error) {
                     throw error;
@@ -1088,7 +1240,7 @@
             // Add new list
             document.getElementById('add-list-btn').onclick = async () => {
                 const input = document.getElementById('add-list-input');
-                const name = input.value.trim() || 'New Shopping List';
+                const name = input.value.trim() || 'New List';
                 const newList = {
                     id: generateListId(),
                     title: name,

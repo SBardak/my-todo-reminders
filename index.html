@@ -2,1065 +2,402 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reminders Style To-Do App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Reminders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #181a1b;
-            margin: 0;
-            padding: 0;
+        :root { 
+            --primary: #4a90e2; 
+            --bg: #181a1b; 
+            --card: #232526; 
+            --text: #e8e6e3;
+            --text-secondary: #a8a095;
+            --border: #3d4042;
+            --hover: #2d2f31;
         }
-        .app-container {
-            max-width: 1000px;
-            margin: 20px auto 40px;
-            background: #232526;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-            padding: 24px 24px 32px;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6;
         }
-        h1 {
-            text-align: center;
-            color: #4a90e2;
-            margin-bottom: 32px;
-            font-size: 2.2em;
-            letter-spacing: 1px;
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        header { 
+            background: var(--card); 
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0; 
         }
-        .lists-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            justify-content: center;
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            color: var(--primary); 
+            text-decoration: none; 
+            letter-spacing: 0.5px;
         }
-        .list {
-            background: #26282b;
-            border-radius: 14px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-            padding: 20px 16px 16px 16px;
-            min-width: 350px;
-            flex: 1 1 240px;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-        }
-        .list-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        .drag-handle {
-            cursor: grab;
-            color: #666;
-            font-size: 16px;
-            padding: 4px 8px;
-            margin-right: 8px;
-            user-select: none;
-            border-radius: 4px;
+        .btn { 
+            padding: 0.5rem 1.25rem; 
+            border-radius: 8px; 
+            font-weight: 500; 
+            cursor: pointer; 
             transition: all 0.2s;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
-        .drag-handle:hover {
-            background: #333;
-            color: #aaa;
+        .btn-primary { 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
         }
-        .drag-handle:active {
-            cursor: grabbing;
+        .btn-outline { 
+            background: transparent; 
+            border: 1px solid var(--border); 
+            color: var(--text);
         }
-        .dragging {
-            opacity: 0.5;
-            transform: rotate(2deg);
+        .btn:hover { 
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
-        .drag-over {
-            border: 2px dashed #4a90e2;
-            background: rgba(74, 144, 226, 0.1);
+        .hero { 
+            min-height: calc(100vh - 73px); 
+            display: flex; 
+            align-items: center; 
+            padding: 2rem 0; 
+            background: var(--bg);
         }
-        .list-title {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: #e3eafc;
-            background: transparent;
+        .hero-content { 
+            text-align: center; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 2rem 0;
+        }
+        h1 { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            margin-bottom: 1.5rem; 
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        .lead { 
+            font-size: 1.25rem; 
+            color: var(--text-secondary); 
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+        .cta-buttons { 
+            display: flex; 
+            gap: 1rem; 
+            justify-content: center; 
+            margin-bottom: 3rem; 
+        }
+        .modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background: rgba(0,0,0,0.7); 
+            z-index: 1000; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .modal-content { 
+            background: var(--card); 
+            border-radius: 14px; 
+            width: 100%; 
+            max-width: 28rem; 
+            position: relative; 
+            padding: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+        }
+        .close { 
+            position: absolute; 
+            top: 1rem; 
+            right: 1rem; 
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            color: var(--text-secondary);
+            background: none;
             border: none;
-            outline: none;
-            flex: 1;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-        .delete-list-btn {
-            background: #ff6b6b;
-            border: none;
-            color: #fff;
-            border-radius: 4px;
-            padding: 4px 8px;
-            cursor: pointer;
-            font-size: 0.9em;
-            margin-left: 8px;
-            transition: background 0.2s;
-        }
-        .delete-list-btn:hover {
-            background: #6b1f1f;
-        }
-        .add-entry-group {
+            width: 32px;
+            height: 32px;
             display: flex;
-            margin-bottom: 10px;
-        }
-        .add-entry-input {
-            flex: 1;
-            padding: 7px;
-            border: 1px solid #4a90e2;
-            border-radius: 6px 0 0 6px;
-            outline: none;
-            background: #232526;
-            color: #e3eafc;
-        }
-        .add-entry-btn {
-            padding: 7px 16px;
-            background: #4a90e2;
-            color: #fff;
-            border: none;
-            border-radius: 0 6px 6px 0;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .add-entry-btn:hover {
-            background: #357abd;
-        }
-        ul {
-            list-style: none;
-            padding: 8px;
-            margin: 0;
-            min-height: 40px;
-            border-radius: 6px;
-            transition: background-color 0.2s;
-        }
-        ul.drag-over {
-            background-color: rgba(74, 144, 226, 0.1);
-            border: 2px dashed #4a90e2;
-        }
-        li {
-            background: #232526;
-            margin-bottom: 8px;
-            padding: 7px 10px;
-            border-radius: 6px;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            border: 1px solid #2c2f32;
-        }
-        .entry-input {
-            background: transparent;
-            border: none;
-            color: #e3eafc;
-            font-size: 1em;
-            flex: 1;
-            outline: none;
-            padding: 2px 4px;
-        }
-        .delete-entry-btn {
-            background: #ff6b6b;
-            border: none;
-            color: #fff;
-            border-radius: 4px;
-            padding: 4px 8px;
-            cursor: pointer;
-            font-size: 0.9em;
-            margin-left: 8px;
-            transition: background 0.2s;
-        }
-        .delete-entry-btn:hover {
-            background: #6b1f1f;
-        }
-        .add-list-group {
-            display: flex;
             justify-content: center;
-            margin-bottom: 24px;
-            gap: 8px;
-        }
-        .add-list-input {
-            padding: 8px;
-            border: 1px solid #4a90e2;
             border-radius: 6px;
-            outline: none;
-            background: #232526;
-            color: #e3eafc;
-            font-size: 1em;
         }
-        .add-list-btn {
-            padding: 8px 18px;
-            background: #4a90e2;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background 0.2s;
+        .close:hover {
+            background: var(--hover);
         }
-        .add-list-btn:hover {
-            background: #357abd;
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { 
+            display: block; 
+            margin-bottom: 0.5rem; 
+            font-weight: 500; 
+            color: var(--text);
         }
-        /* Header and Navigation Styles */
-        .app-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: -10px 0 15px 0;
+        .form-control { 
+            width: 100%; 
+            padding: 0.75rem 1rem; 
+            border: 1px solid var(--border); 
+            border-radius: 8px; 
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 0.95rem;
         }
-        
-        .nav-buttons {
-            display: flex;
-            gap: 16px;
-            margin-top: 0px;
+        .form-control:focus { 
+            outline: none; 
+            border-color: var(--primary); 
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2); 
         }
-        
-        .nav-button {
-            padding: 10px 24px;
-            background: #26282b;
-            color: #e3eafc;
+        .auth-footer { 
+            text-align: center; 
+            margin-top: 1.5rem; 
+            color: var(--text-secondary); 
+            font-size: 0.95rem;
+        }
+        .auth-toggle { 
+            color: var(--primary); 
+            cursor: pointer; 
+            font-weight: 500; 
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            transition: opacity 0.2s;
         }
-        
-        .nav-button:hover {
-            background: #2d3035;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        .auth-toggle:hover {
+            text-decoration: underline;
+            opacity: 0.9;
         }
-        
-        .nav-button.active {
-            background: #4a90e2;
-            color: white;
+        .alert { 
+            padding: 0.875rem 1rem; 
+            border-radius: 8px; 
+            margin-bottom: 1.25rem; 
+            display: none;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
-        
-        @media (max-width: 700px) {
-            .lists-container {
-                flex-direction: column;
-                gap: 16px;
-            }
-            .list {
-                max-width: 100%;
-            }
-            .nav-buttons {
-                width: 100%;
-                justify-content: center;
-            }
-            .nav-button {
-                flex: 1;
-                text-align: center;
-                max-width: 150px;
-            }
+        .alert-error { 
+            background: rgba(220, 38, 38, 0.1); 
+            color: #f87171; 
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .cta-buttons { flex-direction: column; }
+            .btn { width: 100%; }
         }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <header class="app-header">
-            <nav class="nav-buttons">
-                <a href="index.html" class="nav-button active">Reminders</a>
-                <a href="shopping.html" class="nav-button">Shopping</a>
-                <a href="travel.html" class="nav-button">Travel</a>
-                <a href="calendar.html" class="nav-button">Calendar</a>
-            </nav>
-        </header>
-        <div class="add-list-group">
-            <input type="text" id="add-list-input" class="add-list-input" placeholder="New list name...">
-            <button id="add-list-btn" class="add-list-btn">Add List</button>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">Todo Reminders</a>
+                <div>
+                    <button id="login-btn" class="btn btn-outline">Log in</button>
+                    <button id="register-btn" class="btn btn-primary">Sign up</button>
+                </div>
+            </div>
         </div>
-        <div id="lists-container" class="lists-container"></div>
+    </header>
+
+    <main class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Never Miss an Important Task Again</h1>
+                <p class="lead">Stay organized and on top of your tasks with our intuitive todo and reminder system.</p>
+                
+                <div class="cta-buttons">
+                    <button id="cta-register" class="btn btn-primary">Get Started for Free</button>
+                    <button id="cta-login" class="btn btn-outline">I already have an account</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Auth Modals -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            
+            <!-- Login Form -->
+            <form id="login" class="auth-form">
+                <h2>Welcome back</h2>
+                <div id="login-error" class="alert alert-error">
+                    Invalid email or password
+                </div>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+                <div class="auth-footer">
+                    Don't have an account? <a href="#" class="auth-toggle" id="show-register">Sign up</a>
+                </div>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register" style="display: none;">
+                <h2>Create an account</h2>
+                <div id="register-error" class="alert alert-error">
+                    Error creating account
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Create account</button>
+                <div class="auth-footer">
+                    Already have an account? <a href="#" class="auth-toggle" id="show-login">Sign in</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <!-- Supabase SDK -->
+
     <script type="module">
-        // Import Supabase client and configuration
-        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-        import { supabaseConfig } from './js/config.js';
+        import { signIn, signUp, isAuthenticated } from './js/auth.js';
 
-        // Initialize Supabase client
-        const supabase = createClient(supabaseConfig.url, supabaseConfig.key);
-
-        // In-memory list storage for immediate UI updates
-        let listsData = [];
-
-        function showError(msg) {
-            let errDiv = document.getElementById('error-msg');
-            if (!errDiv) {
-                errDiv = document.createElement('div');
-                errDiv.id = 'error-msg';
-                errDiv.style.color = '#ff6b6b';
-                errDiv.style.textAlign = 'center';
-                errDiv.style.marginBottom = '16px';
-                document.querySelector('.app-container').insertBefore(errDiv, document.querySelector('.add-list-group'));
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Redirect if already authenticated
+            const authenticated = await isAuthenticated();
+            if (authenticated) {
+                window.location.href = 'reminders.html';
+                return;
             }
-            errDiv.textContent = msg;
-        }
 
-        // Generate unique ID for new lists
-        function generateListId() {
-            return 'list_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-        }
+            // DOM Elements
+            const authModal = document.getElementById('auth-modal');
+            const loginForm = document.getElementById('login');
+            const registerForm = document.getElementById('register');
+            const loginBtn = document.getElementById('login-btn');
+            const registerBtn = document.getElementById('register-btn');
+            const ctaLogin = document.getElementById('cta-login');
+            const ctaRegister = document.getElementById('cta-register');
+            const closeBtn = document.querySelector('.close');
+            const showRegister = document.getElementById('show-register');
+            const showLogin = document.getElementById('show-login');
 
-        // Debounce utility to avoid too frequent saves
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
+            // Show login form
+            function showLoginForm(e) {
+                if (e) e.preventDefault();
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                authModal.style.display = 'flex';
+                document.querySelectorAll('.alert').forEach(alert => alert.style.display = 'none');
+            }
 
-        // Comprehensive cleanup function to remove all drag-over styling
-        function cleanupAllDragStyling() {
-            // Remove drag-over from all elements that might have it
-            const allDragOverElements = document.querySelectorAll('.drag-over');
-            allDragOverElements.forEach(element => {
-                element.classList.remove('drag-over');
+            // Show register form
+            function showRegisterForm(e) {
+                if (e) e.preventDefault();
+                registerForm.style.display = 'block';
+                loginForm.style.display = 'none';
+                authModal.style.display = 'flex';
+                document.querySelectorAll('.alert').forEach(alert => alert.style.display = 'none');
+            }
+
+            // Close modal
+            function closeModal(e) {
+                if (e) e.preventDefault();
+                authModal.style.display = 'none';
+                loginForm.reset();
+                registerForm.reset();
+            }
+
+            // Event Listeners
+            if (loginBtn) loginBtn.addEventListener('click', showLoginForm);
+            if (registerBtn) registerBtn.addEventListener('click', showRegisterForm);
+            if (ctaLogin) ctaLogin.addEventListener('click', showLoginForm);
+            if (ctaRegister) ctaRegister.addEventListener('click', showRegisterForm);
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            if (showRegister) showRegister.addEventListener('click', showRegisterForm);
+            if (showLogin) showLogin.addEventListener('click', showLoginForm);
+
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === authModal) closeModal();
             });
-            
-            // Also remove dragging class from any elements that might still have it
-            const allDraggingElements = document.querySelectorAll('.dragging');
-            allDraggingElements.forEach(element => {
-                element.classList.remove('dragging');
-            });
-            
-            console.log('Cleaned up all drag styling');
-        }
 
-        // Helper function to update list data indexes after DOM reordering
-        function updateListDataIndexes() {
-            const listElements = document.querySelectorAll('.list');
-            const newOrderedLists = [];
-            listElements.forEach(listElement => {
-                const listId = listElement.dataset.listId;
-                const list = listsData.find(l => l.id === listId);
-                if (list) {
-                    newOrderedLists.push(list);
-                }
-            });
-            listsData = newOrderedLists;
-        }
+            // Handle login form submission
+            if (loginForm) {
+                loginForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('login-email').value;
+                    const password = document.getElementById('login-password').value;
+                    const errorElement = document.getElementById('login-error');
 
-        // Helper function to update entry data indexes after DOM reordering
-        function updateEntryDataIndexes(listElement, list) {
-            const entryElements = listElement.querySelectorAll('li[data-entry-index]');
-            const newOrderedEntries = [];
-            
-            // Build new entries array based on DOM order and actual input values
-            entryElements.forEach((entryElement, newIndex) => {
-                const entryInput = entryElement.querySelector('.entry-input');
-                if (entryInput) {
-                    // Use the actual current text value from the input, not the old data
-                    newOrderedEntries.push(entryInput.value);
-                    // Update the element's index to match its new position
-                    entryElement.dataset.entryIndex = newIndex;
-                }
-            });
-            
-            // Replace the list's entries with the reordered data
-            list.entries = newOrderedEntries;
-            console.log('Updated entry data for list', list.id, ':', newOrderedEntries);
-        }
-
-        // Reorder lists function - now with DOM manipulation only
-        async function reorderLists(draggedListId, targetListId) {
-            try {
-                const listsContainer = document.getElementById('lists-container');
-                const draggedElement = document.querySelector(`[data-list-id="${draggedListId}"]`);
-                const targetElement = document.querySelector(`[data-list-id="${targetListId}"]`);
-                
-                if (!draggedElement || !targetElement || draggedListId === targetListId) return;
-
-                console.log(`Reordering lists: moving ${draggedListId} relative to ${targetListId}`);
-
-                // Get current positions to determine drag direction
-                const allListElements = Array.from(listsContainer.children);
-                const draggedIndex = allListElements.indexOf(draggedElement);
-                const targetIndex = allListElements.indexOf(targetElement);
-
-                console.log(`Current positions - dragged: ${draggedIndex}, target: ${targetIndex}`);
-
-                // Perform DOM reordering immediately based on drag direction
-                if (draggedIndex < targetIndex) {
-                    // Dragging down: insert after target
-                    const targetNext = targetElement.nextSibling;
-                    if (targetNext) {
-                        listsContainer.insertBefore(draggedElement, targetNext);
-                    } else {
-                        listsContainer.appendChild(draggedElement);
+                    try {
+                        const { user, error } = await signIn(email, password);
+                        if (error) throw error;
+                        window.location.href = 'reminders.html';
+                    } catch (error) {
+                        console.error('Login error:', error);
+                        errorElement.textContent = error.message || 'Failed to sign in. Please try again.';
+                        errorElement.style.display = 'block';
                     }
-                } else {
-                    // Dragging up: insert before target
-                    listsContainer.insertBefore(draggedElement, targetElement);
-                }
-
-                // Update our in-memory data to match the new DOM order
-                updateListDataIndexes();
-
-                console.log('Lists reordered in DOM and data updated');
-
-                // Save to database in background (no UI updates)
-                const updatePromises = listsData.map(async (list, index) => {
-                    const { error } = await supabase
-                        .from('todo_lists')
-                        .update({ 
-                            list_order: index,
-                            updated_at: new Date().toISOString()
-                        })
-                        .eq('id', list.id);
-                    
-                    if (error) {
-                        console.error(`Error updating order for list ${list.id}:`, error);
-                        return false;
-                    }
-                    return true;
                 });
-                
-                const results = await Promise.all(updatePromises);
-                const allSuccessful = results.every(result => result === true);
-                
-                if (allSuccessful) {
-                    console.log('Lists reordered and saved successfully to database');
-                } else {
-                    console.error('Some lists failed to update order');
-                    showError('Failed to save new list order');
-                }
-            } catch (err) {
-                console.error('Error reordering lists:', err);
-                showError('Error reordering lists: ' + err.message);
             }
-        }
 
-        // Reorder entries within a list - now with DOM manipulation only
-        async function reorderEntries(listElement, list, draggedEntryIdx, targetEntryIdx) {
-            console.log('reorderEntries called. List:', list.id, 'Source Idx:', draggedEntryIdx, 'Target Idx:', targetEntryIdx);
-            try {
-                if (draggedEntryIdx !== targetEntryIdx) {
-                    const ul = listElement.querySelector('ul');
-                    const draggedLi = ul.children[draggedEntryIdx];
-                    const targetLi = ul.children[targetEntryIdx];
-                    
-                    if (!draggedLi || !targetLi) return;
+            // Handle registration form submission
+            if (registerForm) {
+                registerForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('register-email').value;
+                    const password = document.getElementById('register-password').value;
+                    const confirmPassword = document.getElementById('confirm-password').value;
+                    const errorElement = document.getElementById('register-error');
 
-                    // Perform DOM reordering immediately
-                    if (draggedEntryIdx < targetEntryIdx) {
-                        // Moving down: insert after target
-                        const targetNext = targetLi.nextSibling;
-                        if (targetNext) {
-                            ul.insertBefore(draggedLi, targetNext);
-                        } else {
-                            ul.appendChild(draggedLi);
-                        }
-                    } else {
-                        // Moving up: insert before target
-                        ul.insertBefore(draggedLi, targetLi);
+                    // Validate passwords match
+                    if (password !== confirmPassword) {
+                        errorElement.textContent = 'Passwords do not match';
+                        errorElement.style.display = 'block';
+                        return;
                     }
 
-                    // Update entry data indexes to match new DOM order
-                    updateEntryDataIndexes(listElement, list);
+                    if (password.length < 6) {
+                        errorElement.textContent = 'Password must be at least 6 characters';
+                        errorElement.style.display = 'block';
+                        return;
+                    }
 
-                    // Save the updated list in background
-                    await saveList(list);
-                    
-                    console.log('Entries reordered successfully');
-                }
-            } catch (err) {
-                console.error('Error reordering entries:', err);
-                showError('Error reordering entries: ' + err.message);
-            }
-        }
-
-        // Move entry between different lists - now with DOM manipulation only
-        async function moveEntryBetweenLists(sourceListId, sourceEntryIdx, targetListId, targetEntryIdx) {
-            console.log(`moveEntryBetweenLists called. From list ${sourceListId} (idx ${sourceEntryIdx}) to list ${targetListId} (idx ${targetEntryIdx})`);
-            try {
-                const sourceList = listsData.find(list => list.id === sourceListId);
-                const targetList = listsData.find(list => list.id === targetListId);
-                
-                if (!sourceList || !targetList) {
-                    console.error('Source or target list not found');
-                    return;
-                }
-
-                const sourceListElement = document.querySelector(`[data-list-id="${sourceListId}"]`);
-                const targetListElement = document.querySelector(`[data-list-id="${targetListId}"]`);
-                const sourceUl = sourceListElement.querySelector('ul');
-                const targetUl = targetListElement.querySelector('ul');
-                
-                const draggedLi = sourceUl.children[sourceEntryIdx];
-                if (!draggedLi) return;
-
-                // Get the actual text value from the dragged entry before removing it
-                const draggedEntryInput = draggedLi.querySelector('.entry-input');
-                const movedEntryText = draggedEntryInput ? draggedEntryInput.value : '';
-
-                console.log('Moving entry text:', movedEntryText);
-
-                // Remove from DOM first
-                draggedLi.remove();
-
-                // Create new DOM element for target list with the correct text
-                const newLi = createEntryElement(targetList, movedEntryText, targetEntryIdx);
-                
-                // Insert at correct position in target DOM
-                if (targetEntryIdx >= targetUl.children.length) {
-                    targetUl.appendChild(newLi);
-                } else {
-                    targetUl.insertBefore(newLi, targetUl.children[targetEntryIdx]);
-                }
-
-                // Update both lists' data based on current DOM state
-                updateEntryDataIndexes(sourceListElement, sourceList);
-                updateEntryDataIndexes(targetListElement, targetList);
-
-                // Save both lists in background
-                const savePromises = [saveList(sourceList), saveList(targetList)];
-                const results = await Promise.all(savePromises);
-                
-                if (results.every(result => result === true)) {
-                    console.log(`Entry "${movedEntryText}" moved from list ${sourceListId} to ${targetListId}`);
-                } else {
-                    console.error('Failed to save one or both lists after moving entry');
-                    showError('Failed to move entry between lists');
-                }
-            } catch (err) {
-                console.error('Error moving entry between lists:', err);
-                showError('Error moving entry between lists: ' + err.message);
-            }
-        }
-
-        // Create a single entry element (for optimistic UI updates)
-        function createEntryElement(list, entry, entryIdx) {
-            const li = document.createElement('li');
-            
-            // Add drag handle for entries
-            const entryDragHandle = document.createElement('span');
-            entryDragHandle.className = 'drag-handle';
-            entryDragHandle.innerHTML = '⋮⋮';
-            entryDragHandle.title = 'Drag to reorder entries';
-            entryDragHandle.style.fontSize = '12px';
-            
-            const entryInput = document.createElement('input');
-            entryInput.type = 'text';
-            entryInput.value = entry;
-            entryInput.className = 'entry-input';
-            
-            // Debounced save for entry text changes
-            const debouncedSaveEntry = debounce(async (newText) => {
-                const currentIndex = parseInt(li.dataset.entryIndex);
-                list.entries[currentIndex] = newText;
-                await saveList(list);
-            }, 500);
-            
-            entryInput.oninput = () => {
-                debouncedSaveEntry(entryInput.value);
-            };
-
-            const deleteEntryBtn = document.createElement('button');
-            deleteEntryBtn.className = 'delete-entry-btn';
-            deleteEntryBtn.textContent = 'Done';
-            deleteEntryBtn.onclick = async () => {
-                const currentIndex = parseInt(li.dataset.entryIndex);
-                
-                // Remove from DOM immediately
-                li.remove();
-                
-                // Update data and save in background
-                list.entries.splice(currentIndex, 1);
-                
-                // Update remaining entry indexes
-                const listElement = document.querySelector(`[data-list-id="${list.id}"]`);
-                updateEntryDataIndexes(listElement, list);
-                
-                await saveList(list);
-            };
-
-            // Make entry draggable
-            li.draggable = true;
-            li.dataset.entryIndex = entryIdx;
-            
-            // Entry drag event listeners
-            li.addEventListener('dragstart', (e) => {
-                e.stopPropagation();
-                console.log('Entry dragstart - clearing all data and setting entry data');
-                e.dataTransfer.clearData();
-                
-                // Get the current text value from the input, not from the data array
-                const entryInput = li.querySelector('.entry-input');
-                const currentText = entryInput ? entryInput.value : entry;
-                
-                const dragData = {
-                    entryText: currentText,
-                    entryIndex: parseInt(li.dataset.entryIndex),
-                    sourceListId: list.id
-                };
-                e.dataTransfer.setData('application/json', JSON.stringify(dragData));
-                e.dataTransfer.setData('text/plain', 'entry');
-                console.log('Entry drag data set with text:', currentText);
-                e.dataTransfer.effectAllowed = 'move';
-                li.classList.add('dragging');
-            });
-            
-            li.addEventListener('dragend', () => {
-                li.classList.remove('dragging');
-                // Clean up any lingering drag-over styling when drag ends
-                setTimeout(cleanupAllDragStyling, 10);
-            });
-            
-            li.addEventListener('dragover', (e) => {
-                const types = Array.from(e.dataTransfer.types);
-                if (types.includes('application/json')) {
-                    e.preventDefault();
-                    e.dataTransfer.dropEffect = 'move';
-                    li.classList.add('drag-over');
-                }
-            });
-            
-            li.addEventListener('dragleave', () => {
-                li.classList.remove('drag-over');
-            });
-            
-            li.addEventListener('drop', async (e) => {
-                const types = Array.from(e.dataTransfer.types);
-                if (types.includes('application/json')) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    li.classList.remove('drag-over');
-                    
                     try {
-                        const dragData = JSON.parse(e.dataTransfer.getData('application/json'));
-                        const sourceListId = dragData.sourceListId;
-                        const sourceEntryIdx = dragData.entryIndex;
-                        const targetListId = list.id;
-                        const targetEntryIdx = parseInt(li.dataset.entryIndex);
+                        const { user, error } = await signUp(email, password);
+                        if (error) throw error;
                         
-                        if (sourceListId === targetListId) {
-                            // Same list - reorder within list
-                            if (sourceEntryIdx !== targetEntryIdx) {
-                                const listElement = document.querySelector(`[data-list-id="${list.id}"]`);
-                                await reorderEntries(listElement, list, sourceEntryIdx, targetEntryIdx);
-                            }
-                        } else {
-                            // Different lists - move entry between lists
-                            await moveEntryBetweenLists(sourceListId, sourceEntryIdx, targetListId, targetEntryIdx);
-                        }
-                    } catch (err) {
-                        console.error('Error parsing drag data:', err);
+                        // After successful registration, show success message and switch to login
+                        registerForm.reset();
+                        showLoginForm();
+                        
+                        // Show success message
+                        const loginSuccess = document.createElement('div');
+                        loginSuccess.className = 'alert';
+                        loginSuccess.style.background = 'rgba(16, 185, 129, 0.1)';
+                        loginSuccess.style.color = '#10b981';
+                        loginSuccess.style.border = '1px solid rgba(16, 185, 129, 0.2)';
+                        loginSuccess.textContent = 'Registration successful! Please check your email to verify your account.';
+                        loginForm.insertBefore(loginSuccess, loginForm.firstChild);
+                        loginSuccess.style.display = 'block';
+                    } catch (error) {
+                        console.error('Registration error:', error);
+                        errorElement.textContent = error.message || 'Failed to create account. Please try again.';
+                        errorElement.style.display = 'block';
                     }
-                }
-            });
-
-            li.appendChild(entryDragHandle);
-            li.appendChild(entryInput);
-            li.appendChild(deleteEntryBtn);
-            return li;
-        }
-
-        // Create a complete list element (for optimistic UI updates)
-        function createListElement(list) {
-            // Ensure entries exists and is an array, and list has an ID
-            if (!Array.isArray(list.entries)) list.entries = [];
-            if (!list.id) list.id = generateListId();
-
-            const listDiv = document.createElement('div');
-            listDiv.className = 'list';
-
-            // List header with drag handle, editable title and delete button
-            const headerDiv = document.createElement('div');
-            headerDiv.className = 'list-header';
-
-            // Add drag handle for lists
-            const listDragHandle = document.createElement('span');
-            listDragHandle.className = 'drag-handle';
-            listDragHandle.innerHTML = '⋮⋮';
-            listDragHandle.title = 'Drag to reorder lists';
-            listDragHandle.draggable = true;
-            
-            const titleInput = document.createElement('input');
-            titleInput.type = 'text';
-            titleInput.value = list.title;
-            titleInput.className = 'list-title';
-            
-            // Debounced save for title changes
-            const debouncedSaveTitle = debounce(async (newTitle) => {
-                list.title = newTitle;
-                await saveList(list);
-            }, 500);
-            
-            titleInput.oninput = () => {
-                debouncedSaveTitle(titleInput.value);
-            };
-
-            const deleteListBtn = document.createElement('button');
-            deleteListBtn.className = 'delete-list-btn';
-            deleteListBtn.textContent = 'Delete';
-            deleteListBtn.onclick = async () => {
-                // Remove from DOM immediately
-                listDiv.remove();
-                
-                // Remove from data and delete from database in background
-                const listIndex = listsData.findIndex(l => l.id === list.id);
-                if (listIndex !== -1) {
-                    listsData.splice(listIndex, 1);
-                }
-                await deleteList(list.id);
-            };
-
-            headerDiv.appendChild(listDragHandle);
-            headerDiv.appendChild(titleInput);
-            headerDiv.appendChild(deleteListBtn);
-            
-            // Store list ID for reference
-            listDiv.dataset.listId = list.id;
-            
-            // Drag event listeners for the drag handle
-            listDragHandle.addEventListener('dragstart', (e) => {
-                console.log('List dragstart - clearing all data and setting list data');
-                e.dataTransfer.clearData();
-                e.dataTransfer.setData('text/plain', list.id);
-                e.dataTransfer.setData('application/x-list', list.id);
-                console.log('List drag data set. Types should be:', ['text/plain', 'application/x-list']);
-                e.dataTransfer.effectAllowed = 'move';
-                listDiv.classList.add('dragging');
-            });
-            
-            listDragHandle.addEventListener('dragend', () => {
-                listDiv.classList.remove('dragging');
-            });
-            
-            listDiv.addEventListener('dragover', (e) => {
-                const types = Array.from(e.dataTransfer.types);
-                if (types.includes('application/x-list')) {
-                    e.preventDefault();
-                    e.dataTransfer.dropEffect = 'move';
-                    listDiv.classList.add('drag-over');
-                }
-            });
-            
-            listDiv.addEventListener('dragleave', (e) => {
-                // Only remove drag-over if we're actually leaving the list element
-                if (!listDiv.contains(e.relatedTarget)) {
-                    listDiv.classList.remove('drag-over');
-                }
-            });
-            
-            listDiv.addEventListener('drop', async (e) => {
-                const types = Array.from(e.dataTransfer.types);
-                console.log('List drop handler triggered. Types:', types, 'Target list:', list.id);
-                
-                // ONLY process list drops, never entry drops
-                if (types.includes('application/x-list') && !types.includes('application/json')) {
-                    console.log('Processing as list drop');
-                    e.preventDefault();
-                    e.stopPropagation(); // Important: stop event from bubbling
-                    listDiv.classList.remove('drag-over');
-                    
-                    const draggedListId = e.dataTransfer.getData('text/plain');
-                    const targetListId = list.id;
-                    
-                    console.log(`Drop detected: dragged=${draggedListId}, target=${targetListId}`);
-                    
-                    if (draggedListId && draggedListId !== targetListId) {
-                        console.log('Calling reorderLists...');
-                        await reorderLists(draggedListId, targetListId);
-                    } else if (draggedListId === targetListId) {
-                        console.log('Same list - no reorder needed');
-                    } else {
-                        console.log('Invalid draggedListId:', draggedListId);
-                    }
-                } else {
-                    console.log('Ignoring drop - not a valid list drop (has JSON:', types.includes('application/json'), ', has x-list:', types.includes('application/x-list'), ')');
-                }
-            });
-
-            // Add entry group
-            const addEntryGroup = document.createElement('div');
-            addEntryGroup.className = 'add-entry-group';
-
-            const addEntryInput = document.createElement('input');
-            addEntryInput.type = 'text';
-            addEntryInput.className = 'add-entry-input';
-            addEntryInput.placeholder = 'Add a new reminder...';
-
-            const addEntryBtn = document.createElement('button');
-            addEntryBtn.className = 'add-entry-btn';
-            addEntryBtn.textContent = 'Add';
-
-            // Entries list
-            const ul = document.createElement('ul');
-            list.entries.forEach((entry, entryIdx) => {
-                const li = createEntryElement(list, entry, entryIdx);
-                ul.appendChild(li);
-            });
-            
-            // Make the entire list container a drop zone for entries
-            ul.addEventListener('dragover', (e) => {
-                const types = Array.from(e.dataTransfer.types);
-                if (types.includes('application/json')) {
-                    e.preventDefault();
-                    e.dataTransfer.dropEffect = 'move';
-                    ul.classList.add('drag-over');
-                }
-            });
-            
-            ul.addEventListener('dragleave', (e) => {
-                if (!ul.contains(e.relatedTarget)) {
-                    ul.classList.remove('drag-over');
-                }
-            });
-            
-            ul.addEventListener('drop', async (e) => {
-                const types = Array.from(e.dataTransfer.types);
-                console.log('UL drop handler triggered. Types:', types, 'Target list:', list.id);
-                if (types.includes('application/json')) {
-                    console.log('Processing as entry drop in UL');
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Immediate cleanup
-                    cleanupAllDragStyling();
-                    
-                    try {
-                        const dragData = JSON.parse(e.dataTransfer.getData('application/json'));
-                        const sourceListId = dragData.sourceListId;
-                        const sourceEntryIdx = dragData.entryIndex;
-                        const targetListId = list.id;
-                        
-                        if (sourceListId !== targetListId) {
-                            // Different lists - add to end of target list
-                            await moveEntryBetweenLists(sourceListId, sourceEntryIdx, targetListId, list.entries.length);
-                        } else {
-                            // Same list - move to end of list
-                            const listElement = document.querySelector(`[data-list-id="${list.id}"]`);
-                            await reorderEntries(listElement, list, sourceEntryIdx, list.entries.length - 1);
-                        }
-                        
-                        // Additional cleanup after operations complete
-                        setTimeout(cleanupAllDragStyling, 50);
-                        
-                    } catch (err) {
-                        console.error('Error parsing drag data in list drop:', err);
-                    }
-                }
-            });
-
-            addEntryBtn.onclick = async () => {
-                const text = addEntryInput.value.trim();
-                if (text === '') return;
-                
-                // Update data immediately
-                list.entries.push(text);
-                addEntryInput.value = '';
-                
-                // Add new entry to DOM immediately
-                const newLi = createEntryElement(list, text, list.entries.length - 1);
-                ul.appendChild(newLi);
-                
-                // Save in background
-                await saveList(list);
-            };
-            addEntryInput.addEventListener('keydown', e => {
-                if (e.key === 'Enter') addEntryBtn.click();
-            });
-
-            addEntryGroup.appendChild(addEntryInput);
-            addEntryGroup.appendChild(addEntryBtn);
-
-            listDiv.appendChild(headerDiv);
-            listDiv.appendChild(addEntryGroup);
-            listDiv.appendChild(ul);
-            
-            return listDiv;
-        }
-
-        async function getLists() {
-            try {
-                const { data, error } = await supabase
-                    .from('todo_lists')
-                    .select('*')
-                    .order('list_order', { ascending: true, nullsFirst: false })
-                    .order('updated_at', { ascending: true });
-                
-                if (error) {
-                    throw error;
-                }
-                
-                console.log('Supabase data loaded:', data);
-                
-                // Convert Supabase data to expected format and store in memory
-                listsData = (data || []).map(list => ({
-                    id: list.id,
-                    title: list.title || 'Untitled List',
-                    entries: Array.isArray(list.entries) ? list.entries : []
-                }));
-                
-                return listsData;
-            } catch (err) {
-                console.error('Error loading lists:', err);
-                showError('Error loading lists: ' + err.message);
-                return [];
+                });
             }
-        }
-
-        // Save a single list by ID - safer than overwriting everything
-        async function saveList(list) {
-            try {
-                if (!list.id) {
-                    list.id = generateListId();
-                }
-                console.log('Saving individual list:', list.id, list);
-                
-                // Check if list exists (update) or is new (insert)
-                const { data: existingList } = await supabase
-                    .from('todo_lists')
-                    .select('id')
-                    .eq('id', list.id)
-                    .single();
-                
-                let result;
-                if (existingList) {
-                    // Update existing list
-                    result = await supabase
-                        .from('todo_lists')
-                        .update({
-                            title: list.title,
-                            entries: list.entries,
-                            updated_at: new Date().toISOString()
-                        })
-                        .eq('id', list.id);
-                } else {
-                    // Insert new list - get the next list_order value
-                    const { data: maxOrderData } = await supabase
-                        .from('todo_lists')
-                        .select('list_order')
-                        .order('list_order', { ascending: false })
-                        .limit(1);
-                    
-                    const nextOrder = (maxOrderData && maxOrderData[0] && maxOrderData[0].list_order !== null) 
-                        ? maxOrderData[0].list_order + 1 
-                        : 0;
-                    
-                    result = await supabase
-                        .from('todo_lists')
-                        .insert({
-                            id: list.id,
-                            title: list.title,
-                            entries: list.entries,
-                            list_order: nextOrder
-                        });
-                }
-                
-                if (result.error) {
-                    throw result.error;
-                }
-                
-                console.log('List saved successfully:', list.id);
-                return true;
-            } catch (err) {
-                console.error('Error saving list:', err);
-                showError('Error saving list: ' + err.message);
-                return false;
-            }
-        }
-
-        // Delete a single list by ID
-        async function deleteList(listId) {
-            try {
-                console.log('Deleting list:', listId);
-                const { error } = await supabase
-                    .from('todo_lists')
-                    .delete()
-                    .eq('id', listId);
-                
-                if (error) {
-                    throw error;
-                }
-                
-                console.log('List deleted successfully:', listId);
-                return true;
-            } catch (err) {
-                console.error('Error deleting list:', err);
-                showError('Error deleting list: ' + err.message);
-                return false;
-            }
-        }
-
-        // Legacy function for compatibility - now saves each list individually
-        async function saveLists(lists) {
-            try {
-                console.log('Saving all lists individually:', lists);
-                const savePromises = lists.map(list => saveList(list));
-                const results = await Promise.all(savePromises);
-                const allSuccessful = results.every(result => result === true);
-                if (allSuccessful) {
-                    console.log('All lists saved successfully');
-                } else {
-                    console.warn('Some lists failed to save');
-                }
-                return allSuccessful;
-            } catch (err) {
-                console.error('Error saving lists:', err);
-                showError('Error saving lists: ' + err.message);
-                return false;
-            }
-        }
-
-        async function renderLists() {
-            console.log('renderLists called');
-            const listsContainer = document.getElementById('lists-container');
-            listsContainer.innerHTML = '';
-            const lists = await getLists();
-           
-            console.log('Lists to render:', lists, 'Length:', lists.length);
-
-            lists.forEach((list) => {
-                const listDiv = createListElement(list);
-                listsContainer.appendChild(listDiv);
-            });
-        }
-
-        // Make functions globally available immediately
-        window.getLists = getLists;
-        window.saveLists = saveLists;
-        window.saveList = saveList;
-        window.deleteList = deleteList;
-        window.renderLists = renderLists;
-        window.showError = showError;
-        window.generateListId = generateListId;
-
-        // Set up event handlers after functions are available
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add new list
-            document.getElementById('add-list-btn').onclick = async () => {
-                const input = document.getElementById('add-list-input');
-                const name = input.value.trim() || 'New List';
-                const newList = {
-                    id: generateListId(),
-                    title: name,
-                    entries: []
-                };
-                
-                // Clear input immediately
-                input.value = '';
-                
-                // Add to in-memory data
-                listsData.push(newList);
-                
-                // Add to UI immediately (optimistic update)
-                const listsContainer = document.getElementById('lists-container');
-                const newListDiv = createListElement(newList);
-                listsContainer.appendChild(newListDiv);
-                
-                // Save in background
-                await saveList(newList);
-            };
-
-            document.getElementById('add-list-input').addEventListener('keydown', async e => {
-                if (e.key === 'Enter') document.getElementById('add-list-btn').click();
-            });
-
-            // Initial render
-            renderLists();
         });
     </script>
 </body>
