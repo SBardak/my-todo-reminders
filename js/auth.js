@@ -1,38 +1,40 @@
-// Initialize Supabase client
-let supabase;
+// Import Supabase client
+import { supabase } from './supabase.js';
 
 // Initialize auth state listener after DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   try {
-    // Check if Supabase is available in window object
-    if (window.supabase) {
-      supabase = window.supabase;
-      
-      // Auth state change listener
-      supabase.auth.onAuthStateChange((event, session) => {
-        console.log("Auth state changed:", event);
-        if (event === "SIGNED_IN") {
-          // User signed in
-          document.dispatchEvent(
-            new CustomEvent("user-authenticated", { detail: session.user })
-          );
-          updateAuthUI(true);
-        } else if (event === "SIGNED_OUT") {
-          // User signed out
-          document.dispatchEvent(new CustomEvent("user-signed-out"));
-          updateAuthUI(false);
-        }
-      });
-    } else {
-      console.error('Supabase client not found in window object');
+    if (!supabase) {
+      console.error('Supabase client not properly initialized');
+      return;
     }
+    
+    // Auth state change listener
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log("Auth state changed:", event);
+      if (event === "SIGNED_IN") {
+        // User signed in
+        document.dispatchEvent(
+          new CustomEvent("user-authenticated", { detail: session.user })
+        );
+        updateAuthUI(true);
+      } else if (event === "SIGNED_OUT") {
+        // User signed out
+        document.dispatchEvent(new CustomEvent("user-signed-out"));
+        updateAuthUI(false);
+      }
+    });
+
+    // Return cleanup function
+    return () => {
+      if (subscription) {
+        subscription.unsubscribe();
+      }
+    };
   } catch (error) {
     console.error('Error initializing auth state listener:', error);
   }
 });
-
-// Export the Supabase client for use in other modules
-export { supabase };
 
 // Update UI based on auth state
 async function updateAuthUI(isAuthenticated) {
