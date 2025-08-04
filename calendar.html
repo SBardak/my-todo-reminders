@@ -592,6 +592,63 @@
             center: "title",
             right: "next",
           },
+          editable: true, // Enable drag and drop
+          eventDrop: async function(info) {
+            try {
+              const event = info.event;
+              const startDate = event.start.toISOString().split('T')[0];
+              
+              // Calculate end date (FullCalendar uses exclusive end dates)
+              let endDate = null;
+              if (event.end) {
+                const adjustedEnd = new Date(event.end);
+                adjustedEnd.setDate(adjustedEnd.getDate() - 1); // Adjust for display
+                endDate = adjustedEnd.toISOString().split('T')[0];
+              }
+
+              // Update the event in the database
+              await updateEvent(event.id, {
+                title: event.title,
+                start: startDate,
+                end: endDate,
+                description: event.extendedProps.description || '',
+                color: event.backgroundColor || '#4a90e2'
+              });
+            } catch (error) {
+              console.error('Error updating event:', error);
+              // Revert the event's changes on error
+              info.revert();
+              alert('Failed to update event. Please try again.');
+            }
+          },
+          eventResize: async function(info) {
+            try {
+              const event = info.event;
+              const startDate = event.start.toISOString().split('T')[0];
+              
+              // Calculate end date (FullCalendar uses exclusive end dates)
+              let endDate = null;
+              if (event.end) {
+                const adjustedEnd = new Date(event.end);
+                adjustedEnd.setDate(adjustedEnd.getDate() - 1); // Adjust for display
+                endDate = adjustedEnd.toISOString().split('T')[0];
+              }
+
+              // Update the event in the database
+              await updateEvent(event.id, {
+                title: event.title,
+                start: startDate,
+                end: endDate,
+                description: event.extendedProps.description || '',
+                color: event.backgroundColor || '#4a90e2'
+              });
+            } catch (error) {
+              console.error('Error resizing event:', error);
+              // Revert the event's changes on error
+              info.revert();
+              alert('Failed to resize event. Please try again.');
+            }
+          },
           customButtons: {
             prev: {
               text: "<",
@@ -623,6 +680,14 @@
           // Custom CSS to center the title
           viewClassNames: ["custom-calendar-header"],
           events: await fetchEvents(),
+          eventDragStart: function(info) {
+            // Optional: Add visual feedback when dragging starts
+            document.body.style.cursor = 'grabbing';
+          },
+          eventDragStop: function() {
+            // Reset cursor after drag ends
+            document.body.style.cursor = '';
+          },
           dateClick: function (info) {
             // When a date is clicked, open the modal for new event
             currentEvent = null;
