@@ -8,24 +8,16 @@ async function ensureSupabase() {
     return false;
   }
   
-  // Wait for auth to be available
-  let attempts = 0;
-  while (attempts < 10) {
-    if (supabase?.auth) {
-      // Check if we have a valid session
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        return true;
-      }
-      // If no session but auth is available, that's okay - user might be logged out
-      return true;
-    }
+  // If auth isn't available yet, wait a bit
+  if (!supabase.auth) {
     await new Promise(resolve => setTimeout(resolve, 100));
-    attempts++;
+    if (!supabase.auth) {
+      console.error('Supabase auth not available');
+      return false;
+    }
   }
   
-  console.error('Supabase auth not available after multiple attempts');
-  return false;
+  return true;
 }
 
 // Initialize auth state listener after DOM is loaded
@@ -181,13 +173,11 @@ export async function getCurrentUser() {
     
     // First try to get the session
     const { data: { session } } = await supabase.auth.getSession();
-    
-    // If we have a session, return the user from the session
     if (session?.user) {
       return session.user;
     }
     
-    // Fallback to getUser if no session but might be authenticated
+    // If no session, check if we can get the user directly
     try {
       const { data: { user }, error } = await supabase.auth.getUser();
       if (error) throw error;
@@ -214,23 +204,23 @@ export async function isAuthenticated() {
       return false;
     }
     
-    // First try to get the session
+    // Try to get the session first
     const { data: { session } } = await supabase.auth.getSession();
-    
-    // If we have a valid session with a user, return true
     if (session?.user) {
       return true;
     }
     
     // If no session, try to get the user directly
-    const user = await getCurrentUser();
-    return !!user;
-    
-  } catch (error) {
-    if (error.message.includes('Auth session missing')) {
-      console.log('No active session found');
-      return false;
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      return !!user;
+    } catch (error) {
+      if (error.message.includes('Auth session missing')) {
+        return false;
+      }
+      throw error;
     }
+  } catch (error) {
     console.error("Error in isAuthenticated:", error);
     return false;
   }

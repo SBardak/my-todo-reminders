@@ -459,12 +459,46 @@
     
     <script type="module">
         // Import from auth.js which contains the Supabase client
-        import { supabase, getCurrentUser } from './js/auth.js';
+        import { supabase, getCurrentUser, isAuthenticated, ensureSupabase } from './js/auth.js';
 
         // In-memory list storage for immediate UI updates
         let listsData = [];
+        let isInitialized = false;
+
+        async function initializeApp() {
+            try {
+                console.log('Initializing app...');
+                
+                // First ensure Supabase is ready
+                const isReady = await ensureSupabase();
+                if (!isReady) {
+                    throw new Error('Failed to initialize Supabase client');
+                }
+                
+                // Check if user is authenticated
+                const authenticated = await isAuthenticated();
+                if (!authenticated) {
+                    console.log('User not authenticated, redirecting to login');
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                // If we get here, we're properly authenticated
+                console.log('User is authenticated, initializing UI...');
+                setupEventListeners();
+                await loadAndRenderLists();
+                
+                isInitialized = true;
+                console.log('App initialization complete');
+                
+            } catch (error) {
+                console.error('Error during initialization:', error);
+                showError('Failed to initialize the application. Please refresh the page.');
+            }
+        }
 
         function showError(msg) {
+            console.error(msg);
             let errDiv = document.getElementById('error-msg');
             if (!errDiv) {
                 errDiv = document.createElement('div');
@@ -472,6 +506,9 @@
                 errDiv.style.color = '#ff6b6b';
                 errDiv.style.textAlign = 'center';
                 errDiv.style.marginBottom = '16px';
+                errDiv.style.padding = '10px';
+                errDiv.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+                errDiv.style.borderRadius = '4px';
                 document.querySelector('.app-container').insertBefore(errDiv, document.querySelector('.add-list-group'));
             }
             errDiv.textContent = msg;
@@ -1235,40 +1272,65 @@
         window.showError = showError;
         window.generateListId = generateListId;
 
-        // Set up event handlers after functions are available
-        document.addEventListener('DOMContentLoaded', () => {
+        // Initialize the app when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            await renderLists();
+            setupEventListeners();
+        });
+
+        // Set up event listeners after initialization
+        function setupEventListeners() {
             // Add new list
             document.getElementById('add-list-btn').onclick = async () => {
                 const input = document.getElementById('add-list-input');
-                const name = input.value.trim() || 'New List';
-                const newList = {
-                    id: generateListId(),
-                    title: name,
-                    entries: []
-                };
-                
-                // Clear input immediately
-                input.value = '';
-                
-                // Add to in-memory data
-                listsData.push(newList);
-                
-                // Add to UI immediately (optimistic update)
-                const listsContainer = document.getElementById('lists-container');
-                const newListDiv = createListElement(newList);
-                listsContainer.appendChild(newListDiv);
-                
-                // Save in background
-                await saveList(newList);
+                const title = input.value.trim();
+                if (title) {
+                    const newList = {
+                        id: generateListId(),
+                        title: title,
+                        entries: [],
+                        created_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    };
+                    
+                    // Add to UI immediately for better UX
+                    const listElement = createListElement(newList);
+                    document.getElementById('lists-container').appendChild(listElement);
+                    input.value = '';
+                    
+                    // Save to database
+                    await saveList(newList);
+                }
             };
-
-            document.getElementById('add-list-input').addEventListener('keydown', async e => {
-                if (e.key === 'Enter') document.getElementById('add-list-btn').click();
+            
+            // Initialize drag and drop for lists
+            const listsContainer = document.getElementById('lists-container');
+            new Sortable(listsContainer, {
+                animation: 150,
+                handle: '.drag-handle',
+                ghostClass: 'sortable-ghost',
+                onEnd: async (evt) => {
+                    const listId = evt.item.getAttribute('data-list-id');
+                    const targetIndex = Array.from(evt.to.children).indexOf(evt.item);
+                    
+                    // Find the list in our data
+                    const list = listsData.find(l => l.id === listId);
+                    if (list) {
+                        // Update the order in our data
+                        const oldIndex = listsData.indexOf(list);
+                        if (oldIndex !== targetIndex) {
+                            listsData.splice(oldIndex, 1);
+                            listsData.splice(targetIndex, 0, list);
+                            
+                            // Update the order in the database
+                            await Promise.all(listsData.map((list, index) => 
+                                saveList(list)
+                            ));
+                        }
+                    }
+                }
             });
-
-            // Initial render
-            renderLists();
-        });
+        }
     </script>
 </body>
 </html>
