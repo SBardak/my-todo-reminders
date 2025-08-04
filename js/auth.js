@@ -127,7 +127,7 @@ export async function signIn(email, password) {
 }
 
 // Handle email confirmation
-export async function handleEmailConfirmation() {
+async function handleEmailConfirmation() {
   try {
     const { data, error } = await supabase.auth.getSession();
     
