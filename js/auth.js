@@ -1,5 +1,5 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@next';
-import { supabaseConfig } from './config.js';
+import { createClient } from "https://esm.sh/@supabase/supabase-js@next";
+import { supabaseConfig } from "./config.js";
 
 // Initialize Supabase client with proper configuration for GitHub Pages
 export const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
@@ -8,9 +8,9 @@ export const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
     persistSession: true,
     detectSessionInUrl: true,
     storage: window.localStorage,
-    storageKey: 'sb-auth-token',
-    flowType: 'pkce',
-    debug: true
+    storageKey: "sb-auth-token",
+    flowType: "pkce",
+    debug: true,
   },
 });
 
@@ -19,33 +19,41 @@ window.supabase = supabase;
 
 // Auth state change listener
 supabase.auth.onAuthStateChange((event, session) => {
-  console.log('Auth state changed:', event);
-  if (event === 'SIGNED_IN') {
+  console.log("Auth state changed:", event);
+  if (event === "SIGNED_IN") {
     // User signed in
-    document.dispatchEvent(new CustomEvent('user-authenticated', { detail: session.user }));
+    document.dispatchEvent(
+      new CustomEvent("user-authenticated", { detail: session.user })
+    );
     updateAuthUI(true);
-  } else if (event === 'SIGNED_OUT') {
+  } else if (event === "SIGNED_OUT") {
     // User signed out
-    document.dispatchEvent(new CustomEvent('user-signed-out'));
+    document.dispatchEvent(new CustomEvent("user-signed-out"));
     updateAuthUI(false);
   }
 });
 
 // Update UI based on auth state
 async function updateAuthUI(isAuthenticated) {
-  const authElements = document.querySelectorAll('.auth-required');
-  const unauthElements = document.querySelectorAll('.unauth-only');
-  const userEmail = document.getElementById('user-email');
-  
-  authElements.forEach(el => el.style.display = isAuthenticated ? 'block' : 'none');
-  unauthElements.forEach(el => el.style.display = isAuthenticated ? 'none' : 'block');
-  
+  const authElements = document.querySelectorAll(".auth-required");
+  const unauthElements = document.querySelectorAll(".unauth-only");
+  const userEmail = document.getElementById("user-email");
+
+  authElements.forEach(
+    (el) => (el.style.display = isAuthenticated ? "block" : "none")
+  );
+  unauthElements.forEach(
+    (el) => (el.style.display = isAuthenticated ? "none" : "block")
+  );
+
   if (isAuthenticated && userEmail) {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       if (user) userEmail.textContent = user.email;
     } catch (error) {
-      console.error('Error getting user:', error);
+      console.error("Error getting user:", error);
     }
   }
 }
@@ -55,25 +63,26 @@ export async function signUp(email, password) {
   try {
     // Store the current URL to redirect back after email confirmation
     const returnTo = window.location.pathname + window.location.search;
-    localStorage.setItem('returnTo', returnTo);
-    
-    // For GitHub Pages, we need to handle both repository root and custom domain cases
-    const baseUrl = window.location.hostname === 'localhost' 
-      ? window.location.origin 
-      : 'https://sbardak.github.io';
-      
+    localStorage.setItem("returnTo", returnTo);
+
+    // For GitHub Pages, redirect to index.html instead of callback.html
+    const baseUrl =
+      window.location.hostname === "localhost"
+        ? window.location.origin
+        : "https://sbardak.github.io";
+
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: `${baseUrl}/callback.html`
-      }
+        emailRedirectTo: `${baseUrl}/index.html`,
+      },
     });
-    
+
     if (error) throw error;
     return { user: data.user };
   } catch (error) {
-    console.error('Error signing up:', error);
+    console.error("Error signing up:", error);
     return { error };
   }
 }
@@ -85,11 +94,11 @@ export async function signIn(email, password) {
       email,
       password,
     });
-    
+
     if (error) throw error;
     return { user: data.user };
   } catch (error) {
-    console.error('Error signing in:', error);
+    console.error("Error signing in:", error);
     return { error };
   }
 }
@@ -100,18 +109,21 @@ export async function signOut() {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
   } catch (error) {
-    console.error('Error signing out:', error);
+    console.error("Error signing out:", error);
   }
 }
 
 // Get current user
 export async function getCurrentUser() {
   try {
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
     if (error) throw error;
     return user || null;
   } catch (error) {
-    console.error('Error getting current user:', error);
+    console.error("Error getting current user:", error);
     return null;
   }
 }
@@ -120,4 +132,41 @@ export async function getCurrentUser() {
 export async function isAuthenticated() {
   const user = await getCurrentUser();
   return !!user;
+}
+
+// Handle email confirmation tokens in URL hash
+export async function handleEmailConfirmation() {
+  const hash = window.location.hash;
+  if (!hash) return null;
+
+  try {
+    const hashParams = new URLSearchParams(hash.substring(1));
+    const type = hashParams.get("type");
+    const accessToken = hashParams.get("access_token");
+    const refreshToken = hashParams.get("refresh_token");
+
+    // Check if this is an email confirmation
+    if (type === "signup" && accessToken && refreshToken) {
+      // Set the session using the tokens
+      const { data, error } = await supabase.auth.setSession({
+        access_token: accessToken,
+        refresh_token: refreshToken,
+      });
+
+      if (error) throw error;
+
+      // Clear the hash from the URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+
+      return {
+        type: "email_confirmed",
+        user: data.user,
+      };
+    }
+  } catch (error) {
+    console.error("Error handling email confirmation:", error);
+    return { error };
+  }
+
+  return null;
 }
