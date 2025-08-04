@@ -9,18 +9,116 @@
     />
     <style>
       :root {
-        --calendar-height: 600px; /* Default height for desktop */
+        --calendar-height: auto; /* Changed to auto to allow content to determine height */
+        --min-day-height: 150px; /* Minimum height for each day cell */
+      }
+
+      /* Calendar event styling */
+      .fc-event {
+        padding: 4px 8px;
+        font-size: 1.1em;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        margin: 2px 4px;
+        min-height: 28px; /*This controls the height of the event*/
+        line-height: 1.4;
+      }
+
+      /* Make time grid events taller */
+      .fc-timegrid-event {
+        min-height: 32px;
+      }
+
+      /* Event title styling */
+      .fc-event-title {
+        padding: 2px 4px;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+
+      /* Make the calendar grid flexible */
+      .fc-daygrid-body {
+        height: auto !important;
+      }
+
+      /* Set a minimum height for the entire calendar view */
+      .fc-view-harness {
+        min-height: 75vh;
+      }
+
+      /* Target the actual table cells */
+      .fc-daygrid-body > table > tbody > tr > td {
+        height: var(--min-day-height) !important; /* Minimum height for cells */
+        min-height: var(--min-day-height) !important;
+        vertical-align: top !important;
+      }
+
+      /* Ensure the day cell takes full height */
+      .fc-daygrid-day {
+        height: 100% !important;
+        min-height: 100% !important;
+      }
+
+      /* Day grid day frame */
+      .fc-daygrid-day-frame {
+        height: 100% !important;
+        min-height: 100% !important;
+        padding: 4px 2px;
+        box-sizing: border-box;
+        display: flex !important;
+        flex-direction: column;
+      }
+
+      /* Style the day number at the top */
+      .fc-daygrid-day-top {
+        flex-shrink: 0;
+        margin-bottom: 8px; /* Add space between date and first event */
+        padding: 0 4px; /* Add some horizontal padding */
+      }
+
+      /* Day grid cell and event container */
+      .fc-daygrid-day-events {
+        min-height: 60px;
+        margin-top: 4px;
+        flex-grow: 1;
+        width: 100%;
+      }
+
+      /* Reduce space between day header and events */
+      .fc-daygrid-day-top {
+        margin-bottom: 25px;
+      }
+
+      /* Time grid slots */
+      .fc-timegrid-slot {
+        height: 1.8em !important;
       }
 
       @media (max-width: 768px) {
+        .app-container {
+          width: 100%;
+          max-width: 100%;
+          margin: 0;
+          border-radius: 0;
+          padding: 15px;
+        }
         :root {
-          --calendar-height: 80vh; /* Larger height for mobile */
+          --calendar-height: auto; /* Allow content to determine height on mobile */
+          --min-day-height: 120px; /* Slightly smaller minimum height for mobile */
         }
 
         /* Make the calendar take more vertical space on mobile */
         #calendar {
           height: var(--calendar-height) !important;
-          font-size: 1.1em; /* Slightly larger text on mobile */
+          font-size: 1.2em; /* Slightly larger text on mobile */
+        }
+
+        /* Larger touch targets for mobile */
+        .fc-event {
+          padding: 6px 10px;
+          margin: 3px 6px;
+          min-height: 32px;
         }
 
         /* Adjust calendar header for better mobile display */
@@ -43,12 +141,19 @@
         color: #e0e0e0;
       }
       .app-container {
-        max-width: 1200px;
+        max-width: 1400px; /* Increased from 1200px */
         margin: 40px auto;
         background: #232526;
         border-radius: 18px;
         box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
         padding: 32px 24px;
+        width: 95%; /* Added to ensure it takes full width up to max-width */
+      }
+
+      /* Make the calendar take full width of its container */
+      #calendar {
+        width: 100% !important;
+        max-width: 100%;
       }
       h1 {
         text-align: center;
@@ -288,13 +393,13 @@
         align-items: center;
         padding: 10px 20px;
       }
-      
+
       .fc-toolbar-chunk {
         display: flex;
         align-items: center;
         gap: 15px;
       }
-      
+
       /* Style for navigation buttons */
       .fc .fc-button {
         padding: 10px 25px !important;
@@ -307,7 +412,7 @@
         justify-content: center;
         min-width: 80px;
       }
-      
+
       /* Style specifically for the today button */
       .fc .fc-button-today {
         margin: 0 25px !important;
@@ -444,40 +549,40 @@
         calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: "dayGridMonth",
           headerToolbar: {
-            left: 'prev today',
-            center: 'title',
-            right: 'next',
+            left: "prev today",
+            center: "title",
+            right: "next",
           },
           customButtons: {
             prev: {
-              text: '<',
-              click: function() {
+              text: "<",
+              click: function () {
                 calendar.prev();
-              }
+              },
             },
             next: {
-              text: '>',
-              click: function() {
+              text: ">",
+              click: function () {
                 calendar.next();
-              }
+              },
             },
             today: {
-              text: 'Today',
-              click: function() {
+              text: "Today",
+              click: function () {
                 calendar.today();
-                calendar.changeView('dayGridMonth');
-              }
-            }
+                calendar.changeView("dayGridMonth");
+              },
+            },
           },
-          titleFormat: { year: 'numeric', month: 'long' },
+          titleFormat: { year: "numeric", month: "long" },
           buttonIcons: false,
           buttonText: {
-            today: 'Today',
-            prev: '<',
-            next: '>'
+            today: "Today",
+            prev: "<",
+            next: ">",
           },
           // Custom CSS to center the title
-          viewClassNames: ['custom-calendar-header'],
+          viewClassNames: ["custom-calendar-header"],
           events: await fetchEvents(),
           dateClick: function (info) {
             // When a date is clicked, open the modal for new event
