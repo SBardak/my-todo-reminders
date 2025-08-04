@@ -1,8 +1,7 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@next";
 import { supabaseConfig } from "./config.js";
 
 // Initialize Supabase client with proper configuration for GitHub Pages
-export const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
+export const supabase = window.supabase.createClient(supabaseConfig.url, supabaseConfig.key, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
