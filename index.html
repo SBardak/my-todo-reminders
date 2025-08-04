@@ -485,14 +485,19 @@
       </div>
     </div>
 
+    <!-- Load Supabase client first -->
+    <script type="module" src="./js/supabase.js"></script>
+    <!-- Then load auth.js which depends on Supabase -->
     <script type="module">
       import {
         signIn,
         signUp,
         isAuthenticated,
-        supabase,
         handleEmailConfirmation,
       } from "./js/auth.js";
+      
+      // Import supabase from the module
+      import { supabase } from "./js/supabase.js";
 
       // Wait for the DOM to be fully loaded
       document.addEventListener("DOMContentLoaded", async () => {

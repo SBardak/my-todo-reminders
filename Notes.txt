@@ -1,6 +1,10 @@
 Preview HTML
 python -m http.server 8000
 Get-Process python | Where-Object { $_.CommandLine -like '*http.server*' } | Stop-Process -Force
+netstat -ano | findstr :8000
+Get-Process -Id 7444, 40756
+Stop-Process -Id 7444, 40756 -Force
+
 
 CTRL + F5 for hard refresh
 
