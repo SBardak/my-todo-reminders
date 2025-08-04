@@ -75,16 +75,29 @@ async function backupData() {
       throw travelError;
     }
 
+    // Fetch all calendar events
+    const { data: calendarEvents, error: calendarError } = await supabase
+      .from("events")
+      .select("*")
+      .order("start_date", { ascending: true });
+
+    // Only throw if events table exists but has an error
+    if (calendarError && calendarError.code !== "PGRST116") {
+      throw calendarError;
+    }
+
     // Create backup object
     const backup = {
       timestamp: new Date().toISOString(),
-      version: "1.2", // Updated version to include travel lists
+      version: "1.3", // Updated version to include calendar events
       totalLists: todoLists?.length || 0,
       totalShoppingLists: shoppingLists?.length || 0,
       totalTravelLists: travelLists?.length || 0,
+      totalCalendarEvents: calendarEvents?.length || 0,
       data: todoLists || [],
       shoppingData: shoppingLists || [],
       travelData: travelLists || [],
+      calendarData: calendarEvents || [],
     };
 
     // Create filename with date
@@ -103,7 +116,7 @@ async function backupData() {
 
     console.log(`✅ Backup successful: ${filename}`);
     console.log(
-      `📊 Backed up ${backup.totalLists} todo lists, ${backup.totalShoppingLists} shopping lists, and ${backup.totalTravelLists} travel lists`
+      `📊 Backed up ${backup.totalLists} todo lists, ${backup.totalShoppingLists} shopping lists, ${backup.totalTravelLists} travel lists, and ${backup.totalCalendarEvents} calendar events`
     );
 
     // Keep only last 10 backups (cleanup old files)
