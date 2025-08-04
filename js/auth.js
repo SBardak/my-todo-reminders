@@ -1,28 +1,38 @@
-// Use the globally initialized Supabase client
-const supabase = window.supabase;
+// Initialize Supabase client
+let supabase;
 
-if (!supabase) {
-  console.error('Supabase client not initialized. Make sure supabase.js is loaded before auth.js');
-}
+// Initialize auth state listener after DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    // Check if Supabase is available in window object
+    if (window.supabase) {
+      supabase = window.supabase;
+      
+      // Auth state change listener
+      supabase.auth.onAuthStateChange((event, session) => {
+        console.log("Auth state changed:", event);
+        if (event === "SIGNED_IN") {
+          // User signed in
+          document.dispatchEvent(
+            new CustomEvent("user-authenticated", { detail: session.user })
+          );
+          updateAuthUI(true);
+        } else if (event === "SIGNED_OUT") {
+          // User signed out
+          document.dispatchEvent(new CustomEvent("user-signed-out"));
+          updateAuthUI(false);
+        }
+      });
+    } else {
+      console.error('Supabase client not found in window object');
+    }
+  } catch (error) {
+    console.error('Error initializing auth state listener:', error);
+  }
+});
 
 // Export the Supabase client for use in other modules
 export { supabase };
-
-// Auth state change listener
-supabase.auth.onAuthStateChange((event, session) => {
-  console.log("Auth state changed:", event);
-  if (event === "SIGNED_IN") {
-    // User signed in
-    document.dispatchEvent(
-      new CustomEvent("user-authenticated", { detail: session.user })
-    );
-    updateAuthUI(true);
-  } else if (event === "SIGNED_OUT") {
-    // User signed out
-    document.dispatchEvent(new CustomEvent("user-signed-out"));
-    updateAuthUI(false);
-  }
-});
 
 // Update UI based on auth state
 async function updateAuthUI(isAuthenticated) {

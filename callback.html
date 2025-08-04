@@ -117,20 +117,30 @@
   </head>
   <body>
     <div class="container" id="container">
+      <div id="spinner" class="spinner"></div>
+      <div id="content" style="display: none;">
         <div class="success-icon">✓</div>
-        <h2>Email Verified Successfully!</h2>
-        <p>Your email has been verified. You'll be redirected to your dashboard in <span class="countdown" id="countdown">3</span> seconds.</p>
+        <h2 id="title">Verifying Email...</h2>
+        <p id="status">Please wait while we verify your email address.</p>
+      </div>
     </div>
 
     <script>
       // Initialize Supabase with configuration
       document.addEventListener('DOMContentLoaded', async () => {
+        const container = document.getElementById('container');
+        const content = document.getElementById('content');
+        const spinner = document.getElementById('spinner');
+        const title = document.getElementById('title');
+        const status = document.getElementById('status');
+        
         try {
-          // First, load the Supabase client
-          const { createClient } = supabase;
+          // Show loading state
+          spinner.style.display = 'block';
+          content.style.display = 'none';
           
-          // Then create the client with the configuration
-          const supabaseClient = createClient(
+          // Create Supabase client
+          const supabaseClient = supabase.createClient(
             'https://tdskwpcssbovburunekn.supabase.co',
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkc2t3cGNzc2JvdmJ1cnVuZWtuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMDI1MTUsImV4cCI6MjA2OTU3ODUxNX0.cFVJvrU2TorJMbfy8VpBG2T_pkSAMEoHgBqx-euig6M',
             {
@@ -138,32 +148,119 @@
                 autoRefreshToken: true,
                 persistSession: true,
                 detectSessionInUrl: true,
-                flowType: "pkce",
+                flowType: 'pkce',
                 debug: true,
                 storage: window.localStorage,
-                storageKey: "sb-auth-token",
-                redirectTo: window.location.hostname === "localhost"
-                  ? "http://localhost:8000/callback.html"
-                  : "https://sbardak.github.io/my-todo-reminders/callback.html"
+                storageKey: 'sb-auth-token',
+                redirectTo: window.location.hostname === 'localhost'
+                  ? 'http://localhost:8000/callback.html'
+                  : 'https://sbardak.github.io/my-todo-reminders/callback.html'
               }
             }
           );
           
-          // Make supabase available globally for debugging
+          // Make supabase available globally
           window.supabase = supabaseClient;
           
-          // Now that Supabase is initialized, start the verification process
-          handleEmailVerification();
+          // Process the OAuth callback
+          await handleEmailVerification(supabaseClient);
+          
         } catch (error) {
-          console.error('Failed to initialize Supabase:', error);
-          document.getElementById('container').innerHTML = `
-            <div class="error-icon">!</div>
-            <h2>Initialization Error</h2>
-            <p>Failed to initialize the application. Please try again later.</p>
-            <p>Error: ${error.message}</p>
-          `;
+          console.error('Verification error:', error);
+          showError('Verification Failed', error.message || 'An unknown error occurred during verification.');
+        } finally {
+          // Hide spinner after processing
+          spinner.style.display = 'none';
+          content.style.display = 'block';
         }
       });
+      
+      // Show error message
+      function showError(title, message) {
+        const container = document.getElementById('container');
+        container.innerHTML = `
+          <div class="error-icon">!</div>
+          <h2>${title}</h2>
+          <p>${message}</p>
+          <p>Please try again or contact support if the problem persists.</p>
+          <button onclick="window.location.href='/index.html'" style="
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+          ">Return to Home</button>
+        `;
+      }
+      
+      // Show success message and redirect
+      function showSuccessAndRedirect() {
+        const container = document.getElementById('container');
+        const countdownElement = document.createElement('span');
+        countdownElement.className = 'countdown';
+        countdownElement.id = 'countdown';
+        countdownElement.textContent = '3';
+        
+        container.innerHTML = '';
+        container.innerHTML = `
+          <div class="success-icon">✓</div>
+          <h2>Email Verified Successfully!</h2>
+          <p>Your email has been verified. You'll be redirected to your dashboard in ${countdownElement.outerHTML} seconds.</p>
+        `;
+        
+        // Start countdown
+        let seconds = 3;
+        const countdown = setInterval(() => {
+          seconds--;
+          if (seconds <= 0) {
+            clearInterval(countdown);
+            window.location.href = 'reminders.html';
+          } else {
+            document.getElementById('countdown').textContent = seconds;
+          }
+        }, 1000);
+      }
+      
+      // Handle the email verification
+      async function handleEmailVerification(supabaseClient) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const error = urlParams.get('error');
+        const errorDescription = urlParams.get('error_description');
+        
+        // Check for OAuth errors
+        if (error) {
+          throw new Error(errorDescription || `OAuth error: ${error}`);
+        }
+        
+        // Process the OAuth code if present
+        if (code) {
+          try {
+            const { data, error: authError } = await supabaseClient.auth.exchangeCodeForSession(code);
+            
+            if (authError) throw authError;
+            
+            // Show success message and redirect
+            showSuccessAndRedirect();
+            return;
+          } catch (err) {
+            console.error('Error exchanging code for session:', err);
+            throw new Error('Failed to complete email verification. ' + (err.message || 'Please try again.'));
+          }
+        }
+        
+        // If no code but user is authenticated, show success
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (session?.user) {
+          showSuccessAndRedirect();
+          return;
+        }
+        
+        // If we get here, something went wrong
+        throw new Error('Unable to verify your email. Please try the verification link again.');
+      }
 
       // Handle the email verification
       async function handleEmailVerification() {
