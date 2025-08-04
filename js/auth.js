@@ -11,7 +11,15 @@ async function ensureSupabase() {
   // Wait for auth to be available
   let attempts = 0;
   while (attempts < 10) {
-    if (supabase?.auth) return true;
+    if (supabase?.auth) {
+      // Check if we have a valid session
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        return true;
+      }
+      // If no session but auth is available, that's okay - user might be logged out
+      return true;
+    }
     await new Promise(resolve => setTimeout(resolve, 100));
     attempts++;
   }
@@ -171,18 +179,26 @@ export async function getCurrentUser() {
       return null;
     }
     
-    const { data: { user }, error } = await supabase.auth.getUser();
-    if (error) {
-      console.error('Error getting user:', error);
-      return null;
+    // First try to get the session
+    const { data: { session } } = await supabase.auth.getSession();
+    
+    // If we have a session, return the user from the session
+    if (session?.user) {
+      return session.user;
     }
     
-    if (!user) {
-      console.log('No authenticated user found');
-      return null;
+    // Fallback to getUser if no session but might be authenticated
+    try {
+      const { data: { user }, error } = await supabase.auth.getUser();
+      if (error) throw error;
+      return user || null;
+    } catch (error) {
+      if (error.message.includes('Auth session missing')) {
+        console.log('No active session found');
+        return null;
+      }
+      throw error;
     }
-    
-    return user;
   } catch (error) {
     console.error("Error in getCurrentUser:", error);
     return null;
@@ -199,14 +215,10 @@ export async function isAuthenticated() {
     }
     
     // First try to get the session
-    const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
-    if (sessionError) {
-      console.error('Error getting session:', sessionError);
-      return false;
-    }
+    const { data: { session } } = await supabase.auth.getSession();
     
     // If we have a valid session with a user, return true
-    if (sessionData?.session?.user) {
+    if (session?.user) {
       return true;
     }
     
@@ -215,6 +227,10 @@ export async function isAuthenticated() {
     return !!user;
     
   } catch (error) {
+    if (error.message.includes('Auth session missing')) {
+      console.log('No active session found');
+      return false;
+    }
     console.error("Error in isAuthenticated:", error);
     return false;
   }
