@@ -96,32 +96,47 @@
     </div>
 
     <script>
-      // Check if Supabase is loaded
-      if (!window.supabase) {
-        console.error("Supabase not initialized");
-        const statusEl = document.getElementById("status");
-        if (statusEl) {
-          statusEl.textContent = "Error: Failed to initialize. Please refresh the page.";
+      // Initialize Supabase with configuration
+      document.addEventListener('DOMContentLoaded', async () => {
+        try {
+          // First, load the Supabase client
+          const { createClient } = supabase;
+          
+          // Then create the client with the configuration
+          const supabaseClient = createClient(
+            'https://tdskwpcssbovburunekn.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkc2t3cGNzc2JvdmJ1cnVuZWtuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMDI1MTUsImV4cCI6MjA2OTU3ODUxNX0.cFVJvrU2TorJMbfy8VpBG2T_pkSAMEoHgBqx-euig6M',
+            {
+              auth: {
+                autoRefreshToken: true,
+                persistSession: true,
+                detectSessionInUrl: true,
+                flowType: "pkce",
+                debug: true,
+                storage: window.localStorage,
+                storageKey: "sb-auth-token",
+                redirectTo: window.location.hostname === "localhost"
+                  ? "http://localhost:8000/callback.html"
+                  : "https://sbardak.github.io/my-todo-reminders/callback.html"
+              }
+            }
+          );
+          
+          // Make supabase available globally for debugging
+          window.supabase = supabaseClient;
+          
+          // Now that Supabase is initialized, start the verification process
+          handleEmailVerification();
+        } catch (error) {
+          console.error('Failed to initialize Supabase:', error);
+          document.getElementById('container').innerHTML = `
+            <div class="error-icon">!</div>
+            <h2>Initialization Error</h2>
+            <p>Failed to initialize the application. Please try again later.</p>
+            <p>Error: ${error.message}</p>
+          `;
         }
-      } else {
-        // Get the Supabase client from the global scope
-        const supabase = window.supabase;
-        
-        // Configure auth options
-        const authOptions = {
-          auth: {
-            autoRefreshToken: true,
-            persistSession: true,
-            detectSessionInUrl: true,
-            flowType: "pkce",
-            debug: true,
-            storage: window.localStorage,
-            storageKey: "sb-auth-token"
-          }
-        };
-
-        // Make supabase available globally for debugging
-        window.supabase = supabase;
+      });
 
       // Handle the email verification
       async function handleEmailVerification() {
@@ -322,9 +337,7 @@
         }
       }
 
-      // Start the verification process when the page loads
-      document.addEventListener("DOMContentLoaded", handleEmailVerification);
-      } // Close the else block
+
     </script>
   </body>
 </html>
