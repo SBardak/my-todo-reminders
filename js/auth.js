@@ -50,7 +50,7 @@ export async function signUp(email, password) {
       email,
       password,
       options: {
-        emailRedirectTo: `${window.location.origin}/callback.html`
+        emailRedirectTo: `https://tdskwpcssbovburunekn.supabase.co/auth/v1/callback`
       }
     });
     
