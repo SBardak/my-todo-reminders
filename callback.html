@@ -95,11 +95,13 @@
                 const hash = window.location.hash;
                 const urlParams = new URLSearchParams(hash.substring(1));
                 const type = urlParams.get('type');
+                const tokenHash = urlParams.get('token_hash');
                 
-                if (type === 'signup' || type === 'email_change') {
+                // Handle email confirmation flow
+                if ((type === 'signup' || type === 'email_change') && tokenHash) {
                     // This is an email confirmation or email change flow
                     const { data, error } = await supabase.auth.verifyOtp({
-                        token_hash: urlParams.get('token_hash'),
+                        token_hash: tokenHash,
                         type: type === 'signup' ? 'signup' : 'email_change'
                     });
                     
@@ -129,19 +131,23 @@
                     // Successfully authenticated
                     statusElement.textContent = 'Success! Redirecting...';
                     setTimeout(() => {
-                        window.location.href = 'reminders.html';
+                        // Redirect to the original URL or default to reminders.html
+                        const redirectTo = localStorage.getItem('returnTo') || 'reminders.html';
+                        localStorage.removeItem('returnTo'); // Clean up
+                        window.location.href = redirectTo;
                     }, 1500);
                     return;
                 }
                 
-                // If we get here, it's likely an OAuth callback without a session
-                // Let Supabase handle the OAuth flow
+                // If we get here, try to handle the OAuth flow
                 const { data: authData, error: authError } = await supabase.auth.getSession();
                 
                 if (authError) throw authError;
                 
                 if (authData.session) {
-                    window.location.href = 'reminders.html';
+                    const redirectTo = localStorage.getItem('returnTo') || 'reminders.html';
+                    localStorage.removeItem('returnTo'); // Clean up
+                    window.location.href = redirectTo;
                 } else {
                     throw new Error('Authentication failed. Please try again.');
                 }

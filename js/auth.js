@@ -46,11 +46,15 @@ async function updateAuthUI(isAuthenticated) {
 // Sign up with email and password
 export async function signUp(email, password) {
   try {
+    // Store the current URL to redirect back after email confirmation
+    const returnTo = window.location.pathname + window.location.search;
+    localStorage.setItem('returnTo', returnTo);
+    
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: `https://tdskwpcssbovburunekn.supabase.co/auth/v1/callback`
+        emailRedirectTo: `${window.location.origin}/callback.html`
       }
     });
     
