@@ -65,7 +65,7 @@ export async function signUp(email, password) {
     const returnTo = window.location.pathname + window.location.search;
     localStorage.setItem("returnTo", returnTo);
 
-    // For GitHub Pages, redirect to index.html instead of callback.html
+    // For GitHub Pages, use the correct base URL
     const baseUrl =
       window.location.hostname === "localhost"
         ? window.location.origin
@@ -75,7 +75,7 @@ export async function signUp(email, password) {
       email,
       password,
       options: {
-        emailRedirectTo: `${baseUrl}/index.html`,
+        emailRedirectTo: `${baseUrl}/callback.html`,
       },
     });
 
@@ -132,41 +132,4 @@ export async function getCurrentUser() {
 export async function isAuthenticated() {
   const user = await getCurrentUser();
   return !!user;
-}
-
-// Handle email confirmation tokens in URL hash
-export async function handleEmailConfirmation() {
-  const hash = window.location.hash;
-  if (!hash) return null;
-
-  try {
-    const hashParams = new URLSearchParams(hash.substring(1));
-    const type = hashParams.get("type");
-    const accessToken = hashParams.get("access_token");
-    const refreshToken = hashParams.get("refresh_token");
-
-    // Check if this is an email confirmation
-    if (type === "signup" && accessToken && refreshToken) {
-      // Set the session using the tokens
-      const { data, error } = await supabase.auth.setSession({
-        access_token: accessToken,
-        refresh_token: refreshToken,
-      });
-
-      if (error) throw error;
-
-      // Clear the hash from the URL
-      window.history.replaceState({}, document.title, window.location.pathname);
-
-      return {
-        type: "email_confirmed",
-        user: data.user,
-      };
-    }
-  } catch (error) {
-    console.error("Error handling email confirmation:", error);
-    return { error };
-  }
-
-  return null;
 }

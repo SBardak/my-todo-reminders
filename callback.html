@@ -1,228 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authenticating...</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Verification</title>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="./js/config.js"></script>
-    <script>
-        // Simple redirect to handle GitHub Pages 404 issue
-        (function() {
-            // If we have a hash in the URL, we need to process it
-            if (window.location.hash) {
-                // Store the hash in session storage
-                sessionStorage.setItem('supabase.auth.token', window.location.hash.substring(1));
-                // Clear the hash from the URL
-                window.history.replaceState({}, document.title, window.location.pathname);
-                // Redirect to the main app
-                window.location.href = 'https://sbardak.github.io/index.html';
-                return;
-            }
-        })();
-
-        // Initialize Supabase with proper OAuth settings
-        const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
-            auth: {
-                autoRefreshToken: true,
-                persistSession: true,
-                detectSessionInUrl: true,
-                flowType: 'pkce',
-                debug: true,
-                storage: window.localStorage,
-                storageKey: 'sb-auth-token',
-                redirectTo: 'https://sbardak.github.io/callback.html'
-            }
-        });
-        
-        // Make supabase available globally for debugging
-        window.supabase = supabase;
-    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 1rem;
-            background-color: #f8f9fa;
-            color: #1a1a1a;
-            line-height: 1.6;
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 1rem;
+        background-color: #181a1b;
+        color: #e8e6e3;
+        line-height: 1.6;
+      }
+      .container {
+        text-align: center;
+        padding: 2.5rem;
+        background: #232526;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 100%;
+        margin: 1rem;
+      }
+      .spinner {
+        border: 4px solid rgba(74, 144, 226, 0.1);
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border-left-color: #4a90e2;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1.5rem;
+      }
+      .success-icon,
+      .error-icon {
+        font-size: 48px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+      }
+      .success-icon {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+      }
+      .error-icon {
+        background-color: #ffebee;
+        color: #c62828;
+        font-weight: bold;
+      }
+      h2 {
+        color: #e8e6e3;
+        margin: 0 0 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+      p {
+        color: #a8a095;
+        margin: 0.5rem 0;
+        font-size: 1rem;
+      }
+      .countdown {
+        color: #4a90e2;
+        font-weight: 600;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        .container {
-            text-align: center;
-            padding: 2.5rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            max-width: 500px;
-            width: 100%;
-            margin: 1rem;
+        100% {
+          transform: rotate(360deg);
         }
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border-left-color: #4a90e2;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1.5rem;
-        }
-        .success-icon, .error-icon {
-            font-size: 48px;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-        .success-icon {
-            background-color: #e8f5e9;
-            color: #2e7d32;
-        }
-        .error-icon {
-            background-color: #ffebee;
-            color: #c62828;
-            font-weight: bold;
-        }
-        h2 {
-            color: #1a1a1a;
-            margin: 0 0 1rem;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-        p {
-            color: #4a4a4a;
-            margin: 0.5rem 0;
-            font-size: 1rem;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-        <div class="spinner"></div>
-        <h2>Completing authentication...</h2>
-        <p id="status">Please wait while we log you in.</p>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="spinner" id="spinner"></div>
+      <h2 id="title">Verify your email...</h2>
+      <p id="status">Please click the link in your email to continue.</p>
     </div>
 
     <script>
-        // Handle the OAuth redirect and email confirmation
-        async function handleAuth() {
-            const statusElement = document.getElementById('status');
-            const container = document.querySelector('.container');
-            const spinner = document.querySelector('.spinner');
-            
-            try {
-                // First, try to get the session from the URL hash
-                const { data: { session }, error } = await supabase.auth.getSession();
-                
-                // Check if there's an error in the URL (like OAuth error)
-                const urlParams = new URLSearchParams(window.location.search);
-                const errorDescription = urlParams.get('error_description');
-                if (errorDescription) {
-                    throw new Error(decodeURIComponent(errorDescription));
+      // Initialize Supabase
+      const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
+        auth: {
+          autoRefreshToken: true,
+          persistSession: true,
+          detectSessionInUrl: true,
+          flowType: "pkce",
+          debug: true,
+          storage: window.localStorage,
+          storageKey: "sb-auth-token",
+        },
+      });
+
+      // Make supabase available globally for debugging
+      window.supabase = supabase;
+
+      // Handle the email verification
+      async function handleEmailVerification() {
+        const container = document.getElementById("container");
+        const spinner = document.getElementById("spinner");
+        const title = document.getElementById("title");
+        const status = document.getElementById("status");
+
+        try {
+          const hash = window.location.hash;
+          console.log("Current hash:", hash);
+
+          if (hash) {
+            const hashParams = new URLSearchParams(hash.substring(1));
+            const type = hashParams.get("type");
+            const accessToken = hashParams.get("access_token");
+            const refreshToken = hashParams.get("refresh_token");
+            const tokenHash = hashParams.get("token_hash");
+
+            console.log("Hash params:", {
+              type,
+              accessToken: !!accessToken,
+              refreshToken: !!refreshToken,
+              tokenHash: !!tokenHash,
+            });
+
+            // Handle different types of email verification
+            if (type === "signup") {
+              let authResult;
+
+              if (tokenHash) {
+                // Use verifyOtp for token_hash method
+                authResult = await supabase.auth.verifyOtp({
+                  token_hash: tokenHash,
+                  type: "signup",
+                });
+              } else if (accessToken && refreshToken) {
+                // Use setSession for access_token method
+                authResult = await supabase.auth.setSession({
+                  access_token: accessToken,
+                  refresh_token: refreshToken,
+                });
+              } else {
+                throw new Error("Invalid verification tokens");
+              }
+
+              if (authResult.error) throw authResult.error;
+
+              // Show success message
+              spinner.style.display = "none";
+              container.innerHTML = `
+                            <div class="success-icon">✓</div>
+                            <h2>Email Verified Successfully!</h2>
+                            <p>Your email has been verified. You'll be redirected to your dashboard in <span class="countdown" id="countdown">3</span> seconds.</p>
+                        `;
+
+              // Countdown and redirect
+              let countdown = 3;
+              const countdownElement = document.getElementById("countdown");
+              const countdownInterval = setInterval(() => {
+                countdown--;
+                if (countdownElement) {
+                  countdownElement.textContent = countdown;
                 }
 
-                // Check if this is an email confirmation flow
-                const hash = window.location.hash;
-                const hashParams = new URLSearchParams(hash.substring(1));
-                const type = hashParams.get('type');
-                const tokenHash = hashParams.get('token_hash');
-                
-                // Handle email confirmation flow
-                if ((type === 'signup' || type === 'email_change') && tokenHash) {
-                    // This is an email confirmation or email change flow
-                    const { data, error } = await supabase.auth.verifyOtp({
-                        token_hash: tokenHash,
-                        type: type === 'signup' ? 'signup' : 'email_change'
-                    });
-                    
-                    if (error) throw error;
-                    
-                    // Show success message
-                    spinner.style.display = 'none';
-                    container.innerHTML = `
-                        <div class="success-icon">✓</div>
-                        <h2>Email Verified Successfully!</h2>
-                        <p>Your email has been verified. You'll be redirected to the app in a moment.</p>
-                    `;
-                    
-                    // Redirect to the app after a short delay
-                    setTimeout(() => {
-                        window.location.href = 'index.html?email_verified=true';
-                    }, 3000);
-                    return;
+                if (countdown <= 0) {
+                  clearInterval(countdownInterval);
+                  // Clear the hash and redirect
+                  window.history.replaceState(
+                    {},
+                    document.title,
+                    window.location.pathname
+                  );
+                  window.location.href = "reminders.html";
                 }
-                
-                // If we have a session, redirect to the app
-                if (session) {
-                    statusElement.textContent = 'Success! Redirecting...';
-                    setTimeout(() => {
-                        const returnTo = localStorage.getItem('returnTo');
-                        localStorage.removeItem('returnTo');
-                        
-                        // If we have a stored return URL, use it, otherwise go to the main app
-                        if (returnTo && returnTo !== 'undefined') {
-                            // If the return URL is a full URL, use it as is
-                            if (returnTo.startsWith('http')) {
-                                window.location.href = returnTo;
-                            } else {
-                                // Otherwise, construct the full URL
-                                const cleanPath = returnTo.replace(/^\//, '');
-                                // For GitHub Pages, we need to ensure we don't duplicate the base path
-                                if (cleanPath.startsWith('my-todo-reminders/')) {
-                                    window.location.href = `${BASE_URL}/${cleanPath.replace('my-todo-reminders/', '')}`;
-                                } else {
-                                    window.location.href = `${BASE_URL}/${cleanPath}`;
-                                }
-                            }
-                        } else {
-                            // Default redirect to the root of the site
-                            window.location.href = `${BASE_URL}/index.html`;
-                        }
-                    }, 1000);
-                    return;
-                }
-                
-                // If we get here, try to sign in with OAuth
-                await supabase.auth.signInWithOAuth({
-                    provider: 'google', // or whichever provider you're using
-                    options: {
-                        redirectTo: window.location.origin + '/callback.html',
-                        queryParams: {
-                            access_type: 'offline',
-                            prompt: 'consent',
-                        },
-                    },
-                });
-                
-            } catch (error) {
-                console.error('Authentication error:', error);
-                spinner.style.display = 'none';
-                container.innerHTML = `
+              }, 1000);
+
+              return;
+            }
+
+            // Handle other types like email_change if needed
+            if (type === "email_change" && tokenHash) {
+              const { data, error } = await supabase.auth.verifyOtp({
+                token_hash: tokenHash,
+                type: "email_change",
+              });
+
+              if (error) throw error;
+
+              spinner.style.display = "none";
+              container.innerHTML = `
+                            <div class="success-icon">✓</div>
+                            <h2>Email Updated Successfully!</h2>
+                            <p>Your email has been updated. You'll be redirected to your dashboard in <span class="countdown" id="countdown">3</span> seconds.</p>
+                        `;
+
+              setTimeout(() => {
+                window.location.href = "reminders.html";
+              }, 3000);
+
+              return;
+            }
+          }
+
+          // If we get here, check if there's already a session
+          const {
+            data: { session },
+            error,
+          } = await supabase.auth.getSession();
+
+          if (session) {
+            // User is already authenticated, redirect
+            status.textContent = "Already authenticated. Redirecting...";
+            setTimeout(() => {
+              window.location.href = "reminders.html";
+            }, 1000);
+            return;
+          }
+
+          // No valid session or tokens, redirect to login
+          throw new Error("No valid authentication tokens found");
+        } catch (error) {
+          console.error("Email verification error:", error);
+
+          spinner.style.display = "none";
+          container.innerHTML = `
                     <div class="error-icon">!</div>
                     <h2>Verification Error</h2>
-                    <p>${error.message || 'There was an issue with the authentication. Please try again.'}</p>
-                    <p>You'll be redirected to the login page shortly.</p>
+                    <p>${
+                      error.message ||
+                      "There was an issue verifying your email. Please try again."
+                    }</p>
+                    <p>You'll be redirected to the login page in <span class="countdown" id="error-countdown">5</span> seconds.</p>
                 `;
-                
-                setTimeout(() => {
-                    window.location.href = 'index.html#login';
-                }, 5000);
-            }
-        }
 
-        document.addEventListener('DOMContentLoaded', handleAuth);
+          // Error countdown and redirect
+          let countdown = 5;
+          const countdownElement = document.getElementById("error-countdown");
+          const countdownInterval = setInterval(() => {
+            countdown--;
+            if (countdownElement) {
+              countdownElement.textContent = countdown;
+            }
+
+            if (countdown <= 0) {
+              clearInterval(countdownInterval);
+              window.location.href = "index.html";
+            }
+          }, 1000);
+        }
+      }
+
+      // Start the verification process when the page loads
+      document.addEventListener("DOMContentLoaded", handleEmailVerification);
     </script>
-</body>
+  </body>
 </html>
