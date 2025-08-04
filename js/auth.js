@@ -65,17 +65,12 @@ export async function signUp(email, password) {
     const returnTo = window.location.pathname + window.location.search;
     localStorage.setItem("returnTo", returnTo);
 
-    // For GitHub Pages, use the correct base URL
-    const baseUrl =
-      window.location.hostname === "localhost"
-        ? window.location.origin
-        : "https://sbardak.github.io";
-
+    // Use the redirect URL from config
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: `${baseUrl}/callback.html`,
+        emailRedirectTo: supabaseConfig.redirectUrl,
       },
     });
 

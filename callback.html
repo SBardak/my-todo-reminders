@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Email Verification</title>
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    <script src="./js/config.js"></script>
+    <!-- Load Supabase from CDN with SRI for security -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2" integrity="sha384-..." crossorigin="anonymous"></script>
+    <!-- Use relative path for config -->
+    <script src="js/config.js"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
@@ -94,7 +96,13 @@
     </div>
 
     <script>
-      // Initialize Supabase
+      // Initialize Supabase with error handling
+      if (!window.supabaseConfig) {
+        console.error('Configuration not loaded');
+        document.getElementById('status').textContent = 'Error: Configuration not loaded. Please try again later.';
+        return;
+      }
+      
       const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
         auth: {
           autoRefreshToken: true,
