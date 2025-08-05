@@ -291,7 +291,7 @@
       import { supabaseConfig } from "./js/config.js";
 
       // Initialize Supabase client
-      const supabase = createClient(supabaseConfig.url, supabaseConfig.key);
+      const supabase = createClient(supabaseConfig.supabaseUrl, supabaseConfig.supabaseKey);
 
       // In-memory list storage for immediate UI updates
       let listsData = [];

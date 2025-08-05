@@ -628,7 +628,7 @@
       import { supabaseConfig } from "./js/config.js";
 
       // Initialize Supabase client
-      const supabase = createClient(supabaseConfig.url, supabaseConfig.key);
+      const supabase = createClient(supabaseConfig.supabaseUrl, supabaseConfig.supabaseKey);
       let currentUser = null;
 
       // Check authentication and get current user
