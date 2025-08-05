@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>Settings - Reminders App</title>
+    <link rel="stylesheet" href="css/styles.css" />
     <style>
       body {
         font-family: "Segoe UI", Arial, sans-serif;
         background: #181a1b;
-        margin: 0;
-        padding: 0;
         color: #e3eafc;
       }
 
@@ -274,7 +273,9 @@
     <div class="app-container">
       <header class="app-header">
         <nav class="nav-buttons">
-          <a href="settings.html" class="nav-button active" title="Settings">⚙️</a>
+          <a href="settings.html" class="nav-button active" title="Settings"
+            >⚙️</a
+          >
           <a href="index.html" class="nav-button">Reminders</a>
           <a href="shopping.html" class="nav-button">Shopping</a>
           <a href="travel.html" class="nav-button">Travel</a>
@@ -523,11 +524,11 @@
           // User is signed in
           loginForm.style.display = "none";
           userInfo.style.display = "block";
-            // Update the current email input field
-            const currentEmailInput = document.getElementById("current-email");
-            if (currentEmailInput) {
-              currentEmailInput.value = user.email;
-            }
+          // Update the current email input field
+          const currentEmailInput = document.getElementById("current-email");
+          if (currentEmailInput) {
+            currentEmailInput.value = user.email;
+          }
         } else {
           // User is signed out
           loginForm.style.display = "block";

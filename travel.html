@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Travel Lists</title>
+    <link rel="stylesheet" href="css/styles.css" />
     <style>
       body {
         font-family: "Segoe UI", Arial, sans-serif;
@@ -110,18 +111,7 @@
         background: #232526;
         color: #e3eafc;
       }
-      .add-entry-btn {
-        padding: 7px 16px;
-        background: #4a90e2;
-        color: #fff;
-        border: none;
-        border-radius: 0 6px 6px 0;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .add-entry-btn:hover {
-        background: #357abd;
-      }
+
       ul {
         list-style: none;
         padding: 8px;
@@ -184,28 +174,7 @@
         margin-bottom: 24px;
         gap: 8px;
       }
-      .add-list-input {
-        padding: 8px;
-        border: 1px solid #4a90e2;
-        border-radius: 6px;
-        outline: none;
-        background: #232526;
-        color: #e3eafc;
-        font-size: 1em;
-      }
-      .add-list-btn {
-        padding: 8px 18px;
-        background: #4a90e2;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 1em;
-        transition: background 0.2s;
-      }
-      .add-list-btn:hover {
-        background: #357abd;
-      }
+
       /* Header and Navigation Styles */
       .app-header {
         display: flex;
@@ -278,7 +247,7 @@
           type="text"
           id="add-list-input"
           class="add-list-input"
-          placeholder="New travel list name..."
+          placeholder="New list name..."
         />
         <button id="add-list-btn" class="add-list-btn">Add List</button>
       </div>
@@ -291,7 +260,10 @@
       import { supabaseConfig } from "./js/config.js";
 
       // Initialize Supabase client
-      const supabase = createClient(supabaseConfig.supabaseUrl, supabaseConfig.supabaseKey);
+      const supabase = createClient(
+        supabaseConfig.supabaseUrl,
+        supabaseConfig.supabaseKey
+      );
 
       // In-memory list storage for immediate UI updates
       let listsData = [];
