@@ -11,6 +11,72 @@
         padding: 0;
         color: #e3eafc;
       }
+
+      /* Auth Form Styles */
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-input {
+        width: 300px; /* Fixed width instead of 100% */
+        max-width: 100%;
+        padding: 10px;
+        border: 1px solid #2c2f32;
+        border-radius: 6px;
+        background: #1e2021;
+        color: #e3eafc;
+        font-size: 14px;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .btn-primary {
+        background: #4a90e2;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #3a7bc8;
+      }
+
+      .btn-secondary {
+        background: #2c2f32;
+        color: #e3eafc;
+      }
+
+      .btn-secondary:hover {
+        background: #3a3e42;
+      }
+
+      .auth-message {
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 6px;
+        display: none;
+      }
+
+      .auth-message.success {
+        background: rgba(46, 160, 67, 0.2);
+        color: #2ea043;
+      }
+
+      .auth-message.error {
+        background: rgba(248, 81, 73, 0.2);
+        color: #f85149;
+      }
       .app-container {
         max-width: 1000px;
         margin: 20px auto 40px;
@@ -208,14 +274,14 @@
     <div class="app-container">
       <header class="app-header">
         <nav class="nav-buttons">
-          <a href="settings.html" class="nav-button active">Settings</a>
+          <a href="settings.html" class="nav-button active" title="Settings">⚙️</a>
           <a href="index.html" class="nav-button">Reminders</a>
           <a href="shopping.html" class="nav-button">Shopping</a>
           <a href="travel.html" class="nav-button">Travel</a>
           <a href="calendar.html" class="nav-button">Calendar</a>
         </nav>
         <div style="margin-top: 25px">
-          <div class="user-email" id="user-email"></div>
+          <!-- <div class="user-email" id="user-email"></div> -->
         </div>
       </header>
 
@@ -242,24 +308,64 @@
       <div class="settings-section">
         <h2>Account</h2>
 
-        <div class="setting-item">
-          <div>
-            <div class="setting-label">Email</div>
-            <div class="setting-description">Update your email address</div>
+        <!-- Login/Signup Section -->
+        <div id="auth-section">
+          <!-- Login Form (shown when not logged in) -->
+          <div id="login-form" class="setting-item">
+            <h3>Login / Sign Up</h3>
+            <div class="form-group">
+              <input
+                type="email"
+                id="login-email"
+                placeholder="Email"
+                class="form-input"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                id="login-password"
+                placeholder="Password"
+                class="form-input"
+              />
+            </div>
+            <div class="form-actions">
+              <button id="login-button" class="btn btn-primary">Login</button>
+              <button id="signup-button" class="btn btn-secondary">
+                Sign Up
+              </button>
+            </div>
+            <div id="auth-message" class="auth-message"></div>
           </div>
-          <button class="btn btn-primary" id="update-email-btn">
-            Change Email
-          </button>
-        </div>
 
-        <div class="setting-item">
-          <div>
-            <div class="setting-label">Password</div>
-            <div class="setting-description">Change your password</div>
+          <!-- User Info (shown when logged in) -->
+          <div id="user-info" style="display: none">
+            <div class="setting-item">
+              <div>
+                <div class="setting-label">Change Email</div>
+                <div class="setting-description">Update your email address</div>
+              </div>
+              <div class="setting-control">
+                <button class="btn btn-primary" id="update-email-btn">
+                  Change Email
+                </button>
+              </div>
+            </div>
+
+            <div class="setting-item">
+              <div>
+                <div class="setting-label">Change Password</div>
+                <div class="setting-description">
+                  Set a new password for your account
+                </div>
+              </div>
+              <div class="setting-control">
+                <button class="btn btn-primary" id="update-password-btn">
+                  Change Password
+                </button>
+              </div>
+            </div>
           </div>
-          <button class="btn btn-primary" id="update-password-btn">
-            Change Password
-          </button>
         </div>
 
         <!-- Email Update Form (initially hidden) -->
@@ -386,11 +492,109 @@
       import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
       import { supabaseConfig } from "./js/config.js";
 
-      // Initialize Supabase
+      // Initialize Supabase client
       const supabase = createClient(
         supabaseConfig.supabaseUrl,
         supabaseConfig.supabaseKey
       );
+
+      // DOM Elements
+      const loginForm = document.getElementById("login-form");
+      const userInfo = document.getElementById("user-info");
+      const loginEmail = document.getElementById("login-email");
+      const loginPassword = document.getElementById("login-password");
+      const loginButton = document.getElementById("login-button");
+      const signupButton = document.getElementById("signup-button");
+      const authMessage = document.getElementById("auth-message");
+
+      // Check auth state on load
+      checkAuthState();
+
+      // Event Listeners
+      loginButton.addEventListener("click", handleLogin);
+      signupButton.addEventListener("click", handleSignUp);
+
+      // Check authentication state
+      async function checkAuthState() {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+        if (user) {
+          // User is signed in
+          loginForm.style.display = "none";
+          userInfo.style.display = "block";
+            // Update the current email input field
+            const currentEmailInput = document.getElementById("current-email");
+            if (currentEmailInput) {
+              currentEmailInput.value = user.email;
+            }
+        } else {
+          // User is signed out
+          loginForm.style.display = "block";
+          userInfo.style.display = "none";
+        }
+      }
+
+      // Handle login
+      async function handleLogin() {
+        const email = loginEmail.value.trim();
+        const password = loginPassword.value.trim();
+
+        if (!email || !password) {
+          showAuthMessage("Please enter both email and password", "error");
+          return;
+        }
+
+        try {
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+          });
+
+          if (error) throw error;
+
+          showAuthMessage("Login successful!", "success");
+          setTimeout(checkAuthState, 1000);
+        } catch (error) {
+          showAuthMessage(error.message, "error");
+        }
+      }
+
+      // Handle sign up
+      async function handleSignUp() {
+        const email = loginEmail.value.trim();
+        const password = loginPassword.value.trim();
+
+        if (!email || !password) {
+          showAuthMessage("Please enter both email and password", "error");
+          return;
+        }
+
+        try {
+          const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+          });
+
+          if (error) throw error;
+
+          showAuthMessage(
+            "Sign up successful! Please check your email to confirm your account.",
+            "success"
+          );
+          loginEmail.value = "";
+          loginPassword.value = "";
+        } catch (error) {
+          showAuthMessage(error.message, "error");
+        }
+      }
+
+      // Show auth messages
+      function showAuthMessage(message, type) {
+        authMessage.textContent = message;
+        authMessage.className = `auth-message ${type}`;
+        authMessage.style.display = "block";
+      }
 
       // DOM Elements
       const darkModeToggle = document.getElementById("dark-mode-toggle");
@@ -402,7 +606,7 @@
       );
       const deleteAccountBtn = document.getElementById("delete-account-btn");
       const signOutBtn = document.getElementById("sign-out-btn");
-      const userEmailElement = document.getElementById("user-email");
+      // Removed duplicate email element reference
 
       // Load user data
       async function loadUserData() {
@@ -411,7 +615,6 @@
             data: { user },
           } = await supabase.auth.getUser();
           if (user) {
-            userEmailElement.textContent = user.email;
             document.getElementById("current-email").value = user.email;
           }
         } catch (error) {
@@ -538,10 +741,13 @@
         }
       });
 
-      // Sign out
+      // Handle sign out
       signOutBtn.addEventListener("click", async () => {
-        await supabase.auth.signOut();
-        window.location.href = "index.html";
+        const { error } = await supabase.auth.signOut();
+        if (!error) {
+          // Just reload the current page to show login form
+          window.location.reload();
+        }
       });
 
       // Initialize the page
