@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Settings - Reminders App</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #181a1b;
+        margin: 0;
+        padding: 0;
+        color: #e3eafc;
+      }
+      .app-container {
+        max-width: 1000px;
+        margin: 20px auto 40px;
+        background: #232526;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+        padding: 24px 24px 32px;
+      }
+      h1 {
+        text-align: center;
+        color: #4a90e2;
+        margin-bottom: 32px;
+        font-size: 2.2em;
+        letter-spacing: 1px;
+      }
+      .settings-section {
+        background: #26282b;
+        border-radius: 14px;
+        padding: 20px;
+        margin-bottom: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      .settings-section h2 {
+        color: #4a90e2;
+        margin-top: 0;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #2c2f32;
+      }
+      .setting-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #2c2f32;
+      }
+      .setting-item:last-child {
+        border-bottom: none;
+      }
+      .setting-label {
+        font-weight: 500;
+        margin-right: 20px;
+      }
+      .setting-description {
+        font-size: 0.9em;
+        color: #a0a0a0;
+        margin-top: 4px;
+      }
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #4a4a4a;
+        transition: 0.4s;
+        border-radius: 24px;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      input:checked + .slider {
+        background-color: #4a90e2;
+      }
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+      .btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.95em;
+        font-weight: 500;
+        transition: all 0.2s;
+        min-width: 180px;
+        text-align: center;
+      }
+      .btn-primary {
+        background: #4a90e2;
+        color: white;
+      }
+      .btn-primary:hover {
+        background: #357abd;
+      }
+      .btn-danger {
+        background: #ff6b6b;
+        color: white;
+      }
+      .btn-danger:hover {
+        background: #d64545;
+      }
+
+      /* Header and Navigation Styles */
+      .app-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: -10px 0 15px 0;
+      }
+
+      .nav-buttons {
+        display: flex;
+        gap: 16px;
+        margin-top: 0px;
+      }
+
+      .nav-button {
+        padding: 10px 24px;
+        background: #26282b;
+        color: #e3eafc;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .nav-button:hover {
+        background: #2d3035;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .nav-button.active {
+        background: #4a90e2;
+        color: white;
+      }
+
+      @media (max-width: 700px) {
+        .lists-container {
+          flex-direction: column;
+          gap: 16px;
+        }
+        .list {
+          max-width: 100%;
+        }
+        .nav-buttons {
+          width: 100%;
+          justify-content: center;
+        }
+        .nav-button {
+          flex: 1;
+          text-align: center;
+          max-width: 150px;
+        }
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 500;
+      }
+      .form-control {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #2c2f32;
+        border-radius: 6px;
+        background: #232526;
+        color: #e3eafc;
+        font-size: 1em;
+      }
+      .form-control:focus {
+        outline: none;
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+      }
+
+      .user-email {
+        color: #a0a0a0;
+        font-size: 0.9em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <nav class="nav-buttons">
+          <a href="settings.html" class="nav-button active">Settings</a>
+          <a href="index.html" class="nav-button">Reminders</a>
+          <a href="shopping.html" class="nav-button">Shopping</a>
+          <a href="travel.html" class="nav-button">Travel</a>
+          <a href="calendar.html" class="nav-button">Calendar</a>
+        </nav>
+        <div style="margin-top: 25px">
+          <div class="user-email" id="user-email">user@example.com</div>
+        </div>
+      </header>
+
+      <h1>Account Settings</h1>
+
+      <!-- Appearance Section -->
+      <div class="settings-section">
+        <h2>Appearance</h2>
+        <div class="setting-item">
+          <div>
+            <div class="setting-label">Dark Mode</div>
+            <div class="setting-description">
+              Switch between light and dark theme
+            </div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="dark-mode-toggle" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Account Section -->
+      <div class="settings-section">
+        <h2>Account</h2>
+
+        <div class="setting-item">
+          <div>
+            <div class="setting-label">Email</div>
+            <div class="setting-description">Update your email address</div>
+          </div>
+          <button class="btn btn-primary" id="update-email-btn">
+            Change Email
+          </button>
+        </div>
+
+        <div class="setting-item">
+          <div>
+            <div class="setting-label">Password</div>
+            <div class="setting-description">Change your password</div>
+          </div>
+          <button class="btn btn-primary" id="update-password-btn">
+            Change Password
+          </button>
+        </div>
+
+        <!-- Email Update Form (initially hidden) -->
+        <div
+          id="email-update-form"
+          style="
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #2c2f32;
+          "
+        >
+          <div class="form-group">
+            <label for="current-email">Current Email</label>
+            <input
+              type="email"
+              id="current-email"
+              class="form-control"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="new-email">New Email</label>
+            <input
+              type="email"
+              id="new-email"
+              class="form-control"
+              placeholder="Enter new email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="confirm-email">Confirm New Email</label>
+            <input
+              type="email"
+              id="confirm-email"
+              class="form-control"
+              placeholder="Confirm new email"
+            />
+          </div>
+          <button class="btn btn-primary" id="save-email-btn">
+            Save Changes
+          </button>
+          <button class="btn" id="cancel-email-btn" style="margin-left: 8px">
+            Cancel
+          </button>
+        </div>
+
+        <!-- Password Update Form (initially hidden) -->
+        <div
+          id="password-update-form"
+          style="
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #2c2f32;
+          "
+        >
+          <div class="form-group">
+            <label for="current-password">Current Password</label>
+            <input
+              type="password"
+              id="current-password"
+              class="form-control"
+              placeholder="Enter current password"
+            />
+          </div>
+          <div class="form-group">
+            <label for="new-password">New Password</label>
+            <input
+              type="password"
+              id="new-password"
+              class="form-control"
+              placeholder="Enter new password"
+            />
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirm New Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              class="form-control"
+              placeholder="Confirm new password"
+            />
+          </div>
+          <button class="btn btn-primary" id="save-password-btn">
+            Save Changes
+          </button>
+          <button class="btn" id="cancel-password-btn" style="margin-left: 8px">
+            Cancel
+          </button>
+        </div>
+
+        <div class="setting-item">
+          <div>
+            <div class="setting-label">Sign Out</div>
+            <div class="setting-description">
+              Sign out of your account on this device
+            </div>
+          </div>
+          <button class="btn btn-danger" id="sign-out-btn">Sign Out</button>
+        </div>
+      </div>
+
+      <!-- Danger Zone Section -->
+      <div class="settings-section" style="border: 1px solid #ff6b6b33">
+        <h2 style="color: #ff6b6b">Danger Zone</h2>
+
+        <div class="setting-item">
+          <div>
+            <div class="setting-label">Delete Account</div>
+            <div class="setting-description">
+              Permanently delete your account and all data
+            </div>
+          </div>
+          <button class="btn btn-danger" id="delete-account-btn">
+            Delete Account
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      // Import Supabase client and configuration
+      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+      import { supabaseConfig } from "./js/config.js";
+
+      // Initialize Supabase
+      const supabase = createClient(
+        supabaseConfig.supabaseUrl,
+        supabaseConfig.supabaseKey
+      );
+
+      // DOM Elements
+      const darkModeToggle = document.getElementById("dark-mode-toggle");
+      const updateEmailBtn = document.getElementById("update-email-btn");
+      const updatePasswordBtn = document.getElementById("update-password-btn");
+      const emailUpdateForm = document.getElementById("email-update-form");
+      const passwordUpdateForm = document.getElementById(
+        "password-update-form"
+      );
+      const deleteAccountBtn = document.getElementById("delete-account-btn");
+      const signOutBtn = document.getElementById("sign-out-btn");
+      const userEmailElement = document.getElementById("user-email");
+
+      // Load user data
+      async function loadUserData() {
+        try {
+          const {
+            data: { user },
+          } = await supabase.auth.getUser();
+          if (user) {
+            userEmailElement.textContent = user.email;
+            document.getElementById("current-email").value = user.email;
+          }
+        } catch (error) {
+          console.error("Error loading user data:", error);
+        }
+      }
+
+      // Dark mode toggle
+      darkModeToggle.addEventListener("change", (e) => {
+        // Implementation for dark mode toggle
+        console.log("Dark mode toggled:", e.target.checked);
+        // Here you would typically save the preference and apply the theme
+      });
+
+      // Toggle email update form
+      updateEmailBtn.addEventListener("click", () => {
+        emailUpdateForm.style.display =
+          emailUpdateForm.style.display === "none" ? "block" : "none";
+      });
+
+      // Toggle password update form
+      updatePasswordBtn.addEventListener("click", () => {
+        passwordUpdateForm.style.display =
+          passwordUpdateForm.style.display === "none" ? "block" : "none";
+      });
+
+      // Cancel buttons
+      document
+        .getElementById("cancel-email-btn")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          emailUpdateForm.style.display = "none";
+        });
+
+      document
+        .getElementById("cancel-password-btn")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          passwordUpdateForm.style.display = "none";
+        });
+
+      // Save email changes
+      document
+        .getElementById("save-email-btn")
+        .addEventListener("click", async () => {
+          const newEmail = document.getElementById("new-email").value;
+          const confirmEmail = document.getElementById("confirm-email").value;
+
+          if (newEmail !== confirmEmail) {
+            alert("Email addresses do not match");
+            return;
+          }
+
+          try {
+            const { error } = await supabase.auth.updateUser({
+              email: newEmail,
+            });
+
+            if (error) throw error;
+
+            alert(
+              "Email updated successfully! Please check your new email to confirm the change."
+            );
+            emailUpdateForm.style.display = "none";
+            loadUserData(); // Refresh user data
+          } catch (error) {
+            console.error("Error updating email:", error);
+            alert("Error updating email: " + error.message);
+          }
+        });
+
+      // Save password changes
+      document
+        .getElementById("save-password-btn")
+        .addEventListener("click", async () => {
+          const currentPassword =
+            document.getElementById("current-password").value;
+          const newPassword = document.getElementById("new-password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+
+          if (newPassword !== confirmPassword) {
+            alert("New passwords do not match");
+            return;
+          }
+
+          try {
+            const { error } = await supabase.auth.updateUser({
+              password: newPassword,
+            });
+
+            if (error) throw error;
+
+            alert("Password updated successfully!");
+            passwordUpdateForm.style.display = "none";
+            // Clear password fields
+            document.getElementById("current-password").value = "";
+            document.getElementById("new-password").value = "";
+            document.getElementById("confirm-password").value = "";
+          } catch (error) {
+            console.error("Error updating password:", error);
+            alert("Error updating password: " + error.message);
+          }
+        });
+
+      // Delete account
+      deleteAccountBtn.addEventListener("click", async () => {
+        if (
+          confirm(
+            "Are you sure you want to delete your account? This action cannot be undone."
+          )
+        ) {
+          try {
+            const { error } = await supabase.rpc("delete_user_account");
+            if (error) throw error;
+
+            // Sign out after account deletion
+            await supabase.auth.signOut();
+            window.location.href = "index.html";
+          } catch (error) {
+            console.error("Error deleting account:", error);
+            alert("Error deleting account: " + error.message);
+          }
+        }
+      });
+
+      // Sign out
+      signOutBtn.addEventListener("click", async () => {
+        await supabase.auth.signOut();
+        window.location.href = "index.html";
+      });
+
+      // Initialize the page
+      document.addEventListener("DOMContentLoaded", () => {
+        loadUserData();
+      });
+    </script>
+  </body>
+</html>
