@@ -828,6 +828,21 @@
         window.showError = showError;
         window.generateListId = generateListId;
 
+        // Initialize the app with fade-in effect
+        (async function init() {
+            try {
+                // Load lists
+                await getLists();
+                
+                // Show the content after everything is loaded
+                document.body.classList.add("loaded");
+            } catch (error) {
+                console.error("Error initializing app:", error);
+                // Still show the page even if there's an error
+                document.body.classList.add("loaded");
+            }
+        })();
+
         // Set up event handlers after functions are available
         document.addEventListener('DOMContentLoaded', () => {
             // Add new list

@@ -11,7 +11,16 @@
         color: #e3eafc;
       }
 
-      /* Auth Form Styles */
+      /* Hide main content initially */
+      .app-container > *:not(header) {
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+      }
+      /* Show main content when loaded */
+      body.loaded .app-container > *:not(header) {
+        opacity: 1;
+      }
+
       .form-group {
         margin-bottom: 15px;
       }
@@ -310,7 +319,7 @@
         <h2>Account</h2>
 
         <!-- Login/Signup Section -->
-        <div id="auth-section">
+        <div id="auth-section" style="display: none">
           <!-- Login Form (shown when not logged in) -->
           <div id="login-form" class="setting-item">
             <h3>Login / Sign Up</h3>
@@ -489,6 +498,8 @@
     </div>
 
     <script type="module">
+      // Hide content until we're ready
+
       // Import Supabase client and configuration
       import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
       import { supabaseConfig } from "./js/config.js";
@@ -508,8 +519,21 @@
       const signupButton = document.getElementById("signup-button");
       const authMessage = document.getElementById("auth-message");
 
-      // Check auth state on load
-      checkAuthState();
+      // Initialize the app
+      (async function init() {
+        try {
+          // Check auth state
+          await checkAuthState();
+
+          // Show the content after everything is loaded
+          document.body.classList.add("loaded");
+        } catch (error) {
+          console.error("Error initializing app:", error);
+          // Still show the page even if there's an error
+          document.body.style.opacity = "1";
+          document.body.classList.add("loaded");
+        }
+      })();
 
       // Event Listeners
       loginButton.addEventListener("click", handleLogin);
@@ -517,9 +541,22 @@
 
       // Check authentication state
       async function checkAuthState() {
+        // Show the auth section now that we're checking auth state
+        document.getElementById("auth-section").style.display = "block";
+
         const {
           data: { user },
+          error,
         } = await supabase.auth.getUser();
+
+        if (error) {
+          console.error("Error checking auth state:", error);
+          // Default to showing login form on error
+          loginForm.style.display = "block";
+          userInfo.style.display = "none";
+          return;
+        }
+
         if (user) {
           // User is signed in
           loginForm.style.display = "none";
