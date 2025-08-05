@@ -626,18 +626,42 @@
       import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
       import { supabaseConfig } from "./js/config.js";
 
-      // Initialize Supabase client with public anon key
-      const supabase = createClient(supabaseConfig.url, supabaseConfig.key, {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false,
-          detectSessionInUrl: false,
-        },
-      });
+      // Initialize Supabase client
+      const supabase = createClient(supabaseConfig.url, supabaseConfig.key);
+      let currentUser = null;
 
-      // Simple auth check that always returns true since we're using anon key
+      // Check authentication and get current user
       async function checkAuth() {
-        return true;
+        try {
+          const { data: { session }, error } = await supabase.auth.getSession();
+          
+          if (error) {
+            console.error('Error getting session:', error);
+            window.location.href = 'index.html';
+            return false;
+          }
+          
+          if (!session) {
+            // Try to sign in anonymously if no session exists
+            const { data, error: signInError } = await supabase.auth.signInAnonymously();
+            
+            if (signInError) {
+              console.error('Error signing in anonymously:', signInError);
+              window.location.href = 'index.html';
+              return false;
+            }
+            
+            currentUser = data.user;
+          } else {
+            currentUser = session.user;
+          }
+          
+          return true;
+        } catch (err) {
+          console.error('Auth error:', err);
+          window.location.href = 'index.html';
+          return false;
+        }
       }
 
       // DOM Elements
@@ -668,32 +692,10 @@
         const input = document.getElementById(inputId);
         if (!input) return null;
 
-        // Get the display element
-        const displayId = inputId + "Display";
-        const displayElement = document.getElementById(displayId);
-
-        // Update display when date changes
-        function updateDisplay() {
-          if (input.value) {
-            const date = new Date(input.value);
-            displayElement.textContent = date.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            });
-          } else {
-            displayElement.textContent = "Select Date";
-          }
-        }
-
-        // Set initial value and display
+        // Set initial value if provided
         if (initialValue) {
           input.value = formatDateForInput(initialValue);
-          updateDisplay();
         }
-
-        // Update display when date changes
-        input.addEventListener("change", updateDisplay);
 
         return input;
       }
@@ -861,9 +863,10 @@
 
         calendar.render();
 
-        // Initialize date inputs
-        const startDateInput = initializeDateInput("eventDate", info?.dateStr);
-        const endDateInput = initializeDateInput("eventEndDate", info?.dateStr);
+        // Initialize date inputs with current date
+        const today = new Date().toISOString().split('T')[0];
+        const startDateInput = initializeDateInput("eventDate", today);
+        const endDateInput = initializeDateInput("eventEndDate", today);
       });
 
       // Save event
@@ -1136,9 +1139,13 @@
       // Create a new event in Supabase
       async function createEvent(eventData) {
         try {
+          if (!currentUser) {
+            const isAuthenticated = await checkAuth();
+            if (!isAuthenticated) throw new Error('Not authenticated');
+          }
+          
           // For all-day events, store the date as YYYY-MM-DD in the database
-          const startDate =
-            eventData.start || new Date().toISOString().split("T")[0];
+          const startDate = eventData.start || new Date().toISOString().split("T")[0];
           const endDate = eventData.end || null;
           const eventColor = eventData.color || "#4a90e2";
 
@@ -1155,6 +1162,7 @@
                 end_date: endDate,
                 description: descriptionWithColor,
                 created_at: new Date().toISOString(),
+                user_id: currentUser.id  // Add the user_id
               },
             ])
             .select();
@@ -1170,6 +1178,11 @@
       // Update an existing event in Supabase
       async function updateEvent(eventId, eventData) {
         try {
+          if (!currentUser) {
+            const isAuthenticated = await checkAuth();
+            if (!isAuthenticated) throw new Error('Not authenticated');
+          }
+          
           const startDate = eventData.start;
           const endDate = eventData.end || null;
           const eventColor = eventData.color || "#4a90e2";
@@ -1184,6 +1197,7 @@
             end_date: endDate,
             description: descriptionWithColor,
             updated_at: new Date().toISOString(),
+            user_id: currentUser.id  // Ensure user_id is included in updates
           };
 
           const { data, error } = await supabase
