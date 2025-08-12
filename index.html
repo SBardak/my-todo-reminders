@@ -58,6 +58,24 @@
 
       // In-memory list storage for immediate UI updates
       let listsData = [];
+      let currentUser = null;
+
+      // Check authentication and redirect to settings if not authenticated
+      async function checkAuth() {
+        // If we're already on the settings page, don't redirect
+        if (window.location.pathname.endsWith('settings.html')) {
+          return false;
+        }
+        
+        const { data: { user }, error } = await supabase.auth.getUser();
+        if (error || !user) {
+          console.log('User not authenticated, redirecting to settings');
+          window.location.href = 'settings.html';
+          return false;
+        }
+        currentUser = user;
+        return true;
+      }
 
       function showError(msg) {
         let errDiv = document.getElementById("error-msg");
@@ -936,8 +954,18 @@
 
       // Initialize the app with fade-in effect
       (async function init() {
+        // First, check if we're already on the settings page to prevent redirect loops
+        if (window.location.pathname.endsWith('settings.html')) {
+          document.body.classList.add("loaded");
+          return;
+        }
+
         try {
-          // Load lists
+          // Check authentication first - this will redirect if not authenticated
+          const isAuthenticated = await checkAuth();
+          if (!isAuthenticated) return; // Redirect already handled by checkAuth
+          
+          // Only proceed with loading data if we have a valid user
           await getLists();
           
           // Show the content after everything is loaded

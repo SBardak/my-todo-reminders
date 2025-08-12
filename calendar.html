@@ -631,38 +631,21 @@
       const supabase = createClient(supabaseConfig.supabaseUrl, supabaseConfig.supabaseKey);
       let currentUser = null;
 
-      // Check authentication and get current user
+      // Check authentication and redirect to settings if not authenticated
       async function checkAuth() {
-        try {
-          const { data: { session }, error } = await supabase.auth.getSession();
-          
-          if (error) {
-            console.error('Error getting session:', error);
-            window.location.href = 'index.html';
-            return false;
-          }
-          
-          if (!session) {
-            // Try to sign in anonymously if no session exists
-            const { data, error: signInError } = await supabase.auth.signInAnonymously();
-            
-            if (signInError) {
-              console.error('Error signing in anonymously:', signInError);
-              window.location.href = 'index.html';
-              return false;
-            }
-            
-            currentUser = data.user;
-          } else {
-            currentUser = session.user;
-          }
-          
-          return true;
-        } catch (err) {
-          console.error('Auth error:', err);
-          window.location.href = 'index.html';
+        // If we're already on the settings page, don't redirect
+        if (window.location.pathname.endsWith('settings.html')) {
           return false;
         }
+        
+        const { data: { user }, error } = await supabase.auth.getUser();
+        if (error || !user) {
+          console.log('User not authenticated, redirecting to settings');
+          window.location.href = 'settings.html';
+          return false;
+        }
+        currentUser = user;
+        return true;
       }
 
       // DOM Elements
