@@ -1204,9 +1204,35 @@
       window.showError = showError;
       window.generateListId = generateListId;
 
+      // Check authentication and get current user
+      async function checkAuth() {
+        try {
+          const { data: { user }, error } = await supabase.auth.getUser();
+          if (error) {
+            console.error('Error getting user session:', error);
+            // Try to sign in anonymously if no session exists
+            const { data, error: signInError } = await supabase.auth.signInAnonymously();
+            if (signInError) throw signInError;
+            return data.user;
+          }
+          return user;
+        } catch (error) {
+          console.error('Authentication error:', error);
+          showError('Error connecting to the server. Please refresh the page.');
+          return null;
+        }
+      }
+
       // Initialize the app with fade-in effect
       (async function init() {
         try {
+          // Check authentication first
+          const user = await checkAuth();
+          if (!user) {
+            showError('Unable to authenticate. Please refresh the page.');
+            return;
+          }
+          
           // Load lists
           await getLists();
           
@@ -1214,6 +1240,7 @@
           document.body.classList.add("loaded");
         } catch (error) {
           console.error("Error initializing app:", error);
+          showError('Error initializing the app. Please refresh the page.');
           // Still show the page even if there's an error
           document.body.classList.add("loaded");
         }
