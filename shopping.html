@@ -695,9 +695,17 @@
 
         async function getLists() {
             try {
+                // Get the current user
+                const { data: { user }, error: userError } = await supabase.auth.getUser();
+                if (userError || !user) {
+                    throw new Error('User not authenticated');
+                }
+
+                // Get lists only for the current user
                 const { data, error } = await supabase
                     .from('shopping_lists')
                     .select('*')
+                    .eq('user_id', user.id)  // Filter by current user's ID
                     .order('list_order', { ascending: true, nullsFirst: false })
                     .order('updated_at', { ascending: true });
                 
