@@ -1096,14 +1096,18 @@
           console.log("Saving individual list:", list.id, list);
 
           // Check if list exists (update) or is new (insert)
-          const { data: existingList } = await supabase
+          const { data: existingList, error: fetchError } = await supabase
             .from("travel_lists")
             .select("id")
-            .eq("id", list.id)
-            .single();
+            .eq("id", list.id);
+            
+          if (fetchError) {
+            console.error("Error checking for existing list:", fetchError);
+            throw fetchError;
+          }
 
           let result;
-          if (existingList) {
+          if (existingList && existingList.length > 0) {
             // Update existing list
             result = await supabase
               .from("travel_lists")
