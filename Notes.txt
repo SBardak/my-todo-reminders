@@ -4,4 +4,10 @@ Get-Process python | Where-Object { $_.CommandLine -like '*http.server*' } | Sto
 
 -TODO
 Authentication
-New homepage
+New homepage (sign in/ sign up)
+Calendar page on mobile redirecting (because not signed in)
+Notes/scribble page
+
+next.js
+
+
