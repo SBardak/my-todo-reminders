@@ -1,11 +1,11 @@
 Preview HTML
 python -m http.server 8000
+http://localhost:8000/settings.html
 Get-Process python | Where-Object { $_.CommandLine -like '*http.server*' } | Stop-Process -Force
 
 -TODO
-Authentication
 New homepage (sign in/ sign up)
-Calendar page on mobile redirecting (because not signed in)
+Email verification page
 Notes/scribble page
 
 next.js
