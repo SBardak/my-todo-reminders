@@ -33,10 +33,27 @@
       import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
       import { supabaseConfig } from "./js/config.js";
 
-      // Initialize Supabase client
+      // Initialize Supabase client with proper headers
       const supabase = createClient(
         supabaseConfig.supabaseUrl,
-        supabaseConfig.supabaseKey
+        supabaseConfig.supabaseKey,
+        {
+          db: {
+            schema: 'public',
+          },
+          auth: {
+            autoRefreshToken: true,
+            persistSession: true,
+            detectSessionInUrl: true
+          },
+          global: {
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': supabaseConfig.supabaseKey,
+              'Authorization': `Bearer ${supabaseConfig.supabaseKey}`
+            }
+          }
+        }
       );
 
       // In-memory list storage for immediate UI updates
