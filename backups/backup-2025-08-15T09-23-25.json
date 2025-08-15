@@ -1,10 +1,10 @@
 {
-  "timestamp": "2025-08-05T09:29:06.659Z",
+  "timestamp": "2025-08-15T09:23:25.346Z",
   "version": "1.3",
-  "totalLists": 7,
+  "totalLists": 8,
   "totalShoppingLists": 4,
   "totalTravelLists": 3,
-  "totalCalendarEvents": 1,
+  "totalCalendarEvents": 15,
   "data": [
     {
       "id": "list_1754021783742_yqcjmnzso",
@@ -14,14 +14,13 @@
         "Jouj smokes",
         "Fix hose",
         "Tenant sink / Ladder",
-        "Tax payment plan (Call)",
         "Sell Volvo",
         "Fix bills (phone / internet)",
         "MTL doctors",
         "Pay school, muni, big tax"
       ],
       "created_at": "2025-08-01T04:16:24.539271+00:00",
-      "updated_at": "2025-08-05T06:55:30.666215+00:00",
+      "updated_at": "2025-08-12T02:00:39.869541+00:00",
       "list_order": 5,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -29,7 +28,6 @@
       "id": "list_1754021787118_xhdakjiaf",
       "title": "Cali",
       "entries": [
-        "Rent renewal",
         "Insurance renewals (Progressive Sept and AAA)",
         "Sell stuff (PC, ebike, exercise, racing, car)",
         "Setup new address",
@@ -37,7 +35,7 @@
         "USPS mail forwarding to CANADA"
       ],
       "created_at": "2025-08-01T04:16:27.975707+00:00",
-      "updated_at": "2025-08-05T06:55:30.654804+00:00",
+      "updated_at": "2025-08-12T02:00:16.618497+00:00",
       "list_order": 4,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -45,11 +43,11 @@
       "id": "list_1754021792011_cqxvwdgfe",
       "title": "Daily",
       "entries": [
-        "Training",
+        "Training (Stretch + Slow Controlled)",
         "Learning"
       ],
       "created_at": "2025-08-01T04:16:32.800913+00:00",
-      "updated_at": "2025-08-05T06:55:35.554059+00:00",
+      "updated_at": "2025-08-05T20:02:46.542125+00:00",
       "list_order": 1,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -57,13 +55,19 @@
       "id": "list_1754021793765_9ksdrwenc",
       "title": "ASAFP",
       "entries": [
-        "Check insurance prices / Renewals (AUG 8?)",
-        "Tax accountant",
-        "Cancel Volvo insurance",
-        "Fertility tests (Call doctors)"
+        "CRA - Tax Thingy 1-800-959-5504",
+        "REV-QC tax plan: 1-866-242-4482",
+        "Tax accountant (Hold off)",
+        "Cancel Volvo insurance (Nov car) ",
+        "Bills : 4088.24 + extra Muni",
+        "Bills: 400.10 School tax",
+        "SAAQ Mars: 465.97 End of Aug",
+        "QC Balance: 8134.64 + int",
+        "Fix insurance Stelara",
+        "Desjardins ajusto email from Mars"
       ],
       "created_at": "2025-08-01T04:16:34.258606+00:00",
-      "updated_at": "2025-08-05T06:55:30.647222+00:00",
+      "updated_at": "2025-08-14T13:45:28.825876+00:00",
       "list_order": 0,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -102,11 +106,25 @@
         "Wealthsimple Crypto + Hard Wallet",
         "IBKR.ca",
         "File US taxes again in 2026",
-        "Fix AC (on Hold)"
+        "Fix AC (on Hold)",
+        "Armen ideas"
       ],
       "created_at": "2025-08-02T04:30:40.969858+00:00",
-      "updated_at": "2025-08-05T06:55:30.646642+00:00",
+      "updated_at": "2025-08-08T02:01:52.818734+00:00",
       "list_order": 6,
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "list_1754969524250_m4zw5xrq2",
+      "title": "Website ideas",
+      "entries": [
+        "Food tracker",
+        "Exercise tracker",
+        "Notes / Scribbling"
+      ],
+      "created_at": "2025-08-12T03:32:05.589559+00:00",
+      "updated_at": "2025-08-12T03:33:02.343856+00:00",
+      "list_order": 7,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     }
   ],
@@ -115,9 +133,9 @@
       "id": "shopping_1754213683820_z0fus3dfp",
       "title": "Cooking",
       "entries": [],
-      "list_order": 1,
+      "list_order": 0,
       "created_at": "2025-08-03T09:34:44.556941+00:00",
-      "updated_at": "2025-08-05T06:55:45.108497+00:00",
+      "updated_at": "2025-08-12T02:24:31.035905+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -157,9 +175,9 @@
           "checked": true
         }
       ],
-      "list_order": 0,
+      "list_order": 1,
       "created_at": "2025-08-03T09:42:19.725037+00:00",
-      "updated_at": "2025-08-05T07:25:48.006604+00:00",
+      "updated_at": "2025-08-05T19:52:57.304746+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -213,7 +231,7 @@
       ],
       "list_order": 2,
       "created_at": "2025-08-03T09:43:00.969086+00:00",
-      "updated_at": "2025-08-05T07:25:55.327833+00:00",
+      "updated_at": "2025-08-05T19:52:57.271729+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -222,7 +240,7 @@
       "entries": [],
       "list_order": 3,
       "created_at": "2025-08-03T09:43:04.64005+00:00",
-      "updated_at": "2025-08-05T06:55:45.112041+00:00",
+      "updated_at": "2025-08-05T19:52:57.249272+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     }
   ],
@@ -324,6 +342,149 @@
   ],
   "calendarData": [
     {
+      "id": "fa336027-0d94-4de0-9c07-c51035a04ea6",
+      "title": "4:30 PM Doctor",
+      "description": "[#d9e723]",
+      "start_date": "2025-08-12T00:00:00+00:00",
+      "end_date": "2025-08-12T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-05T20:05:59.382+00:00",
+      "updated_at": "2025-08-12T03:44:20.086283+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "84bcb13f-c7d1-4b14-806a-654e3a7030ad",
+      "title": "10:20 AM Quest",
+      "description": "[#c8dd2c]",
+      "start_date": "2025-08-13T00:00:00+00:00",
+      "end_date": "2025-08-13T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:37:12.923+00:00",
+      "updated_at": "2025-08-12T03:43:47.672586+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "b97ced72-0f39-48fb-b653-cbc7b88359fc",
+      "title": "Message CRA",
+      "description": "[#4a90e2]",
+      "start_date": "2025-08-14T00:00:00+00:00",
+      "end_date": "2025-08-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:36:21.313+00:00",
+      "updated_at": "2025-08-13T21:29:03.378716+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "f5aa4f82-d2f2-46df-9196-a4e93c5eed64",
+      "title": "Target time",
+      "description": "[#e54353]",
+      "start_date": "2025-08-14T00:00:00+00:00",
+      "end_date": "2025-08-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:37:26.219+00:00",
+      "updated_at": "2025-08-12T03:43:25.164449+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "b9b22aea-e569-43e6-a5e1-e6efeeea897b",
+      "title": "Cut hair 5 PM",
+      "description": "[#c2de35]",
+      "start_date": "2025-08-14T00:00:00+00:00",
+      "end_date": "2025-08-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:37:32.807+00:00",
+      "updated_at": "2025-08-12T03:43:54.576055+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "2df209de-aef7-42fe-9fcc-28ce636cde68",
+      "title": "Bills",
+      "description": "[#416c4a]",
+      "start_date": "2025-08-15T00:00:00+00:00",
+      "end_date": "2025-08-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:47:27.01+00:00",
+      "updated_at": "2025-08-12T03:55:24.649881+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "d2272e4d-f7e1-4db7-8206-fc67915b6cf4",
+      "title": "Stelara",
+      "description": "[#4a90e2]",
+      "start_date": "2025-08-15T00:00:00+00:00",
+      "end_date": "2025-08-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:37:48.757+00:00",
+      "updated_at": "2025-08-12T03:41:26.347797+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "c1e7fd1f-a555-4d07-bc0c-8204245c94de",
+      "title": "Marlboro",
+      "description": "[#4a90e2]",
+      "start_date": "2025-08-15T00:00:00+00:00",
+      "end_date": "2025-08-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:38:11.042+00:00",
+      "updated_at": "2025-08-12T03:38:11.994665+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "df4479a1-794a-447c-a555-cddf6cd7137e",
+      "title": "FLY",
+      "description": "[#9bc2ee]",
+      "start_date": "2025-08-15T00:00:00+00:00",
+      "end_date": "2025-08-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:43:02.995+00:00",
+      "updated_at": "2025-08-12T03:54:46.290606+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "fd2b1eb4-d351-40c5-914e-adb0e682a3d1",
+      "title": "WFH - Meeting 4 PM",
+      "description": "[#d13d3d]",
+      "start_date": "2025-08-18T00:00:00+00:00",
+      "end_date": "2025-08-18T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:40:41.59+00:00",
+      "updated_at": "2025-08-12T03:43:18.542119+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "972325ea-1171-4177-ad33-a2b875b7b9e2",
+      "title": "Order Fellow",
+      "description": "[#ee00ff]",
+      "start_date": "2025-08-20T00:00:00+00:00",
+      "end_date": "2025-08-20T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:53:46.193+00:00",
+      "updated_at": "2025-08-12T03:58:14.313623+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "2fe34e6f-f781-4a17-83c6-d610c435f246",
+      "title": "Glenda",
+      "description": "[#d569dd]",
+      "start_date": "2025-08-24T00:00:00+00:00",
+      "end_date": "2025-08-24T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:42:39.281+00:00",
+      "updated_at": "2025-08-12T03:58:08.035012+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "960e4731-494d-4eeb-9bc0-54c2081c603d",
+      "title": "FLY",
+      "description": "[#aacaee]",
+      "start_date": "2025-08-25T00:00:00+00:00",
+      "end_date": "2025-08-25T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:42:52.027+00:00",
+      "updated_at": "2025-08-12T03:54:50.814335+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "2173650e-7951-4426-9256-841edcdd511f",
       "title": "Off",
       "description": "[#2ce114]",
@@ -332,6 +493,17 @@
       "all_day": false,
       "created_at": "2025-08-03T13:08:42.215+00:00",
       "updated_at": "2025-08-05T00:39:16.528636+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "9adf64e8-0ca5-4211-a2f2-9adb785e4ce4",
+      "title": "4:45 PM Urology",
+      "description": "[#d9e723]",
+      "start_date": "2025-09-04T00:00:00+00:00",
+      "end_date": "2025-09-04T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:45:34.946+00:00",
+      "updated_at": "2025-08-12T03:55:07.024987+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     }
   ]
