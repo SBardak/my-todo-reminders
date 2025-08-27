@@ -734,16 +734,37 @@
                 
                 // Convert Supabase data to expected format and store in memory
                 const processedData = (data || []).map(list => {
+                    // Parse the entries field if it's a string
+                    let entries = [];
+                    try {
+                        if (typeof list.entries === 'string') {
+                            entries = JSON.parse(list.entries);
+                        } else if (Array.isArray(list.entries)) {
+                            entries = list.entries;
+                        }
+                    } catch (e) {
+                        console.error('Error parsing entries:', e);
+                        entries = [];
+                    }
+                    
                     const processedList = {
                         id: list.id,
                         title: list.title || 'Untitled List',
-                        entries: Array.isArray(list.entries) ? list.entries : []
+                        entries: entries,
+                        list_order: list.list_order || 0,
+                        created_at: list.created_at || new Date().toISOString(),
+                        updated_at: list.updated_at || new Date().toISOString(),
+                        user_id: list.user_id || user.id
                     };
                     console.log('Processed list:', processedList);
                     return processedList;
                 });
                 
                 console.log('All processed shopping lists:', processedData);
+                
+                // Update the in-memory listsData array
+                listsData = [...processedData];
+                
                 return processedData;
                 
             } catch (err) {
@@ -916,10 +937,15 @@
             
             // Only proceed with loading data if we have a valid user
             try {
+                // Load and render the shopping lists
                 await getLists();
+                await renderLists();
                 document.body.classList.add("loaded");
+                
+                // Log success
+                console.log('Shopping lists loaded and rendered successfully');
             } catch (error) {
-                console.error("Error loading data:", error);
+                console.error("Error initializing app:", error);
                 showError('Error loading your shopping lists. Please refresh the page.');
                 document.body.classList.add("loaded");
             }
