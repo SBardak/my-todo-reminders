@@ -694,38 +694,62 @@
         }
 
         async function getLists() {
+            console.log('getLists called');
             try {
                 // Get the current user
+                console.log('Getting current user...');
                 const { data: { user }, error: userError } = await supabase.auth.getUser();
+                console.log('User data:', { user, userError });
+                
                 if (userError || !user) {
-                    throw new Error('User not authenticated');
+                    const errorMsg = 'User not authenticated: ' + (userError?.message || 'No user found');
+                    console.error(errorMsg);
+                    throw new Error(errorMsg);
                 }
 
+                console.log('Fetching shopping lists for user:', user.id);
+                
                 // Get lists only for the current user
-                const { data, error } = await supabase
+                const { data, error, status, statusText } = await supabase
                     .from('shopping_lists')
                     .select('*')
                     .eq('user_id', user.id)  // Filter by current user's ID
                     .order('list_order', { ascending: true, nullsFirst: false })
                     .order('updated_at', { ascending: true });
                 
+                console.log('Database response:', { 
+                    data, 
+                    error, 
+                    status, 
+                    statusText,
+                    user_id: user.id
+                });
+                
                 if (error) {
+                    console.error('Database error:', error);
                     throw error;
                 }
                 
-                console.log('Supabase data loaded:', data);
+                console.log('Raw shopping lists data from database:', data);
                 
                 // Convert Supabase data to expected format and store in memory
-                listsData = (data || []).map(list => ({
-                    id: list.id,
-                    title: list.title || 'Untitled List',
-                    entries: Array.isArray(list.entries) ? list.entries : []
-                }));
+                const processedData = (data || []).map(list => {
+                    const processedList = {
+                        id: list.id,
+                        title: list.title || 'Untitled List',
+                        entries: Array.isArray(list.entries) ? list.entries : []
+                    };
+                    console.log('Processed list:', processedList);
+                    return processedList;
+                });
                 
-                return listsData;
+                console.log('All processed shopping lists:', processedData);
+                return processedData;
+                
             } catch (err) {
-                console.error('Error loading lists:', err);
-                showError('Error loading lists: ' + err.message);
+                const errorMsg = 'Error in getLists: ' + (err.message || 'Unknown error');
+                console.error(errorMsg, err);
+                showError(errorMsg);
                 return [];
             }
         }
