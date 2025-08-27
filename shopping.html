@@ -679,7 +679,7 @@
                 // Get the current user
                 console.log('Getting current user...');
                 const { data: { user }, error: userError } = await supabase.auth.getUser();
-                console.log('User data:', { user, userError });
+                //console.log('User data:', { user, userError });
                 
                 if (userError || !user) {
                     const errorMsg = 'User not authenticated: ' + (userError?.message || 'No user found');

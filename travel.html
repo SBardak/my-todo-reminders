@@ -1049,7 +1049,7 @@
             data: { user },
             error: userError,
           } = await supabase.auth.getUser();
-          console.log("User data:", { user, userError });
+          //console.log("User data:", { user, userError });
 
           if (userError || !user) {
             const errorMsg =
