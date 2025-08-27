@@ -259,25 +259,8 @@
       import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
       import { supabaseConfig } from "./js/config.js";
 
-      // Initialize Supabase client with proper configuration
-      const supabase = createClient(supabaseConfig.supabaseUrl, supabaseConfig.supabaseKey, {
-        auth: {
-          autoRefreshToken: true,
-          persistSession: true,
-          detectSessionInUrl: true
-            autoRefreshToken: true,
-            persistSession: true,
-            detectSessionInUrl: true
-          },
-          global: {
-            headers: {
-              'Content-Type': 'application/json',
-              'apikey': supabaseConfig.supabaseKey,
-              'Authorization': `Bearer ${supabaseConfig.supabaseKey}`
-            }
-          }
-        }
-      );
+      // Initialize Supabase client with the same configuration as other pages
+      const supabase = createClient(supabaseConfig.supabaseUrl, supabaseConfig.supabaseKey);
 
       // In-memory list storage for immediate UI updates
       let listsData = [];
