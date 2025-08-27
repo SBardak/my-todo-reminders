@@ -697,13 +697,13 @@
                     .order('list_order', { ascending: true, nullsFirst: false })
                     .order('updated_at', { ascending: true });
                 
-                console.log('Database response:', { 
-                    data, 
-                    error, 
-                    status, 
-                    statusText,
-                    user_id: user.id
-                });
+                // console.log('Database response:', { 
+                //     data, 
+                //     error, 
+                //     status, 
+                //     statusText,
+                //     user_id: user.id
+                // });
                 
                 if (error) {
                     console.error('Database error:', error);
@@ -736,7 +736,7 @@
                         updated_at: list.updated_at || new Date().toISOString(),
                         user_id: list.user_id || user.id
                     };
-                    console.log('Processed list:', processedList);
+                    //console.log('Processed list:', processedList);
                     return processedList;
                 });
                 
