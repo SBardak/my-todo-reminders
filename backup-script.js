@@ -8,19 +8,33 @@ import { fileURLToPath } from "url";
 let supabaseUrl, supabaseKey, supabase;
 
 // Try to load from environment variables (for CI/CD and server environments)
-if (process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY) {
+// NOTE: For backups to work with RLS-protected tables, you need to use the SERVICE_ROLE key
+// instead of the ANON key. The service role key bypasses RLS policies.
+// Set SUPABASE_SERVICE_ROLE_KEY in your environment or GitHub secrets.
+if (process.env.SUPABASE_URL && (process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY)) {
   supabaseUrl = process.env.SUPABASE_URL;
-  supabaseKey = process.env.SUPABASE_ANON_KEY;
+  supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
 } else {
-  // Try to load from config file (for local development)
+  // Try to load from backup config file (for local development)
   try {
     const __dirname = path.dirname(fileURLToPath(import.meta.url));
-    const configPath = path.join(__dirname, "js", "config.js");
+    const backupConfigPath = path.join(__dirname, "js", "backup-config.js");
 
-    if (fs.existsSync(configPath)) {
-      const { supabaseConfig } = await import("./js/config.js");
-      supabaseUrl = supabaseConfig.url;
-      supabaseKey = supabaseConfig.key;
+    if (fs.existsSync(backupConfigPath)) {
+      const { backupConfig } = await import("./js/backup-config.js");
+      supabaseUrl = backupConfig.supabaseUrl;
+      supabaseKey = backupConfig.supabaseServiceRoleKey;
+      console.log("✓ Loaded backup config from backup-config.js");
+    } else {
+      // Fallback to regular config (will only work if RLS is disabled or tables are public)
+      const configPath = path.join(__dirname, "js", "config.js");
+      if (fs.existsSync(configPath)) {
+        const { supabaseConfig } = await import("./js/config.js");
+        supabaseUrl = supabaseConfig.supabaseUrl;
+        supabaseKey = supabaseConfig.supabaseKey;
+        console.warn("⚠️  Using anon key - backups may be empty if RLS is enabled");
+        console.warn("⚠️  Create js/backup-config.js with your service role key for full backups");
+      }
     }
   } catch (error) {
     console.warn("Could not load config file:", error.message);

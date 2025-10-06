@@ -13,25 +13,33 @@
 
 ### Setup Instructions:
 
-1. **Push to GitHub** (if not already done)
+1. **Get Your Service Role Key**
+   
+   - Go to [Supabase Dashboard → Settings → API](https://supabase.com/dashboard/project/tdskwpcssbovburunekn/settings/api)
+   - Copy the **service_role** key (NOT the anon key)
+   - ⚠️ **Keep this key private** - it bypasses Row Level Security
 
-   ```bash
-   git add .
-   git commit -m "Add automated backup system"
-   git push origin main
-   ```
+2. **Configure Local Backups**
 
-2. **Add Secrets to GitHub**
+   - Create `js/backup-config.js` with:
+     ```javascript
+     export const backupConfig = {
+       supabaseUrl: 'https://tdskwpcssbovburunekn.supabase.co',
+       supabaseServiceRoleKey: 'YOUR_SERVICE_ROLE_KEY_HERE'
+     };
+     ```
+   - This file is in `.gitignore` and won't be committed
+
+3. **Add Secrets to GitHub** (for automated backups)
 
    - Go to your `my-todo-reminders` repo → Settings → Secrets and variables → Actions
    - Add these secrets:
-     - `SUPABASE_URL`: Your Supabase project URL
-     - `SUPABASE_ANON_KEY`: Your Supabase anonymous/public API key
+     - `SUPABASE_URL`: `https://tdskwpcssbovburunekn.supabase.co`
+     - `SUPABASE_SERVICE_ROLE_KEY`: Your service role key from step 1
 
-3. **Test the Backup**
-   - Go to Actions tab in your GitHub repo
-   - Click "Daily Database Backup"
-   - Click "Run workflow" to test manually
+4. **Test the Backup**
+   - Locally: `npm run backup`
+   - GitHub: Go to Actions tab → "Daily Database Backup" → "Run workflow"
 
 ### How it Works:
 
