@@ -1116,11 +1116,13 @@
               title: event.title,
               start: startDate,
               end: endDate,
-              description: description,
               backgroundColor: eventColor,
               borderColor: eventColor,
               textColor: getContrastColor(eventColor),
               allDay: true,
+              extendedProps: {
+                description: description,
+              },
             };
           });
         } catch (error) {
