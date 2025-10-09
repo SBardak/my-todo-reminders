@@ -912,22 +912,19 @@
                 return;
             }
 
-            // Check authentication first - this will redirect if not authenticated
-            const user = await checkAuth();
-            if (!user) return; // Redirect already handled by checkAuth
-            
-            // Only proceed with loading data if we have a valid user
             try {
-                // Load and render the shopping lists
-                await getLists();
-                await renderLists();
-                document.body.classList.add("loaded");
+                // Check authentication first - this will redirect if not authenticated
+                const user = await checkAuth();
+                if (!user) return; // Redirect already handled by checkAuth
                 
-                // Log success
-                console.log('Shopping lists loaded and rendered successfully');
+                // Only load data into memory (rendering happens in DOMContentLoaded)
+                await getLists();
+                
+                // Show the content after data is loaded
+                document.body.classList.add("loaded");
             } catch (error) {
                 console.error("Error initializing app:", error);
-                showError('Error loading your shopping lists. Please refresh the page.');
+                // Still show the page even if there's an error
                 document.body.classList.add("loaded");
             }
         })();
