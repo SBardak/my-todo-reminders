@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Notes - My Todo Reminders</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      /* Override the two-column layout for single column */
+      .lists-container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        max-width: 100%;
+      }
+
+      .list {
+        max-width: 100%;
+        width: 100%;
+        min-width: unset;
+        box-sizing: border-box;
+      }
+
+      /* Style for the note textarea */
+      .note-textarea {
+        width: 100%;
+        min-height: 150px;
+        padding: 12px;
+        margin: 0;
+        border: 1px solid #3a3e41;
+        border-radius: 8px;
+        background: #2d2f31;
+        color: #e3eafc;
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+        resize: none;
+        overflow: hidden;
+        box-sizing: border-box;
+        transition: border-color 0.2s;
+      }
+
+      .note-textarea:focus {
+        outline: none;
+        border-color: #4a90e2;
+      }
+
+      .note-textarea::placeholder {
+        color: #666;
+      }
+
+      /* Hide the add entry group since we don't need it for notes */
+      .add-entry-group {
+        display: none;
+      }
+
+      /* Hide the ul since we're using textarea instead */
+      .list ul {
+        display: none;
+      }
+
+      /* Make drag handle more prominent and easier to grab */
+      .drag-handle {
+        cursor: grab;
+        color: #888;
+        font-size: 20px;
+        padding: 8px 12px;
+        margin-right: 8px;
+        user-select: none;
+        border-radius: 4px;
+        transition: all 0.2s;
+        line-height: 1;
+        min-width: 30px;
+        text-align: center;
+      }
+
+      .drag-handle:hover {
+        background: #3a3e41;
+        color: #bbb;
+      }
+
+      .drag-handle:active {
+        cursor: grabbing;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <nav class="nav-buttons">
+          <a href="settings.html" class="nav-button" title="Settings">⚙️</a>
+          <a href="index.html" class="nav-button">Reminders</a>
+          <a href="shopping.html" class="nav-button">Shopping</a>
+          <a href="travel.html" class="nav-button">Travel</a>
+          <a href="calendar.html" class="nav-button">Calendar</a>
+          <a href="notes.html" class="nav-button active">Notes</a>
+        </nav>
+      </header>
+      <div class="add-list-group">
+        <input
+          type="text"
+          id="add-list-input"
+          class="add-list-input"
+          placeholder="New note name..."
+        />
+        <button id="add-list-btn" class="add-list-btn">Add Note</button>
+      </div>
+      <div id="lists-container" class="lists-container"></div>
+    </div>
+    <!-- Supabase SDK -->
+    <script type="module">
+      // Import Supabase client and configuration
+      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+      import { supabaseConfig } from "./js/config.js";
+
+      // Initialize Supabase client
+      const supabase = createClient(supabaseConfig.supabaseUrl, supabaseConfig.supabaseKey);
+
+      // In-memory list storage for immediate UI updates
+      let listsData = [];
+      let currentUser = null;
+
+      // Check authentication and redirect to settings if not authenticated
+      async function checkAuth() {
+        if (window.location.pathname.endsWith('settings.html')) {
+          return false;
+        }
+        
+        const { data: { user }, error } = await supabase.auth.getUser();
+        if (error || !user) {
+          console.log('User not authenticated, redirecting to settings');
+          window.location.href = 'settings.html';
+          return false;
+        }
+        currentUser = user;
+        return true;
+      }
+
+      function showError(msg) {
+        let errDiv = document.getElementById("error-msg");
+        if (!errDiv) {
+          errDiv = document.createElement("div");
+          errDiv.id = "error-msg";
+          errDiv.style.color = "#ff6b6b";
+          errDiv.style.textAlign = "center";
+          errDiv.style.marginBottom = "16px";
+          document
+            .querySelector(".app-container")
+            .insertBefore(errDiv, document.querySelector(".add-list-group"));
+        }
+        errDiv.textContent = msg;
+      }
+
+      // Generate unique ID for new notes
+      function generateListId() {
+        return (
+          "note_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9)
+        );
+      }
+
+      // Debounce utility to avoid too frequent saves
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+
+      // Auto-resize textarea as content grows
+      function autoResizeTextarea(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+      }
+
+      // Comprehensive cleanup function to remove all drag-over styling
+      function cleanupAllDragStyling() {
+        const allDragOverElements = document.querySelectorAll(".drag-over");
+        allDragOverElements.forEach((element) => {
+          element.classList.remove("drag-over");
+        });
+
+        const allDraggingElements = document.querySelectorAll(".dragging");
+        allDraggingElements.forEach((element) => {
+          element.classList.remove("dragging");
+        });
+      }
+
+      // Helper function to update list data indexes after DOM reordering
+      function updateListDataIndexes() {
+        const listElements = document.querySelectorAll(".list");
+        const newOrderedLists = [];
+        listElements.forEach((listElement) => {
+          const listId = listElement.dataset.listId;
+          const list = listsData.find((l) => l.id === listId);
+          if (list) {
+            newOrderedLists.push(list);
+          }
+        });
+        listsData = newOrderedLists;
+      }
+
+      // Reorder lists function
+      async function reorderLists(draggedListId, targetListId) {
+        try {
+          const listsContainer = document.getElementById("lists-container");
+          const draggedElement = document.querySelector(
+            `[data-list-id="${draggedListId}"]`
+          );
+          const targetElement = document.querySelector(
+            `[data-list-id="${targetListId}"]`
+          );
+
+          if (
+            !draggedElement ||
+            !targetElement ||
+            draggedListId === targetListId
+          )
+            return;
+
+          // Get current positions to determine drag direction
+          const allListElements = Array.from(listsContainer.children);
+          const draggedIndex = allListElements.indexOf(draggedElement);
+          const targetIndex = allListElements.indexOf(targetElement);
+
+          // Perform DOM reordering immediately based on drag direction
+          if (draggedIndex < targetIndex) {
+            // Dragging down: insert after target
+            const targetNext = targetElement.nextSibling;
+            if (targetNext) {
+              listsContainer.insertBefore(draggedElement, targetNext);
+            } else {
+              listsContainer.appendChild(draggedElement);
+            }
+          } else {
+            // Dragging up: insert before target
+            listsContainer.insertBefore(draggedElement, targetElement);
+          }
+
+          // Update our in-memory data to match the new DOM order
+          updateListDataIndexes();
+
+          // Save to database in background
+          const updatePromises = listsData.map(async (list, index) => {
+            const { error } = await supabase
+              .from("notes_lists")
+              .update({
+                list_order: index,
+                updated_at: new Date().toISOString(),
+              })
+              .eq("id", list.id);
+
+            if (error) {
+              console.error(`Error updating order for note ${list.id}:`, error);
+              return false;
+            }
+            return true;
+          });
+
+          const results = await Promise.all(updatePromises);
+          const allSuccessful = results.every((result) => result === true);
+
+          if (allSuccessful) {
+            console.log("Notes reordered and saved successfully to database");
+          } else {
+            console.error("Some notes failed to update order");
+            showError("Failed to save new note order");
+          }
+        } catch (err) {
+          console.error("Error reordering notes:", err);
+          showError("Error reordering notes: " + err.message);
+        }
+      }
+
+      // Create a complete note element
+      function createListElement(list) {
+        // Ensure list has an ID and content
+        if (!list.id) list.id = generateListId();
+        if (!list.content) list.content = "";
+
+        const listDiv = document.createElement("div");
+        listDiv.className = "list";
+
+        // List header with drag handle, editable title and delete button
+        const headerDiv = document.createElement("div");
+        headerDiv.className = "list-header";
+
+        // Add drag handle for lists
+        const listDragHandle = document.createElement("span");
+        listDragHandle.className = "drag-handle";
+        listDragHandle.innerHTML = "⋮⋮";
+        listDragHandle.title = "Drag to reorder notes";
+        // Don't set draggable on the handle itself
+
+        const titleInput = document.createElement("input");
+        titleInput.type = "text";
+        titleInput.value = list.title;
+        titleInput.className = "list-title";
+
+        // Debounced save for title changes
+        const debouncedSaveTitle = debounce(async (newTitle) => {
+          list.title = newTitle;
+          await saveList(list);
+        }, 500);
+
+        titleInput.oninput = () => {
+          debouncedSaveTitle(titleInput.value);
+        };
+
+        const deleteListBtn = document.createElement("button");
+        deleteListBtn.className = "delete-list-btn";
+        deleteListBtn.textContent = "Delete";
+        deleteListBtn.onclick = async () => {
+          // Remove from DOM immediately
+          listDiv.remove();
+
+          // Remove from data and delete from database in background
+          const listIndex = listsData.findIndex((l) => l.id === list.id);
+          if (listIndex !== -1) {
+            listsData.splice(listIndex, 1);
+          }
+          await deleteList(list.id);
+        };
+
+        headerDiv.appendChild(listDragHandle);
+        headerDiv.appendChild(titleInput);
+        headerDiv.appendChild(deleteListBtn);
+
+        // Store list ID for reference
+        listDiv.dataset.listId = list.id;
+
+        // Start with list NOT draggable
+        listDiv.draggable = false;
+
+        // Only make draggable when mousedown on drag handle
+        listDragHandle.addEventListener("mousedown", (e) => {
+          listDiv.draggable = true;
+        });
+        
+        // Disable draggable when mouse leaves drag handle
+        listDragHandle.addEventListener("mouseup", () => {
+          setTimeout(() => {
+            listDiv.draggable = false;
+          }, 100);
+        });
+        
+        listDragHandle.addEventListener("mouseleave", () => {
+          setTimeout(() => {
+            listDiv.draggable = false;
+          }, 100);
+        });
+
+        // Drag event listeners on the list div
+        listDiv.addEventListener("dragstart", (e) => {
+          e.dataTransfer.clearData();
+          e.dataTransfer.setData("text/plain", list.id);
+          e.dataTransfer.setData("application/x-list", list.id);
+          e.dataTransfer.effectAllowed = "move";
+          listDiv.classList.add("dragging");
+        });
+
+        listDiv.addEventListener("dragend", () => {
+          listDiv.classList.remove("dragging");
+          cleanupAllDragStyling();
+          listDiv.draggable = false;
+        });
+
+        listDiv.addEventListener("dragover", (e) => {
+          const types = Array.from(e.dataTransfer.types);
+          if (types.includes("application/x-list")) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = "move";
+            listDiv.classList.add("drag-over");
+          }
+        });
+
+        listDiv.addEventListener("dragleave", (e) => {
+          if (!listDiv.contains(e.relatedTarget)) {
+            listDiv.classList.remove("drag-over");
+          }
+        });
+
+        listDiv.addEventListener("drop", async (e) => {
+          const types = Array.from(e.dataTransfer.types);
+
+          if (types.includes("application/x-list")) {
+            e.preventDefault();
+            e.stopPropagation();
+            listDiv.classList.remove("drag-over");
+
+            const draggedListId = e.dataTransfer.getData("text/plain");
+            const targetListId = list.id;
+
+            if (draggedListId && draggedListId !== targetListId) {
+              await reorderLists(draggedListId, targetListId);
+            }
+          }
+        });
+
+        // Create the textarea for note content
+        const noteTextarea = document.createElement("textarea");
+        noteTextarea.className = "note-textarea";
+        noteTextarea.placeholder = "Start writing your note...";
+        noteTextarea.value = list.content;
+
+        // Auto-resize on input
+        noteTextarea.addEventListener("input", () => {
+          autoResizeTextarea(noteTextarea);
+        });
+
+        // Debounced save for content changes
+        const debouncedSaveContent = debounce(async (newContent) => {
+          list.content = newContent;
+          await saveList(list);
+        }, 500);
+
+        noteTextarea.oninput = () => {
+          debouncedSaveContent(noteTextarea.value);
+        };
+
+        // Initial resize
+        setTimeout(() => autoResizeTextarea(noteTextarea), 0);
+
+        // Create empty ul for compatibility with CSS
+        const ul = document.createElement("ul");
+
+        listDiv.appendChild(headerDiv);
+        listDiv.appendChild(noteTextarea);
+        listDiv.appendChild(ul);
+
+        return listDiv;
+      }
+
+      async function getLists() {
+        try {
+          // Get the current user
+          const { data: { user }, error: userError } = await supabase.auth.getUser();
+          if (userError || !user) {
+            throw new Error('User not authenticated');
+          }
+
+          // Get notes only for the current user
+          const { data, error } = await supabase
+            .from("notes_lists")
+            .select("*")
+            .eq('user_id', user.id)
+            .order("list_order", { ascending: true, nullsFirst: false })
+            .order("updated_at", { ascending: true });
+
+          if (error) {
+            throw error;
+          }
+
+          console.log("Supabase data loaded:", data);
+
+          // Convert Supabase data to expected format and store in memory
+          listsData = (data || []).map((list) => ({
+            id: list.id,
+            title: list.title || "Untitled Note",
+            content: list.content || "",
+          }));
+
+          return listsData;
+        } catch (err) {
+          console.error("Error loading notes:", err);
+          showError("Error loading notes: " + err.message);
+          return [];
+        }
+      }
+
+      // Save a single note by ID
+      async function saveList(list) {
+        try {
+          if (!list.id) {
+            list.id = generateListId();
+          }
+          console.log("Saving individual note:", list.id, list);
+
+          // Check if note exists (update) or is new (insert)
+          const { data: existingList, error: fetchError } = await supabase
+            .from("notes_lists")
+            .select("id")
+            .eq("id", list.id);
+            
+          if (fetchError) {
+            console.error("Error checking for existing note:", fetchError);
+            throw fetchError;
+          }
+
+          let result;
+          if (existingList && existingList.length > 0) {
+            // Update existing note
+            result = await supabase
+              .from("notes_lists")
+              .update({
+                title: list.title,
+                content: list.content,
+                updated_at: new Date().toISOString(),
+              })
+              .eq("id", list.id);
+          } else {
+            // Insert new note - get the next list_order value
+            const { data: maxOrderData } = await supabase
+              .from("notes_lists")
+              .select("list_order")
+              .order("list_order", { ascending: false })
+              .limit(1);
+
+            const nextOrder =
+              maxOrderData &&
+              maxOrderData[0] &&
+              maxOrderData[0].list_order !== null
+                ? maxOrderData[0].list_order + 1
+                : 0;
+
+            // Get the current user ID from the auth session
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+              throw new Error('User not authenticated');
+            }
+
+            result = await supabase.from("notes_lists").insert({
+              id: list.id,
+              title: list.title,
+              content: list.content,
+              list_order: nextOrder,
+              user_id: user.id
+            });
+          }
+
+          if (result.error) {
+            throw result.error;
+          }
+
+          console.log("Note saved successfully:", list.id);
+          return true;
+        } catch (err) {
+          console.error("Error saving note:", err);
+          showError("Error saving note: " + err.message);
+          return false;
+        }
+      }
+
+      // Delete a single note by ID
+      async function deleteList(listId) {
+        try {
+          console.log("Deleting note:", listId);
+          const { error } = await supabase
+            .from("notes_lists")
+            .delete()
+            .eq("id", listId);
+
+          if (error) {
+            throw error;
+          }
+
+          console.log("Note deleted successfully:", listId);
+          return true;
+        } catch (err) {
+          console.error("Error deleting note:", err);
+          showError("Error deleting note: " + err.message);
+          return false;
+        }
+      }
+
+      async function renderLists() {
+        console.log("renderLists called");
+        const listsContainer = document.getElementById("lists-container");
+        listsContainer.innerHTML = "";
+        const lists = await getLists();
+
+        console.log("Notes to render:", lists, "Length:", lists.length);
+
+        lists.forEach((list) => {
+          const listDiv = createListElement(list);
+          listsContainer.appendChild(listDiv);
+        });
+      }
+
+      // Initialize the app with fade-in effect
+      (async function init() {
+        if (window.location.pathname.endsWith('settings.html')) {
+          document.body.classList.add("loaded");
+          return;
+        }
+
+        try {
+          // Check authentication first
+          const isAuthenticated = await checkAuth();
+          if (!isAuthenticated) return;
+          
+          // Only proceed with loading data if we have a valid user
+          await getLists();
+          
+          // Show the content after everything is loaded
+          document.body.classList.add("loaded");
+        } catch (error) {
+          console.error("Error initializing app:", error);
+          document.body.classList.add("loaded");
+        }
+      })();
+
+      // Set up event handlers after functions are available
+      document.addEventListener("DOMContentLoaded", () => {
+        // Add new note
+        document.getElementById("add-list-btn").onclick = async () => {
+          const input = document.getElementById("add-list-input");
+          const name = input.value.trim() || "New Note";
+          const newList = {
+            id: generateListId(),
+            title: name,
+            content: "",
+          };
+
+          // Clear input immediately
+          input.value = "";
+
+          // Add to in-memory data
+          listsData.push(newList);
+
+          // Add to UI immediately (optimistic update)
+          const listsContainer = document.getElementById("lists-container");
+          const newListDiv = createListElement(newList);
+          listsContainer.appendChild(newListDiv);
+
+          // Save in background
+          await saveList(newList);
+        };
+
+        document
+          .getElementById("add-list-input")
+          .addEventListener("keydown", async (e) => {
+            if (e.key === "Enter")
+              document.getElementById("add-list-btn").click();
+          });
+
+        // Initial render
+        renderLists();
+      });
+    </script>
+  </body>
+</html>
