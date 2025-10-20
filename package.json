@@ -4,7 +4,8 @@
   "description": "Automated backup for todo reminders app",
   "type": "module",
   "scripts": {
-    "backup": "node backup-script.js"
+    "backup": "node backup-script.js",
+    "restore": "node restore-script.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0"

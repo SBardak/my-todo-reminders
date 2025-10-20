@@ -75,9 +75,39 @@ npm run backup
 }
 ```
 
-### Recovery:
+### Recovery / Restore:
 
-If you need to restore data, use the JSON files in the `backups/` folder. Each file contains all your lists and entries for that day.
+If you need to restore data from a backup, use the restore script:
+
+```bash
+# Restore from latest backup
+npm run restore
+
+# Restore from specific backup file
+node restore-script.js --file backups/backup-2025-10-19T09-18-24.json
+
+# Clear all existing data and restore (DANGEROUS!)
+node restore-script.js --clear --file backups/backup-2025-10-19T09-18-24.json
+```
+
+**What the restore script does:**
+- Reads data from backup JSON files
+- Checks if each record exists in the database
+- **Updates** existing records (preserves data)
+- **Inserts** new records (restores deleted data)
+- Shows detailed statistics of what was restored
+
+**Options:**
+- `--file` or `-f`: Specify backup file (defaults to latest)
+- `--clear` or `-c`: Delete all existing data before restore (⚠️ DANGEROUS!)
+- `--help` or `-h`: Show help message
+
+Each backup file contains all your data for that day:
+- Todo lists (reminders)
+- Shopping lists
+- Travel lists
+- Calendar events
+- Notes
 
 ## Configuration
 

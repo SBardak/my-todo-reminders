@@ -1,4 +1,4 @@
-// Daily backup script for Supabase todo lists and shopping lists
+// Daily backup script for Supabase todo lists, shopping lists, travel lists, calendar events, and notes
 import { createClient } from "@supabase/supabase-js";
 import fs from "fs";
 import path from "path";
