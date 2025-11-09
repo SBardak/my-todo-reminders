@@ -1,11 +1,11 @@
 {
-  "timestamp": "2025-10-30T09:23:13.623Z",
+  "timestamp": "2025-11-09T09:18:43.895Z",
   "version": "1.4",
   "totalLists": 10,
   "totalShoppingLists": 5,
-  "totalTravelLists": 2,
-  "totalCalendarEvents": 104,
-  "totalNotes": 14,
+  "totalTravelLists": 3,
+  "totalCalendarEvents": 98,
+  "totalNotes": 12,
   "data": [
     {
       "id": "list_1754021783742_yqcjmnzso",
@@ -35,10 +35,12 @@
         "Setup new address",
         "USPS mail forwarding to CANADA",
         "Stop car registration / Stop electricity",
-        "Close banks / stocks (Later)"
+        "Close banks / stocks (Later)",
+        "Clean home",
+        "Check move out email"
       ],
       "created_at": "2025-08-01T04:16:27.975707+00:00",
-      "updated_at": "2025-10-28T19:37:51.350243+00:00",
+      "updated_at": "2025-11-02T22:44:03.794705+00:00",
       "list_order": 4,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -46,11 +48,10 @@
       "id": "list_1754021792011_cqxvwdgfe",
       "title": "Daily",
       "entries": [
-        "Training (Stretch + Slow Controlled)",
-        "Learning"
+        "Training (Stretch + Slow Controlled)"
       ],
       "created_at": "2025-08-01T04:16:32.800913+00:00",
-      "updated_at": "2025-08-05T20:02:46.542125+00:00",
+      "updated_at": "2025-11-02T22:43:23.62223+00:00",
       "list_order": 1,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -60,7 +61,6 @@
       "entries": [
         "CRA - Tax Thingy 1-800-959-5504",
         "REV-QC tax plan: 1-866-242-4482",
-        "Cancel Volvo insurance (Nov car) ",
         "Bills : 4088.24 + extra Muni",
         "Bills: 400.10 School tax",
         "QC Balance: 8134.64 + int",
@@ -68,7 +68,7 @@
         "Renew passport + visa"
       ],
       "created_at": "2025-08-01T04:16:34.258606+00:00",
-      "updated_at": "2025-10-28T19:12:37.797201+00:00",
+      "updated_at": "2025-11-02T22:43:06.622696+00:00",
       "list_order": 0,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -76,12 +76,13 @@
       "id": "list_1754034076064_elvzqf3ux",
       "title": "Weekend",
       "entries": [
+        "Learning",
         "Cleaning",
         "Cooking",
         "Dishes/Laundry"
       ],
       "created_at": "2025-08-01T07:41:17.41716+00:00",
-      "updated_at": "2025-08-05T06:55:30.657335+00:00",
+      "updated_at": "2025-11-02T22:43:23.778838+00:00",
       "list_order": 2,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -118,11 +119,10 @@
         "Food tracker",
         "Exercise tracker",
         "App that tracks BDays + Holidays!!",
-        "Send out Email/Text Alerts",
-        "Recording all talks"
+        "Send out Email/Text Alerts"
       ],
       "created_at": "2025-08-12T03:32:05.589559+00:00",
-      "updated_at": "2025-10-30T08:18:02.188996+00:00",
+      "updated_at": "2025-11-02T22:44:42.985359+00:00",
       "list_order": 7,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -228,7 +228,7 @@
           "checked": true
         },
         {
-          "text": "Face exfoliator",
+          "text": "Face exfoliator (Murad)",
           "checked": true
         },
         {
@@ -250,11 +250,19 @@
         {
           "text": "Qtips",
           "checked": true
+        },
+        {
+          "text": "Hair products",
+          "checked": false
+        },
+        {
+          "text": "Beard oil / balm /cleaner",
+          "checked": false
         }
       ],
       "list_order": 2,
       "created_at": "2025-08-03T09:43:00.969086+00:00",
-      "updated_at": "2025-09-20T04:23:33.23374+00:00",
+      "updated_at": "2025-11-02T22:50:27.284094+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -359,7 +367,7 @@
           "checked": false
         },
         {
-          "text": "Cherries (dried + reg)",
+          "text": "Cherries",
           "checked": false
         },
         {
@@ -429,7 +437,7 @@
       ],
       "list_order": 4,
       "created_at": "2025-10-17T06:29:48.71291+00:00",
-      "updated_at": "2025-10-18T01:23:48.849148+00:00",
+      "updated_at": "2025-11-02T22:48:34.958399+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     }
   ],
@@ -512,6 +520,32 @@
       "list_order": 2,
       "created_at": "2025-09-28T05:24:27.261801+00:00",
       "updated_at": "2025-09-28T05:24:45.790229+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "travel_1762052637754_a8r1xyg2e",
+      "title": "Resto",
+      "entries": [
+        {
+          "text": "Smokehouse  (Jack flat bbq)",
+          "checked": false
+        },
+        {
+          "text": "Tenzo Mtl (Sushi all you can eat bbq)",
+          "checked": false
+        },
+        {
+          "text": "Shawarmamoods",
+          "checked": false
+        },
+        {
+          "text": "4505 meats, armadillo willy trinity",
+          "checked": false
+        }
+      ],
+      "list_order": 3,
+      "created_at": "2025-11-02T03:03:58.486329+00:00",
+      "updated_at": "2025-11-07T09:02:41.88707+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     }
   ],
@@ -660,6 +694,28 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "e8aa2777-4aae-4e55-a915-55d951b5db1a",
+      "title": "Dentist 8:30",
+      "description": "[#f6f800]",
+      "start_date": "2025-09-19T00:00:00+00:00",
+      "end_date": "2025-09-19T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-09-02T08:43:58.73+00:00",
+      "updated_at": "2025-09-02T08:44:06.360373+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "5d89025f-3744-47e6-bf72-61585d1d68c5",
+      "title": "Wyse and Torosis",
+      "description": "[#4a90e2]",
+      "start_date": "2025-09-19T00:00:00+00:00",
+      "end_date": "2025-09-19T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-09-16T18:22:18.427+00:00",
+      "updated_at": "2025-09-18T22:39:06.795631+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "954d3e02-c550-4dab-8598-4ddb60b8d3e2",
       "title": "Haircut 5pm",
       "description": "[#ebed00]",
@@ -679,28 +735,6 @@
       "all_day": false,
       "created_at": "2025-09-12T08:22:41.701+00:00",
       "updated_at": "2025-09-18T22:42:33.499549+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "5d89025f-3744-47e6-bf72-61585d1d68c5",
-      "title": "Wyse and Torosis",
-      "description": "[#4a90e2]",
-      "start_date": "2025-09-19T00:00:00+00:00",
-      "end_date": "2025-09-19T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-16T18:22:18.427+00:00",
-      "updated_at": "2025-09-18T22:39:06.795631+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "e8aa2777-4aae-4e55-a915-55d951b5db1a",
-      "title": "Dentist 8:30",
-      "description": "[#f6f800]",
-      "start_date": "2025-09-19T00:00:00+00:00",
-      "end_date": "2025-09-19T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-02T08:43:58.73+00:00",
-      "updated_at": "2025-09-02T08:44:06.360373+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -748,17 +782,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "9adf64e8-0ca5-4211-a2f2-9adb785e4ce4",
-      "title": "4:15 PM Urology    2495 hospital dr. suite 425.",
-      "description": "[#d9e723]",
-      "start_date": "2025-10-06T00:00:00+00:00",
-      "end_date": "2025-10-06T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-08-12T03:45:34.946+00:00",
-      "updated_at": "2025-10-05T18:23:57.908847+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "cc62c642-cbc0-4fd0-9ab4-de0cb027ff55",
       "title": "Glenda Bday",
       "description": "[#ec3652]",
@@ -767,6 +790,17 @@
       "all_day": false,
       "created_at": "2025-10-14T05:45:59.49+00:00",
       "updated_at": "2025-10-14T05:52:43.630501+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "9adf64e8-0ca5-4211-a2f2-9adb785e4ce4",
+      "title": "4:15 PM Urology    2495 hospital dr. suite 425.",
+      "description": "[#d9e723]",
+      "start_date": "2025-10-06T00:00:00+00:00",
+      "end_date": "2025-10-06T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:45:34.946+00:00",
+      "updated_at": "2025-10-05T18:23:57.908847+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -781,17 +815,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "7da2b53c-4f45-4993-a091-76f5bc28fee6",
-      "title": "Maintenance fees for lot - invoice - 91 ext222 - 100277 - (Done)",
-      "description": "[#4a90e2]Call to pay with CC",
-      "start_date": "2025-10-14T00:00:00+00:00",
-      "end_date": "2025-10-14T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-08-29T22:49:13.187+00:00",
-      "updated_at": "2025-10-14T18:22:09.920556+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "327923f7-ddea-4ec9-b3b4-8faab67002db",
       "title": "9-11 est urology mtl (6-8)",
       "description": "[#4a90e2]Ultrasound - 514-499-0101 \n4845 Saint-Denis\n\n175 echo - dr chan 24 oct 9.15",
@@ -800,6 +823,17 @@
       "all_day": false,
       "created_at": "2025-09-24T15:52:40.353+00:00",
       "updated_at": "2025-10-18T22:59:25.013128+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "7da2b53c-4f45-4993-a091-76f5bc28fee6",
+      "title": "Maintenance fees for lot - invoice - 91 ext222 - 100277 - (Done)",
+      "description": "[#4a90e2]Call to pay with CC",
+      "start_date": "2025-10-14T00:00:00+00:00",
+      "end_date": "2025-10-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-29T22:49:13.187+00:00",
+      "updated_at": "2025-10-14T18:22:09.920556+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -880,17 +914,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "83d2dfc2-c27c-4916-b8af-c412fcd1bfcc",
-      "title": "Fix my credit  -  1 877 713-3393",
-      "description": "[#4a90e2]transunion num dossier V2863159",
-      "start_date": "2025-10-20T00:00:00+00:00",
-      "end_date": "2025-10-20T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-17T04:46:43.787+00:00",
-      "updated_at": "2025-10-20T17:28:20.625536+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "58f9be69-cd13-4f76-aed5-5dae4eb6aefb",
       "title": "Call Neuro  650-723-6469",
       "description": "[#4a90e2]",
@@ -902,6 +925,17 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "83d2dfc2-c27c-4916-b8af-c412fcd1bfcc",
+      "title": "Fix my credit  -  1 877 713-3393",
+      "description": "[#4a90e2]transunion num dossier V2863159",
+      "start_date": "2025-10-20T00:00:00+00:00",
+      "end_date": "2025-10-20T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-17T04:46:43.787+00:00",
+      "updated_at": "2025-10-20T17:28:20.625536+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "0efc2096-6d3c-4d4c-9502-dfdf104d129e",
       "title": "Fly to MTL 11.45 - 8.15",
       "description": "[#c4d82c]",
@@ -910,6 +944,17 @@
       "all_day": false,
       "created_at": "2025-10-07T20:36:15.748+00:00",
       "updated_at": "2025-10-20T22:38:48.265195+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "c9ad536e-61b5-476f-8534-145709ac4caf",
+      "title": "3:30pm dr wyse",
+      "description": "[#cfd200]Nancy Morin surgery\nOstomy supplies (prescription)\nStelara (prescription)\nShow bloods\nTalk about current issues\nTalk about fertility",
+      "start_date": "2025-10-24T00:00:00+00:00",
+      "end_date": "2025-10-24T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-09-28T18:17:59.591+00:00",
+      "updated_at": "2025-10-24T19:53:53.612391+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -935,17 +980,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "c9ad536e-61b5-476f-8534-145709ac4caf",
-      "title": "3:30pm dr wyse",
-      "description": "[#cfd200]Nancy Morin surgery\nOstomy supplies (prescription)\nStelara (prescription)\nShow bloods\nTalk about current issues\nTalk about fertility",
-      "start_date": "2025-10-24T00:00:00+00:00",
-      "end_date": "2025-10-24T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-28T18:17:59.591+00:00",
-      "updated_at": "2025-10-24T19:53:53.612391+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "df416823-5bdf-4d2c-b0cc-40646cf01b96",
       "title": "Bmw",
       "description": "[#4a90e2]",
@@ -968,17 +1002,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "ea3a9c1a-069d-4103-8759-9fbf217ec9a5",
-      "title": "Houri",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-25T00:00:00+00:00",
-      "end_date": "2025-10-25T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-24T17:40:21.39+00:00",
-      "updated_at": "2025-10-24T17:40:22.230235+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "4c733d72-fb86-42d2-90f3-4d10fb5fd45d",
       "title": "dad",
       "description": "[#4a90e2]baton rouge fries\nlittle round breads\nsaq bottles\nMustard\nLa vache cheese\nFrozen fish salmon, hotog, bass, trout\nWines\n2 box chicken breast",
@@ -987,6 +1010,17 @@
       "all_day": false,
       "created_at": "2025-10-22T01:40:47.822+00:00",
       "updated_at": "2025-10-24T21:34:45.550343+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "ea3a9c1a-069d-4103-8759-9fbf217ec9a5",
+      "title": "Houri",
+      "description": "[#4a90e2]",
+      "start_date": "2025-10-25T00:00:00+00:00",
+      "end_date": "2025-10-25T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-24T17:40:21.39+00:00",
+      "updated_at": "2025-10-24T17:40:22.230235+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1023,47 +1057,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "00e0f0ab-e2a0-447d-a4eb-db124daebcf4",
-      "title": "Call grandma / yeran",
-      "description": "[#4a90e2]",
+      "id": "22bd233a-1dd0-4461-b25b-ee72f7782a2c",
+      "title": "10am Nadine",
+      "description": "[#008703]",
       "start_date": "2025-10-30T00:00:00+00:00",
       "end_date": "2025-10-30T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-29T02:15:45.315+00:00",
-      "updated_at": "2025-10-30T04:30:43.716125+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "9ee54365-d0f0-41cf-a84a-aa313932192b",
-      "title": "Ask Mars iphone (hers and to buy new)",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-30T00:00:00+00:00",
-      "end_date": "2025-10-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-30T07:20:02.194+00:00",
-      "updated_at": "2025-10-30T07:20:02.966456+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "9ce7e49f-4a45-410e-82bf-eefad74bd491",
-      "title": "Delivery refuse",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-30T00:00:00+00:00",
-      "end_date": "2025-10-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-25T21:19:21.439+00:00",
-      "updated_at": "2025-10-26T19:24:30.119239+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "fe56ec51-ddb1-4cc9-ac6e-9a38976a08de",
-      "title": "Target beard balm - forest loop band - iphone protector",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-30T00:00:00+00:00",
-      "end_date": "2025-10-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-30T07:40:01.348+00:00",
-      "updated_at": "2025-10-30T07:40:02.484912+00:00",
+      "created_at": "2025-10-28T16:03:30.049+00:00",
+      "updated_at": "2025-10-28T16:03:30.586901+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1078,69 +1079,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "b4bea523-89c7-4e20-b475-ec93a6971992",
-      "title": "Check Houri",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-30T00:00:00+00:00",
-      "end_date": "2025-10-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-26T19:25:32.524+00:00",
-      "updated_at": "2025-10-28T02:38:16.272971+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "322efd26-5af7-45b0-92a4-50bdfbb20297",
-      "title": "Bike pics , everything pics",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-30T00:00:00+00:00",
-      "end_date": "2025-10-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-27T01:13:27.401+00:00",
-      "updated_at": "2025-10-29T22:43:32.314407+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "22bd233a-1dd0-4461-b25b-ee72f7782a2c",
-      "title": "10am Nadine",
-      "description": "[#008703]",
-      "start_date": "2025-10-30T00:00:00+00:00",
-      "end_date": "2025-10-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-28T16:03:30.049+00:00",
-      "updated_at": "2025-10-28T16:03:30.586901+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "9a30dd8f-ca57-4ff9-87cd-8c08b53d381f",
-      "title": "call rogers or saleman (phone price and texts)",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-30T00:00:00+00:00",
-      "end_date": "2025-10-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-30T02:02:55.335+00:00",
-      "updated_at": "2025-10-30T02:02:56.143133+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "c63244b6-145c-4e92-97e3-e019d5d45041",
-      "title": "Aion2 news",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-30T00:00:00+00:00",
-      "end_date": "2025-10-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-29T03:16:07.763+00:00",
-      "updated_at": "2025-10-29T03:16:07.931302+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "c360128b-ca22-4964-9772-d7c0901b1749",
-      "title": "Bills (dad)",
-      "description": "[#4a90e2]",
+      "id": "8f6cbf8d-94d0-4dca-b7ee-ff8cad7cca9c",
+      "title": "9.30am  bmw + loaner + Eliath license + policy",
+      "description": "[#c5e32b]",
       "start_date": "2025-10-31T00:00:00+00:00",
       "end_date": "2025-10-31T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-08-27T07:24:41.201+00:00",
-      "updated_at": "2025-10-07T20:35:33.008991+00:00",
+      "created_at": "2025-10-20T23:57:22.089+00:00",
+      "updated_at": "2025-10-20T23:57:22.842316+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1155,311 +1101,102 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "6eaf23a0-1e28-42ab-af01-52a6e52a6ead",
-      "title": "Clipper",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-31T00:00:00+00:00",
-      "end_date": "2025-10-31T00:00:00+00:00",
+      "id": "e5a66e5b-f969-40da-8ced-e287209880df",
+      "title": "Nikesh f1",
+      "description": "[#f50000]",
+      "start_date": "2025-11-09T00:00:00+00:00",
+      "end_date": "2025-11-09T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-30T09:18:07.066+00:00",
-      "updated_at": "2025-10-30T09:18:07.311456+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "8f6cbf8d-94d0-4dca-b7ee-ff8cad7cca9c",
-      "title": "9.30am  bmw + loaner + Eliath license + policy",
-      "description": "[#c5e32b]",
-      "start_date": "2025-10-31T00:00:00+00:00",
-      "end_date": "2025-10-31T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-20T23:57:22.089+00:00",
-      "updated_at": "2025-10-20T23:57:22.842316+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "c55d5b4d-ac92-476a-9f2e-e84faa197131",
-      "title": "Volvo insurance",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-31T00:00:00+00:00",
-      "end_date": "2025-10-31T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-26T17:14:19.063+00:00",
-      "updated_at": "2025-10-30T07:19:27.090424+00:00",
+      "created_at": "2025-10-15T21:58:54.591+00:00",
+      "updated_at": "2025-11-03T06:10:42.942454+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "875e555c-60a8-430f-b6a6-36816aa7b5ee",
-      "title": "Sell my things (rig / bike / car / gym equip )",
+      "title": "Take Pics + Sell my things (rig / bike / car / gym equip )",
       "description": "[#4a90e2]",
-      "start_date": "2025-11-01T00:00:00+00:00",
-      "end_date": "2025-11-01T00:00:00+00:00",
+      "start_date": "2025-11-09T00:00:00+00:00",
+      "end_date": "2025-11-09T00:00:00+00:00",
       "all_day": false,
       "created_at": "2025-08-27T22:55:59.408+00:00",
-      "updated_at": "2025-10-20T05:29:20.356454+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "c9eeb141-b45b-4848-96a5-1167e28fb86d",
-      "title": "4. Call guy for BMW (done, post it)",
-      "description": "[#4a90e2]title in hand + pics + leaving the country + craigslist + 6500",
-      "start_date": "2025-11-01T00:00:00+00:00",
-      "end_date": "2025-11-01T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-18T18:24:41.076+00:00",
-      "updated_at": "2025-10-20T05:29:35.50374+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "a87cd890-f565-4ab1-a60f-42d5d44adaff",
-      "title": "Sell nightreign",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-01T00:00:00+00:00",
-      "end_date": "2025-11-01T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-11T07:16:59.216+00:00",
-      "updated_at": "2025-10-23T02:57:42.579076+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "9b30eb37-d2b0-49f8-9682-a10350db3089",
-      "title": "Wellable",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-01T00:00:00+00:00",
-      "end_date": "2025-11-01T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-17T05:46:31.615+00:00",
-      "updated_at": "2025-10-20T22:36:57.161608+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "a68980dd-c4c3-4679-bc57-46b52a0398f4",
-      "title": "Toilet, Tub, Air Fryer, Tub Curtain",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-01T00:00:00+00:00",
-      "end_date": "2025-11-01T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-19T21:51:57.873+00:00",
-      "updated_at": "2025-10-19T23:14:30.522765+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "0d9172ae-bf23-4989-8458-7f283133381b",
-      "title": "Food that reduce inflammation",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-02T00:00:00+00:00",
-      "end_date": "2025-11-02T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-17T04:12:39.316+00:00",
-      "updated_at": "2025-10-28T05:59:39.216525+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "224ed47b-6f72-4817-b5e2-4be822bd2d21",
-      "title": "skincare / haircare / curls",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-02T00:00:00+00:00",
-      "end_date": "2025-11-02T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-17T07:22:51.557+00:00",
-      "updated_at": "2025-10-28T05:59:41.636548+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "822db61e-a460-424d-a1de-776d446edaf1",
-      "title": "Neck and chin exercises",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-02T00:00:00+00:00",
-      "end_date": "2025-11-02T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-17T08:04:55.656+00:00",
-      "updated_at": "2025-10-28T05:59:40.475175+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "74bedb47-8cfb-467e-8b25-d3199b111369",
-      "title": "organize phone",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-02T00:00:00+00:00",
-      "end_date": "2025-11-02T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-18T06:48:29.443+00:00",
-      "updated_at": "2025-10-28T05:59:22.147405+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "5173c6ef-fbfa-4d5b-a0b3-d51a6f9e991d",
-      "title": "ios tips and tricks / stream deck",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-02T00:00:00+00:00",
-      "end_date": "2025-11-02T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-22T03:05:33.879+00:00",
-      "updated_at": "2025-10-28T05:59:05.256501+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "0724bc98-a76d-45fe-974e-c0a5d3ee73cf",
-      "title": "Follow up BCBSMA insurance",
-      "description": "[#4a90e2]carmelita.brown@bcbsma.com",
-      "start_date": "2025-11-02T00:00:00+00:00",
-      "end_date": "2025-11-02T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-17T15:12:52.846+00:00",
-      "updated_at": "2025-10-27T01:10:52.770235+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "ff9ad4b9-10e0-435e-83ae-f20a1f8fe3c4",
-      "title": "Pay urology elcaminohralthmycare 50$",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-02T00:00:00+00:00",
-      "end_date": "2025-11-02T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-18T00:34:03.202+00:00",
-      "updated_at": "2025-10-23T02:57:36.173212+00:00",
+      "updated_at": "2025-11-09T07:04:52.406234+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "29f65845-358d-46ef-bbd6-61803bd3f21c",
       "title": "WeBox",
       "description": "[#e24ba3]",
-      "start_date": "2025-11-02T00:00:00+00:00",
-      "end_date": "2025-11-02T00:00:00+00:00",
+      "start_date": "2025-11-09T00:00:00+00:00",
+      "end_date": "2025-11-09T00:00:00+00:00",
       "all_day": false,
       "created_at": "2025-08-27T07:27:38.751+00:00",
-      "updated_at": "2025-10-28T17:07:03.094663+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "23c70c28-b18a-4198-bde0-568d72341aef",
-      "title": "Ankle",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-02T00:00:00+00:00",
-      "end_date": "2025-11-02T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-17T08:02:16.208+00:00",
-      "updated_at": "2025-10-28T05:59:37.788848+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "b8c62f77-9e94-4578-871e-2d2ed63d81e1",
-      "title": "Cleanup phone photos",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-02T00:00:00+00:00",
-      "end_date": "2025-11-02T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-19T22:42:07.125+00:00",
-      "updated_at": "2025-10-28T05:59:03.643764+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "f829a07d-4d0c-4ee0-944b-e0229ff8f203",
-      "title": "Call dad",
-      "description": "[#2be3ac]",
-      "start_date": "2025-11-04T00:00:00+00:00",
-      "end_date": "2025-11-04T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-15T04:04:26.724+00:00",
-      "updated_at": "2025-10-29T02:21:54.377841+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "47bfeef7-6e89-4b46-9a52-e592a6dbe6f1",
-      "title": "8:30am Lawrence",
-      "description": "[#016e00]",
-      "start_date": "2025-11-05T00:00:00+00:00",
-      "end_date": "2025-11-05T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-28T16:04:09.378+00:00",
-      "updated_at": "2025-10-28T16:04:09.805589+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "5b491d5b-73b3-4113-ad58-a9bb36c3bf14",
-      "title": "Paycheque",
-      "description": "[#09fb25]",
-      "start_date": "2025-11-07T00:00:00+00:00",
-      "end_date": "2025-11-07T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-15T06:46:38.776+00:00",
-      "updated_at": "2025-10-24T17:41:25.939069+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "a022820e-4cb6-4273-9cfc-c3886b8baeb6",
-      "title": "Take Stelara",
-      "description": "[#e24bdd]",
-      "start_date": "2025-11-07T00:00:00+00:00",
-      "end_date": "2025-11-07T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-08-27T23:35:56.21+00:00",
-      "updated_at": "2025-10-11T06:48:17.484107+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "11d72513-d9ce-46d5-9399-3fc3612969da",
-      "title": "Workday!!",
-      "description": "[#00e205]",
-      "start_date": "2025-11-07T00:00:00+00:00",
-      "end_date": "2025-11-07T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-25T21:33:06.397+00:00",
-      "updated_at": "2025-10-29T02:17:14.193073+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "89f3fafe-b49a-436b-8234-30d45efe95c2",
-      "title": "Lucky - broccoli + 2032 battery",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-08T00:00:00+00:00",
-      "end_date": "2025-11-08T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-29T05:51:31.84+00:00",
-      "updated_at": "2025-10-30T04:31:35.035862+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "4c801327-8423-44da-a476-def08388a756",
-      "title": "Tuna / 2x Dubai / Yogurt / Yogurt greek",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-08T00:00:00+00:00",
-      "end_date": "2025-11-08T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-30T01:54:21.386+00:00",
-      "updated_at": "2025-10-30T01:54:22.354442+00:00",
+      "updated_at": "2025-11-06T19:29:20.53692+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "f00d6239-ea6c-4db4-89b7-f6d8bea802ba",
       "title": "Invite Albert",
       "description": "[#4a90e2]",
-      "start_date": "2025-11-08T00:00:00+00:00",
-      "end_date": "2025-11-08T00:00:00+00:00",
+      "start_date": "2025-11-09T00:00:00+00:00",
+      "end_date": "2025-11-09T00:00:00+00:00",
       "all_day": false,
       "created_at": "2025-10-26T19:27:27.457+00:00",
-      "updated_at": "2025-10-26T19:27:27.579378+00:00",
+      "updated_at": "2025-11-09T00:23:44.489361+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "9b69fa3b-6dc2-4390-a710-8abfeacc1871",
-      "title": "MB Mehdi",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-08T00:00:00+00:00",
-      "end_date": "2025-11-08T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-08-28T19:23:52.94+00:00",
-      "updated_at": "2025-10-26T19:27:13.238543+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "e5a66e5b-f969-40da-8ced-e287209880df",
-      "title": "Nikesh f1",
+      "id": "966dc383-a81c-478d-bfc2-fc3057aaca84",
+      "title": "Complete work ticket",
       "description": "[#4a90e2]",
       "start_date": "2025-11-09T00:00:00+00:00",
       "end_date": "2025-11-09T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-15T21:58:54.591+00:00",
-      "updated_at": "2025-10-15T21:58:54.8983+00:00",
+      "created_at": "2025-11-09T07:04:48.902+00:00",
+      "updated_at": "2025-11-09T07:04:49.176934+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "9b30eb37-d2b0-49f8-9682-a10350db3089",
+      "title": "Daily Wellable",
+      "description": "[#e27d08]",
+      "start_date": "2025-11-09T00:00:00+00:00",
+      "end_date": "2025-11-09T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-17T05:46:31.615+00:00",
+      "updated_at": "2025-11-09T00:23:42.914951+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "0d9172ae-bf23-4989-8458-7f283133381b",
+      "title": "Food that reduce inflammation",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-09T00:00:00+00:00",
+      "end_date": "2025-11-09T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-17T04:12:39.316+00:00",
+      "updated_at": "2025-11-03T06:10:36.723492+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "35d90f13-813a-4381-920a-c244e300fc84",
+      "title": "MOP",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-09T00:00:00+00:00",
+      "end_date": "2025-11-09T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-03T06:09:59.316+00:00",
+      "updated_at": "2025-11-09T07:04:50.901503+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "617f1f41-19fb-4c54-a479-c9c93ad1eae1",
+      "title": "USPS - 8.30 to 5",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-10T00:00:00+00:00",
+      "end_date": "2025-11-10T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-09T07:07:01.268+00:00",
+      "updated_at": "2025-11-09T07:07:01.92947+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1474,6 +1211,61 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "f829a07d-4d0c-4ee0-944b-e0229ff8f203",
+      "title": "Call dad",
+      "description": "[#2be3ac]",
+      "start_date": "2025-11-11T00:00:00+00:00",
+      "end_date": "2025-11-11T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-09-15T04:04:26.724+00:00",
+      "updated_at": "2025-11-05T04:39:44.339549+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "4e367877-0eaf-48fa-a0b8-5928f939279b",
+      "title": "Hoodies - SF - Med Jacky - Large or XL Houri + Extras",
+      "description": "[#e6af19]Walmart Athletic Works Super Soft Hoodie\nH&M Loose Fit Hoodie\nTarget\nHollister",
+      "start_date": "2025-11-12T00:00:00+00:00",
+      "end_date": "2025-11-12T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-04T03:24:02.572+00:00",
+      "updated_at": "2025-11-04T04:04:06.45724+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "ff9ad4b9-10e0-435e-83ae-f20a1f8fe3c4",
+      "title": "Pay urology elcaminohralthmycare 50$",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-12T00:00:00+00:00",
+      "end_date": "2025-11-12T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-18T00:34:03.202+00:00",
+      "updated_at": "2025-11-09T00:34:42.359232+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "30631886-d0ef-4b23-a961-312f0266577b",
+      "title": "Where wings meet",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-14T00:00:00+00:00",
+      "end_date": "2025-11-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-03T12:44:12.291+00:00",
+      "updated_at": "2025-11-03T12:44:12.441733+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "36ff4ec8-1967-458f-bd4d-016e3e709cee",
+      "title": "Cancel amazon subs",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-14T00:00:00+00:00",
+      "end_date": "2025-11-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-31T03:31:00.538+00:00",
+      "updated_at": "2025-11-05T04:42:16.569735+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "7fa2379f-7bc0-452e-8048-2b8a52a7f192",
       "title": "COD7",
       "description": "[#4a90e2]",
@@ -1482,6 +1274,72 @@
       "all_day": false,
       "created_at": "2025-10-29T03:06:04.208+00:00",
       "updated_at": "2025-10-29T03:06:05.26014+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "4c801327-8423-44da-a476-def08388a756",
+      "title": "Tuna / 2x Dubai / Yoggies",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-14T00:00:00+00:00",
+      "end_date": "2025-11-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-30T01:54:21.386+00:00",
+      "updated_at": "2025-11-08T20:11:07.254083+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "0724bc98-a76d-45fe-974e-c0a5d3ee73cf",
+      "title": "Follow up BCBSMA insurance",
+      "description": "[#4a90e2]carmelita.brown@bcbsma.com",
+      "start_date": "2025-11-14T00:00:00+00:00",
+      "end_date": "2025-11-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-17T15:12:52.846+00:00",
+      "updated_at": "2025-11-07T22:45:32.390267+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "c6fee50d-cbb5-4666-bb81-e8b8fae18502",
+      "title": "CUT HAIR",
+      "description": "[#1eebd3]",
+      "start_date": "2025-11-14T00:00:00+00:00",
+      "end_date": "2025-11-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-09T00:31:56.208+00:00",
+      "updated_at": "2025-11-09T07:05:05.659137+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "11d72513-d9ce-46d5-9399-3fc3612969da",
+      "title": "Workday!!",
+      "description": "[#00e205]",
+      "start_date": "2025-11-14T00:00:00+00:00",
+      "end_date": "2025-11-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-25T21:33:06.397+00:00",
+      "updated_at": "2025-11-07T22:45:22.70469+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "2eeb1069-923a-4d28-91cc-1e4ee7ba16bb",
+      "title": "50mg caffeine drink morning after breakfast",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-14T00:00:00+00:00",
+      "end_date": "2025-11-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-06T03:20:34.314+00:00",
+      "updated_at": "2025-11-07T22:45:45.535225+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "a87cd890-f565-4ab1-a60f-42d5d44adaff",
+      "title": "Sell nightreign",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-15T00:00:00+00:00",
+      "end_date": "2025-11-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-11T07:16:59.216+00:00",
+      "updated_at": "2025-11-02T20:50:27.019804+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1496,14 +1354,36 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "ee8a69f7-0815-41a6-b177-ef4539092075",
-      "title": "Deep tissue massage weekend",
-      "description": "[#addd27]",
+      "id": "b8c62f77-9e94-4578-871e-2d2ed63d81e1",
+      "title": "Organize phone + Cleanup photos",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-15T00:00:00+00:00",
+      "end_date": "2025-11-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-19T22:42:07.125+00:00",
+      "updated_at": "2025-11-02T20:50:23.323429+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "b93ecdf9-76c2-4e27-818b-befb82231b95",
+      "title": "Check out orangetheory",
+      "description": "[#4a90e2]",
       "start_date": "2025-11-16T00:00:00+00:00",
       "end_date": "2025-11-16T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-18T22:58:04.081+00:00",
-      "updated_at": "2025-10-18T22:58:10.236959+00:00",
+      "created_at": "2025-11-04T01:08:28.627+00:00",
+      "updated_at": "2025-11-04T01:08:29.271615+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "0edb28b5-9c5a-4436-9348-bb3059409957",
+      "title": "Char creation event (Deadline 20)",
+      "description": "[#c8e826]",
+      "start_date": "2025-11-17T00:00:00+00:00",
+      "end_date": "2025-11-17T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-03T00:53:18.167+00:00",
+      "updated_at": "2025-11-03T00:53:51.92606+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1518,6 +1398,17 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "6386d10a-206c-4887-b26f-7ad5a0c2f55d",
+      "title": "Bi-Weekly Email",
+      "description": "[#2d673e]",
+      "start_date": "2025-11-19T00:00:00+00:00",
+      "end_date": "2025-11-19T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-05T19:52:31.074+00:00",
+      "updated_at": "2025-11-06T19:29:10.707403+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "ec751d95-c75a-4268-b5d2-6f6d461e94fb",
       "title": "COD7 order",
       "description": "[#4a90e2]",
@@ -1529,14 +1420,47 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "d20e70e0-fa97-4ce3-9d43-436275486bb3",
+      "title": "Paycheque",
+      "description": "[#37e421]",
+      "start_date": "2025-11-21T00:00:00+00:00",
+      "end_date": "2025-11-21T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-31T06:27:52.31+00:00",
+      "updated_at": "2025-10-31T06:27:53.214799+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "03d86c61-0b18-4fa8-a0f6-42ae8571d456",
+      "title": "Check to reserve a rental car",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-22T00:00:00+00:00",
+      "end_date": "2025-11-22T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-31T19:44:20.108+00:00",
+      "updated_at": "2025-11-01T21:33:49.53582+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "e62f62ec-b6f0-417a-af8c-2289ab1fc1c0",
+      "title": "Buy mattress",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-22T00:00:00+00:00",
+      "end_date": "2025-11-22T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-01T21:34:00.704+00:00",
+      "updated_at": "2025-11-01T21:34:00.933009+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "386d27aa-0fc8-4f9b-89e8-18c867f19ba8",
-      "title": "Order new iphone",
+      "title": "Ask Mars to bring Temu stuff + my Apple Watch",
       "description": "[#4a90e2]",
       "start_date": "2025-11-23T00:00:00+00:00",
       "end_date": "2025-11-23T00:00:00+00:00",
       "all_day": false,
       "created_at": "2025-10-25T20:39:14.386+00:00",
-      "updated_at": "2025-10-25T20:39:14.56137+00:00",
+      "updated_at": "2025-10-31T19:43:34.547528+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1584,6 +1508,50 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "6eaf23a0-1e28-42ab-af01-52a6e52a6ead",
+      "title": "Clipper",
+      "description": "[#4a90e2]📞 877-878-8883\nTell them you want a balance refund.\nThey’ll ask for:\n\nClipper card number\n\nYour mailing address\n\nReason (e.g., moved, no longer using card)",
+      "start_date": "2025-11-30T00:00:00+00:00",
+      "end_date": "2025-11-30T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-30T09:18:07.066+00:00",
+      "updated_at": "2025-11-02T07:18:40.065706+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "36560880-5b4c-4dd4-a73e-00bd84d03e9f",
+      "title": "Review move out email",
+      "description": "[#4a90e2]",
+      "start_date": "2025-12-01T00:00:00+00:00",
+      "end_date": "2025-12-01T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-02T00:09:40.39+00:00",
+      "updated_at": "2025-11-02T00:09:40.5759+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "2e0d0b0e-3616-4ef9-bcbb-099bfaf91815",
+      "title": "Paycheque",
+      "description": "[#57dc1e]",
+      "start_date": "2025-12-05T00:00:00+00:00",
+      "end_date": "2025-12-05T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-31T06:28:04.512+00:00",
+      "updated_at": "2025-10-31T06:28:04.843194+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "a022820e-4cb6-4273-9cfc-c3886b8baeb6",
+      "title": "Take Stelara",
+      "description": "[#e24bdd]",
+      "start_date": "2025-12-05T00:00:00+00:00",
+      "end_date": "2025-12-05T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-27T23:35:56.21+00:00",
+      "updated_at": "2025-11-08T06:05:57.983648+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "7b318afd-3079-40ab-9908-51002f252091",
       "title": "7am Michel",
       "description": "[#098500]",
@@ -1595,17 +1563,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "08e4cede-f947-4884-abab-c792d1715dea",
-      "title": "1. Call to book new echo January 9  Ultrasound - 514-499-0101",
-      "description": "[#4a90e2]",
-      "start_date": "2025-12-12T00:00:00+00:00",
-      "end_date": "2025-12-12T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-18T22:59:19.503+00:00",
-      "updated_at": "2025-10-20T16:34:14.250273+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "7ac14e48-000b-4227-8824-20d65c3880d9",
       "title": "0:00 echo (cancelled from Oct 24) + need cash",
       "description": "[#cfdb29]",
@@ -1614,6 +1571,17 @@
       "all_day": false,
       "created_at": "2025-10-14T18:08:27.925+00:00",
       "updated_at": "2025-10-23T02:57:08.82202+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "08e4cede-f947-4884-abab-c792d1715dea",
+      "title": "1. Call to book new echo January 9  Ultrasound - 514-499-0101",
+      "description": "[#4a90e2]",
+      "start_date": "2025-12-12T00:00:00+00:00",
+      "end_date": "2025-12-12T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-18T22:59:19.503+00:00",
+      "updated_at": "2025-10-20T16:34:14.250273+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1668,7 +1636,7 @@
       "content": "Mornings / Showers:\n     Light rinse + beard wash\n     Pat dry\n     4 drops beard oil\n     Tiny Balm\n     Brush it\n\n2x per week (Wed + Weekend)\n     Beard wash deep clean\n     Leave in beard conditioner\n\nExtra drop of oil before bed if needed",
       "list_order": 0,
       "created_at": "2025-10-09T05:30:08.854903+00:00",
-      "updated_at": "2025-10-30T04:32:04.641+00:00",
+      "updated_at": "2025-11-02T03:03:34.359+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1677,79 +1645,61 @@
       "content": "7-Day Anti-Inflammatory Meal Plan\n\n Monday\n • Breakfast: Greek yogurt with raspberries, chia + flax seeds\n • Lunch: Spinach & cucumber salad with tomatoes, red onion, celery, olive oil + lemon dressing, tuna\n on top.\n • Dinner: Roasted Brussels sprouts, sweet potatoes, carrots with olive oil, paprika, cumin, garlic (with chicken)\n\n Tuesday\n • Breakfast: Overnight oats with Greek yogurt, oats, chia, raspberries, olive oil drizzle.\n • Lunch: Broccoli, bell pepper, and scallion stir-fry with garlic, olive oil, black pepper. Side of brown\n rice or quinoa.\n • Dinner: Baked sweet potato with Greek yogurt, garlic, parsley. Side cucumber salad with apple\n cider vinegar.\n\n Wednesday\n • Breakfast: Greek yogurt + flax + strawberries\n • Lunch: Tuna salad with celery, red onion, parsley, olive oil, lemon, black pepper. \n • Dinner: Some red meat or pork chop with Roasted asparagus + carrots with garlic + paprika, olive oil drizzle, side of lentil soup.\n\n Thursday\n • Breakfast: Yogurt with chia + raspberries + touch of honey (optional).\n • Lunch: Spinach salad with cucumber, cherry tomatoes, lemon dressing, olive oil. Add tuna or\n veggies.\n • Dinner: Garlic sautéed Brussels sprouts + bell peppers, sweet potato mash with olive oil and cumin. (with chicken)\n\n Friday\n • Breakfast: Overnight oats with Greek yogurt, chia, flax, blueberries\n • Lunch: Cucumber + red onion + tomato salad with oregano, lemon, apple cider vinegar. Side lentil\n soup or roasted carrots.\n• Dinner: Oven-roasted asparagus + broccoli with olive oil + pepper, side sweet potato fries.\n\n Saturday\n • Breakfast: 2 eggs with olive oil + scallions, side sautéed spinach + tomato + garlic, optional yogurt\n with raspberries.\n • Lunch: Spinach salad with tuna, celery, parsley, lemon, olive oil\n • Dinner: Roasted carrots + sweet potatoes + Brussels sprouts with olive oil, cumin, black pepper,\n paprika\n\n Sunday\n • Breakfast: Omelette with spinach, bell pepper, onion, garlic, olive oil, oregano.\n • Lunch: Cucumber + celery salad with apple cider vinegar, lentil soup with garlic + cumin.\n • Dinner: Asparagus, sweet potato, and roasted cherry tomato medley, olive oil, black pepper, lemon,\n yogurt with flax + raspberries.\n\nSnack:\nPistachio / Pumpkin seed\nSide of tangerine or grapes or pomegranate\n\nSalad dressings:\nBASE: Basic Lemon & Garlic + Extra virgin olive oil)\nExtra 1: Apple cider vinegar & Oregano/Parsley\nExtra 2: Red wine vinegar + Oregano/Parsley + Scallions + Paprika\n\nGarlic: 1. Peel 1 or 2 cloves 2. Grate 3. Sit 8mins 4. Add",
       "list_order": 1,
       "created_at": "2025-10-17T06:29:00.793483+00:00",
-      "updated_at": "2025-10-18T22:51:12.04+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "note_1759988937381_pk40oid4n",
-      "title": "PC Building",
-      "content": "[US BETTER due to sales + tax on alll]\nAMD GPU: 2025 March was release of 9070 XT (650$ or 937 cad)  (Potentially 9090 XT)\nAMD CPU: 9800 X3D  (450 usd (630cad)) - (640 cad)   \n\nNvidia GPU: 5070 ti (750usd or 1070 cad) End of year 5070/80 SUPER \n\nRAM: AMD EXPO support - 6000 MHZ - Lowest CL latency\n32GB (2x 16GB) DDR5 6400MT/s – 8000MT/s\nEnabling SAM in bios\nAMD’s Adrenalin Software,\n\n\n\nCASE: Any\n\nFANS: Have\nCooling: Have\n\nSSD: 9100 PRO 2TB - 200$ USD\nRAM:  Kingston Fury Beast RGB 64GB (2x32GB) 6000MT/s DDR5 CL30 - 268$ USD\nCORSAIR Vengeance DDR5 48GB (2x24GB) DDR5 6000MHz CL30 - 230$  (not worth I guess)\n\nMOBO: X870 - Around 260 USD\n\nMonitor: 600 USD - MSI MAG341CQP QD-OLED, 34 Curved OLED Gaming Monitor, 3440 x 1440 (UWQHD), 0.03ms Response time, 175Hz\n700$ GIGABYTE - MO34WQC2 (US) - 34\" QD-OLED Curved Gaming Monitor - WQHD 3440x1440 - Curved - 240 Hz\n\nTotal around 3000 USD so 4000 CAD\n\n\nChair: 485 CAD  E3 Pro\nhttps://hbada.ca/products/hbada-e3-wpa-ergonomic-chair-white?variant=48510116593897",
-      "list_order": 2,
-      "created_at": "2025-10-09T05:48:58.243668+00:00",
-      "updated_at": "2025-10-21T06:21:34.995+00:00",
+      "updated_at": "2025-11-02T03:03:34.359+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "note_1760064693716_9hnrnn4mw",
       "title": "New",
       "content": "Haircut styles:\nBurst fade \nLow fade drop",
-      "list_order": 3,
+      "list_order": 2,
       "created_at": "2025-10-10T02:51:35.108656+00:00",
-      "updated_at": "2025-10-18T22:51:12.04+00:00",
+      "updated_at": "2025-11-02T03:03:34.359+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "note_1760396548958_9j4s80nqv",
       "title": "Movies",
-      "content": "- War of the Galaxies (How the universe works)",
-      "list_order": 4,
+      "content": "- War of the Galaxies (How the universe works)\n- Charlie Sheen Docu (Netflix)",
+      "list_order": 3,
       "created_at": "2025-10-13T23:02:29.748082+00:00",
-      "updated_at": "2025-10-18T22:51:12.04+00:00",
+      "updated_at": "2025-11-02T22:36:23.782+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "note_1760396593089_78d8zuh5q",
       "title": "Italy castles",
       "content": "Villa moscona bertani\nVilla quaranta\n",
-      "list_order": 5,
+      "list_order": 4,
       "created_at": "2025-10-13T23:03:13.846671+00:00",
-      "updated_at": "2025-10-18T22:51:12.04+00:00",
+      "updated_at": "2025-11-02T03:03:34.359+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "note_1760406016885_e6vdzgdyw",
       "title": "BMW X1",
-      "content": "VIN: wbavm1c5xevw48458   \n9LHM705\n2014 Sdrive  FWD\n140,000 miles\n\n1200 Repairs - March 2025\nOil + oil filter\nRear brake pads\nOil filter housing gasket\nOil cooler gasket\nTiming upper tensioner\nWasher\n\n2 Recalls + new windshield",
-      "list_order": 6,
+      "content": "VIN: wbavm1c5xevw48458   \n9LHM705\n2014 Sdrive  FWD\n140,000 miles\n\n1200 Repairs - March 2025\nOil + oil filter\nRear brake pads\nOil filter housing gasket\nOil cooler gasket\nTiming upper tensioner\nWasher",
+      "list_order": 5,
       "created_at": "2025-10-14T01:40:17.909541+00:00",
-      "updated_at": "2025-10-20T23:53:34.827+00:00",
+      "updated_at": "2025-11-02T03:19:32.97+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "note_1760607362285_k4vu0hmjz",
-      "title": "Resto",
-      "content": "Smokehouse\n",
+      "id": "note_1759988937381_pk40oid4n",
+      "title": "PC Building",
+      "content": "[US BETTER due to sales + tax on alll]\nAMD GPU: 2025 March was release of 9070 XT (650$ or 937 cad)  (Potentially 9090 XT)\nAMD CPU: 9800 X3D  (450 usd (630cad)) - (640 cad)   \n\nNvidia GPU: 5070 ti (750usd or 1070 cad) End of year 5070/80 SUPER \n\nRAM: AMD EXPO support - 6000 MHZ - Lowest CL latency\n32GB (2x 16GB) DDR5 6400MT/s – 8000MT/s\nEnabling SAM in bios\nAMD’s Adrenalin Software,\n\nC30 intel, Z30 amd\n\nCASE: Have\nFANS: Have (Refresh)\nCooling: Have\n\nSSD: 9100 PRO 2TB - 200$ USD\nRAM:  Kingston Fury Beast RGB 64GB (2x32GB) 6000MT/s DDR5 CL30 - 268$ USD\nCORSAIR Vengeance DDR5 48GB (2x24GB) DDR5 6000MHz CL30 - 230$  (not worth I guess)\n\nMOBO: X870 - Around 260 USD\n\nMonitor: 600 USD - MSI MAG341CQP QD-OLED, 34 Curved OLED Gaming Monitor, 3440 x 1440 (UWQHD), 0.03ms Response time, 175Hz\n700$ GIGABYTE - MO34WQC2 (US) - 34\" QD-OLED Curved Gaming Monitor - WQHD 3440x1440 - Curved - 240 Hz\n\nTotal around 3000 USD so 4000 CAD\n\n\nChair: 485 CAD  E3 Pro\nhttps://hbada.ca/products/hbada-e3-wpa-ergonomic-chair-white?variant=48510116593897",
       "list_order": 7,
-      "created_at": "2025-10-16T09:36:03.016683+00:00",
-      "updated_at": "2025-10-18T22:51:12.04+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "note_1760674293101_uxtm0dti5",
-      "title": "Insurance",
-      "content": "\nMind body and wellness 300 per year\nUsed 120 before\nHave 180 remaining ",
-      "list_order": 8,
-      "created_at": "2025-10-17T04:11:33.862323+00:00",
-      "updated_at": "2025-10-19T13:57:26.991+00:00",
+      "created_at": "2025-10-09T05:48:58.243668+00:00",
+      "updated_at": "2025-11-02T03:05:57.279+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "note_1760881663101_xd2ovxeg6",
       "title": "Purchases",
-      "content": "New PC for me\nNew Ultrawide monitor 34 inch\nDesk setup (chair  + carpet)\nConnect PS5 to new monitor\nSinewave surge protector \n\nExercise (Pull up / dip / bench / back extension / weights / bar)\nFoldable Power Tower Pull Up Bar Station / wall mounted\n\nBeard, hair, and face products \nBeard trimmer + foil\n\nNew clothes\nNew clothing cabinets\nNew BMW\n\nMarseli laptop\nMarseli new iPhone (I get her old one)\nHouri PC (Start with old then get new)",
+      "content": "New PC for me                                                        (3500 CAD)\nNew Ultrawide monitor 34 inch                              (850 CAD)\nDesk setup (chair  + carpet)                                    (500 CAD)\nConnect PS5 to new monitor\nSinewave surge protector                                       (300 CAD)\n\nExercise (Pull up / dip / bench / back extension / weights / bar)     (500+ Total)\nFoldable Power Tower Pull Up Bar Station / wall mounted\nDeskCycle Ellipse - Cubii JR2 - Putnen Under-Desk Elliptical\n\nBeard trimmer + foil   (babyliss pro)\n\nElectric toothbrush + sensodyne paste\n\nNew clothes\nNew clothing cabinets\nNew BMW\n\nApple laptop  (2k)\n",
       "list_order": 9,
       "created_at": "2025-10-19T13:47:43.833258+00:00",
-      "updated_at": "2025-10-30T05:42:27.619+00:00",
+      "updated_at": "2025-11-02T06:30:50.692+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1758,34 +1708,34 @@
       "content": "Jeff Arcuri\nNate Bargatze",
       "list_order": 10,
       "created_at": "2025-10-22T04:14:50.267717+00:00",
-      "updated_at": "2025-10-22T04:15:01.964+00:00",
+      "updated_at": "2025-11-02T03:03:34.359+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "note_1761121545230_6nxlmj4zn",
       "title": "Focus",
-      "content": "Learn new skills (language, instrument, coding, puzzles)\nMemory games (Lumosity, Elevate, or simple recall drills)\n\n\nYour Core Energy & Health Routine\n\n🥗 Nutrition\n\nFocus on:\n\t•\tProtein: chicken, eggs, Greek yogurt, fish, beans — aim for 1.2–1.5 g per kg of body weight daily.\n\t•\tHealthy fats: olive oil, avocado, nuts, omega-3s (already covered by your supplement).\n\t•\tComplex carbs: oats, quinoa, brown rice, sweet potato, or whole-grain toast.\n\n💡 Goal: build balanced meals that fuel energy steadily — no sugar spikes or long gaps without food.\n\n⸻\n\n🚶 Movement\n\t•\tWalk twice daily (10 min each):\n\t•\tMorning walk → wake up your body and metabolism.\n\t•\tEvening walk → improve digestion and circulation.\n\t•\tGentle bodyweight exercises and stretches daily:\n\t•\tWall push-ups, squats, planks, shoulder rolls, chest stretch, neck mobility.\n\n💡 Goal: re-activate your muscles and blood flow after years of sitting.\n\n⸻\n\n💻 Posture & Work Setup\n\t•\tUse a standing desk or change positions every 45–60 minutes.\n\t•\tStretch shoulders, chest, and neck whenever you stand up.\n\n💡 Goal: improve circulation, posture, and reduce back/neck stiffness.\n\n⸻\n\n😴 Sleep Routine\n\t•\tSleep time: 11 p.m. every night (consistent bedtime = stable energy).\n\t•\tWind-down routine:\n\t•\tNo screens 45 min before bed.\n\t•\tTry slow nasal breathing or a 5-min relaxation track.\n\t•\tKeep the room cool and dark.\n\n💡 Goal: restore circadian rhythm, support hormone balance, and improve recovery.\n\n⸻\n\n✅ Simple Daily Checklist\n\t•\tEat balanced meals (protein + fat + complex carbs)\n\t•\tWalk 10 min AM\n\t•\tWalk 10 min PM\n\t•\tStretch / light exercise\n\t•\tStand up every hour\n\t•\tSleep at 11 p.m.\n\t•\t5–10 min breathing before bed",
+      "content": "Learn new skills (language, instrument, coding, puzzles)\nMemory games (Lumosity, Elevate, or simple recall drills)\n\n\n🥗 Nutrition\n\t•\tProtein: chicken, eggs, Greek yogurt, fish, beans — aim for 1.2–1.5 g per kg of body weight daily.\n\t•\tHealthy fats: olive oil, avocado, nuts, omega-3s (already covered by your supplement).\n\t•\tComplex carbs: oats, quinoa, brown rice, sweet potato, or whole-grain toast.\n\n💻 Posture & Work Setup\n\t•\tUse a standing desk or change positions every 45–60 minutes.\n\t•\tStretch shoulders, chest, and neck whenever you stand up.\n\n😴 Sleep Routine\n\t•\tSleep time: 11 p.m. every night (consistent bedtime = stable energy).\n\t•\tWind-down routine:\n\t•\tNo screens 45 min before bed.\n\t•\tTry slow nasal breathing or a 5-min relaxation track.\n\t•\tKeep the room cool and dark.\n\n✅ Simple Daily Checklist\n\t•\tEat balanced meals (protein + fat + complex carbs)\n\t•\tWalk 10 min AM\n\t•\tWalk 10 min PM\n\t•\tStretch / light exercise\n\t•\tStand up every hour\n\t•\tSleep at 11 p.m.\n\t•\t5–10 min breathing before bed",
       "list_order": 11,
       "created_at": "2025-10-22T08:25:45.863473+00:00",
-      "updated_at": "2025-10-22T08:28:14.81+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "note_1761629221982_hj0tjn0c5",
-      "title": "Workout Plans",
-      "content": "Posture / Breathing\n\n\nMini Squats (10 reps)\nFeet shoulder-width apart, bend knees slightly (like sitting on an invisible chair), then back up.\nStrengthens quads and glutes without stress.\nCalf Raises (15 reps)\nRise onto your toes, hold 2 seconds, slowly lower.\nImproves circulation and ankle stability.\nStanding Hamstring Stretch (20 sec per leg)\nStraighten one leg on a low surface (like a chair), lean forward gently.\nQuad Stretch (20 sec per leg)\nStanding, grab one ankle and pull toward your glute — stretches front of thigh.\nHip Circles or Weight Shifts (30 sec)\nGently rotate hips or shift weight left–right to keep joints fluid.",
-      "list_order": 12,
-      "created_at": "2025-10-28T05:27:03.012614+00:00",
-      "updated_at": "2025-10-28T05:28:20.147+00:00",
+      "updated_at": "2025-11-02T18:05:42.418+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "note_1761713369393_435w7r1ze",
       "title": "Things I need to sell",
-      "content": "Rig - 1200\nBike - 2000+\n\nRoman chair - 130 (50)\nPull up station - 150 (70)\nDumbbells + bar - 160 (75)\nWeight bench - 65 (30)\nChirp - 50\n\n\nMSI monitor - 120 (50)\nFire legend monitor - 100? (50)\nGaming desk - 125 (50)\nDesk riser - 35\nDashcam - 100\n\n\nVegetable chopper - 20\nLamps - 30 (10 ea)\nRolling cart - 20\nVacuum - 100 (35)\nMixing bowls set - 25\nYoga ball - 30 \nOffice chair - 35 (20)\nMirror - 60 (30)\nDish drying rack - 25 (10)\nSteam iron - 25 (10)\nIron board - 50? (20)\nKitchen mats - 30 (10)\nNight stands - 60x2 = 120 (50)\nBed frame - 100 max\nBed mattress - 100 max\n\nSofa - ?\nCarpet - 30?\n\nKnife cutter - 10\nRice cooker - ?\nAir fryer - 80  (30)\nNinja - 90  (40)\n",
+      "content": "Rig - 1200\nBike - 2000+\n\nRoman chair - 130 (50)\nPull up station - 150 (70)\nDumbbells + bar - 160 (75)\nWeight bench - 65 (30)\nChirp - 50\n\n\nMSI monitor - 120 (50)\nFire legend monitor - 100? (50)\nGaming desk - 125 (50)\nDesk riser - 35\nDashcam - 100\n\n\nVegetable chopper - 20\nLamps - 30 (10 ea)\nRolling cart - 20\nVacuum - 100 (35)\nMixing bowls set - 25\nOffice chair - 35 (20)\nMirror - 60 (30)\nDish drying rack - 25 (10)\nSteam iron - 25 (10)\nIron board - 50? (20)\nKitchen mats - 30 (10)\nNight stands - 60x2 = 120 (50)\nBed frame - 100 max\nBed mattress - 100 max\n\nSofa - ?\nCarpet - 30?\n\nKnife cutter - 10\nRice cooker - ?\nAir fryer - 80  (30)\nNinja - 90  (40)\n",
       "list_order": 13,
       "created_at": "2025-10-29T04:49:30.331124+00:00",
-      "updated_at": "2025-10-29T05:18:33.217+00:00",
+      "updated_at": "2025-11-02T18:12:38.181+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "note_1761882945235_yophn8lxi",
+      "title": "iOS",
+      "content": "Resize lock screen clock. Long press lock screen > Customize > tap clock > drag bottom right corner to make it bigger or smaller.\n\nMove lock screen widgets to top or bottom. Long press lock screen > Customize > drag widgets up or down.\n\nSwipe back from anywhere on screen. In any app, swipe from middle or anywhere (not just edge) to go back.\n\nUse AirPods as wireless mic for camera. Connect AirPods > open Camera > Control Center > Camera Controls > Input > select AirPods > choose Voice Isolation.\n\nEnable lens cleaning hints. Settings > Camera > Lens Cleaning Hints > toggle on.\n\n\nBattery saving:\nEnable adaptive power mode. Settings > Battery > Power Mode > Adaptive > toggle on; notifications optional.\nSee estimated charging time on lock screen. While charging, lock screen shows time to 80% or full.\nReduce transparency for better visibility and battery. Settings > Accessibility > Display & Text Size > Reduce Transparency > toggle on.\nBlur wallpaper on always-on display. Settings > Display & Brightness > Always On Display > Blur Wallpaper Photo > toggle on.\n\nTurn on hold assist for calls. Settings > Apps > Phone > Hold Assist > toggle on.\n\nEnable keyboard haptics or sounds. Settings > General > Keyboard > Keyboard Feedback > toggle Haptic or Sound.\n",
+      "list_order": 14,
+      "created_at": "2025-10-31T03:55:45.927474+00:00",
+      "updated_at": "2025-11-02T03:03:34.359+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     }
   ]
