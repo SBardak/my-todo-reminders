@@ -1,10 +1,10 @@
 {
-  "timestamp": "2025-11-13T09:24:17.227Z",
+  "timestamp": "2025-11-23T09:20:11.834Z",
   "version": "1.4",
   "totalLists": 10,
   "totalShoppingLists": 5,
   "totalTravelLists": 3,
-  "totalCalendarEvents": 97,
+  "totalCalendarEvents": 85,
   "totalNotes": 12,
   "data": [
     {
@@ -19,10 +19,11 @@
         "Pay school, muni, big tax",
         "Check BMW X3 deadline (Nov)",
         "Hose holder temu",
-        "Check water tank 10 year deadline"
+        "Check water tank 10 year deadline",
+        "Mars Old Rogers Credit "
       ],
       "created_at": "2025-08-01T04:16:24.539271+00:00",
-      "updated_at": "2025-10-28T19:37:20.897901+00:00",
+      "updated_at": "2025-11-21T18:22:41.161274+00:00",
       "list_order": 5,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -31,7 +32,7 @@
       "title": "Cali",
       "entries": [
         "Insurance renewals (Progressive Sept and AAA)",
-        "Sell stuff (PC, ebike, exercise, racing, car)",
+        "Sell stuff (PC, ebike, exercise, car)",
         "Setup new address",
         "USPS mail forwarding to CANADA",
         "Stop car registration / Stop electricity",
@@ -40,7 +41,7 @@
         "Check move out email"
       ],
       "created_at": "2025-08-01T04:16:27.975707+00:00",
-      "updated_at": "2025-11-02T22:44:03.794705+00:00",
+      "updated_at": "2025-11-15T23:28:52.029584+00:00",
       "list_order": 4,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -584,17 +585,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "c1e7fd1f-a555-4d07-bc0c-8204245c94de",
-      "title": "Marlboro",
-      "description": "[#4a90e2]",
-      "start_date": "2025-08-15T00:00:00+00:00",
-      "end_date": "2025-08-15T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-08-12T03:38:11.042+00:00",
-      "updated_at": "2025-08-12T03:38:11.994665+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "df4479a1-794a-447c-a555-cddf6cd7137e",
       "title": "FLY",
       "description": "[#9bc2ee]",
@@ -617,15 +607,15 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "020f760a-51db-40ff-b485-9c9febda3105",
-      "title": "Paris meeting",
-      "description": "[#b51a00]",
-      "start_date": "2025-08-24T00:00:00+00:00",
-      "end_date": "2025-08-24T00:00:00+00:00",
+      "id": "c1e7fd1f-a555-4d07-bc0c-8204245c94de",
+      "title": "Marlboro",
+      "description": "[#4a90e2]",
+      "start_date": "2025-08-15T00:00:00+00:00",
+      "end_date": "2025-08-15T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-08-24T03:38:59.445+00:00",
-      "updated_at": "2025-08-24T03:38:59.72017+00:00",
-      "user_id": "e7d823e9-5412-4747-a197-91557de9a38a"
+      "created_at": "2025-08-12T03:38:11.042+00:00",
+      "updated_at": "2025-08-12T03:38:11.994665+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "2fe34e6f-f781-4a17-83c6-d610c435f246",
@@ -637,6 +627,17 @@
       "created_at": "2025-08-12T03:42:39.281+00:00",
       "updated_at": "2025-08-12T03:58:08.035012+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "020f760a-51db-40ff-b485-9c9febda3105",
+      "title": "Paris meeting",
+      "description": "[#b51a00]",
+      "start_date": "2025-08-24T00:00:00+00:00",
+      "end_date": "2025-08-24T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-24T03:38:59.445+00:00",
+      "updated_at": "2025-08-24T03:38:59.72017+00:00",
+      "user_id": "e7d823e9-5412-4747-a197-91557de9a38a"
     },
     {
       "id": "960e4731-494d-4eeb-9bc0-54c2081c603d",
@@ -694,17 +695,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "041edfc5-cb7a-46b9-bdb6-edd8be0ac3ef",
-      "title": "Blood test - 11.30",
-      "description": "[#e6df19]",
-      "start_date": "2025-09-19T00:00:00+00:00",
-      "end_date": "2025-09-19T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-12T08:22:41.701+00:00",
-      "updated_at": "2025-09-18T22:42:33.499549+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "5d89025f-3744-47e6-bf72-61585d1d68c5",
       "title": "Wyse and Torosis",
       "description": "[#4a90e2]",
@@ -716,17 +706,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "e8aa2777-4aae-4e55-a915-55d951b5db1a",
-      "title": "Dentist 8:30",
-      "description": "[#f6f800]",
-      "start_date": "2025-09-19T00:00:00+00:00",
-      "end_date": "2025-09-19T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-02T08:43:58.73+00:00",
-      "updated_at": "2025-09-02T08:44:06.360373+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "954d3e02-c550-4dab-8598-4ddb60b8d3e2",
       "title": "Haircut 5pm",
       "description": "[#ebed00]",
@@ -735,6 +714,28 @@
       "all_day": false,
       "created_at": "2025-09-16T18:25:26.615+00:00",
       "updated_at": "2025-09-16T18:25:40.695566+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "041edfc5-cb7a-46b9-bdb6-edd8be0ac3ef",
+      "title": "Blood test - 11.30",
+      "description": "[#e6df19]",
+      "start_date": "2025-09-19T00:00:00+00:00",
+      "end_date": "2025-09-19T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-09-12T08:22:41.701+00:00",
+      "updated_at": "2025-09-18T22:42:33.499549+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "e8aa2777-4aae-4e55-a915-55d951b5db1a",
+      "title": "Dentist 8:30",
+      "description": "[#f6f800]",
+      "start_date": "2025-09-19T00:00:00+00:00",
+      "end_date": "2025-09-19T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-09-02T08:43:58.73+00:00",
+      "updated_at": "2025-09-02T08:44:06.360373+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -870,17 +871,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "7507ea4a-d0b4-4e31-83ea-ac949e9a4910",
-      "title": "Hero academia",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-18T00:00:00+00:00",
-      "end_date": "2025-10-18T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-19T08:05:21.381+00:00",
-      "updated_at": "2025-10-07T04:23:04.213099+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "488b0860-bd54-47b9-aa8a-bc076b99ccc9",
       "title": "11:00 massage",
       "description": "[#c9e24b]",
@@ -889,6 +879,17 @@
       "all_day": false,
       "created_at": "2025-10-17T04:09:41.893+00:00",
       "updated_at": "2025-10-17T04:09:42.070669+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "7507ea4a-d0b4-4e31-83ea-ac949e9a4910",
+      "title": "Hero academia",
+      "description": "[#4a90e2]",
+      "start_date": "2025-10-18T00:00:00+00:00",
+      "end_date": "2025-10-18T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-09-19T08:05:21.381+00:00",
+      "updated_at": "2025-10-07T04:23:04.213099+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -903,17 +904,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "58f9be69-cd13-4f76-aed5-5dae4eb6aefb",
-      "title": "Call Neuro  650-723-6469",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-20T00:00:00+00:00",
-      "end_date": "2025-10-20T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-19T01:07:35.477+00:00",
-      "updated_at": "2025-10-20T16:56:39.930718+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "9e3909d6-0fe7-44f9-836e-99c515c4d873",
       "title": "stanford neuro -> neuro psych (650-498-9000)",
       "description": "[#4a90e2]",
@@ -922,6 +912,17 @@
       "all_day": false,
       "created_at": "2025-10-20T17:06:30.864+00:00",
       "updated_at": "2025-10-20T17:06:31.554668+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "58f9be69-cd13-4f76-aed5-5dae4eb6aefb",
+      "title": "Call Neuro  650-723-6469",
+      "description": "[#4a90e2]",
+      "start_date": "2025-10-20T00:00:00+00:00",
+      "end_date": "2025-10-20T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-19T01:07:35.477+00:00",
+      "updated_at": "2025-10-20T16:56:39.930718+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -947,17 +948,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "a7181f3b-6840-4fc0-afd0-d93373e4eec3",
-      "title": "12.30 aldo",
-      "description": "[#c3e12d]",
-      "start_date": "2025-10-24T00:00:00+00:00",
-      "end_date": "2025-10-24T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-14T18:10:27.379+00:00",
-      "updated_at": "2025-10-14T18:10:42.888737+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "c9ad536e-61b5-476f-8534-145709ac4caf",
       "title": "3:30pm dr wyse",
       "description": "[#cfd200]Nancy Morin surgery\nOstomy supplies (prescription)\nStelara (prescription)\nShow bloods\nTalk about current issues\nTalk about fertility",
@@ -980,25 +970,25 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "df416823-5bdf-4d2c-b0cc-40646cf01b96",
-      "title": "Bmw",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-25T00:00:00+00:00",
-      "end_date": "2025-10-25T00:00:00+00:00",
+      "id": "a7181f3b-6840-4fc0-afd0-d93373e4eec3",
+      "title": "12.30 aldo",
+      "description": "[#c3e12d]",
+      "start_date": "2025-10-24T00:00:00+00:00",
+      "end_date": "2025-10-24T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-24T17:30:33.51+00:00",
-      "updated_at": "2025-10-24T17:30:33.829019+00:00",
+      "created_at": "2025-10-14T18:10:27.379+00:00",
+      "updated_at": "2025-10-14T18:10:42.888737+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "ec02bce6-db85-4620-96e1-252a26e67f88",
-      "title": "salt, water hose",
+      "id": "ea3a9c1a-069d-4103-8759-9fbf217ec9a5",
+      "title": "Houri",
       "description": "[#4a90e2]",
       "start_date": "2025-10-25T00:00:00+00:00",
       "end_date": "2025-10-25T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-23T02:59:38.824+00:00",
-      "updated_at": "2025-10-24T17:30:09.544508+00:00",
+      "created_at": "2025-10-24T17:40:21.39+00:00",
+      "updated_at": "2025-10-24T17:40:22.230235+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1013,14 +1003,25 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "ea3a9c1a-069d-4103-8759-9fbf217ec9a5",
-      "title": "Houri",
+      "id": "ec02bce6-db85-4620-96e1-252a26e67f88",
+      "title": "salt, water hose",
       "description": "[#4a90e2]",
       "start_date": "2025-10-25T00:00:00+00:00",
       "end_date": "2025-10-25T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-24T17:40:21.39+00:00",
-      "updated_at": "2025-10-24T17:40:22.230235+00:00",
+      "created_at": "2025-10-23T02:59:38.824+00:00",
+      "updated_at": "2025-10-24T17:30:09.544508+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "df416823-5bdf-4d2c-b0cc-40646cf01b96",
+      "title": "Bmw",
+      "description": "[#4a90e2]",
+      "start_date": "2025-10-25T00:00:00+00:00",
+      "end_date": "2025-10-25T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-24T17:30:33.51+00:00",
+      "updated_at": "2025-10-24T17:30:33.829019+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1057,17 +1058,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "22bd233a-1dd0-4461-b25b-ee72f7782a2c",
-      "title": "10am Nadine",
-      "description": "[#008703]",
-      "start_date": "2025-10-30T00:00:00+00:00",
-      "end_date": "2025-10-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-28T16:03:30.049+00:00",
-      "updated_at": "2025-10-28T16:03:30.586901+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "55391508-af2f-4f4c-a60e-81ca37c65b00",
       "title": "8-9am safelight",
       "description": "[#e6ed07]",
@@ -1076,6 +1066,17 @@
       "all_day": false,
       "created_at": "2025-10-28T16:42:10.252+00:00",
       "updated_at": "2025-10-28T17:07:19.818224+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "22bd233a-1dd0-4461-b25b-ee72f7782a2c",
+      "title": "10am Nadine",
+      "description": "[#008703]",
+      "start_date": "2025-10-30T00:00:00+00:00",
+      "end_date": "2025-10-30T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-28T16:03:30.049+00:00",
+      "updated_at": "2025-10-28T16:03:30.586901+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1112,72 +1113,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "732a99c3-d74e-41f8-ba5d-181c80fe0640",
-      "title": "Check micro center or BB San Jose for monitor (LG UltraGear 34/39)",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-13T00:00:00+00:00",
-      "end_date": "2025-11-13T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-10T02:58:55.969+00:00",
-      "updated_at": "2025-11-13T05:47:39.087609+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "843f301d-0f21-4332-aec5-2d8aac393eed",
-      "title": "Notif",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-13T00:00:00+00:00",
-      "end_date": "2025-11-13T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-13T08:31:36.581+00:00",
-      "updated_at": "2025-11-13T08:31:36.765699+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "f6ecc5e9-3728-4905-950d-0004bc4e80fa",
-      "title": "Pay Albert",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-13T00:00:00+00:00",
-      "end_date": "2025-11-13T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-12T23:47:46.473+00:00",
-      "updated_at": "2025-11-12T23:47:47.448827+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "35d90f13-813a-4381-920a-c244e300fc84",
-      "title": "MOP",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-13T00:00:00+00:00",
-      "end_date": "2025-11-13T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-03T06:09:59.316+00:00",
-      "updated_at": "2025-11-13T05:39:52.061878+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "9b30eb37-d2b0-49f8-9682-a10350db3089",
-      "title": "Daily Wellable",
-      "description": "[#e27d08]",
-      "start_date": "2025-11-13T00:00:00+00:00",
-      "end_date": "2025-11-13T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-17T05:46:31.615+00:00",
-      "updated_at": "2025-11-12T23:47:38.558803+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "11d72513-d9ce-46d5-9399-3fc3612969da",
-      "title": "Workday!!",
-      "description": "[#00e205]",
-      "start_date": "2025-11-14T00:00:00+00:00",
-      "end_date": "2025-11-14T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-25T21:33:06.397+00:00",
-      "updated_at": "2025-11-07T22:45:22.70469+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "c6fee50d-cbb5-4666-bb81-e8b8fae18502",
       "title": "CUT HAIR 5:30",
       "description": "[#1eebd3]",
@@ -1186,72 +1121,6 @@
       "all_day": false,
       "created_at": "2025-11-09T00:31:56.208+00:00",
       "updated_at": "2025-11-11T06:43:09.855802+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "42c0db60-c493-4a93-b86f-f8f1e139061e",
-      "title": "Check Apple bands",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-14T00:00:00+00:00",
-      "end_date": "2025-11-14T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-10T07:58:50.44+00:00",
-      "updated_at": "2025-11-11T06:43:03.396463+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "30631886-d0ef-4b23-a961-312f0266577b",
-      "title": "Where wings meet",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-14T00:00:00+00:00",
-      "end_date": "2025-11-14T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-03T12:44:12.291+00:00",
-      "updated_at": "2025-11-03T12:44:12.441733+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "4c801327-8423-44da-a476-def08388a756",
-      "title": "Tuna / 2x Dubai / Yoggies / sourdough",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-15T00:00:00+00:00",
-      "end_date": "2025-11-15T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-30T01:54:21.386+00:00",
-      "updated_at": "2025-11-13T05:50:35.636995+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "a87cd890-f565-4ab1-a60f-42d5d44adaff",
-      "title": "Sell nightreign",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-15T00:00:00+00:00",
-      "end_date": "2025-11-15T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-11T07:16:59.216+00:00",
-      "updated_at": "2025-11-02T20:50:27.019804+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "b8046513-828a-4f84-9cc6-fb0bef0d3b4d",
-      "title": "Mop (if not done) and cook food",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-15T00:00:00+00:00",
-      "end_date": "2025-11-15T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-13T05:50:28.105+00:00",
-      "updated_at": "2025-11-13T05:50:28.686876+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "617f1f41-19fb-4c54-a479-c9c93ad1eae1",
-      "title": "USPS - 8.30 to 5",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-15T00:00:00+00:00",
-      "end_date": "2025-11-15T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-09T07:07:01.268+00:00",
-      "updated_at": "2025-11-13T06:14:52.735084+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1266,58 +1135,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "ff9ad4b9-10e0-435e-83ae-f20a1f8fe3c4",
-      "title": "Pay urology elcaminohralthmycare 50$",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-15T00:00:00+00:00",
-      "end_date": "2025-11-15T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-18T00:34:03.202+00:00",
-      "updated_at": "2025-11-13T00:03:35.068801+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "d9d4c3a7-cd08-43d2-a7f2-1ef0b8e1fd5c",
-      "title": "Builapc contest",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-15T00:00:00+00:00",
-      "end_date": "2025-11-15T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-13T07:21:33.353+00:00",
-      "updated_at": "2025-11-13T07:21:33.541571+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "29f65845-358d-46ef-bbd6-61803bd3f21c",
-      "title": "WeBox",
-      "description": "[#e24ba3]",
-      "start_date": "2025-11-16T00:00:00+00:00",
-      "end_date": "2025-11-16T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-08-27T07:27:38.751+00:00",
-      "updated_at": "2025-11-13T05:39:57.914487+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "0edb28b5-9c5a-4436-9348-bb3059409957",
-      "title": "Char creation event (Deadline 20)",
-      "description": "[#c8e826]",
-      "start_date": "2025-11-17T00:00:00+00:00",
-      "end_date": "2025-11-17T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-03T00:53:18.167+00:00",
-      "updated_at": "2025-11-03T00:53:51.92606+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "7bc4d3be-e497-4e77-87af-c247893472e6",
-      "title": "Make tuna buy fresh tomato/lettuce / onion?",
+      "id": "728ae3ec-2ff7-4800-820d-1fa278e486a0",
+      "title": "Nightreign 25$ + Dip 70",
       "description": "[#4a90e2]",
       "start_date": "2025-11-17T00:00:00+00:00",
       "end_date": "2025-11-17T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-11-13T05:50:47.689+00:00",
-      "updated_at": "2025-11-13T06:15:23.675689+00:00",
+      "created_at": "2025-11-15T06:30:20.762+00:00",
+      "updated_at": "2025-11-17T22:19:32.613978+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1335,11 +1160,11 @@
       "id": "f829a07d-4d0c-4ee0-944b-e0229ff8f203",
       "title": "Call dad",
       "description": "[#2be3ac]",
-      "start_date": "2025-11-18T00:00:00+00:00",
-      "end_date": "2025-11-18T00:00:00+00:00",
+      "start_date": "2025-11-19T00:00:00+00:00",
+      "end_date": "2025-11-19T00:00:00+00:00",
       "all_day": false,
       "created_at": "2025-09-15T04:04:26.724+00:00",
-      "updated_at": "2025-11-12T03:12:43.552545+00:00",
+      "updated_at": "2025-11-19T16:56:42.666579+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1365,25 +1190,69 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "c64e345e-9f93-440d-8a30-7a68bf023ed4",
-      "title": "Sandra - update address",
+      "id": "17f398cd-ab3f-43f6-86d2-65cbeae353b7",
+      "title": "pay ostomy",
       "description": "[#4a90e2]",
       "start_date": "2025-11-21T00:00:00+00:00",
       "end_date": "2025-11-21T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-11-11T07:17:00.928+00:00",
-      "updated_at": "2025-11-11T07:17:01.894128+00:00",
+      "created_at": "2025-11-21T08:40:38.587+00:00",
+      "updated_at": "2025-11-21T08:40:38.899322+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "ec751d95-c75a-4268-b5d2-6f6d461e94fb",
-      "title": "COD7 order",
+      "id": "617f1f41-19fb-4c54-a479-c9c93ad1eae1",
+      "title": "USPS - 8.30 to 5",
       "description": "[#4a90e2]",
       "start_date": "2025-11-21T00:00:00+00:00",
       "end_date": "2025-11-21T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-29T15:19:01.356+00:00",
-      "updated_at": "2025-10-29T15:19:02.10145+00:00",
+      "created_at": "2025-11-09T07:07:01.268+00:00",
+      "updated_at": "2025-11-18T02:39:37.764477+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "6b2eecf5-7629-4ee4-a2ff-d535ebba2a18",
+      "title": "post car",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-21T00:00:00+00:00",
+      "end_date": "2025-11-21T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-21T08:40:25.843+00:00",
+      "updated_at": "2025-11-21T08:40:26.226516+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "ff9ad4b9-10e0-435e-83ae-f20a1f8fe3c4",
+      "title": "Pay urology elcaminohralthmycare 50$",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-21T00:00:00+00:00",
+      "end_date": "2025-11-21T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-18T00:34:03.202+00:00",
+      "updated_at": "2025-11-20T19:39:45.457454+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "9b30eb37-d2b0-49f8-9682-a10350db3089",
+      "title": "Daily Wellable",
+      "description": "[#e27d08]",
+      "start_date": "2025-11-22T00:00:00+00:00",
+      "end_date": "2025-11-22T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-17T05:46:31.615+00:00",
+      "updated_at": "2025-11-21T23:16:54.838746+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "b8046513-828a-4f84-9cc6-fb0bef0d3b4d",
+      "title": "Mop",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-23T00:00:00+00:00",
+      "end_date": "2025-11-23T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-13T05:50:28.105+00:00",
+      "updated_at": "2025-11-16T23:47:44.804727+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1395,28 +1264,6 @@
       "all_day": false,
       "created_at": "2025-10-25T20:39:14.386+00:00",
       "updated_at": "2025-10-31T19:43:34.547528+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "ca660776-fe0b-4050-b129-2b7b2cedcc68",
-      "title": "Max date nvidia refund",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-25T00:00:00+00:00",
-      "end_date": "2025-11-25T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-12T04:21:30.661+00:00",
-      "updated_at": "2025-11-12T04:21:31.75275+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "78f3489d-dc29-4cb8-a538-8abe812799d3",
-      "title": "7am Michel",
-      "description": "[#007001]",
-      "start_date": "2025-11-25T00:00:00+00:00",
-      "end_date": "2025-11-25T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-28T16:06:12.07+00:00",
-      "updated_at": "2025-10-28T16:06:12.737812+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1464,17 +1311,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "b5c27aed-12d5-4bcd-bdaf-788cc1867f78",
-      "title": "Refund Fasttrak Close online and mail it direct",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-30T00:00:00+00:00",
-      "end_date": "2025-11-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-19T00:44:56.3+00:00",
-      "updated_at": "2025-10-19T02:05:18.568521+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "6eaf23a0-1e28-42ab-af01-52a6e52a6ead",
       "title": "Clipper (check in the mail)",
       "description": "[#4a90e2]📞 877-878-8883\nTell them you want a balance refund.\nThey’ll ask for:\n\nClipper card number\n\nYour mailing address\n\nReason (e.g., moved, no longer using card)",
@@ -1497,6 +1333,17 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "b5c27aed-12d5-4bcd-bdaf-788cc1867f78",
+      "title": "Refund Fasttrak Close online and mail it direct",
+      "description": "[#4a90e2]",
+      "start_date": "2025-11-30T00:00:00+00:00",
+      "end_date": "2025-11-30T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-19T00:44:56.3+00:00",
+      "updated_at": "2025-10-19T02:05:18.568521+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "36560880-5b4c-4dd4-a73e-00bd84d03e9f",
       "title": "Review move out email",
       "description": "[#4a90e2]",
@@ -1505,6 +1352,28 @@
       "all_day": false,
       "created_at": "2025-11-02T00:09:40.39+00:00",
       "updated_at": "2025-11-02T00:09:40.5759+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "3db4bac6-263d-4ed5-b356-52784681ae0c",
+      "title": "10-4 inspection home",
+      "description": "[#d6f00f]",
+      "start_date": "2025-12-02T00:00:00+00:00",
+      "end_date": "2025-12-02T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-21T00:49:14.444+00:00",
+      "updated_at": "2025-11-21T00:49:22.169711+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "11d72513-d9ce-46d5-9399-3fc3612969da",
+      "title": "Workday!!",
+      "description": "[#00e205]",
+      "start_date": "2025-12-05T00:00:00+00:00",
+      "end_date": "2025-12-05T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-25T21:33:06.397+00:00",
+      "updated_at": "2025-11-21T23:16:38.747783+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1552,17 +1421,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "7ac14e48-000b-4227-8824-20d65c3880d9",
-      "title": "0:00 echo (cancelled from Oct 24) + need cash",
-      "description": "[#cfdb29]",
-      "start_date": "2025-12-12T00:00:00+00:00",
-      "end_date": "2025-12-12T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-14T18:08:27.925+00:00",
-      "updated_at": "2025-10-23T02:57:08.82202+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "08e4cede-f947-4884-abab-c792d1715dea",
       "title": "1. Call to book new echo January 9  Ultrasound - 514-499-0101",
       "description": "[#4a90e2]",
@@ -1571,6 +1429,17 @@
       "all_day": false,
       "created_at": "2025-10-18T22:59:19.503+00:00",
       "updated_at": "2025-10-20T16:34:14.250273+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "7ac14e48-000b-4227-8824-20d65c3880d9",
+      "title": "0:00 echo (cancelled from Oct 24) + need cash",
+      "description": "[#cfdb29]",
+      "start_date": "2025-12-12T00:00:00+00:00",
+      "end_date": "2025-12-12T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-14T18:08:27.925+00:00",
+      "updated_at": "2025-10-23T02:57:08.82202+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1676,10 +1545,10 @@
     {
       "id": "note_1759988937381_pk40oid4n",
       "title": "PC Building",
-      "content": "[US BETTER due to sales + tax on alll]\nAMD GPU: 2025 March was release of 9070 XT (650$ or 937 cad)  (Potentially 9090 XT)\nAMD CPU: 9800 X3D  (450 usd (630cad)) - (640 cad)   \n\nNvidia GPU: 5070 ti (750usd or 1070 cad) End of year 5070/80 SUPER \n\nRAM: AMD EXPO support - 6000 MHZ - Lowest CL latency\n32GB (2x 16GB) DDR5 6400MT/s – 8000MT/s\nEnabling SAM in bios\nAMD’s Adrenalin Software,\n\nC30 intel, Z30 amd\n\nCASE: Have\nFANS: Have (Refresh)\nCooling: Have\n\nSSD: 9100 PRO 2TB - 200$ USD\nRAM:  Kingston Fury Beast RGB 64GB (2x32GB) 6000MT/s DDR5 CL30 - 268$ USD\nCORSAIR Vengeance DDR5 48GB (2x24GB) DDR5 6000MHz CL30 - 230$  (not worth I guess)\n\nMOBO: X870 - Around 260 USD\n\nMonitor: 600 USD - MSI MAG341CQP QD-OLED, 34 Curved OLED Gaming Monitor, 3440 x 1440 (UWQHD), 0.03ms Response time, 175Hz\n700$ GIGABYTE - MO34WQC2 (US) - 34\" QD-OLED Curved Gaming Monitor - WQHD 3440x1440 - Curved - 240 Hz\n\nTotal around 3000 USD so 4000 CAD\n\n\nPremium intake fans\nShitty exhaust fans\n3 intake front + 2 intake bot\n2 exhaust top + 1 back\nIntakes 20% more than exhausts\nArctic P12 or P14 PWM PST\nNoctua NF-A12x25 or g2\nNoctua NF-P12 redux 1700 or bequiet pure wings 2\nDust filters:\nDemciflex\nSilverStone FF mesh\n\nChair: 485 CAD  E3 Pro\nhttps://hbada.ca/products/hbada-e3-wpa-ergonomic-chair-white?variant=48510116593897",
+      "content": "[US BETTER due to sales + tax on alll]\nAMD GPU: 2025 March was release of 9070 XT (650$ or 937 cad)  (Potentially 9090 XT)\nAMD CPU: 9800 X3D  (450 usd (630cad)) - (640 cad)   \n\nNvidia GPU: 5070 ti (750usd or 1070 cad) End of year 5070/80 SUPER \n\nRAM: AMD EXPO support - 6000 MHZ - Lowest CL latency\n32GB (2x 16GB) DDR5 6400MT/s – 8000MT/s\nEnabling SAM in bios\nAMD’s Adrenalin Software,\n\nBios update\nFW Updates on Monitor\n\nFan setup (top intake)\nhttps://www.noctua.at/en/support/faqs/83mm-mp83-vs-78mm-mp78-mounting-pitch-which-kit-do-i-need\n\n\nC30 intel, Z30 amd\n\nCASE: Have\nFANS: Have (Refresh)\nCooling: Have\n\nSSD: 9100 PRO 2TB - 200$ USD\nRAM:  Kingston Fury Beast RGB 64GB (2x32GB) 6000MT/s DDR5 CL30 - 268$ USD\nCORSAIR Vengeance DDR5 48GB (2x24GB) DDR5 6000MHz CL30 - 230$  (not worth I guess)\n\nMOBO: X870 - Around 260 USD\n\nMonitor: 600 USD - MSI MAG341CQP QD-OLED, 34 Curved OLED Gaming Monitor, 3440 x 1440 (UWQHD), 0.03ms Response time, 175Hz\n700$ GIGABYTE - MO34WQC2 (US) - 34\" QD-OLED Curved Gaming Monitor - WQHD 3440x1440 - Curved - 240 Hz\n\nTotal around 3000 USD so 4000 CAD\n\n\nPremium intake fans\nShitty exhaust fans\n3 intake front + 2 intake bot\n2 exhaust top + 1 back\nIntakes 20% more than exhausts\nArctic P12 or P14 PWM PST\nNoctua NF-A12x25 or g2\nNoctua NF-P12 redux 1700 or bequiet pure wings 2\nDust filters:\nDemciflex\nSilverStone FF mesh\n\nChair: 485 CAD  E3 Pro\nhttps://hbada.ca/products/hbada-e3-wpa-ergonomic-chair-white?variant=48510116593897",
       "list_order": 7,
       "created_at": "2025-10-09T05:48:58.243668+00:00",
-      "updated_at": "2025-11-10T18:50:33.156+00:00",
+      "updated_at": "2025-11-14T09:47:28.175+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
