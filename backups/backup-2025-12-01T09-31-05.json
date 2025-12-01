@@ -1,10 +1,10 @@
 {
-  "timestamp": "2025-11-21T09:22:48.453Z",
+  "timestamp": "2025-12-01T09:31:05.432Z",
   "version": "1.4",
   "totalLists": 10,
   "totalShoppingLists": 5,
   "totalTravelLists": 3,
-  "totalCalendarEvents": 86,
+  "totalCalendarEvents": 84,
   "totalNotes": 12,
   "data": [
     {
@@ -20,10 +20,10 @@
         "Check BMW X3 deadline (Nov)",
         "Hose holder temu",
         "Check water tank 10 year deadline",
-        "Mars Old Rogers Credit + Change CC new"
+        "Mars Old Rogers Credit "
       ],
       "created_at": "2025-08-01T04:16:24.539271+00:00",
-      "updated_at": "2025-11-15T23:28:35.748311+00:00",
+      "updated_at": "2025-11-21T18:22:41.161274+00:00",
       "list_order": 5,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -585,6 +585,17 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "c1e7fd1f-a555-4d07-bc0c-8204245c94de",
+      "title": "Marlboro",
+      "description": "[#4a90e2]",
+      "start_date": "2025-08-15T00:00:00+00:00",
+      "end_date": "2025-08-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:38:11.042+00:00",
+      "updated_at": "2025-08-12T03:38:11.994665+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "df4479a1-794a-447c-a555-cddf6cd7137e",
       "title": "FLY",
       "description": "[#9bc2ee]",
@@ -604,17 +615,6 @@
       "all_day": false,
       "created_at": "2025-08-12T03:37:48.757+00:00",
       "updated_at": "2025-08-12T03:41:26.347797+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "c1e7fd1f-a555-4d07-bc0c-8204245c94de",
-      "title": "Marlboro",
-      "description": "[#4a90e2]",
-      "start_date": "2025-08-15T00:00:00+00:00",
-      "end_date": "2025-08-15T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-08-12T03:38:11.042+00:00",
-      "updated_at": "2025-08-12T03:38:11.994665+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -816,17 +816,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "327923f7-ddea-4ec9-b3b4-8faab67002db",
-      "title": "9-11 est urology mtl (6-8)",
-      "description": "[#4a90e2]Ultrasound - 514-499-0101 \n4845 Saint-Denis\n\n175 echo - dr chan 24 oct 9.15",
-      "start_date": "2025-10-14T00:00:00+00:00",
-      "end_date": "2025-10-14T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-24T15:52:40.353+00:00",
-      "updated_at": "2025-10-18T22:59:25.013128+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "7da2b53c-4f45-4993-a091-76f5bc28fee6",
       "title": "Maintenance fees for lot - invoice - 91 ext222 - 100277 - (Done)",
       "description": "[#4a90e2]Call to pay with CC",
@@ -838,14 +827,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "f0c46d15-6bdd-459b-a577-20c8eed421bf",
-      "title": "10:30 xray (DONE)",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-16T00:00:00+00:00",
-      "end_date": "2025-10-16T00:00:00+00:00",
+      "id": "327923f7-ddea-4ec9-b3b4-8faab67002db",
+      "title": "9-11 est urology mtl (6-8)",
+      "description": "[#4a90e2]Ultrasound - 514-499-0101 \n4845 Saint-Denis\n\n175 echo - dr chan 24 oct 9.15",
+      "start_date": "2025-10-14T00:00:00+00:00",
+      "end_date": "2025-10-14T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-16T00:55:06.075+00:00",
-      "updated_at": "2025-10-16T18:08:12.022648+00:00",
+      "created_at": "2025-09-24T15:52:40.353+00:00",
+      "updated_at": "2025-10-18T22:59:25.013128+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -857,6 +846,17 @@
       "all_day": false,
       "created_at": "2025-10-16T18:08:32.011+00:00",
       "updated_at": "2025-10-16T23:41:11.915162+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "f0c46d15-6bdd-459b-a577-20c8eed421bf",
+      "title": "10:30 xray (DONE)",
+      "description": "[#4a90e2]",
+      "start_date": "2025-10-16T00:00:00+00:00",
+      "end_date": "2025-10-16T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-16T00:55:06.075+00:00",
+      "updated_at": "2025-10-16T18:08:12.022648+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -915,17 +915,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "83d2dfc2-c27c-4916-b8af-c412fcd1bfcc",
-      "title": "Fix my credit  -  1 877 713-3393",
-      "description": "[#4a90e2]transunion num dossier V2863159",
-      "start_date": "2025-10-20T00:00:00+00:00",
-      "end_date": "2025-10-20T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-17T04:46:43.787+00:00",
-      "updated_at": "2025-10-20T17:28:20.625536+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "9e3909d6-0fe7-44f9-836e-99c515c4d873",
       "title": "stanford neuro -> neuro psych (650-498-9000)",
       "description": "[#4a90e2]",
@@ -934,6 +923,17 @@
       "all_day": false,
       "created_at": "2025-10-20T17:06:30.864+00:00",
       "updated_at": "2025-10-20T17:06:31.554668+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "83d2dfc2-c27c-4916-b8af-c412fcd1bfcc",
+      "title": "Fix my credit  -  1 877 713-3393",
+      "description": "[#4a90e2]transunion num dossier V2863159",
+      "start_date": "2025-10-20T00:00:00+00:00",
+      "end_date": "2025-10-20T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-17T04:46:43.787+00:00",
+      "updated_at": "2025-10-20T17:28:20.625536+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -959,6 +959,17 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "a7181f3b-6840-4fc0-afd0-d93373e4eec3",
+      "title": "12.30 aldo",
+      "description": "[#c3e12d]",
+      "start_date": "2025-10-24T00:00:00+00:00",
+      "end_date": "2025-10-24T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-14T18:10:27.379+00:00",
+      "updated_at": "2025-10-14T18:10:42.888737+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "5120e15b-ae42-4acf-bf9b-73dbd968bce2",
       "title": "ask for nancy surgery",
       "description": "[#4a90e2]",
@@ -970,14 +981,25 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "a7181f3b-6840-4fc0-afd0-d93373e4eec3",
-      "title": "12.30 aldo",
-      "description": "[#c3e12d]",
-      "start_date": "2025-10-24T00:00:00+00:00",
-      "end_date": "2025-10-24T00:00:00+00:00",
+      "id": "df416823-5bdf-4d2c-b0cc-40646cf01b96",
+      "title": "Bmw",
+      "description": "[#4a90e2]",
+      "start_date": "2025-10-25T00:00:00+00:00",
+      "end_date": "2025-10-25T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-14T18:10:27.379+00:00",
-      "updated_at": "2025-10-14T18:10:42.888737+00:00",
+      "created_at": "2025-10-24T17:30:33.51+00:00",
+      "updated_at": "2025-10-24T17:30:33.829019+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "4c733d72-fb86-42d2-90f3-4d10fb5fd45d",
+      "title": "dad",
+      "description": "[#4a90e2]baton rouge fries\nlittle round breads\nsaq bottles\nMustard\nLa vache cheese\nFrozen fish salmon, hotog, bass, trout\nWines\n2 box chicken breast",
+      "start_date": "2025-10-25T00:00:00+00:00",
+      "end_date": "2025-10-25T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-22T01:40:47.822+00:00",
+      "updated_at": "2025-10-24T21:34:45.550343+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1000,28 +1022,6 @@
       "all_day": false,
       "created_at": "2025-10-24T17:40:21.39+00:00",
       "updated_at": "2025-10-24T17:40:22.230235+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "4c733d72-fb86-42d2-90f3-4d10fb5fd45d",
-      "title": "dad",
-      "description": "[#4a90e2]baton rouge fries\nlittle round breads\nsaq bottles\nMustard\nLa vache cheese\nFrozen fish salmon, hotog, bass, trout\nWines\n2 box chicken breast",
-      "start_date": "2025-10-25T00:00:00+00:00",
-      "end_date": "2025-10-25T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-22T01:40:47.822+00:00",
-      "updated_at": "2025-10-24T21:34:45.550343+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "df416823-5bdf-4d2c-b0cc-40646cf01b96",
-      "title": "Bmw",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-25T00:00:00+00:00",
-      "end_date": "2025-10-25T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-24T17:30:33.51+00:00",
-      "updated_at": "2025-10-24T17:30:33.829019+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1157,17 +1157,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "f829a07d-4d0c-4ee0-944b-e0229ff8f203",
-      "title": "Call dad",
-      "description": "[#2be3ac]",
-      "start_date": "2025-11-19T00:00:00+00:00",
-      "end_date": "2025-11-19T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-15T04:04:26.724+00:00",
-      "updated_at": "2025-11-19T16:56:42.666579+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "6386d10a-206c-4887-b26f-7ad5a0c2f55d",
       "title": "Bi-Weekly Email",
       "description": "[#2d673e]",
@@ -1179,113 +1168,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "9b30eb37-d2b0-49f8-9682-a10350db3089",
-      "title": "Daily Wellable",
-      "description": "[#e27d08]",
-      "start_date": "2025-11-20T00:00:00+00:00",
-      "end_date": "2025-11-20T00:00:00+00:00",
+      "id": "f829a07d-4d0c-4ee0-944b-e0229ff8f203",
+      "title": "Call dad",
+      "description": "[#2be3ac]",
+      "start_date": "2025-11-19T00:00:00+00:00",
+      "end_date": "2025-11-19T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-17T05:46:31.615+00:00",
-      "updated_at": "2025-11-19T16:56:44.864319+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "11d72513-d9ce-46d5-9399-3fc3612969da",
-      "title": "Workday!!",
-      "description": "[#00e205]",
-      "start_date": "2025-11-21T00:00:00+00:00",
-      "end_date": "2025-11-21T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-25T21:33:06.397+00:00",
-      "updated_at": "2025-11-14T00:45:07.311315+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "ff9ad4b9-10e0-435e-83ae-f20a1f8fe3c4",
-      "title": "Pay urology elcaminohralthmycare 50$",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-21T00:00:00+00:00",
-      "end_date": "2025-11-21T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-18T00:34:03.202+00:00",
-      "updated_at": "2025-11-20T19:39:45.457454+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "d20e70e0-fa97-4ce3-9d43-436275486bb3",
-      "title": "Paycheque",
-      "description": "[#37e421]",
-      "start_date": "2025-11-21T00:00:00+00:00",
-      "end_date": "2025-11-21T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-31T06:27:52.31+00:00",
-      "updated_at": "2025-10-31T06:27:53.214799+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "6b2eecf5-7629-4ee4-a2ff-d535ebba2a18",
-      "title": "post car",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-21T00:00:00+00:00",
-      "end_date": "2025-11-21T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-21T08:40:25.843+00:00",
-      "updated_at": "2025-11-21T08:40:26.226516+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "a4dc3a1f-0c24-4e27-aa9e-26192505cec4",
-      "title": "Ask about xmas",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-21T00:00:00+00:00",
-      "end_date": "2025-11-21T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-21T03:25:04.317+00:00",
-      "updated_at": "2025-11-21T03:25:04.471555+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "17f398cd-ab3f-43f6-86d2-65cbeae353b7",
-      "title": "pay ostomy",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-21T00:00:00+00:00",
-      "end_date": "2025-11-21T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-21T08:40:38.587+00:00",
-      "updated_at": "2025-11-21T08:40:38.899322+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "617f1f41-19fb-4c54-a479-c9c93ad1eae1",
-      "title": "USPS - 8.30 to 5",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-21T00:00:00+00:00",
-      "end_date": "2025-11-21T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-09T07:07:01.268+00:00",
-      "updated_at": "2025-11-18T02:39:37.764477+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "386d27aa-0fc8-4f9b-89e8-18c867f19ba8",
-      "title": "Ask Mars to bring Temu stuff + my Apple Watch",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-23T00:00:00+00:00",
-      "end_date": "2025-11-23T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-25T20:39:14.386+00:00",
-      "updated_at": "2025-10-31T19:43:34.547528+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "b8046513-828a-4f84-9cc6-fb0bef0d3b4d",
-      "title": "Mop",
-      "description": "[#4a90e2]",
-      "start_date": "2025-11-23T00:00:00+00:00",
-      "end_date": "2025-11-23T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-13T05:50:28.105+00:00",
-      "updated_at": "2025-11-16T23:47:44.804727+00:00",
+      "created_at": "2025-09-15T04:04:26.724+00:00",
+      "updated_at": "2025-11-19T16:56:42.666579+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1333,36 +1223,25 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "c9706382-0216-4f61-9bcf-ca998cfa7f17",
-      "title": "Aion 2 mobile",
-      "description": "[#b8df2a]",
-      "start_date": "2025-11-30T00:00:00+00:00",
-      "end_date": "2025-11-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-10T18:17:17.509+00:00",
-      "updated_at": "2025-11-13T05:55:52.123821+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "6eaf23a0-1e28-42ab-af01-52a6e52a6ead",
-      "title": "Clipper (check in the mail)",
-      "description": "[#4a90e2]📞 877-878-8883\nTell them you want a balance refund.\nThey’ll ask for:\n\nClipper card number\n\nYour mailing address\n\nReason (e.g., moved, no longer using card)",
-      "start_date": "2025-11-30T00:00:00+00:00",
-      "end_date": "2025-11-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-30T09:18:07.066+00:00",
-      "updated_at": "2025-11-13T05:55:41.47218+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "b5c27aed-12d5-4bcd-bdaf-788cc1867f78",
-      "title": "Refund Fasttrak Close online and mail it direct",
+      "id": "617f1f41-19fb-4c54-a479-c9c93ad1eae1",
+      "title": "USPS - 8.30 to 5",
       "description": "[#4a90e2]",
-      "start_date": "2025-11-30T00:00:00+00:00",
-      "end_date": "2025-11-30T00:00:00+00:00",
+      "start_date": "2025-12-01T00:00:00+00:00",
+      "end_date": "2025-12-01T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-19T00:44:56.3+00:00",
-      "updated_at": "2025-10-19T02:05:18.568521+00:00",
+      "created_at": "2025-11-09T07:07:01.268+00:00",
+      "updated_at": "2025-11-24T11:50:40.395702+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "6b2eecf5-7629-4ee4-a2ff-d535ebba2a18",
+      "title": "post car",
+      "description": "[#4a90e2]",
+      "start_date": "2025-12-01T00:00:00+00:00",
+      "end_date": "2025-12-01T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-21T08:40:25.843+00:00",
+      "updated_at": "2025-12-01T03:12:52.539872+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1377,6 +1256,61 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "690820eb-d8d1-4a59-b8b8-66f0452ef99f",
+      "title": "return amazon storage",
+      "description": "[#4a90e2]",
+      "start_date": "2025-12-01T00:00:00+00:00",
+      "end_date": "2025-12-01T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-12-01T00:15:58.442+00:00",
+      "updated_at": "2025-12-01T00:15:58.631457+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "9b30eb37-d2b0-49f8-9682-a10350db3089",
+      "title": "Daily Wellable",
+      "description": "[#e27d08]",
+      "start_date": "2025-12-01T00:00:00+00:00",
+      "end_date": "2025-12-01T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-17T05:46:31.615+00:00",
+      "updated_at": "2025-11-28T18:17:08.057899+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "dc55aae5-3789-4481-92b2-2c732088c6ec",
+      "title": "pickup bb (cpu and gpu)  + return cpu and gpu",
+      "description": "[#4a90e2]",
+      "start_date": "2025-12-01T00:00:00+00:00",
+      "end_date": "2025-12-01T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-12-01T00:15:32.649+00:00",
+      "updated_at": "2025-12-01T03:12:44.291637+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "6eaf23a0-1e28-42ab-af01-52a6e52a6ead",
+      "title": "Clipper (check in the mail)",
+      "description": "[#4a90e2]📞 877-878-8883\nTell them you want a balance refund.\nThey’ll ask for:\n\nClipper card number\n\nYour mailing address\n\nReason (e.g., moved, no longer using card)",
+      "start_date": "2025-12-01T00:00:00+00:00",
+      "end_date": "2025-12-01T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-30T09:18:07.066+00:00",
+      "updated_at": "2025-12-01T03:12:50.089829+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "b5c27aed-12d5-4bcd-bdaf-788cc1867f78",
+      "title": "Refund Fasttrak Close online and mail it direct",
+      "description": "[#4a90e2]",
+      "start_date": "2025-12-01T00:00:00+00:00",
+      "end_date": "2025-12-01T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-19T00:44:56.3+00:00",
+      "updated_at": "2025-12-01T03:12:46.356906+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "3db4bac6-263d-4ed5-b356-52784681ae0c",
       "title": "10-4 inspection home",
       "description": "[#d6f00f]",
@@ -1385,6 +1319,17 @@
       "all_day": false,
       "created_at": "2025-11-21T00:49:14.444+00:00",
       "updated_at": "2025-11-21T00:49:22.169711+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "2fd2de72-4cb6-4182-9c5b-868867d1cdff",
+      "title": "price match",
+      "description": "[#4a90e2]",
+      "start_date": "2025-12-02T00:00:00+00:00",
+      "end_date": "2025-12-02T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-28T18:20:57.398+00:00",
+      "updated_at": "2025-11-28T18:20:57.950603+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1410,6 +1355,17 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "11d72513-d9ce-46d5-9399-3fc3612969da",
+      "title": "Workday!!",
+      "description": "[#00e205]",
+      "start_date": "2025-12-05T00:00:00+00:00",
+      "end_date": "2025-12-05T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-25T21:33:06.397+00:00",
+      "updated_at": "2025-11-21T23:16:38.747783+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "0724bc98-a76d-45fe-974e-c0a5d3ee73cf",
       "title": "Follow up BCBSMA insurance - update address",
       "description": "[#4a90e2]carmelita.brown@bcbsma.com",
@@ -1418,6 +1374,28 @@
       "all_day": false,
       "created_at": "2025-10-17T15:12:52.846+00:00",
       "updated_at": "2025-11-10T22:56:20.457548+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "ff9ad4b9-10e0-435e-83ae-f20a1f8fe3c4",
+      "title": "Pay urology elcaminohralthmycare 50$",
+      "description": "[#4a90e2]",
+      "start_date": "2025-12-06T00:00:00+00:00",
+      "end_date": "2025-12-06T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-18T00:34:03.202+00:00",
+      "updated_at": "2025-11-30T06:59:47.110997+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "17f398cd-ab3f-43f6-86d2-65cbeae353b7",
+      "title": "pay ostomy",
+      "description": "[#4a90e2]",
+      "start_date": "2025-12-06T00:00:00+00:00",
+      "end_date": "2025-12-06T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-21T08:40:38.587+00:00",
+      "updated_at": "2025-11-30T06:59:45.673201+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1432,17 +1410,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "08e4cede-f947-4884-abab-c792d1715dea",
-      "title": "1. Call to book new echo January 9  Ultrasound - 514-499-0101",
-      "description": "[#4a90e2]",
-      "start_date": "2025-12-12T00:00:00+00:00",
-      "end_date": "2025-12-12T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-18T22:59:19.503+00:00",
-      "updated_at": "2025-10-20T16:34:14.250273+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "7ac14e48-000b-4227-8824-20d65c3880d9",
       "title": "0:00 echo (cancelled from Oct 24) + need cash",
       "description": "[#cfdb29]",
@@ -1451,6 +1418,17 @@
       "all_day": false,
       "created_at": "2025-10-14T18:08:27.925+00:00",
       "updated_at": "2025-10-23T02:57:08.82202+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "08e4cede-f947-4884-abab-c792d1715dea",
+      "title": "1. Call to book new echo January 9  Ultrasound - 514-499-0101",
+      "description": "[#4a90e2]",
+      "start_date": "2025-12-12T00:00:00+00:00",
+      "end_date": "2025-12-12T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-18T22:59:19.503+00:00",
+      "updated_at": "2025-10-20T16:34:14.250273+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
