@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-02-01T09:33:31.058Z",
+  "timestamp": "2026-02-11T09:55:49.324Z",
   "version": "1.4",
   "totalLists": 11,
   "totalShoppingLists": 5,
   "totalTravelLists": 3,
-  "totalCalendarEvents": 108,
+  "totalCalendarEvents": 118,
   "totalNotes": 10,
   "data": [
     {
@@ -58,10 +58,12 @@
         "Bills : 4088.24 + extra Muni",
         "Bills: 400.10 School tax",
         "QC Balance: 8134.64 + int",
-        "Desjardins ajusto email from Mars"
+        "Desjardins ajusto email from Mars",
+        "Liver scan (Around June-July)",
+        "Bloods Dr Wyse (in email) - Aug"
       ],
       "created_at": "2025-08-01T04:16:34.258606+00:00",
-      "updated_at": "2026-01-05T16:06:05.926594+00:00",
+      "updated_at": "2026-02-04T19:50:20.449796+00:00",
       "list_order": 0,
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
@@ -496,11 +498,19 @@
         {
           "text": "(Optional) Work laptop + Charger",
           "checked": false
+        },
+        {
+          "text": "Belt",
+          "checked": false
+        },
+        {
+          "text": "Toothbrush/paste",
+          "checked": false
         }
       ],
       "list_order": 0,
       "created_at": "2025-09-28T05:22:48.148287+00:00",
-      "updated_at": "2025-09-28T05:23:50.704383+00:00",
+      "updated_at": "2026-02-09T23:53:57.495984+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -591,17 +601,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "d2272e4d-f7e1-4db7-8206-fc67915b6cf4",
-      "title": "Stelara",
-      "description": "[#4a90e2]",
-      "start_date": "2025-08-15T00:00:00+00:00",
-      "end_date": "2025-08-15T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-08-12T03:37:48.757+00:00",
-      "updated_at": "2025-08-12T03:41:26.347797+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "df4479a1-794a-447c-a555-cddf6cd7137e",
       "title": "FLY",
       "description": "[#9bc2ee]",
@@ -610,6 +609,17 @@
       "all_day": false,
       "created_at": "2025-08-12T03:43:02.995+00:00",
       "updated_at": "2025-08-12T03:54:46.290606+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "d2272e4d-f7e1-4db7-8206-fc67915b6cf4",
+      "title": "Stelara",
+      "description": "[#4a90e2]",
+      "start_date": "2025-08-15T00:00:00+00:00",
+      "end_date": "2025-08-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:37:48.757+00:00",
+      "updated_at": "2025-08-12T03:41:26.347797+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -624,17 +634,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "020f760a-51db-40ff-b485-9c9febda3105",
-      "title": "Paris meeting",
-      "description": "[#b51a00]",
-      "start_date": "2025-08-24T00:00:00+00:00",
-      "end_date": "2025-08-24T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-08-24T03:38:59.445+00:00",
-      "updated_at": "2025-08-24T03:38:59.72017+00:00",
-      "user_id": "e7d823e9-5412-4747-a197-91557de9a38a"
-    },
-    {
       "id": "2fe34e6f-f781-4a17-83c6-d610c435f246",
       "title": "Glenda",
       "description": "[#d569dd]",
@@ -644,6 +643,17 @@
       "created_at": "2025-08-12T03:42:39.281+00:00",
       "updated_at": "2025-08-12T03:58:08.035012+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "020f760a-51db-40ff-b485-9c9febda3105",
+      "title": "Paris meeting",
+      "description": "[#b51a00]",
+      "start_date": "2025-08-24T00:00:00+00:00",
+      "end_date": "2025-08-24T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-24T03:38:59.445+00:00",
+      "updated_at": "2025-08-24T03:38:59.72017+00:00",
+      "user_id": "e7d823e9-5412-4747-a197-91557de9a38a"
     },
     {
       "id": "960e4731-494d-4eeb-9bc0-54c2081c603d",
@@ -701,17 +711,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "954d3e02-c550-4dab-8598-4ddb60b8d3e2",
-      "title": "Haircut 5pm",
-      "description": "[#ebed00]",
-      "start_date": "2025-09-19T00:00:00+00:00",
-      "end_date": "2025-09-19T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-16T18:25:26.615+00:00",
-      "updated_at": "2025-09-16T18:25:40.695566+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "5d89025f-3744-47e6-bf72-61585d1d68c5",
       "title": "Wyse and Torosis",
       "description": "[#4a90e2]",
@@ -731,6 +730,17 @@
       "all_day": false,
       "created_at": "2025-09-12T08:22:41.701+00:00",
       "updated_at": "2025-09-18T22:42:33.499549+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "954d3e02-c550-4dab-8598-4ddb60b8d3e2",
+      "title": "Haircut 5pm",
+      "description": "[#ebed00]",
+      "start_date": "2025-09-19T00:00:00+00:00",
+      "end_date": "2025-09-19T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-09-16T18:25:26.615+00:00",
+      "updated_at": "2025-09-16T18:25:40.695566+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -822,17 +832,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "327923f7-ddea-4ec9-b3b4-8faab67002db",
-      "title": "9-11 est urology mtl (6-8)",
-      "description": "[#4a90e2]Ultrasound - 514-499-0101 \n4845 Saint-Denis\n\n175 echo - dr chan 24 oct 9.15",
-      "start_date": "2025-10-14T00:00:00+00:00",
-      "end_date": "2025-10-14T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-09-24T15:52:40.353+00:00",
-      "updated_at": "2025-10-18T22:59:25.013128+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "7da2b53c-4f45-4993-a091-76f5bc28fee6",
       "title": "Maintenance fees for lot - invoice - 91 ext222 - 100277 - (Done)",
       "description": "[#4a90e2]Call to pay with CC",
@@ -844,14 +843,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "f0c46d15-6bdd-459b-a577-20c8eed421bf",
-      "title": "10:30 xray (DONE)",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-16T00:00:00+00:00",
-      "end_date": "2025-10-16T00:00:00+00:00",
+      "id": "327923f7-ddea-4ec9-b3b4-8faab67002db",
+      "title": "9-11 est urology mtl (6-8)",
+      "description": "[#4a90e2]Ultrasound - 514-499-0101 \n4845 Saint-Denis\n\n175 echo - dr chan 24 oct 9.15",
+      "start_date": "2025-10-14T00:00:00+00:00",
+      "end_date": "2025-10-14T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-10-16T00:55:06.075+00:00",
-      "updated_at": "2025-10-16T18:08:12.022648+00:00",
+      "created_at": "2025-09-24T15:52:40.353+00:00",
+      "updated_at": "2025-10-18T22:59:25.013128+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -863,6 +862,17 @@
       "all_day": false,
       "created_at": "2025-10-16T18:08:32.011+00:00",
       "updated_at": "2025-10-16T23:41:11.915162+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "f0c46d15-6bdd-459b-a577-20c8eed421bf",
+      "title": "10:30 xray (DONE)",
+      "description": "[#4a90e2]",
+      "start_date": "2025-10-16T00:00:00+00:00",
+      "end_date": "2025-10-16T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-16T00:55:06.075+00:00",
+      "updated_at": "2025-10-16T18:08:12.022648+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -965,17 +975,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "5120e15b-ae42-4acf-bf9b-73dbd968bce2",
-      "title": "ask for nancy surgery",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-24T00:00:00+00:00",
-      "end_date": "2025-10-24T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-07T03:52:33.9+00:00",
-      "updated_at": "2025-10-07T03:52:34.079131+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "c9ad536e-61b5-476f-8534-145709ac4caf",
       "title": "3:30pm dr wyse",
       "description": "[#cfd200]Nancy Morin surgery\nOstomy supplies (prescription)\nStelara (prescription)\nShow bloods\nTalk about current issues\nTalk about fertility",
@@ -984,6 +983,17 @@
       "all_day": false,
       "created_at": "2025-09-28T18:17:59.591+00:00",
       "updated_at": "2025-10-24T19:53:53.612391+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "5120e15b-ae42-4acf-bf9b-73dbd968bce2",
+      "title": "ask for nancy surgery",
+      "description": "[#4a90e2]",
+      "start_date": "2025-10-24T00:00:00+00:00",
+      "end_date": "2025-10-24T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-07T03:52:33.9+00:00",
+      "updated_at": "2025-10-07T03:52:34.079131+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -998,17 +1008,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "ea3a9c1a-069d-4103-8759-9fbf217ec9a5",
-      "title": "Houri",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-25T00:00:00+00:00",
-      "end_date": "2025-10-25T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-24T17:40:21.39+00:00",
-      "updated_at": "2025-10-24T17:40:22.230235+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "4c733d72-fb86-42d2-90f3-4d10fb5fd45d",
       "title": "dad",
       "description": "[#4a90e2]baton rouge fries\nlittle round breads\nsaq bottles\nMustard\nLa vache cheese\nFrozen fish salmon, hotog, bass, trout\nWines\n2 box chicken breast",
@@ -1017,6 +1016,17 @@
       "all_day": false,
       "created_at": "2025-10-22T01:40:47.822+00:00",
       "updated_at": "2025-10-24T21:34:45.550343+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "ea3a9c1a-069d-4103-8759-9fbf217ec9a5",
+      "title": "Houri",
+      "description": "[#4a90e2]",
+      "start_date": "2025-10-25T00:00:00+00:00",
+      "end_date": "2025-10-25T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-24T17:40:21.39+00:00",
+      "updated_at": "2025-10-24T17:40:22.230235+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1064,17 +1074,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "22bd233a-1dd0-4461-b25b-ee72f7782a2c",
-      "title": "10am Nadine",
-      "description": "[#008703]",
-      "start_date": "2025-10-30T00:00:00+00:00",
-      "end_date": "2025-10-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-28T16:03:30.049+00:00",
-      "updated_at": "2025-10-28T16:03:30.586901+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "55391508-af2f-4f4c-a60e-81ca37c65b00",
       "title": "8-9am safelight",
       "description": "[#e6ed07]",
@@ -1083,6 +1082,17 @@
       "all_day": false,
       "created_at": "2025-10-28T16:42:10.252+00:00",
       "updated_at": "2025-10-28T17:07:19.818224+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "22bd233a-1dd0-4461-b25b-ee72f7782a2c",
+      "title": "10am Nadine",
+      "description": "[#008703]",
+      "start_date": "2025-10-30T00:00:00+00:00",
+      "end_date": "2025-10-30T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-28T16:03:30.049+00:00",
+      "updated_at": "2025-10-28T16:03:30.586901+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1163,17 +1173,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "6386d10a-206c-4887-b26f-7ad5a0c2f55d",
-      "title": "Bi-Weekly Email",
-      "description": "[#2d673e]",
-      "start_date": "2025-11-19T00:00:00+00:00",
-      "end_date": "2025-11-19T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-05T19:52:31.074+00:00",
-      "updated_at": "2025-11-06T19:29:10.707403+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "f829a07d-4d0c-4ee0-944b-e0229ff8f203",
       "title": "Call dad",
       "description": "[#2be3ac]",
@@ -1185,14 +1184,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "4e367877-0eaf-48fa-a0b8-5928f939279b",
-      "title": "Hoodies - SF - Med Jacky - Large or XL Houri + Extras",
-      "description": "[#e6af19]Walmart Athletic Works Super Soft Hoodie\nH&M Loose Fit Hoodie\nTarget\nHollister",
-      "start_date": "2025-11-26T00:00:00+00:00",
-      "end_date": "2025-11-26T00:00:00+00:00",
+      "id": "6386d10a-206c-4887-b26f-7ad5a0c2f55d",
+      "title": "Bi-Weekly Email",
+      "description": "[#2d673e]",
+      "start_date": "2025-11-19T00:00:00+00:00",
+      "end_date": "2025-11-19T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-11-04T03:24:02.572+00:00",
-      "updated_at": "2025-11-10T18:18:31.512642+00:00",
+      "created_at": "2025-11-05T19:52:31.074+00:00",
+      "updated_at": "2025-11-06T19:29:10.707403+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1204,6 +1203,17 @@
       "all_day": false,
       "created_at": "2025-10-09T01:44:49.059+00:00",
       "updated_at": "2025-10-09T01:45:11.429125+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "4e367877-0eaf-48fa-a0b8-5928f939279b",
+      "title": "Hoodies - SF - Med Jacky - Large or XL Houri + Extras",
+      "description": "[#e6af19]Walmart Athletic Works Super Soft Hoodie\nH&M Loose Fit Hoodie\nTarget\nHollister",
+      "start_date": "2025-11-26T00:00:00+00:00",
+      "end_date": "2025-11-26T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-04T03:24:02.572+00:00",
+      "updated_at": "2025-11-10T18:18:31.512642+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1295,17 +1305,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "2e0d0b0e-3616-4ef9-bcbb-099bfaf91815",
-      "title": "Paycheque",
-      "description": "[#57dc1e]",
-      "start_date": "2025-12-19T00:00:00+00:00",
-      "end_date": "2025-12-19T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-31T06:28:04.512+00:00",
-      "updated_at": "2025-12-05T21:40:46.409185+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "11d72513-d9ce-46d5-9399-3fc3612969da",
       "title": "Workday!!",
       "description": "[#00e205]",
@@ -1314,6 +1313,17 @@
       "all_day": false,
       "created_at": "2025-10-25T21:33:06.397+00:00",
       "updated_at": "2025-12-12T23:58:24.60076+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "2e0d0b0e-3616-4ef9-bcbb-099bfaf91815",
+      "title": "Paycheque",
+      "description": "[#57dc1e]",
+      "start_date": "2025-12-19T00:00:00+00:00",
+      "end_date": "2025-12-19T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-31T06:28:04.512+00:00",
+      "updated_at": "2025-12-05T21:40:46.409185+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1339,17 +1349,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "469093f9-3b7b-4384-bcfe-04fa0ade98b9",
-      "title": "2 pm Urology APPT 500$ CASH  (Victoria Hospital)",
-      "description": "[#dfe24b]Check email",
-      "start_date": "2026-01-16T00:00:00+00:00",
-      "end_date": "2026-01-16T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-14T01:23:29.931+00:00",
-      "updated_at": "2026-01-19T18:09:55.381833+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "76b8e281-c0ae-4eca-8159-00fb3656aff9",
       "title": "10am - 4845 st denis - 175$  (Echo Dr. Chan - Clinique O)",
       "description": "[#4a90e2]",
@@ -1358,6 +1357,17 @@
       "all_day": false,
       "created_at": "2026-01-12T15:52:41.45+00:00",
       "updated_at": "2026-01-19T18:09:43.335697+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "469093f9-3b7b-4384-bcfe-04fa0ade98b9",
+      "title": "2 pm Urology APPT 500$ CASH  (Victoria Hospital)",
+      "description": "[#dfe24b]Check email",
+      "start_date": "2026-01-16T00:00:00+00:00",
+      "end_date": "2026-01-16T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-14T01:23:29.931+00:00",
+      "updated_at": "2026-01-19T18:09:55.381833+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1405,17 +1415,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "ce0e6b35-bba8-4052-a078-381edb2e4c94",
-      "title": "Dad",
-      "description": "[#e2d54b]",
-      "start_date": "2026-01-20T00:00:00+00:00",
-      "end_date": "2026-01-20T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-06T04:38:14.254+00:00",
-      "updated_at": "2026-01-19T21:57:31.528216+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "206f9d7e-9064-438d-a279-8c4132dd5798",
       "title": "Don't eat - Blood tests 11:30",
       "description": "[#d0e24b]",
@@ -1424,6 +1423,17 @@
       "all_day": false,
       "created_at": "2026-01-19T23:57:44.898+00:00",
       "updated_at": "2026-01-19T23:58:29.276428+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "ce0e6b35-bba8-4052-a078-381edb2e4c94",
+      "title": "Dad",
+      "description": "[#e2d54b]",
+      "start_date": "2026-01-20T00:00:00+00:00",
+      "end_date": "2026-01-20T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-01-06T04:38:14.254+00:00",
+      "updated_at": "2026-01-19T21:57:31.528216+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1449,47 +1459,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "33765ca2-fda4-42de-8884-0e80f130077a",
-      "title": "Verify MC",
-      "description": "[#4a90e2]",
-      "start_date": "2026-01-28T00:00:00+00:00",
-      "end_date": "2026-01-28T00:00:00+00:00",
+      "id": "be663410-f9e2-4305-bef0-d671931e5bf2",
+      "title": "8pm Meeting",
+      "description": "[#dfe24b]",
+      "start_date": "2026-01-29T00:00:00+00:00",
+      "end_date": "2026-01-29T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-01-19T18:10:09.879+00:00",
-      "updated_at": "2026-01-28T16:11:10.257837+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "1b7f51af-52c9-4042-9373-d1351b0ecd5c",
-      "title": "Update card pins",
-      "description": "[#4a90e2]",
-      "start_date": "2026-01-28T00:00:00+00:00",
-      "end_date": "2026-01-28T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-23T21:01:21.767+00:00",
-      "updated_at": "2026-01-28T16:11:09.157316+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "5197ba54-de60-4288-842c-e0c7a9fc037e",
-      "title": "Plan with Houri / Gab / Jouj",
-      "description": "[#2522e2]",
-      "start_date": "2026-01-28T00:00:00+00:00",
-      "end_date": "2026-01-28T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-27T00:02:42.651+00:00",
-      "updated_at": "2026-01-27T00:04:20.186659+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "b0cefac1-72fd-4ef6-b11e-45d3b943c8e0",
-      "title": "Printer",
-      "description": "[#4a90e2]",
-      "start_date": "2026-01-28T00:00:00+00:00",
-      "end_date": "2026-01-28T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-14T20:07:52.502+00:00",
-      "updated_at": "2026-01-28T16:11:06.085189+00:00",
+      "created_at": "2026-01-27T21:49:16.686+00:00",
+      "updated_at": "2026-01-28T16:11:15.356632+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1504,50 +1481,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "be663410-f9e2-4305-bef0-d671931e5bf2",
-      "title": "8pm Meeting",
-      "description": "[#dfe24b]",
-      "start_date": "2026-01-29T00:00:00+00:00",
-      "end_date": "2026-01-29T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-27T21:49:16.686+00:00",
-      "updated_at": "2026-01-28T16:11:15.356632+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "4eb3a034-9b9b-421e-9c75-7982e9fa97da",
-      "title": "3pm lupo - leche les fesses - vaccins",
-      "description": "[#c8e203]",
-      "start_date": "2026-01-30T00:00:00+00:00",
-      "end_date": "2026-01-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-26T15:21:09.474+00:00",
-      "updated_at": "2026-01-26T15:21:15.517457+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "52613eee-7996-49b7-a851-470abf01b041",
-      "title": "Pay",
-      "description": "[#09fb39]",
-      "start_date": "2026-01-30T00:00:00+00:00",
-      "end_date": "2026-01-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-19T23:58:10.37+00:00",
-      "updated_at": "2026-01-27T00:03:51.915234+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "45e955c3-50e2-43af-af85-154896a23bef",
-      "title": "1pm Siva meeting",
-      "description": "[#4a90e2]",
-      "start_date": "2026-01-30T00:00:00+00:00",
-      "end_date": "2026-01-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-29T22:25:06.014+00:00",
-      "updated_at": "2026-01-29T22:25:07.151156+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "ffaa6107-f51a-490b-944b-c13e9e2045ff",
       "title": "12:30 us taxes team diana - mainly ask about 2026+",
       "description": "[#a9e10e]",
@@ -1559,14 +1492,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "44f84b66-4267-4a8d-a510-d84bc8276e0e",
-      "title": "I have 120$ visa",
-      "description": "[#4a90e2]",
-      "start_date": "2026-01-31T00:00:00+00:00",
-      "end_date": "2026-01-31T00:00:00+00:00",
+      "id": "4eb3a034-9b9b-421e-9c75-7982e9fa97da",
+      "title": "3pm lupo - leche les fesses - vaccins",
+      "description": "[#c8e203]",
+      "start_date": "2026-01-30T00:00:00+00:00",
+      "end_date": "2026-01-30T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-01-03T22:58:00.212+00:00",
-      "updated_at": "2026-01-03T22:58:00.083405+00:00",
+      "created_at": "2026-01-26T15:21:09.474+00:00",
+      "updated_at": "2026-01-26T15:21:15.517457+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1592,102 +1525,25 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "226aa009-e58e-4cb1-ae14-0f05ef105359",
-      "title": "capital one max end of feb",
-      "description": "[#4a90e2]",
-      "start_date": "2026-01-31T00:00:00+00:00",
-      "end_date": "2026-01-31T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-12-07T11:12:15.413+00:00",
-      "updated_at": "2025-12-07T11:12:16.365624+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "092895b6-7487-4520-ae56-4a24726a29a0",
-      "title": "Buy Lego + Card",
-      "description": "[#4a90e2]",
-      "start_date": "2026-01-31T00:00:00+00:00",
-      "end_date": "2026-01-31T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-28T18:13:14.491+00:00",
-      "updated_at": "2026-01-28T18:13:14.750341+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "0209e909-d1f6-402b-b331-b3902a335204",
-      "title": "Get dad fridge?",
-      "description": "[#4a90e2]",
-      "start_date": "2026-01-31T00:00:00+00:00",
-      "end_date": "2026-01-31T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-19T18:05:24.141+00:00",
-      "updated_at": "2026-01-28T16:11:03.192761+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "c1aa7878-d0f9-4cb5-8d70-6bba4dbdf110",
-      "title": "Apple",
-      "description": "[#4a90e2]",
-      "start_date": "2026-02-01T00:00:00+00:00",
-      "end_date": "2026-02-01T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-02-01T04:56:20.125+00:00",
-      "updated_at": "2026-02-01T04:56:20.227485+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "74411059-797e-44a0-996c-6bdd5d818c5f",
-      "title": "Prep gift",
-      "description": "[#4a90e2]",
-      "start_date": "2026-02-01T00:00:00+00:00",
-      "end_date": "2026-02-01T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-02-01T04:56:37.579+00:00",
-      "updated_at": "2026-02-01T04:56:37.661172+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "ad51ceab-b580-4390-9698-21771b8347f1",
-      "title": "Banking",
-      "description": "[#4a90e2]",
-      "start_date": "2026-02-01T00:00:00+00:00",
-      "end_date": "2026-02-01T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-02-01T04:57:09.78+00:00",
-      "updated_at": "2026-02-01T04:57:09.9416+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "67178fa7-590f-415e-93b6-3edb84085a5c",
-      "title": "Get tax papers?",
-      "description": "[#4a90e2]",
-      "start_date": "2026-02-02T00:00:00+00:00",
-      "end_date": "2026-02-02T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-29T22:00:29.346+00:00",
-      "updated_at": "2026-01-29T23:31:08.134899+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "75cc8c34-704e-49f2-904e-8a963a9c8599",
-      "title": "Dad oven",
-      "description": "[#4a90e2]",
-      "start_date": "2026-02-02T00:00:00+00:00",
-      "end_date": "2026-02-02T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-02-01T04:57:32.023+00:00",
-      "updated_at": "2026-02-01T04:57:32.11832+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "a1b4fb0a-a078-4732-bdf0-f8ebd20848df",
       "title": "Jewish 10AM - G300",
-      "description": "[#eeff00]",
+      "description": "[#eeff00]March-April (Surgery) - Need pre-op appt at least 2 weeks before + follow up 3-4 weeks after",
       "start_date": "2026-02-03T00:00:00+00:00",
       "end_date": "2026-02-03T00:00:00+00:00",
       "all_day": false,
       "created_at": "2026-01-05T16:03:10.312+00:00",
-      "updated_at": "2026-01-05T16:03:16.313839+00:00",
+      "updated_at": "2026-02-03T18:44:03.37588+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "5a50dc17-80fa-4d46-b316-53a7ffc19a9d",
+      "title": "Dr Wyse (8-10am phone call)",
+      "description": "[#b3f524]",
+      "start_date": "2026-02-04T00:00:00+00:00",
+      "end_date": "2026-02-04T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-03T19:27:16.133+00:00",
+      "updated_at": "2026-02-03T19:27:16.168395+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1702,6 +1558,193 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "92f0d47b-3862-4a89-912b-c696b90357e7",
+      "title": "Prep flight & checkin",
+      "description": "[#87e02e]",
+      "start_date": "2026-02-07T00:00:00+00:00",
+      "end_date": "2026-02-07T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-02T03:28:33.418+00:00",
+      "updated_at": "2026-02-02T03:28:33.542757+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "4dfb60a7-c04d-4b47-9ffc-80083bb18d4a",
+      "title": "WeBox",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-10T00:00:00+00:00",
+      "end_date": "2026-02-10T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-02T18:58:08.078+00:00",
+      "updated_at": "2026-02-10T01:02:07.793564+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "e2050efb-fc6a-4861-ad08-837f5832b65f",
+      "title": "Coins, payments  83.82 split 3way",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-10T00:00:00+00:00",
+      "end_date": "2026-02-10T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-08T01:29:49.69+00:00",
+      "updated_at": "2026-02-10T01:19:17.027846+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "bba0e693-37c9-44aa-90c2-dd9ff91a8d8f",
+      "title": "Lupo appts?",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-11T00:00:00+00:00",
+      "end_date": "2026-02-11T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-05T21:42:48.815+00:00",
+      "updated_at": "2026-02-10T23:17:11.337051+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "62c27288-58c1-46bd-81be-25517468ef4f",
+      "title": "Call amex",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-11T00:00:00+00:00",
+      "end_date": "2026-02-11T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-08T22:03:02.818+00:00",
+      "updated_at": "2026-02-10T01:00:26.316265+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "c1aa7878-d0f9-4cb5-8d70-6bba4dbdf110",
+      "title": "Apple n support",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-11T00:00:00+00:00",
+      "end_date": "2026-02-11T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-01T04:56:20.125+00:00",
+      "updated_at": "2026-02-10T06:22:31.779185+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "8a522c91-0c4b-4d21-96bd-da1c411f0934",
+      "title": "Extend stelara…get spray and lubricant",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-11T00:00:00+00:00",
+      "end_date": "2026-02-11T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-08T01:29:23.169+00:00",
+      "updated_at": "2026-02-10T01:00:46.046944+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "45e955c3-50e2-43af-af85-154896a23bef",
+      "title": "Remote pc setup Siva",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-11T00:00:00+00:00",
+      "end_date": "2026-02-11T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-01-29T22:25:06.014+00:00",
+      "updated_at": "2026-02-10T23:17:02.88101+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "892eee6a-17d9-49f9-98a0-158cb3b7e076",
+      "title": "Glenda salt onion - Trader Joes",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-12T00:00:00+00:00",
+      "end_date": "2026-02-12T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-03T23:40:20.475+00:00",
+      "updated_at": "2026-02-10T06:22:11.041736+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "c4771845-4874-43a2-8455-50b5568cd228",
+      "title": "File 2 medical claims",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-13T00:00:00+00:00",
+      "end_date": "2026-02-13T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-08T00:36:23.319+00:00",
+      "updated_at": "2026-02-10T06:21:51.118488+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "52613eee-7996-49b7-a851-470abf01b041",
+      "title": "Pay",
+      "description": "[#09fb39]",
+      "start_date": "2026-02-13T00:00:00+00:00",
+      "end_date": "2026-02-13T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-01-19T23:58:10.37+00:00",
+      "updated_at": "2026-02-02T03:28:37.581141+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "5197ba54-de60-4288-842c-e0c7a9fc037e",
+      "title": "~ Plan with Houri / Gab / Jouj",
+      "description": "[#2522e2]",
+      "start_date": "2026-02-15T00:00:00+00:00",
+      "end_date": "2026-02-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-01-27T00:02:42.651+00:00",
+      "updated_at": "2026-02-05T20:29:27.411736+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "0209e909-d1f6-402b-b331-b3902a335204",
+      "title": "Get dad fridge?",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-15T00:00:00+00:00",
+      "end_date": "2026-02-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-01-19T18:05:24.141+00:00",
+      "updated_at": "2026-02-05T20:26:21.824392+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "b0cefac1-72fd-4ef6-b11e-45d3b943c8e0",
+      "title": "Printer",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-15T00:00:00+00:00",
+      "end_date": "2026-02-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-01-14T20:07:52.502+00:00",
+      "updated_at": "2026-02-05T20:26:31.318474+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "1b7f51af-52c9-4042-9373-d1351b0ecd5c",
+      "title": "Update card pins",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-15T00:00:00+00:00",
+      "end_date": "2026-02-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-01-23T21:01:21.767+00:00",
+      "updated_at": "2026-02-05T20:26:34.80815+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "ad51ceab-b580-4390-9698-21771b8347f1",
+      "title": "National Bank",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-15T00:00:00+00:00",
+      "end_date": "2026-02-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-01T04:57:09.78+00:00",
+      "updated_at": "2026-02-05T20:26:29.499782+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "197a8f72-1069-4069-bd36-ebe97457b8ff",
+      "title": "Organize paperwork",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-15T00:00:00+00:00",
+      "end_date": "2026-02-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-04T04:43:19.145+00:00",
+      "updated_at": "2026-02-07T20:03:01.340513+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "820bbfce-9d73-4842-84d9-1bda46903f8f",
       "title": "Stelara",
       "description": "[#ed26c9]",
@@ -1713,6 +1756,17 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "bffd6ae8-3603-4aa1-83c1-c6bbe55a6675",
+      "title": "Talk to sammy",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-19T00:00:00+00:00",
+      "end_date": "2026-02-19T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-08T06:04:44.978+00:00",
+      "updated_at": "2026-02-08T06:04:45.093186+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "1cde1ac1-3eee-4df9-bf28-90aa8ebf46d5",
       "title": "10:45am BMW service",
       "description": "[#cbe123]",
@@ -1721,6 +1775,72 @@
       "all_day": false,
       "created_at": "2026-01-26T15:15:14.283+00:00",
       "updated_at": "2026-01-26T15:15:19.440781+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "59c4f116-2dc2-4e81-8198-dd619bcca37b",
+      "title": "8am -A6 no prep 2h max",
+      "description": "[#81d000]",
+      "start_date": "2026-02-20T00:00:00+00:00",
+      "end_date": "2026-02-20T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-10T16:34:44.806+00:00",
+      "updated_at": "2026-02-10T16:35:04.74401+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "58cdd300-666b-4129-9c5b-9aae7d0f53b3",
+      "title": "Car wash?",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-21T00:00:00+00:00",
+      "end_date": "2026-02-21T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-08T06:04:24.967+00:00",
+      "updated_at": "2026-02-08T06:04:25.190535+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "ee070099-ca13-44b3-a5a4-12ebf47743b8",
+      "title": "Prep flight & Checkin",
+      "description": "[#a6e92b]",
+      "start_date": "2026-02-28T00:00:00+00:00",
+      "end_date": "2026-02-28T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-05T20:28:44.05+00:00",
+      "updated_at": "2026-02-05T20:28:43.565831+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "44f84b66-4267-4a8d-a510-d84bc8276e0e",
+      "title": "I have 120$ visa + 450$ CapitalOne",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-28T00:00:00+00:00",
+      "end_date": "2026-02-28T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-01-03T22:58:00.212+00:00",
+      "updated_at": "2026-02-05T20:29:13.892389+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "6d06dedf-a7fa-4e38-8edc-4457afaf2e10",
+      "title": "Cancel apple arcade",
+      "description": "[#4a90e2]",
+      "start_date": "2026-03-01T00:00:00+00:00",
+      "end_date": "2026-03-01T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-08T21:48:05.457+00:00",
+      "updated_at": "2026-02-08T21:48:05.615764+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "a9980473-7d3e-4542-a2af-d0a8056846de",
+      "title": "Lupo vet 3pm",
+      "description": "[#4a90e2]",
+      "start_date": "2026-03-06T00:00:00+00:00",
+      "end_date": "2026-03-06T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-01T17:57:49.743+00:00",
+      "updated_at": "2026-02-01T17:57:49.958332+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
