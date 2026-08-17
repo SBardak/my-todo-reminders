@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-08-07T10:01:59.418Z",
+  "timestamp": "2026-08-17T09:42:11.669Z",
   "version": "1.4",
   "totalLists": 11,
   "totalShoppingLists": 5,
   "totalTravelLists": 3,
-  "totalCalendarEvents": 203,
+  "totalCalendarEvents": 208,
   "totalNotes": 14,
   "data": [
     {
@@ -599,14 +599,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "c1e7fd1f-a555-4d07-bc0c-8204245c94de",
-      "title": "Marlboro",
+      "id": "d2272e4d-f7e1-4db7-8206-fc67915b6cf4",
+      "title": "Stelara",
       "description": "[#4a90e2]",
       "start_date": "2025-08-15T00:00:00+00:00",
       "end_date": "2025-08-15T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-08-12T03:38:11.042+00:00",
-      "updated_at": "2025-08-12T03:38:11.994665+00:00",
+      "created_at": "2025-08-12T03:37:48.757+00:00",
+      "updated_at": "2025-08-12T03:41:26.347797+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -621,25 +621,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "d2272e4d-f7e1-4db7-8206-fc67915b6cf4",
-      "title": "Stelara",
+      "id": "c1e7fd1f-a555-4d07-bc0c-8204245c94de",
+      "title": "Marlboro",
       "description": "[#4a90e2]",
       "start_date": "2025-08-15T00:00:00+00:00",
       "end_date": "2025-08-15T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2025-08-12T03:37:48.757+00:00",
-      "updated_at": "2025-08-12T03:41:26.347797+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "2fe34e6f-f781-4a17-83c6-d610c435f246",
-      "title": "Glenda",
-      "description": "[#d569dd]",
-      "start_date": "2025-08-24T00:00:00+00:00",
-      "end_date": "2025-08-24T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-08-12T03:42:39.281+00:00",
-      "updated_at": "2025-08-12T03:58:08.035012+00:00",
+      "created_at": "2025-08-12T03:38:11.042+00:00",
+      "updated_at": "2025-08-12T03:38:11.994665+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -652,6 +641,17 @@
       "created_at": "2025-08-24T03:38:59.445+00:00",
       "updated_at": "2025-08-24T03:38:59.72017+00:00",
       "user_id": "e7d823e9-5412-4747-a197-91557de9a38a"
+    },
+    {
+      "id": "2fe34e6f-f781-4a17-83c6-d610c435f246",
+      "title": "Glenda",
+      "description": "[#d569dd]",
+      "start_date": "2025-08-24T00:00:00+00:00",
+      "end_date": "2025-08-24T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-12T03:42:39.281+00:00",
+      "updated_at": "2025-08-12T03:58:08.035012+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
       "id": "960e4731-494d-4eeb-9bc0-54c2081c603d",
@@ -830,17 +830,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "7da2b53c-4f45-4993-a091-76f5bc28fee6",
-      "title": "Maintenance fees for lot - invoice - 91 ext222 - 100277 - (Done)",
-      "description": "[#4a90e2]Call to pay with CC",
-      "start_date": "2025-10-14T00:00:00+00:00",
-      "end_date": "2025-10-14T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-08-29T22:49:13.187+00:00",
-      "updated_at": "2025-10-14T18:22:09.920556+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "327923f7-ddea-4ec9-b3b4-8faab67002db",
       "title": "9-11 est urology mtl (6-8)",
       "description": "[#4a90e2]Ultrasound - 514-499-0101 \n4845 Saint-Denis\n\n175 echo - dr chan 24 oct 9.15",
@@ -849,6 +838,17 @@
       "all_day": false,
       "created_at": "2025-09-24T15:52:40.353+00:00",
       "updated_at": "2025-10-18T22:59:25.013128+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "7da2b53c-4f45-4993-a091-76f5bc28fee6",
+      "title": "Maintenance fees for lot - invoice - 91 ext222 - 100277 - (Done)",
+      "description": "[#4a90e2]Call to pay with CC",
+      "start_date": "2025-10-14T00:00:00+00:00",
+      "end_date": "2025-10-14T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-08-29T22:49:13.187+00:00",
+      "updated_at": "2025-10-14T18:22:09.920556+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -918,17 +918,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "9e3909d6-0fe7-44f9-836e-99c515c4d873",
-      "title": "stanford neuro -> neuro psych (650-498-9000)",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-20T00:00:00+00:00",
-      "end_date": "2025-10-20T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-20T17:06:30.864+00:00",
-      "updated_at": "2025-10-20T17:06:31.554668+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "83d2dfc2-c27c-4916-b8af-c412fcd1bfcc",
       "title": "Fix my credit  -  1 877 713-3393",
       "description": "[#4a90e2]transunion num dossier V2863159",
@@ -937,6 +926,17 @@
       "all_day": false,
       "created_at": "2025-10-17T04:46:43.787+00:00",
       "updated_at": "2025-10-20T17:28:20.625536+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "9e3909d6-0fe7-44f9-836e-99c515c4d873",
+      "title": "stanford neuro -> neuro psych (650-498-9000)",
+      "description": "[#4a90e2]",
+      "start_date": "2025-10-20T00:00:00+00:00",
+      "end_date": "2025-10-20T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-20T17:06:30.864+00:00",
+      "updated_at": "2025-10-20T17:06:31.554668+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -962,17 +962,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "5120e15b-ae42-4acf-bf9b-73dbd968bce2",
-      "title": "ask for nancy surgery",
-      "description": "[#4a90e2]",
-      "start_date": "2025-10-24T00:00:00+00:00",
-      "end_date": "2025-10-24T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-07T03:52:33.9+00:00",
-      "updated_at": "2025-10-07T03:52:34.079131+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "c9ad536e-61b5-476f-8534-145709ac4caf",
       "title": "3:30pm dr wyse",
       "description": "[#cfd200]Nancy Morin surgery\nOstomy supplies (prescription)\nStelara (prescription)\nShow bloods\nTalk about current issues\nTalk about fertility",
@@ -981,6 +970,17 @@
       "all_day": false,
       "created_at": "2025-09-28T18:17:59.591+00:00",
       "updated_at": "2025-10-24T19:53:53.612391+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "5120e15b-ae42-4acf-bf9b-73dbd968bce2",
+      "title": "ask for nancy surgery",
+      "description": "[#4a90e2]",
+      "start_date": "2025-10-24T00:00:00+00:00",
+      "end_date": "2025-10-24T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-07T03:52:33.9+00:00",
+      "updated_at": "2025-10-07T03:52:34.079131+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1072,17 +1072,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "22bd233a-1dd0-4461-b25b-ee72f7782a2c",
-      "title": "10am Nadine",
-      "description": "[#008703]",
-      "start_date": "2025-10-30T00:00:00+00:00",
-      "end_date": "2025-10-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-28T16:03:30.049+00:00",
-      "updated_at": "2025-10-28T16:03:30.586901+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "55391508-af2f-4f4c-a60e-81ca37c65b00",
       "title": "8-9am safelight",
       "description": "[#e6ed07]",
@@ -1091,6 +1080,17 @@
       "all_day": false,
       "created_at": "2025-10-28T16:42:10.252+00:00",
       "updated_at": "2025-10-28T17:07:19.818224+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "22bd233a-1dd0-4461-b25b-ee72f7782a2c",
+      "title": "10am Nadine",
+      "description": "[#008703]",
+      "start_date": "2025-10-30T00:00:00+00:00",
+      "end_date": "2025-10-30T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-28T16:03:30.049+00:00",
+      "updated_at": "2025-10-28T16:03:30.586901+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1193,17 +1193,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "4e367877-0eaf-48fa-a0b8-5928f939279b",
-      "title": "Hoodies - SF - Med Jacky - Large or XL Houri + Extras",
-      "description": "[#e6af19]Walmart Athletic Works Super Soft Hoodie\nH&M Loose Fit Hoodie\nTarget\nHollister",
-      "start_date": "2025-11-26T00:00:00+00:00",
-      "end_date": "2025-11-26T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-11-04T03:24:02.572+00:00",
-      "updated_at": "2025-11-10T18:18:31.512642+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "4e65b934-6875-4fbd-af2b-1c64b9646cbf",
       "title": "Glenda",
       "description": "[#33dae6]",
@@ -1212,6 +1201,17 @@
       "all_day": false,
       "created_at": "2025-10-09T01:44:49.059+00:00",
       "updated_at": "2025-10-09T01:45:11.429125+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "4e367877-0eaf-48fa-a0b8-5928f939279b",
+      "title": "Hoodies - SF - Med Jacky - Large or XL Houri + Extras",
+      "description": "[#e6af19]Walmart Athletic Works Super Soft Hoodie\nH&M Loose Fit Hoodie\nTarget\nHollister",
+      "start_date": "2025-11-26T00:00:00+00:00",
+      "end_date": "2025-11-26T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-11-04T03:24:02.572+00:00",
+      "updated_at": "2025-11-10T18:18:31.512642+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1325,17 +1325,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "08e4cede-f947-4884-abab-c792d1715dea",
-      "title": "1. Call to book new echo January 9  Ultrasound - 514-499-0101",
-      "description": "[#4a90e2]",
-      "start_date": "2026-01-05T00:00:00+00:00",
-      "end_date": "2026-01-05T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2025-10-18T22:59:19.503+00:00",
-      "updated_at": "2025-12-15T20:13:05.610237+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "7ac14e48-000b-4227-8824-20d65c3880d9",
       "title": "0:00 echo (cancelled from Oct 24) + need cash",
       "description": "[#cfdb29]",
@@ -1344,6 +1333,17 @@
       "all_day": false,
       "created_at": "2025-10-14T18:08:27.925+00:00",
       "updated_at": "2025-12-15T20:13:01.282013+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "08e4cede-f947-4884-abab-c792d1715dea",
+      "title": "1. Call to book new echo January 9  Ultrasound - 514-499-0101",
+      "description": "[#4a90e2]",
+      "start_date": "2026-01-05T00:00:00+00:00",
+      "end_date": "2026-01-05T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2025-10-18T22:59:19.503+00:00",
+      "updated_at": "2025-12-15T20:13:05.610237+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1413,17 +1413,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "206f9d7e-9064-438d-a279-8c4132dd5798",
-      "title": "Don't eat - Blood tests 11:30",
-      "description": "[#d0e24b]",
-      "start_date": "2026-01-20T00:00:00+00:00",
-      "end_date": "2026-01-20T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-19T23:57:44.898+00:00",
-      "updated_at": "2026-01-19T23:58:29.276428+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "ce0e6b35-bba8-4052-a078-381edb2e4c94",
       "title": "Dad",
       "description": "[#e2d54b]",
@@ -1432,6 +1421,17 @@
       "all_day": false,
       "created_at": "2026-01-06T04:38:14.254+00:00",
       "updated_at": "2026-01-19T21:57:31.528216+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "206f9d7e-9064-438d-a279-8c4132dd5798",
+      "title": "Don't eat - Blood tests 11:30",
+      "description": "[#d0e24b]",
+      "start_date": "2026-01-20T00:00:00+00:00",
+      "end_date": "2026-01-20T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-01-19T23:57:44.898+00:00",
+      "updated_at": "2026-01-19T23:58:29.276428+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1479,17 +1479,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "ffaa6107-f51a-490b-944b-c13e9e2045ff",
-      "title": "12:30 us taxes team diana - mainly ask about 2026+",
-      "description": "[#a9e10e]",
-      "start_date": "2026-01-30T00:00:00+00:00",
-      "end_date": "2026-01-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-01-26T19:33:34.012+00:00",
-      "updated_at": "2026-01-29T22:25:58.479401+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "4eb3a034-9b9b-421e-9c75-7982e9fa97da",
       "title": "3pm lupo - leche les fesses - vaccins",
       "description": "[#c8e203]",
@@ -1501,14 +1490,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "dd7314f4-c136-4f52-b599-6e74bdfaaf2a",
-      "title": "11.15 Apple",
-      "description": "[#a6f514]",
-      "start_date": "2026-01-31T00:00:00+00:00",
-      "end_date": "2026-01-31T00:00:00+00:00",
+      "id": "ffaa6107-f51a-490b-944b-c13e9e2045ff",
+      "title": "12:30 us taxes team diana - mainly ask about 2026+",
+      "description": "[#a9e10e]",
+      "start_date": "2026-01-30T00:00:00+00:00",
+      "end_date": "2026-01-30T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-01-27T21:33:48.904+00:00",
-      "updated_at": "2026-01-27T21:33:49.508964+00:00",
+      "created_at": "2026-01-26T19:33:34.012+00:00",
+      "updated_at": "2026-01-29T22:25:58.479401+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1520,6 +1509,17 @@
       "all_day": false,
       "created_at": "2026-01-27T00:03:50.106+00:00",
       "updated_at": "2026-01-27T00:03:49.906227+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "dd7314f4-c136-4f52-b599-6e74bdfaaf2a",
+      "title": "11.15 Apple",
+      "description": "[#a6f514]",
+      "start_date": "2026-01-31T00:00:00+00:00",
+      "end_date": "2026-01-31T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-01-27T21:33:48.904+00:00",
+      "updated_at": "2026-01-27T21:33:49.508964+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1688,17 +1688,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "229d3679-27c5-4a1d-a3ea-6d3670f4c3c8",
-      "title": "Dremel return",
-      "description": "[#4a90e2]",
-      "start_date": "2026-02-28T00:00:00+00:00",
-      "end_date": "2026-02-28T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-02-16T23:04:46.099+00:00",
-      "updated_at": "2026-02-27T14:55:54.545878+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "44f84b66-4267-4a8d-a510-d84bc8276e0e",
       "title": "I have 120$ visa + 450$ CapitalOne",
       "description": "[#4a90e2]",
@@ -1707,6 +1696,17 @@
       "all_day": false,
       "created_at": "2026-01-03T22:58:00.212+00:00",
       "updated_at": "2026-02-05T20:29:13.892389+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "229d3679-27c5-4a1d-a3ea-6d3670f4c3c8",
+      "title": "Dremel return",
+      "description": "[#4a90e2]",
+      "start_date": "2026-02-28T00:00:00+00:00",
+      "end_date": "2026-02-28T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-02-16T23:04:46.099+00:00",
+      "updated_at": "2026-02-27T14:55:54.545878+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1765,17 +1765,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "467b4124-c000-419a-b8ee-230f3291edfe",
-      "title": "9am thrombosis - b304 (go from C)",
-      "description": "[#96e24b]",
-      "start_date": "2026-03-10T00:00:00+00:00",
-      "end_date": "2026-03-10T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-03-03T19:23:44.078+00:00",
-      "updated_at": "2026-03-10T13:07:24.316418+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "286320e7-b31e-4aa3-bfc2-e6a6fbf4927b",
       "title": "One Piece netflix",
       "description": "[#4a90e2]",
@@ -1787,14 +1776,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "648eb3de-6968-4005-88c5-4ad3615dd441",
-      "title": "2:30 PM Frank - 31 Samson Suite 204 - Bring all",
-      "description": "[#c9e24b]Tax Experts",
-      "start_date": "2026-03-13T00:00:00+00:00",
-      "end_date": "2026-03-13T00:00:00+00:00",
+      "id": "467b4124-c000-419a-b8ee-230f3291edfe",
+      "title": "9am thrombosis - b304 (go from C)",
+      "description": "[#96e24b]",
+      "start_date": "2026-03-10T00:00:00+00:00",
+      "end_date": "2026-03-10T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-03-10T16:58:39.016+00:00",
-      "updated_at": "2026-03-10T16:59:40.559334+00:00",
+      "created_at": "2026-03-03T19:23:44.078+00:00",
+      "updated_at": "2026-03-10T13:07:24.316418+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1817,6 +1806,17 @@
       "all_day": false,
       "created_at": "2026-03-07T21:50:41.077+00:00",
       "updated_at": "2026-03-07T21:50:41.80452+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "648eb3de-6968-4005-88c5-4ad3615dd441",
+      "title": "2:30 PM Frank - 31 Samson Suite 204 - Bring all",
+      "description": "[#c9e24b]Tax Experts",
+      "start_date": "2026-03-13T00:00:00+00:00",
+      "end_date": "2026-03-13T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-03-10T16:58:39.016+00:00",
+      "updated_at": "2026-03-10T16:59:40.559334+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1908,17 +1908,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "3709dc2f-7544-41bc-a701-59109b4e6cca",
-      "title": "Balloons 3pm",
-      "description": "[#daf400]",
-      "start_date": "2026-04-10T00:00:00+00:00",
-      "end_date": "2026-04-10T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-04-09T03:52:04.399+00:00",
-      "updated_at": "2026-04-09T03:52:13.649017+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "f85e0ab8-dfa3-476e-b9f1-4c4c7a81882c",
       "title": "Remove winter tires. 3:30pm",
       "description": "[#c9e24b]",
@@ -1930,14 +1919,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "d479316f-77bb-4a33-9242-25972b45ecf1",
-      "title": "Haircut 12",
-      "description": "[#bae811]",
+      "id": "3709dc2f-7544-41bc-a701-59109b4e6cca",
+      "title": "Balloons 3pm",
+      "description": "[#daf400]",
       "start_date": "2026-04-10T00:00:00+00:00",
       "end_date": "2026-04-10T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-04-01T21:44:45.007+00:00",
-      "updated_at": "2026-04-07T17:05:44.155919+00:00",
+      "created_at": "2026-04-09T03:52:04.399+00:00",
+      "updated_at": "2026-04-09T03:52:13.649017+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1952,14 +1941,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "fa82f08e-9cc3-4373-9c84-f311edf75fbb",
-      "title": "Cabanasucre leave home 10:45",
-      "description": "[#4a90e2]",
-      "start_date": "2026-04-12T00:00:00+00:00",
-      "end_date": "2026-04-12T00:00:00+00:00",
+      "id": "d479316f-77bb-4a33-9242-25972b45ecf1",
+      "title": "Haircut 12",
+      "description": "[#bae811]",
+      "start_date": "2026-04-10T00:00:00+00:00",
+      "end_date": "2026-04-10T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-03-31T02:48:02.669+00:00",
-      "updated_at": "2026-04-12T04:55:50.961819+00:00",
+      "created_at": "2026-04-01T21:44:45.007+00:00",
+      "updated_at": "2026-04-07T17:05:44.155919+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -1971,6 +1960,17 @@
       "all_day": false,
       "created_at": "2026-02-15T21:47:28.486+00:00",
       "updated_at": "2026-04-11T17:22:16.107878+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "fa82f08e-9cc3-4373-9c84-f311edf75fbb",
+      "title": "Cabanasucre leave home 10:45",
+      "description": "[#4a90e2]",
+      "start_date": "2026-04-12T00:00:00+00:00",
+      "end_date": "2026-04-12T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-03-31T02:48:02.669+00:00",
+      "updated_at": "2026-04-12T04:55:50.961819+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2117,17 +2117,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "79878637-e263-4823-a202-dbacd02252f0",
-      "title": "3pm morin",
-      "description": "[#4a90e2]",
-      "start_date": "2026-06-04T00:00:00+00:00",
-      "end_date": "2026-06-04T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-06-03T15:44:06.838+00:00",
-      "updated_at": "2026-06-03T15:44:07.492765+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "6f32af80-458c-43d7-b5d6-912ddb32fe38",
       "title": "regie - 18005619749 - programme des personnes stomisees",
       "description": "[#c1e24b]",
@@ -2136,6 +2125,17 @@
       "all_day": false,
       "created_at": "2026-03-02T19:38:26.316+00:00",
       "updated_at": "2026-06-03T16:25:51.72436+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "79878637-e263-4823-a202-dbacd02252f0",
+      "title": "3pm morin",
+      "description": "[#4a90e2]",
+      "start_date": "2026-06-04T00:00:00+00:00",
+      "end_date": "2026-06-04T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-06-03T15:44:06.838+00:00",
+      "updated_at": "2026-06-03T15:44:07.492765+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2194,17 +2194,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "09a93580-70db-4800-97dc-55e19ca05886",
-      "title": "11:30am clsc",
-      "description": "[#f0f900]",
-      "start_date": "2026-06-12T00:00:00+00:00",
-      "end_date": "2026-06-12T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-06-06T15:08:59.283+00:00",
-      "updated_at": "2026-06-06T15:09:06.322106+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "8bf1bbd5-2db5-45ef-8451-103f6d52edcf",
       "title": "Scary movie 6 theatres",
       "description": "[#4a90e2]",
@@ -2213,6 +2202,17 @@
       "all_day": false,
       "created_at": "2026-03-04T07:36:57.182+00:00",
       "updated_at": "2026-03-04T07:36:57.588602+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "09a93580-70db-4800-97dc-55e19ca05886",
+      "title": "11:30am clsc",
+      "description": "[#f0f900]",
+      "start_date": "2026-06-12T00:00:00+00:00",
+      "end_date": "2026-06-12T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-06-06T15:08:59.283+00:00",
+      "updated_at": "2026-06-06T15:09:06.322106+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2238,17 +2238,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "5e1202c6-9f6c-4213-aaf7-6329284b261b",
-      "title": "7:45 bmw",
-      "description": "[#dee100]",
-      "start_date": "2026-06-19T00:00:00+00:00",
-      "end_date": "2026-06-19T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-06-12T15:36:02.508+00:00",
-      "updated_at": "2026-06-12T15:36:03.071169+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "a7b72e0a-97ca-4345-bc8d-5cfbdafd2ba0",
       "title": "Clsc 7pm",
       "description": "[#c7ca00]",
@@ -2268,6 +2257,17 @@
       "all_day": false,
       "created_at": "2026-06-04T20:15:17.745+00:00",
       "updated_at": "2026-06-12T15:59:22.667858+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "5e1202c6-9f6c-4213-aaf7-6329284b261b",
+      "title": "7:45 bmw",
+      "description": "[#dee100]",
+      "start_date": "2026-06-19T00:00:00+00:00",
+      "end_date": "2026-06-19T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-06-12T15:36:02.508+00:00",
+      "updated_at": "2026-06-12T15:36:03.071169+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2348,28 +2348,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "533127fa-4093-4568-9b78-9af24eadd75e",
-      "title": "dad notary poa for ramq",
-      "description": "[#4a90e2]",
-      "start_date": "2026-07-26T00:00:00+00:00",
-      "end_date": "2026-07-26T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-05-13T06:19:52.854+00:00",
-      "updated_at": "2026-07-28T20:35:13.220854+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "ad51ceab-b580-4390-9698-21771b8347f1",
-      "title": "National Bank",
-      "description": "[#4a90e2]",
-      "start_date": "2026-07-26T00:00:00+00:00",
-      "end_date": null,
-      "all_day": false,
-      "created_at": "2026-02-01T04:57:09.78+00:00",
-      "updated_at": "2026-07-28T20:35:13.590984+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "f6d33c16-b9e2-4763-b6e2-761202cf4b0d",
       "title": "12:15 morin ( paper, travel)",
       "description": "[#ccca00]",
@@ -2392,61 +2370,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "17837adb-a410-4fd4-b47d-87a15c8e91ff",
-      "title": "Dad ramq (before 4.30pm) 514 864-3411",
-      "description": "[#4a90e2]",
-      "start_date": "2026-07-29T00:00:00+00:00",
-      "end_date": "2026-07-29T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-07-24T04:03:08.122+00:00",
-      "updated_at": "2026-07-29T04:29:15.558907+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "4fd1ae3c-b3c6-40be-92cd-aaf591218fe1",
-      "title": "Contact  cra and accountant (Messaged)",
-      "description": "[#4a90e2]",
-      "start_date": "2026-07-29T00:00:00+00:00",
-      "end_date": "2026-07-29T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-06-17T02:38:01.776+00:00",
-      "updated_at": "2026-07-29T04:29:26.687126+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "5b97277d-0f56-49ee-a404-0520d9791ed1",
-      "title": "Notary",
-      "description": "[#4a90e2]",
-      "start_date": "2026-07-30T00:00:00+00:00",
-      "end_date": "2026-07-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-07-21T23:38:03.395+00:00",
-      "updated_at": "2026-07-28T20:44:59.856481+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "a8ff1d66-f079-454b-9bf7-72c67dc6a020",
-      "title": "clean room",
-      "description": "[#4a90e2]",
-      "start_date": "2026-07-30T00:00:00+00:00",
-      "end_date": "2026-07-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-07-15T05:55:55.958+00:00",
-      "updated_at": "2026-07-29T04:29:45.3952+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "41f4a708-967c-4de7-a49f-d9f7472e1354",
-      "title": "Electrician? Outside light / kitchen plugs",
-      "description": "[#4a90e2]",
-      "start_date": "2026-07-30T00:00:00+00:00",
-      "end_date": "2026-07-30T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-07-28T05:24:38.369+00:00",
-      "updated_at": "2026-07-29T04:30:04.720678+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "c3f17cb4-4a7a-4041-993a-9a670119d6b4",
       "title": "Encombrances (Recurring)",
       "description": "[#f5ae14]",
@@ -2455,72 +2378,6 @@
       "all_day": false,
       "created_at": "2026-04-27T02:49:54.468+00:00",
       "updated_at": "2026-07-13T05:46:27.721376+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "6b867da3-f7e6-4d28-9ddb-85b99166cbb7",
-      "title": "Recycle (Recurring)",
-      "description": "[#306a2f]",
-      "start_date": "2026-08-03T00:00:00+00:00",
-      "end_date": "2026-08-03T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-04-04T18:30:22.197+00:00",
-      "updated_at": "2026-07-27T22:57:44.852734+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "560c83b1-de55-446d-9ff6-307d71c114c6",
-      "title": "Budget",
-      "description": "[#4a90e2]",
-      "start_date": "2026-08-06T00:00:00+00:00",
-      "end_date": "2026-08-06T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-08-06T04:32:53.698+00:00",
-      "updated_at": "2026-08-06T04:32:54.683253+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "db212f30-0460-4817-a934-33dd2851d08d",
-      "title": "Call pest control",
-      "description": "[#4a90e2]",
-      "start_date": "2026-08-06T00:00:00+00:00",
-      "end_date": "2026-08-06T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-08-06T04:02:24.906+00:00",
-      "updated_at": "2026-08-06T04:02:24.968657+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "c774fd20-d7f0-485d-8d1a-a6dabb916a49",
-      "title": "Grand Prix Armen",
-      "description": "[#bb1700]",
-      "start_date": "2026-08-07T00:00:00+00:00",
-      "end_date": "2026-08-09T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-04-11T02:27:57.186+00:00",
-      "updated_at": "2026-04-11T02:27:57.486471+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "86402c86-2762-476a-9903-58247e033390",
-      "title": "Camera stuff",
-      "description": "[#4a90e2]",
-      "start_date": "2026-08-07T00:00:00+00:00",
-      "end_date": "2026-08-07T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-08-06T23:01:26.234+00:00",
-      "updated_at": "2026-08-06T23:01:26.371955+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "4b2e39ff-a20c-471c-8ab3-a7046a5cad8e",
-      "title": "Expedia 17$",
-      "description": "[#4a90e2]",
-      "start_date": "2026-08-07T00:00:00+00:00",
-      "end_date": "2026-08-07T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-08-06T23:02:54.121+00:00",
-      "updated_at": "2026-08-06T23:02:54.502163+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2535,69 +2392,91 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "6e4b4d18-2f25-4fb0-ab57-46eb8a95debd",
-      "title": "Siva",
+      "id": "c774fd20-d7f0-485d-8d1a-a6dabb916a49",
+      "title": "Grand Prix Armen",
+      "description": "[#bb1700]",
+      "start_date": "2026-08-07T00:00:00+00:00",
+      "end_date": "2026-08-09T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-04-11T02:27:57.186+00:00",
+      "updated_at": "2026-04-11T02:27:57.486471+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "4b2e39ff-a20c-471c-8ab3-a7046a5cad8e",
+      "title": "Expedia 17$",
       "description": "[#4a90e2]",
       "start_date": "2026-08-07T00:00:00+00:00",
       "end_date": "2026-08-07T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-08-06T04:34:46.93+00:00",
-      "updated_at": "2026-08-06T04:34:47.250292+00:00",
+      "created_at": "2026-08-06T23:02:54.121+00:00",
+      "updated_at": "2026-08-06T23:02:54.502163+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "725296e7-597d-4aeb-82ce-56944cc1e1bb",
-      "title": "Health, cooking, Exercise, Videos, Fasting, AI, Programming, Money, Dog",
+      "id": "17837adb-a410-4fd4-b47d-87a15c8e91ff",
+      "title": "Dad ramq (before 4.30pm) 514 864-3411",
       "description": "[#4a90e2]",
-      "start_date": "2026-08-08T00:00:00+00:00",
-      "end_date": "2026-08-08T00:00:00+00:00",
+      "start_date": "2026-08-09T00:00:00+00:00",
+      "end_date": "2026-08-09T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-08-06T04:05:41.63+00:00",
-      "updated_at": "2026-08-06T04:05:42.061601+00:00",
+      "created_at": "2026-07-24T04:03:08.122+00:00",
+      "updated_at": "2026-08-11T15:21:09.358853+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "55b35e73-bff6-4f4b-8ff0-26385c8b038b",
-      "title": "Vet (medication, ears, butt, skin licking)",
+      "id": "ad51ceab-b580-4390-9698-21771b8347f1",
+      "title": "National Bank",
       "description": "[#4a90e2]",
-      "start_date": "2026-08-08T00:00:00+00:00",
-      "end_date": "2026-08-08T00:00:00+00:00",
+      "start_date": "2026-08-09T00:00:00+00:00",
+      "end_date": null,
       "all_day": false,
-      "created_at": "2026-07-25T15:49:28.302+00:00",
-      "updated_at": "2026-08-06T15:15:31.843142+00:00",
+      "created_at": "2026-02-01T04:57:09.78+00:00",
+      "updated_at": "2026-08-11T15:21:07.309+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "647d07f3-6483-46c7-894c-db98bfb11825",
-      "title": "8am vet call for daily opening",
-      "description": "[#b2f425]",
-      "start_date": "2026-08-08T00:00:00+00:00",
-      "end_date": "2026-08-08T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-08-06T15:13:02.396+00:00",
-      "updated_at": "2026-08-06T15:14:43.610496+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "0b8d017e-95a8-47a3-b137-d1bda86cce6a",
-      "title": "Garbages (Recurring)",
-      "description": "[#6f411b]",
-      "start_date": "2026-08-10T00:00:00+00:00",
-      "end_date": "2026-08-10T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-03-16T19:36:11.965+00:00",
-      "updated_at": "2026-07-28T19:13:22.253287+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "3a49f41a-1809-4474-ad9c-cedbb0b588bc",
-      "title": "Hbada refund (draft email)",
+      "id": "4fd1ae3c-b3c6-40be-92cd-aaf591218fe1",
+      "title": "Contact  cra and accountant (Messaged)",
       "description": "[#4a90e2]",
-      "start_date": "2026-08-11T00:00:00+00:00",
-      "end_date": "2026-08-11T00:00:00+00:00",
+      "start_date": "2026-08-09T00:00:00+00:00",
+      "end_date": "2026-08-09T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-08-06T14:42:53.909+00:00",
-      "updated_at": "2026-08-06T14:42:53.828117+00:00",
+      "created_at": "2026-06-17T02:38:01.776+00:00",
+      "updated_at": "2026-08-11T15:21:12.82882+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "533127fa-4093-4568-9b78-9af24eadd75e",
+      "title": "dad notary poa for ramq",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-09T00:00:00+00:00",
+      "end_date": "2026-08-09T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-05-13T06:19:52.854+00:00",
+      "updated_at": "2026-08-11T15:21:13.985462+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "41f4a708-967c-4de7-a49f-d9f7472e1354",
+      "title": "Electrician? Outside light / kitchen plugs",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-09T00:00:00+00:00",
+      "end_date": "2026-08-09T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-07-28T05:24:38.369+00:00",
+      "updated_at": "2026-08-11T15:21:08.333328+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "a8ff1d66-f079-454b-9bf7-72c67dc6a020",
+      "title": "clean room",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-09T00:00:00+00:00",
+      "end_date": "2026-08-09T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-07-15T05:55:55.958+00:00",
+      "updated_at": "2026-08-11T15:21:11.686129+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2612,14 +2491,80 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "bd9eb45d-9fcd-48bc-ba5a-db9e6314c9fe",
-      "title": "Hydro bill",
+      "id": "bf0b0024-ac61-4cb9-ba7f-101d81e0fe22",
+      "title": "Find notary",
       "description": "[#4a90e2]",
       "start_date": "2026-08-14T00:00:00+00:00",
       "end_date": "2026-08-14T00:00:00+00:00",
       "all_day": false,
+      "created_at": "2026-08-12T03:10:26.7+00:00",
+      "updated_at": "2026-08-14T18:15:56.809308+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "bd9eb45d-9fcd-48bc-ba5a-db9e6314c9fe",
+      "title": "Hydro bill",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-15T00:00:00+00:00",
+      "end_date": "2026-08-15T00:00:00+00:00",
+      "all_day": false,
       "created_at": "2026-08-06T15:06:04.526+00:00",
-      "updated_at": "2026-08-06T15:06:04.344458+00:00",
+      "updated_at": "2026-08-14T18:15:38.569938+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "be1c8526-0f14-47a6-9f37-c8dc611df396",
+      "title": "Check Desjardins pay",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-15T00:00:00+00:00",
+      "end_date": "2026-08-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-14T18:15:49.416+00:00",
+      "updated_at": "2026-08-14T18:15:49.537307+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "00b53695-fd4b-4330-b008-e29ab4175e56",
+      "title": "Get euros",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-15T00:00:00+00:00",
+      "end_date": "2026-08-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-12T23:50:26.417+00:00",
+      "updated_at": "2026-08-12T23:50:26.401833+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "725296e7-597d-4aeb-82ce-56944cc1e1bb",
+      "title": "Health, cooking, Exercise, Videos, Fasting, AI, Programming, Money, Dog",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-15T00:00:00+00:00",
+      "end_date": "2026-08-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-06T04:05:41.63+00:00",
+      "updated_at": "2026-08-14T18:16:00.092679+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "ceb56523-ee58-4ee6-93de-3aebc8596a42",
+      "title": "Mars family Rawdon",
+      "description": "[#c1e24b]",
+      "start_date": "2026-08-15T00:00:00+00:00",
+      "end_date": "2026-08-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-14T18:16:45.019+00:00",
+      "updated_at": "2026-08-14T18:16:51.333303+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "c109f0c6-eaed-4454-a4b2-5a1852fc9cfa",
+      "title": "Neighbor, ebgames",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-15T00:00:00+00:00",
+      "end_date": "2026-08-15T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-15T01:23:00.525+00:00",
+      "updated_at": "2026-08-15T01:23:00.593256+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2645,6 +2590,83 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "9a4435c9-6431-4fc1-a4cc-2c37a083bd88",
+      "title": "Mommy",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-17T00:00:00+00:00",
+      "end_date": "2026-08-17T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-12T02:23:38.06+00:00",
+      "updated_at": "2026-08-12T02:23:39.343025+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "fcf837f9-7ff1-4f21-9cb3-c7b0b75d298e",
+      "title": "TN wait to know what to do",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-17T00:00:00+00:00",
+      "end_date": "2026-08-17T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-13T14:03:13.357+00:00",
+      "updated_at": "2026-08-14T18:16:21.177867+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "e78c6516-b3d5-421c-90ee-fb4d31af978f",
+      "title": "Canadapost",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-17T00:00:00+00:00",
+      "end_date": "2026-08-17T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-15T02:59:52.207+00:00",
+      "updated_at": "2026-08-15T02:59:52.380295+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "6b867da3-f7e6-4d28-9ddb-85b99166cbb7",
+      "title": "Recycle (Recurring)",
+      "description": "[#306a2f]",
+      "start_date": "2026-08-17T00:00:00+00:00",
+      "end_date": "2026-08-17T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-04-04T18:30:22.197+00:00",
+      "updated_at": "2026-08-11T15:20:51.465772+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "db212f30-0460-4817-a934-33dd2851d08d",
+      "title": "Pest control (Morning)",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-19T00:00:00+00:00",
+      "end_date": "2026-08-19T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-06T04:02:24.906+00:00",
+      "updated_at": "2026-08-13T14:02:48.688635+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "5a5494c5-f49e-4d02-a4ef-9934c3301b7a",
+      "title": "Restaurants, bmw",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-19T00:00:00+00:00",
+      "end_date": "2026-08-19T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-14T01:36:36.695+00:00",
+      "updated_at": "2026-08-14T18:16:12.834856+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "55b35e73-bff6-4f4b-8ff0-26385c8b038b",
+      "title": "Vet (medication, ears, butt, skin licking)",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-20T00:00:00+00:00",
+      "end_date": "2026-08-20T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-07-25T15:49:28.302+00:00",
+      "updated_at": "2026-08-15T03:24:38.363951+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "d1ed94dc-e881-4731-83ce-bfa4c7b28c40",
       "title": "19.20 vet",
       "description": "[#c9e24b]",
@@ -2653,6 +2675,17 @@
       "all_day": false,
       "created_at": "2026-08-06T15:14:27.134+00:00",
       "updated_at": "2026-08-06T15:14:31.092748+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "3b5e4861-c65f-4ce4-b41b-189dc5d5e014",
+      "title": "Mars albania",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-21T00:00:00+00:00",
+      "end_date": "2026-08-21T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-12T23:50:02.732+00:00",
+      "updated_at": "2026-08-12T23:50:03.01827+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2667,14 +2700,36 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "0b8d017e-95a8-47a3-b137-d1bda86cce6a",
+      "title": "Garbages (Recurring)",
+      "description": "[#6f411b]",
+      "start_date": "2026-08-24T00:00:00+00:00",
+      "end_date": "2026-08-24T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-03-16T19:36:11.965+00:00",
+      "updated_at": "2026-08-13T14:04:32.278797+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "42016f3b-7b60-4e17-915f-bc0f51ccedd2",
+      "title": "GTA Neflix",
+      "description": "[#4a90e2]",
+      "start_date": "2026-08-27T00:00:00+00:00",
+      "end_date": "2026-08-27T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-10T18:26:52.324+00:00",
+      "updated_at": "2026-08-10T18:26:53.295624+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "b773eb9d-e821-4670-b864-0b34c496e97c",
-      "title": "Pay 600$ Tax",
+      "title": "Pay 600$ QC Tax Monthly",
       "description": "[#f3a012]",
       "start_date": "2026-08-29T00:00:00+00:00",
       "end_date": "2026-08-29T00:00:00+00:00",
       "all_day": false,
       "created_at": "2026-08-06T15:07:21.75+00:00",
-      "updated_at": "2026-08-06T15:07:21.474405+00:00",
+      "updated_at": "2026-08-13T14:04:22.84709+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
