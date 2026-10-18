@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-08T16:10:24.701Z",
+  "timestamp": "2026-10-18T13:02:23.938Z",
   "version": "1.4",
   "totalLists": 11,
   "totalShoppingLists": 5,
@@ -2709,14 +2709,25 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "71c6706e-4dbe-4cbe-ac79-31972292d24e",
-      "title": "oven hole",
+      "id": "ac335be7-e3ed-482b-8910-f62197eaae72",
+      "title": "Clean running shoes",
       "description": "[#4a90e2]",
       "start_date": "2026-09-13T00:00:00+00:00",
       "end_date": "2026-09-13T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-08-20T05:48:45.74+00:00",
-      "updated_at": "2026-09-16T23:35:47.432589+00:00",
+      "created_at": "2026-08-21T02:39:50.31+00:00",
+      "updated_at": "2026-09-16T23:41:48.198693+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "c8b3850d-fd19-4d06-bcf4-06c021c3836d",
+      "title": "Dog training",
+      "description": "[#4a90e2]",
+      "start_date": "2026-09-13T00:00:00+00:00",
+      "end_date": "2026-09-13T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-22T05:57:39.882+00:00",
+      "updated_at": "2026-09-16T23:35:39.710151+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2742,28 +2753,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "725296e7-597d-4aeb-82ce-56944cc1e1bb",
-      "title": "Health, cooking, Exercise, Videos, Fasting, AI, Programming, Money, Dog",
-      "description": "[#4a90e2]",
-      "start_date": "2026-09-13T00:00:00+00:00",
-      "end_date": "2026-09-13T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-08-06T04:05:41.63+00:00",
-      "updated_at": "2026-09-16T23:35:42.927646+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "c8b3850d-fd19-4d06-bcf4-06c021c3836d",
-      "title": "Dog training",
-      "description": "[#4a90e2]",
-      "start_date": "2026-09-13T00:00:00+00:00",
-      "end_date": "2026-09-13T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-08-22T05:57:39.882+00:00",
-      "updated_at": "2026-09-16T23:35:39.710151+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "b9d2e4db-b1bb-499c-9ba9-0dbcab5160d0",
       "title": "License condition",
       "description": "[#4a90e2]",
@@ -2786,14 +2775,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "ac335be7-e3ed-482b-8910-f62197eaae72",
-      "title": "Clean running shoes",
+      "id": "725296e7-597d-4aeb-82ce-56944cc1e1bb",
+      "title": "Health, cooking, Exercise, Videos, Fasting, AI, Programming, Money, Dog",
       "description": "[#4a90e2]",
       "start_date": "2026-09-13T00:00:00+00:00",
       "end_date": "2026-09-13T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-08-21T02:39:50.31+00:00",
-      "updated_at": "2026-09-16T23:41:48.198693+00:00",
+      "created_at": "2026-08-06T04:05:41.63+00:00",
+      "updated_at": "2026-09-16T23:35:42.927646+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2808,6 +2797,17 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "71c6706e-4dbe-4cbe-ac79-31972292d24e",
+      "title": "oven hole",
+      "description": "[#4a90e2]",
+      "start_date": "2026-09-13T00:00:00+00:00",
+      "end_date": "2026-09-13T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-20T05:48:45.74+00:00",
+      "updated_at": "2026-09-16T23:35:47.432589+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "6b867da3-f7e6-4d28-9ddb-85b99166cbb7",
       "title": "Recycle (Recurring)",
       "description": "[#306a2f]",
@@ -2816,50 +2816,6 @@
       "all_day": false,
       "created_at": "2026-04-04T18:30:22.197+00:00",
       "updated_at": "2026-09-01T16:17:25.9866+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "d9dcbae5-8927-4396-86cc-1a75c927829d",
-      "title": "CRA Taxes... (wait 3-4 mo )",
-      "description": "[#4a90e2]",
-      "start_date": "2026-09-17T00:00:00+00:00",
-      "end_date": "2026-09-17T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-08-17T20:15:04.533+00:00",
-      "updated_at": "2026-09-18T02:06:02.296861+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "1ecf534a-d671-4050-a5e2-fe181eb5852d",
-      "title": "Lupo pills",
-      "description": "[#fa2bff]",
-      "start_date": "2026-09-17T00:00:00+00:00",
-      "end_date": "2026-09-17T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-08-21T05:20:27.848+00:00",
-      "updated_at": "2026-09-16T23:30:47.232943+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "33119ac8-e9be-4672-9fd2-1ec4ebde2e50",
-      "title": "Exchange money",
-      "description": "[#4a90e2]",
-      "start_date": "2026-09-17T00:00:00+00:00",
-      "end_date": "2026-09-17T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-09-17T00:41:52.563+00:00",
-      "updated_at": "2026-09-17T00:41:52.727411+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
-      "id": "c81fb149-84f7-42b2-988b-8e482f674ce0",
-      "title": "Sell stuff / Ramq / ostomy",
-      "description": "[#4a90e2]",
-      "start_date": "2026-09-17T00:00:00+00:00",
-      "end_date": "2026-09-17T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-09-16T22:02:14.842+00:00",
-      "updated_at": "2026-09-19T18:08:09.820916+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2874,6 +2830,39 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
+      "id": "1ecf534a-d671-4050-a5e2-fe181eb5852d",
+      "title": "Lupo pills",
+      "description": "[#fa2bff]",
+      "start_date": "2026-09-17T00:00:00+00:00",
+      "end_date": "2026-09-17T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-21T05:20:27.848+00:00",
+      "updated_at": "2026-09-16T23:30:47.232943+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "d9dcbae5-8927-4396-86cc-1a75c927829d",
+      "title": "CRA Taxes... (wait 3-4 mo )",
+      "description": "[#4a90e2]",
+      "start_date": "2026-09-17T00:00:00+00:00",
+      "end_date": "2026-09-17T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-08-17T20:15:04.533+00:00",
+      "updated_at": "2026-09-18T02:06:02.296861+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "33119ac8-e9be-4672-9fd2-1ec4ebde2e50",
+      "title": "Exchange money",
+      "description": "[#4a90e2]",
+      "start_date": "2026-09-17T00:00:00+00:00",
+      "end_date": "2026-09-17T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-09-17T00:41:52.563+00:00",
+      "updated_at": "2026-09-17T00:41:52.727411+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
       "id": "f9add3d6-8397-4844-9853-9e21ec8b9494",
       "title": "Caa refund",
       "description": "[#4a90e2]",
@@ -2882,6 +2871,17 @@
       "all_day": false,
       "created_at": "2026-09-10T21:16:02.815+00:00",
       "updated_at": "2026-09-10T21:16:04.835257+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "c81fb149-84f7-42b2-988b-8e482f674ce0",
+      "title": "Sell stuff / Ramq / ostomy",
+      "description": "[#4a90e2]",
+      "start_date": "2026-09-17T00:00:00+00:00",
+      "end_date": "2026-09-17T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-09-16T22:02:14.842+00:00",
+      "updated_at": "2026-09-19T18:08:09.820916+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2896,17 +2896,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "35df5518-55b0-4e04-bc8e-97f3efd49627",
-      "title": "appeler ramq - 514-864-3411 25$",
-      "description": "[#4a90e2]",
-      "start_date": "2026-09-18T00:00:00+00:00",
-      "end_date": "2026-09-18T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-09-02T18:43:23.917+00:00",
-      "updated_at": "2026-09-02T19:29:04.676494+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "35e0a1b9-3160-4109-a5c6-17c1f2d28494",
       "title": "clsc 2 pieces + 1 photo expire OK + pharmacy +25  (cheque mandat poste , trat bancaire)",
       "description": "[#4a90e2]ordre de la regie de l'assurance maladie du quebec",
@@ -2918,14 +2907,25 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "9e4f85cc-d1f8-4bad-9285-884b6a0c0da1",
-      "title": "1. still eligible for last 2 years?   2. new payment 2026 3. increase to permanent",
+      "id": "35df5518-55b0-4e04-bc8e-97f3efd49627",
+      "title": "appeler ramq - 514-864-3411 25$",
+      "description": "[#4a90e2]",
+      "start_date": "2026-09-18T00:00:00+00:00",
+      "end_date": "2026-09-18T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-09-02T18:43:23.917+00:00",
+      "updated_at": "2026-09-02T19:29:04.676494+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "9e48b79f-e4d7-4ce4-810e-be7e0db7a258",
+      "title": "contact ramq to fix my ostomy stuff (resubmit march or more)",
       "description": "[#4a90e2]",
       "start_date": "2026-09-19T00:00:00+00:00",
       "end_date": "2026-09-19T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-09-04T19:39:17.515+00:00",
-      "updated_at": "2026-09-04T19:39:28.599187+00:00",
+      "created_at": "2026-09-04T19:17:42.558+00:00",
+      "updated_at": "2026-09-04T19:55:09.815593+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -2940,14 +2940,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "9e48b79f-e4d7-4ce4-810e-be7e0db7a258",
-      "title": "contact ramq to fix my ostomy stuff (resubmit march or more)",
+      "id": "9e4f85cc-d1f8-4bad-9285-884b6a0c0da1",
+      "title": "1. still eligible for last 2 years?   2. new payment 2026 3. increase to permanent",
       "description": "[#4a90e2]",
       "start_date": "2026-09-19T00:00:00+00:00",
       "end_date": "2026-09-19T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-09-04T19:17:42.558+00:00",
-      "updated_at": "2026-09-04T19:55:09.815593+00:00",
+      "created_at": "2026-09-04T19:39:17.515+00:00",
+      "updated_at": "2026-09-04T19:39:28.599187+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -3006,17 +3006,6 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "a4e52c3b-704b-41be-9ed3-2a2c473e6732",
-      "title": "pokehobby",
-      "description": "[#4a90e2]",
-      "start_date": "2026-09-26T00:00:00+00:00",
-      "end_date": "2026-09-26T00:00:00+00:00",
-      "all_day": false,
-      "created_at": "2026-08-04T19:08:54.919+00:00",
-      "updated_at": "2026-08-04T19:08:54.811945+00:00",
-      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
-    },
-    {
       "id": "b773eb9d-e821-4670-b864-0b34c496e97c",
       "title": "Pay 600$ QC Tax Monthly",
       "description": "[#f3a012]",
@@ -3028,14 +3017,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "f223c882-40d6-4f68-9480-08b6bb00bcd1",
-      "title": "Aion2 / Oct 5 launch",
-      "description": "[#e2ce4b]",
-      "start_date": "2026-09-30T00:00:00+00:00",
-      "end_date": "2026-09-30T00:00:00+00:00",
+      "id": "a4e52c3b-704b-41be-9ed3-2a2c473e6732",
+      "title": "pokehobby",
+      "description": "[#4a90e2]",
+      "start_date": "2026-09-26T00:00:00+00:00",
+      "end_date": "2026-09-26T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-09-01T18:05:11.06+00:00",
-      "updated_at": "2026-09-01T18:05:10.880362+00:00",
+      "created_at": "2026-08-04T19:08:54.919+00:00",
+      "updated_at": "2026-08-04T19:08:54.811945+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -3050,14 +3039,14 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "0adb1f97-50c2-4e22-ad8d-37af8c16cb5e",
-      "title": "Solo leveling?",
-      "description": "[#4a90e2]",
-      "start_date": "2026-10-01T00:00:00+00:00",
-      "end_date": "2026-10-01T00:00:00+00:00",
+      "id": "f223c882-40d6-4f68-9480-08b6bb00bcd1",
+      "title": "Aion2 / Oct 5 launch",
+      "description": "[#e2ce4b]",
+      "start_date": "2026-09-30T00:00:00+00:00",
+      "end_date": "2026-09-30T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-04-26T03:55:05.194+00:00",
-      "updated_at": "2026-04-26T03:55:05.427906+00:00",
+      "created_at": "2026-09-01T18:05:11.06+00:00",
+      "updated_at": "2026-09-01T18:05:10.880362+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -3105,25 +3094,25 @@
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "f944b5e9-fb4f-4d89-ba00-8f6e0e8b1dfa",
-      "title": "doordash sub",
+      "id": "27c0f916-ae9a-4207-9455-72b24c2ea913",
+      "title": "pay snow",
       "description": "[#4a90e2]",
       "start_date": "2026-10-13T00:00:00+00:00",
       "end_date": "2026-10-13T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-09-16T23:31:25.062+00:00",
-      "updated_at": "2026-10-05T16:03:56.923479+00:00",
+      "created_at": "2026-10-13T05:33:23.741+00:00",
+      "updated_at": "2026-10-13T05:33:23.746263+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
-      "id": "9ff62589-6d5b-435b-90d9-5bad77671c2e",
-      "title": "12pm Notary dad",
-      "description": "[#e8e800]",
-      "start_date": "2026-10-16T00:00:00+00:00",
-      "end_date": "2026-10-16T00:00:00+00:00",
+      "id": "efaa98d2-b186-490e-b7d4-e9c3f65cd038",
+      "title": "1888-277-8726 desjardsin insurance call roof",
+      "description": "[#4a90e2]",
+      "start_date": "2026-10-14T00:00:00+00:00",
+      "end_date": "2026-10-14T00:00:00+00:00",
       "all_day": false,
-      "created_at": "2026-10-01T11:22:56.45+00:00",
-      "updated_at": "2026-10-01T11:22:56.573377+00:00",
+      "created_at": "2026-10-14T18:20:48.303+00:00",
+      "updated_at": "2026-10-14T18:20:48.536905+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
@@ -3146,6 +3135,17 @@
       "all_day": false,
       "created_at": "2026-08-31T16:26:09.395+00:00",
       "updated_at": "2026-10-01T11:20:46.790114+00:00",
+      "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
+    },
+    {
+      "id": "9ff62589-6d5b-435b-90d9-5bad77671c2e",
+      "title": "12pm Notary dad",
+      "description": "[#e8e800]",
+      "start_date": "2026-10-23T00:00:00+00:00",
+      "end_date": "2026-10-23T00:00:00+00:00",
+      "all_day": false,
+      "created_at": "2026-10-01T11:22:56.45+00:00",
+      "updated_at": "2026-10-16T01:43:56.297532+00:00",
       "user_id": "49e13703-4f33-41a5-bbb7-43b512acb313"
     },
     {
